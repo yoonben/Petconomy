@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.peco.mapper.BoardMapper">
+
+	<select id="getMain" resultType="com.peco.vo.BoardVO">
+ 	SELECT 
+	    b.bno,
+	    b.title,
+	    b.content,
+	    b.m_id,
+	    b.visitcount,
+	    b.likecount,
+	    b.category,
+	    DECODE(TRUNC(SYSDATE), TRUNC(b.regdate), TO_CHAR(b.regdate, 'HH24:MI:SS'), TO_CHAR(b.regdate, 'YYYY-MM-DD')) AS regdate,
+	    b.updatedate,
+	    m.nickname
+	FROM 
+	    board b
+	LEFT JOIN 
+	    member m ON b.m_id = m.M_ID
+	ORDER BY 
+	    b.bno DESC 
+	</select>
+	
+	
+	<select id="getBest" resultType="com.peco.vo.BoardVO">
+ 	SELECT 
+	    b.bno,
+	    b.title,
+	    b.content,
+	    b.m_id,
+	    b.visitcount,
+	    b.likecount,
+	    b.category,
+	    CASE
+	        WHEN TRUNC(SYSDATE) = TRUNC(b.regdate) THEN TO_CHAR(b.regdate, 'HH24:MI:SS')
+	        ELSE TO_CHAR(b.regdate, 'YYYY-MM-DD')
+	    END AS regdate,
+	    b.updatedate,
+	    m.nickname,
+	    a.uploadpath || a.uuid || '_' || a.filename AS savePath,
+	    DECODE(a.filetype, 'I', a.uploadpath || 's_' || a.uuid || '_' || a.filename, '/resources/images/default.png') AS s_savePath
+	FROM (
+	    SELECT 
+	        b2.bno,
+	        b2.title,
+	        b2.content,
+	        b2.m_id,
+	        b2.visitcount,
+	        b2.likecount,
+	        b2.category,
+	        b2.regdate,
+	        b2.updatedate
+	    FROM 
+	        board b2
+	    WHERE 
+	        b2.regdate >= SYSDATE - 7
+	    ORDER BY 
+	        b2.likecount DESC
+	) b
+	LEFT JOIN
+	    member m ON b.m_id = m.m_id
+	LEFT JOIN
+	    b_img a ON b.bno = a.bno
+	    <![CDATA[
+	WHERE ROWNUM <= 5
+					]]>
+	ORDER BY b.likecount DESC
+	</select>
+	
+	
+	
+	<select id="getFree" resultType="com.peco.vo.BoardVO">
+	<![CDATA[
+	select *
+		from(
+				select t.*, rownum rn
+				from (
+					 	SELECT 
+						    b.bno,
+						    b.title,
+						    b.content,
+						    b.m_id,
+						    b.visitcount,
+						    b.likecount,
+						    DECODE(TRUNC(SYSDATE), TRUNC(b.regdate), TO_CHAR(b.regdate, 'HH24:MI:SS'), TO_CHAR(b.regdate, 'YYYY-MM-DD')) AS regdate,
+						    b.updatedate,
+						    m.nickname
+						FROM 
+						    board b
+						LEFT JOIN 
+						    member m ON b.m_id = m.M_ID
+						WHERE 
+							category='free'
+								]]>
+						<include refid="criteria"></include>
+						ORDER BY 
+						    b.bno DESC 
+					 ) t
+			)
+		where rn between #{startNo} and #{endNo}
+	</select>
+	
+	<select id="getHealing" resultType="com.peco.vo.BoardVO">
+	<![CDATA[
+	select *
+		from(
+				select t.*, rownum rn
+				from (
+					 	SELECT 
+						    b.bno,
+						    b.title,
+						    b.content,
+						    b.m_id,
+						    b.visitcount,
+						    b.likecount,
+						    DECODE(TRUNC(SYSDATE), TRUNC(b.regdate), TO_CHAR(b.regdate, 'HH24:MI:SS'), TO_CHAR(b.regdate, 'YYYY-MM-DD')) AS regdate,
+						    b.updatedate,
+						    m.nickname
+						FROM 
+						    board b
+						LEFT JOIN 
+						    member m ON b.m_id = m.M_ID
+						WHERE 
+							category='healing'
+								]]>
+						<include refid="criteria"></include>
+						ORDER BY 
+						    b.bno DESC 
+					 ) t
+			)
+		where rn between #{startNo} and #{endNo}
+	</select>
+	
+	<select id="selectOne" resultType="com.peco.vo.BoardVO">
+	 	SELECT 
+		    b.bno,
+		    b.title,
+		    b.content,
+		    b.m_id,
+		    b.visitcount,
+		    b.likecount,
+		    DECODE(TRUNC(SYSDATE), TRUNC(b.regdate), TO_CHAR(b.regdate, 'HH24:MI:SS'), TO_CHAR(b.regdate, 'YYYY-MM-DD')) AS regdate,
+		    b.updatedate,
+		    m.nickname
+		FROM 
+		    board b
+		LEFT JOIN 
+		    member m ON b.m_id = m.M_ID
+		WHERE bno=#{bno}
+		ORDER BY 
+		    b.bno DESC 
+	</select>
+	
+	
+	<!-- 
+	 selectKey
+	 	생성된 시퀀스값을 VO객체의 속성에 저장후 사용한다
+	 -->
+	<insert id="insertSelectKey">
+		<selectKey keyProperty="bno" order="BEFORE" resultType="int">
+		select seq_board.nextval from dual
+		</selectKey>
+		
+		insert into board (bno,title,content,writer,m_id,category)
+		values(#{bno},#{title},#{content},#{writer},#{m_id},#{category})
+	
+	</insert>
+	
+	<!-- getList의 검색조건과 getTotalCnt의 검색조건을 통일시켜줘야함 -->
+	<!-- 같은 조건을 사용하는 부분을 sql로 따로 빼서 작성 -->
+	<select id="getTotalCnt" resultType="int">
+	SELECT COUNT(*) 
+	FROM board
+	WHERE 1=1
+	<include refid="criteria"></include>
+	</select>
+	
+	<select id="getFreeTotalCnt" resultType="int">
+	SELECT COUNT(*) 
+	FROM board
+	WHERE 1=1
+	AND category='free'
+	<include refid="criteria"></include>
+	</select>
+	
+	<select id="getHealingTotalCnt" resultType="int">
+	SELECT COUNT(*) 
+	FROM board
+	WHERE 1=1
+	AND category='healing'
+	<include refid="criteria"></include>
+	</select>
+	
+	
+	<delete id="delete">
+	delete from board where bno = #{bno}
+	</delete>
+	
+	<update id="edit">
+	update board set title= #{title}, content = #{content}, updatedate = sysdate 
+	where bno = #{bno}
+	</update>
+	
+	<select id="getLike" resultType="int">
+	select likecount 
+	from board
+	where bno = #{bno}
+	</select>
+	
+	
+	<update id="likeCnt">
+	update board set likecount= likecount+1 
+	where bno = #{bno}
+	</update>
+	
+
+	
+	<update id="updateReplyCnt">
+    update board set replycnt = replycnt + #{amount} where bno = #{bno}
+  	</update>
+
+
+
+
+	<!-- 
+		반복되는 쿼리를 미리 작성해 놓고 재활용 합니다
+			반복할 쿼리 선언 : <sql id="">
+			선언한 쿼리 사용 : <include refid="">
+			변수 사용 방법 <property name="">
+			
+			refId = reference id
+	 -->
+	 <sql id="criteria">
+	 	<choose>
+	 		<when test="searchField == 'title'">
+	 			and title like '%' || #{searchWord} || '%'
+	 		</when>
+	 		<when test="searchField == 'content'">
+	 			and content like '%' || #{searchWord} || '%'
+	 		</when>
+	 		<when test="searchField == 'writer'">
+	 			and writer like '%' || #{searchWord} || '%'
+	 		</when>
+	 	</choose>
+	 </sql>
+
+</mapper>

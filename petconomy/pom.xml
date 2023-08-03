@@ -90,6 +90,7 @@
 		</dependency>
 
 		<!-- Servlet -->
+		<!--서블릿 버전 3.1로 업 https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -116,14 +117,14 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.oracle.ojdbc/ojdbc8 -->
+		<!--ojdbc https://mvnrepository.com/artifact/com.oracle.ojdbc/ojdbc8 -->
 		<dependency>
 			<groupId>com.oracle.ojdbc</groupId>
 			<artifactId>ojdbc8</artifactId>
 			<version>19.3.0.0</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.oracle.ojdbc/orai18n -->
+		<!--orai18n https://mvnrepository.com/artifact/com.oracle.ojdbc/orai18n -->
 		<dependency>
 			<groupId>com.oracle.ojdbc</groupId>
 			<artifactId>orai18n</artifactId>

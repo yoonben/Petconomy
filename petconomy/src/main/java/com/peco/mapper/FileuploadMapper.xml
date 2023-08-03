@@ -9,4 +9,43 @@
 				values (#{uploadpath},#{filename},#{filetype},#{m_id},#{uuid})
 	</insert>
 	
+	<select id="getList" resultType="com.peco.vo.FileuploadVO">
+		SELECT t.*,
+		      uploadpath || uuid || '_' || filename AS savePath,
+		DECODE(filetype, 'I', uploadpath || 's_' || uuid || '_' || filename, 'NO_image') AS s_savePath
+		FROM b_img t
+		WHERE bno = #{bno}
+		</select>
+		
+		<insert id="insert">
+		insert into b_img (UUID, UPLOADPATH, FILENAME, FILETYPE, BNO,FNO) 
+		values (#{uuid},#{uploadpath},#{filename},#{filetype},#{bno},('f_' || LPAD(seq_file.NEXTVAL, 5, '0')))
+		</insert>
+
+		<!-- 쿼리문에서 #{}변수를 두개이상 받아야할 경우엔 무조건 @Param 이용해야함 -->
+		<delete id="delete">
+		delete
+		from b_img
+		where bno=#{bno}
+		and	uuid=#{uuid}
+		
+		</delete>
+
+		<select id="getOne" resultType="com.peco.vo.FileuploadVO">
+		SELECT t.*,
+		      'c:\upload\' || uploadpath || uuid || '_' || filename AS savePath,
+		DECODE(filetype, 'I', 'c:\upload\' || uploadpath || 's_' || uuid || '_' || filename, 'NO_image') AS s_savePath
+		FROM b_img t
+		WHERE bno = #{bno}
+		AND uuid = #{uuid}
+		</select>
+		
+		<select id="getPath" resultType="com.peco.vo.FileuploadVO">
+		SELECT t.*,
+		      uploadpath || uuid || '_' || filename AS savePath,
+		DECODE(filetype, 'I', uploadpath || 's_' || uuid || '_' || filename, 'NO_image') AS s_savePath
+		FROM b_img t
+		WHERE bno = #{bno}
+		</select>
+	
 </mapper>
