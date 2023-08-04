@@ -1,13 +1,7 @@
 package com.peco.controller;
 
-import java.io.Console;
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,27 +9,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.peco.service.FileuploadService;
 import com.peco.service.MemberService;
 import com.peco.service.PensionService;
-import com.peco.vo.BoardVO;
 import com.peco.vo.FileuploadVO;
 import com.peco.vo.MemberVO;
 import com.peco.vo.PensionVO;
 
 import lombok.extern.log4j.Log4j;
-import net.coobird.thumbnailator.Thumbnails;
 
 @Controller
 @RequestMapping("/peco/*")
@@ -209,13 +197,13 @@ public class MemberController extends CommonRestController{
 	@GetMapping("phProfile")
 	public String getOne_P(HttpSession session, PensionVO vo) {
 		try {
-			if(vo.getM_Id()==null || vo.getM_Id().equals("")) {
+			if(vo.getM_id()==null || vo.getM_id().equals("")) {
 				//메세지 처리
 				System.out.println("msg");
 				return "";  
 			}
 			
-			PensionVO pension = pensionService.getOne_P(vo.getM_Id());
+			PensionVO pension = pensionService.getOne_P(vo.getM_id());
 			session.setAttribute("pension", pension);
 			
 			return "/member/phProfile";
@@ -244,7 +232,7 @@ public class MemberController extends CommonRestController{
 		pensionService.update_P(vo);
 		
 		//업데이트된 펜션정보 다시 조회
-		PensionVO updatePension = pensionService.getOne_P(vo.getM_Id());
+		PensionVO updatePension = pensionService.getOne_P(vo.getM_id());
 		
 		//모델에 업데이트된 회원 정보 추가
 		model.addAttribute("pension", updatePension);
