@@ -70,4 +70,28 @@ public class CommonRestController {
 	map.put("pageDto",pageDto);
 	return map;
 	}
+	
+	public Map<String, Object> responseReviewListMap(List<?> list
+			, PageDto pageDto, List<?> reviewerList){
+
+	int res = list != null ? 1 : 0;
+	Map<String, Object> map = responseMap(res, REST_SELECT);
+	map.put("list", list);
+	map.put("reviewerList", reviewerList);
+	map.put("pageDto", pageDto);
+	return map;
+	}
+	
+	public Map<String, Object> responseMemberListMap(List<?> list
+	, PageDto pageDto){
+	
+	int res = list != null ? 1 : 0;
+	Map<String, Object> map = responseMap(res, REST_SELECT);
+	map.put("list", list);
+	map.put("pageDto", pageDto);
+	return map;
+	}
+	
+	
+	
 }

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.peco.mapper.ReviewMapper">
+
+<select id="getList" resultType="com.peco.vo.PensionReviewVO">
+	select *
+	  from (
+	  		select t.*, rownum rn 
+	  		  from (
+					select pr_no, p_id, review, reviewer
+							, to_char(regitdate,'yyyy-MM-dd') regitdate
+							, star
+					  from P_review
+					 where p_id = #{p_id}
+				  order by pr_no desc
+				) t
+		  )
+	  where rn between #{cri.startNo} and #{cri.endNo}
+	</select>
+	
+	<insert id="insert">
+		insert into P_review (pr_no, p_id, review, reviewer, regitdate, star)
+    	values (seq_pr_no.nextval, #{p_id}, #{review}, #{reviewer}, sysdate, #{star})
+	</insert>
+	
+	<delete id="delete">
+		delete 
+		from	P_review
+		where 	pr_no =#{pr_no} 
+	</delete>
+	
+	<update id="update">
+		update P_review
+		   set review = #{review}
+		   	 , regitdate = sysdate
+		 where pr_no = #{pr_no} 
+		   
+	</update>
+	
+	<select id="totalCnt" resultType="int">
+		select count(*)
+		  from P_review
+		 where p_id=#{p_id}
+	</select>
+
+	
+	<select id="getOne" resultType="com.peco.vo.PensionReviewVO">
+		select *
+		  from P_review
+		 where pr_no=#{pr_no}
+	</select>
+	
+	<select id="getReviewerList" resultType="com.peco.vo.PensionReviewVO">
+		select reviewer from P_review where p_id = #{p_id}
+	</select>
+
+</mapper>

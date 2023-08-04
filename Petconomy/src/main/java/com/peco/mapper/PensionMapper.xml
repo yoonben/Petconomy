@@ -21,4 +21,21 @@
 			checkYN = #{checkYN}
 			where m_id = #{m_id}
 	</update>
+	
+	<select id="getOne" resultType="com.peco.vo.PensionVO">
+		select * from pension where p_id = #{p_id}
+	</select>
+	
+	<select id="roomList" resultType="com.peco.vo.PensionRoomVO">
+		select * from p_room where p_id = #{p_id}
+	</select>
+	
+	<select id="reviewList" resultType="com.peco.vo.PensionReviewVO">
+		select * from p_review where p_id = #{p_id}
+	</select>
+	
+	<select id="starAvg" resultType="int">
+		<!-- select coalesce(round(avg(star)), 0) from p_review where p_id = #{p_id} -->
+		select round(avg(star)) from p_review where p_id = #{p_id}
+	</select>	
   </mapper>
