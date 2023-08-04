@@ -2,6 +2,10 @@ package com.peco.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
+import com.peco.vo.PensionReviewVO;
+import com.peco.vo.PensionRoomVO;
 import com.peco.vo.PensionVO;
 
 

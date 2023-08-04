@@ -18,7 +18,7 @@ public interface PensionService {
 	public List<PensionVO> pensionList();
 	
 
-	
+	public int pensionInsert(PensionVO vo);
 
 	public PensionVO getOne_P(String m_id);
 

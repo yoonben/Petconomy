@@ -12,8 +12,8 @@ var response_data= [];
 
 $(document).ready(function () {
 	  var baseURL = "https://api.odcloud.kr/api/15111389/v1/uddi:41944402-8249-4e45-9e9d-a52d0a7db1cc?"
-			  + "serviceKey=JWFQQ8%2Fl2mzSIciMFp6OsEWf0FY%2FjZtaVBpKpNb2ga1UmCMhSzskajf3HKN%2Beu3E959Qv6UYx6vq0jKX3tB0hA%3D%3D
-			  + "&perPage=1000
+			  + "serviceKey=JWFQQ8%2Fl2mzSIciMFp6OsEWf0FY%2FjZtaVBpKpNb2ga1UmCMhSzskajf3HKN%2Beu3E959Qv6UYx6vq0jKX3tB0hA%3D%3D"
+			  + "&perPage=1000"
 			  + "&returnType=Json";
 
 	  // Loop through page numbers 1 to 10

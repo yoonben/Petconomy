@@ -43,7 +43,7 @@
 	</select>	
 	
   	<insert id="pensionInsert">
-  	insert ignore into pension(P_ID, M_ID, PNAME, ADDR, OPENHOUR, PARKYN, CHECKYN) 
-  	values(pension_seq.nextval, 'M0002', #{pname}, #{addr}, #{openHour}, #{parkYN} ,'N')
+  	insert ignore into pension(M_ID, PNAME, ADDR, OPENHOUR, PARKYN, CHECKYN) 
+  	values('M0002', #{pname}, #{addr}, #{openHour}, #{parkYN} ,'N')
   	</insert>
   </mapper>

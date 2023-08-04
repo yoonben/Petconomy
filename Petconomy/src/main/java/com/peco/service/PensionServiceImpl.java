@@ -65,6 +65,13 @@ public class PensionServiceImpl implements PensionService {
 		return pensionMapper.pensionList();
 	}
 
+	@Override
+	public int pensionInsert(PensionVO vo) {
+		// TODO Auto-generated method stub
+		return pensionMapper.pensionInsert(vo); 
+		
+	}
+
 
 
 }
