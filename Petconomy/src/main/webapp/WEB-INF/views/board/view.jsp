@@ -194,7 +194,7 @@
           console.log('세이브 패스 여기다 -=>', savePath)
           content += ''
             + '<a href="/peco/file/download?filename=' + savePath + '">  '
-            + '<img src="/peco/display?fileName=' + savePath + '" style="border-radius: 23px; margin-bottom: 30px; width: 100px; height: 100px;"></a> <br>'
+            + '<img src="/peco/display?fileName=' + s_savePath + '" style="border-radius: 23px; margin-bottom: 30px; width: 100px; height: 100px;"></a> <br>'
             + item.filename
             + '</a>'
             + '<i class="fa-regular fa-trash-can" onclick="FileDelete(this)"		'
@@ -366,10 +366,10 @@
                       <div class="col-lg-7">
                         <!------- 글내용 안에 파일  출력 --------->
                         <c:forEach items="${filelist}" var="file">
-                          <!----사진 클릭했을때 다운로드링크-- -->
-                          <%-- <a href="/file/download?filename=${file.savePath}"> --%>
-                          <img src="/peco/display?fileName=${file.s_savePath}" alt="${file.filename}" style="border-radius: 23px; margin-bottom: 30px;">
-                          <!-- </a> -->
+                          <!----사진 클릭했을때 원본 이미지 새창-- -->
+                          <a href="/peco/display?fileName=${file.savePath}" target="_blank">
+                          <img src="/peco/display?fileName=${file.savePath}" alt="${file.filename}" style="border-radius: 23px; margin-bottom: 30px;">
+                          </a>
                           <br>
                         </c:forEach>
                       </div>
@@ -397,7 +397,8 @@
         
         <br>
         
-        <div id="divFileupload">비동기로 js에서 작성한 파일 목록 태그 들어갈 자리</div>
+        <!-- 비동기로 js에서 작성한 파일 목록 태그 들어갈 자리 -->
+        <div id="divFileupload"></div>
         
         <!-- 총댓글수 들어오는곳 -->
         <div id="totalCnt"></div>
