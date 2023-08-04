@@ -2,6 +2,7 @@ package com.peco.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,6 +15,7 @@ public interface FileuploadService {
 
 	int Profileupload(List<MultipartFile> files, String m_id) throws Exception;
 	
+	public int delete_Img(@Param("m_id")String m_id, @Param("uuid") String uuid);
 	/**
 	 * 하나의 게시물에 저장된 파일의 목록을 조회
 	 * 

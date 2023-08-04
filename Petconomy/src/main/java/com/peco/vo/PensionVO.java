@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class PensionVO {
+	private String m_Id;
 	private String p_Id;
 	private String pname;
 	private String addr;

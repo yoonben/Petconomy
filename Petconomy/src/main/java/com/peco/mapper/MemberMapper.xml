@@ -24,4 +24,23 @@
   	<select id="nicknameCheck" resultType="int">
   		select count(*) from member where nickname = #{nickname}
   	</select>
+  	
+  	<select id="member_getOne" resultType="com.peco.vo.MemberVO">
+		select member.*
+		, uploadpath||F_img.m_id||'_'||filename savePath 
+		from member, F_img where 
+		member.m_id = F_img.m_id and member.m_id = #{m_id}
+	</select>
+	
+
+	<update id="update">
+		update P_member set 
+			pw = #{pw},
+			mName = #{mName},
+			mPhone = #{mPhone},
+			email = #{email},
+			nickname = #{nickname},
+			age = #{age}
+			where m_id = #{m_id}
+	</update>
   </mapper>

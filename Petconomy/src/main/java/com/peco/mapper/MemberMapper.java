@@ -9,5 +9,6 @@ public interface MemberMapper {
 	public int idCheck(MemberVO member);
 	public int nicknameCheck(MemberVO member);
 	public MemberVO apiLogin(MemberVO apiMember);
-	
+	public MemberVO member_getOne(String m_id);
+	public int update(MemberVO vo);
 }
