@@ -15,7 +15,7 @@
 		DECODE(filetype, 'I', uploadpath || 's_' || uuid || '_' || filename, 'NO_image') AS s_savePath
 		FROM b_img t
 		WHERE bno = #{bno}
-		</select>
+	</select>
 		
 		<insert id="insert">
 		insert into b_img (UUID, UPLOADPATH, FILENAME, FILETYPE, BNO,FNO) 
