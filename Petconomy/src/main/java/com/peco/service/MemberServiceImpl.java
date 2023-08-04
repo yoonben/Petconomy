@@ -69,7 +69,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int nicknameCheck(MemberVO member) {
-		// TODO Auto-generated method stub
+	
 		return memberMapper.nicknameCheck(member);
 	}
 	
@@ -103,7 +103,7 @@ public class MemberServiceImpl implements MemberService {
 			
 			return response;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 			
 			return null;
