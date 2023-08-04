@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.peco.mapper.PensionMapper;
+import com.peco.vo.PensionReviewVO;
+import com.peco.vo.PensionRoomVO;
 import com.peco.vo.PensionVO;
 
 @Service
@@ -29,6 +31,33 @@ public class PensionServiceImpl implements PensionService {
 		// TODO Auto-generated method stub
 		return pensionMapper.mapList();
 	}
+	
+	@Override
+	public PensionVO getOne(String p_id) {
+		// TODO Auto-generated method stub
+		return pensionMapper.getOne(p_id);
+	}
+
+	@Override
+	public List<PensionRoomVO> roomList(String p_id) {
+		
+		List<PensionRoomVO> roomList = pensionMapper.roomList(p_id);		
+		
+		return roomList;
+	}
+
+	@Override
+	public List<PensionReviewVO> reviewList(String p_id) {
+		List<PensionReviewVO> reviewList = pensionMapper.reviewList(p_id);
+		
+		return reviewList;
+	}
+
+	@Override
+	public int starAvg(String p_id) {
+		
+		return pensionMapper.starAvg(p_id);
+	}
 
 	@Override
 	public List<PensionVO> pensionList() {
@@ -36,10 +65,6 @@ public class PensionServiceImpl implements PensionService {
 		return pensionMapper.pensionList();
 	}
 
-	@Override
-	public int pensionInsert(PensionVO vo) {
-		// TODO Auto-generated method stub
-		return pensionMapper.pensionInsert(vo);
-	}
+
 
 }

@@ -17,6 +17,15 @@
 		WHERE bno = #{bno}
 	</select>
 		
+		<select id="getProfile" resultType="com.peco.vo.FileuploadVO">
+		SELECT t.*,
+		      uploadpath || m_id || filename AS savePath,
+		     DECODE(filetype, 'I', uploadpath || 's_' || m_id || filename, 'NO_image') AS s_savePath
+		FROM F_img t
+		WHERE m_id = #{m_id}
+	</select>
+		
+		
 		<insert id="insert">
 		insert into b_img (UUID, UPLOADPATH, FILENAME, FILETYPE, BNO,FNO) 
 		values (#{uuid},#{uploadpath},#{filename},#{filetype},#{bno},('f_' || LPAD(seq_file.NEXTVAL, 5, '0')))

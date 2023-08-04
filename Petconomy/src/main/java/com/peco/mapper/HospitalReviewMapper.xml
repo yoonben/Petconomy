@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.peco.mapper.HospitalReviewMapper">
+
+<select id="getList" resultType="com.peco.vo.HospitalReviewVO">
+	select *
+	  from (
+	  		select t.*, rownum rn 
+	  		  from (
+					select hr_no, h_id, review, reviewer
+							, to_char(regitdate,'yyyy-MM-dd') regitdate
+							, star
+					  from H_review
+					 where h_id = #{h_id}
+				  order by hr_no desc
+				) t
+		  )
+	  where rn between #{cri.startNo} and #{cri.endNo}
+	</select>
+	
+	<insert id="insert">
+		insert into H_review (hr_no, h_id, review, reviewer, regitdate, star)
+    	values (seq_hr_no.nextval, #{h_id}, #{review}, #{reviewer}, sysdate, #{star})
+	</insert>
+	
+	<delete id="delete">
+		delete 
+		from	H_review
+		where 	hr_no =#{hr_no} 
+	</delete>
+	
+	<update id="update">
+		update H_review
+		   set review = #{review}
+		   	 , regitdate = sysdate
+		 where hr_no = #{hr_no} 
+		   
+	</update>
+	
+	<select id="totalCnt" resultType="int">
+		select count(*)
+		  from H_review
+		 where h_id=#{h_id}
+	</select>
+
+	
+	<select id="getOne" resultType="com.peco.vo.HospitalReviewVO">
+		select *
+		  from H_review
+		 where hr_no=#{hr_no}
+	</select>
+	
+	<select id="getReviewerList" resultType="com.peco.vo.HospitalReviewVO">
+		select reviewer from H_review where h_id = #{h_id}
+	</select>
+
+</mapper>

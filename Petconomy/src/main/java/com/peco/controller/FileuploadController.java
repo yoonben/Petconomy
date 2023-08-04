@@ -102,7 +102,7 @@ public class FileuploadController extends CommonRestController{
 							, @PathVariable("m_id") String m_id){
 		Map<String, Object> response = new HashMap();
 		
-		int res = service.delete_Img(m_id, uuid);
+		int res = service.delete_Img(m_id);
 		
 	    if (res > 0) {
 	        response.put("success", true);
