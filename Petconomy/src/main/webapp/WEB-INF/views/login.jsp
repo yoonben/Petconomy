@@ -143,8 +143,10 @@
 					<input type="hidden" id="pwCheckRes" value="1">
 				</c:if>
 
-				<input type="hidden" id="nickNameRes"> <input type="hidden"
-					name="m_id" id="m_id" value="">
+				<input type="hidden" id="nickNameRes">
+				 
+				<input type="text" name="m_id" id="m_id" value="">
+				
 				<h1 class="h3 mb-3 fw-normal">Please sign up</h1>
 				<div id="signupMsg"></div>
 				<div class="form-floating">
