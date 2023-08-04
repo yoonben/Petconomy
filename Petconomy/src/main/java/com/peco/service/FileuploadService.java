@@ -15,7 +15,7 @@ public interface FileuploadService {
 
 	int Profileupload(List<MultipartFile> files, String m_id) throws Exception;
 	
-	public int delete_Img(@Param("m_id")String m_id, @Param("uuid") String uuid);
+	public int delete_Img(String m_id);
 	/**
 	 * 하나의 게시물에 저장된 파일의 목록을 조회
 	 * 
@@ -31,4 +31,6 @@ public interface FileuploadService {
 	public int fileupload(List<MultipartFile> files, int bno ) throws Exception;
 	
 	public List<FileuploadVO> getPath(int bno);
+	
+	public FileuploadVO getProfile(String m_id);
 }
