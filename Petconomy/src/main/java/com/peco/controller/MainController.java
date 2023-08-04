@@ -28,4 +28,10 @@ public class MainController {
 		model.addAttribute("lists", list);
 		return "/main/pension";
 	}
+
+	@GetMapping("/main/mainpage")
+	public String main() {
+
+		return "/main/mainpage";
+	}
 }

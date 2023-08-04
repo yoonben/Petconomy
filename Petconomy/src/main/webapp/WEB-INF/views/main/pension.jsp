@@ -19,9 +19,9 @@
 
 
     <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="/resources/css/templatemo-cyborg-gaming.css">
-    <link rel="stylesheet" href="/resources/css/owl.css">
-    <link rel="stylesheet" href="/resources/css/animate.css">
+    <link rel="stylesheet" href="/resources/assets/css/templatemo-cyborg-gaming.css">
+    <link rel="stylesheet" href="/resources/assets/css/owl.css">
+    <link rel="stylesheet" href="/resources/assets/css/animate.css">
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
 <script>
 
@@ -164,7 +164,7 @@
                     </div>
                     
                     <div class="col-lg-12">
-                      <div><%--@include file="kakaomap.jsp" --%></div>
+                      <div><%@include file="kakaomap.jsp"%></div>
                     </div>
                     
 
@@ -185,7 +185,7 @@
          <div class="main-button">
            <a href="#" onclick="regionSelect()">지역</a>
          </div>
-         <div style="text-align:center;"><%--@include file="searchForm.jsp" --%></div>
+         <div style="text-align:center;"><%@include file="searchForm.jsp"%></div>
                   <table style="color:white;">
 
 
@@ -248,13 +248,13 @@
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->
 
-  <script src="/resources/js/bootstrap.min.js"></script>
+  <script src="/resources/assets/js/bootstrap.min.js"></script>
 
-  <script src="/resources/js/isotope.min.js"></script>
-  <script src="/resources/js/owl-carousel.js"></script>
-  <script src="/resources/js/tabs.js"></script>
-  <script src="/resources/js/popup.js"></script>
-  <script src="/resources/js/custom.js"></script>
+  <script src="/resources/assets/js/isotope.min.js"></script>
+  <script src="/resources/assets/js/owl-carousel.js"></script>
+  <script src="/resources/assets/js/tabs.js"></script>
+  <script src="/resources/assets/js/popup.js"></script>
+  <script src="/resources/assets/js/custom.js"></script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
