@@ -163,9 +163,6 @@ function go(page){
 		                    </a>
 		                </div> 
 				  </div>
-				  <span><i class="fa fa-check"></i> ${b.nickname}</span>
-				  <span><i class="fa fa-check"></i> ${b.nickname}</span>
-				  <span><i class="fa fa-check"></i> ${b.nickname}</span>
 			</c:forEach>
             <!------------------- 베스트 게시글  끝-------------------->
 
