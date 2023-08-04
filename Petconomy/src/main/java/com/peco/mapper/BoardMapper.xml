@@ -73,8 +73,7 @@
 	
 	
 	<select id="getFree" resultType="com.peco.vo.BoardVO">
-	<![CDATA[
-	select *
+	 <!-- select 
 		from(
 				select t.*, rownum rn
 				from (
@@ -100,73 +99,105 @@
 						    b.bno DESC 
 					 ) t
 			)
-		where rn between #{startNo} and #{endNo}
+		where rn between #{startNo} and #{endNo} -->
+	<![CDATA[
+		SELECT
+		    *
+		FROM
+		    (
+		        SELECT
+		            t.*,
+		            ROWNUM rn
+		        FROM
+		            (
+		                SELECT
+		                    b.bno,
+		                    b.title,
+		                    b.content,
+		                    b.m_id,
+		                    b.visitcount,
+		                    b.likecount,
+		                    decode(trunc(sysdate),
+		                           trunc(b.regdate),
+		                           to_char(b.regdate, 'HH24:MI:SS'),
+		                           to_char(b.regdate, 'YYYY-MM-DD')) AS regdate,
+		                    b.updatedate,
+		                    m.nickname,
+		                    a.uploadpath
+		                    || a.uuid
+		                    || '_'
+		                    || a.filename                            AS savepath,
+		                    decode(a.filetype, 'I', a.uploadpath
+		                                            || 's_'
+		                                            || a.uuid
+		                                            || '_'
+		                                            || a.filename, '/default/NO_image.jpg')  AS s_savepath
+		                FROM
+		                    board  b
+		                    LEFT JOIN member m ON b.m_id = m.m_id
+		                    LEFT JOIN b_img  a ON b.bno = a.bno
+		                WHERE
+		                    category = 'free'
+		                    ]]>
+		                    <include refid="criteria"></include>
+		                ORDER BY
+		                    b.bno DESC
+		            ) t
+		    )
+		WHERE
+		    rn BETWEEN #{startNo} AND #{endNo}
+
+		
 	</select>
 	
 	<select id="getHealing" resultType="com.peco.vo.BoardVO">
-	<![CDATA[
-	select *
-		from(
-				select t.*, rownum rn
-				from (
-					 	SELECT 
-						    b.bno,
-						    b.title,
-						    b.content,
-						    b.m_id,
-						    b.visitcount,
-						    b.likecount,
-						    DECODE(TRUNC(SYSDATE), TRUNC(b.regdate), TO_CHAR(b.regdate, 'HH24:MI:SS'), TO_CHAR(b.regdate, 'YYYY-MM-DD')) AS regdate,
-						    b.updatedate,
-						    m.nickname
-						FROM 
-						    board b
-						LEFT JOIN 
-						    member m ON b.m_id = m.M_ID
-						WHERE 
-							category='healing'
-								]]>
-						<include refid="criteria"></include>
-						ORDER BY 
-						    b.bno DESC 
-					 ) t
-			)
-		where rn between #{startNo} and #{endNo}
+		<![CDATA[
+		SELECT
+		    *
+		FROM
+		    (
+		        SELECT
+		            t.*,
+		            ROWNUM rn
+		        FROM
+		            (
+		                SELECT
+		                    b.bno,
+		                    b.title,
+		                    b.content,
+		                    b.m_id,
+		                    b.visitcount,
+		                    b.likecount,
+		                    decode(trunc(sysdate),
+		                           trunc(b.regdate),
+		                           to_char(b.regdate, 'HH24:MI:SS'),
+		                           to_char(b.regdate, 'YYYY-MM-DD')) AS regdate,
+		                    b.updatedate,
+		                    m.nickname,
+		                    a.uploadpath
+		                    || a.uuid
+		                    || '_'
+		                    || a.filename                            AS savepath,
+		                    decode(a.filetype, 'I', a.uploadpath
+		                                            || 's_'
+		                                            || a.uuid
+		                                            || '_'
+		                                            || a.filename, '/default/NO_image.jpg')  AS s_savepath
+		                FROM
+		                    board  b
+		                    LEFT JOIN member m ON b.m_id = m.m_id
+		                    LEFT JOIN b_img  a ON b.bno = a.bno
+		                WHERE
+		                    category = 'healing'
+		                    ]]>
+		                    <include refid="criteria"></include>
+		                ORDER BY
+		                    b.bno DESC
+		            ) t
+		    )
+		WHERE
+		    rn BETWEEN #{startNo} AND #{endNo}
 	</select>
-	
-	<select id="getSearch" resultType="com.peco.vo.BoardVO">
-	<![CDATA[
-	select *
-		from(
-				select t.*, rownum rn
-				from (
-					 	SELECT 
-						    b.bno,
-						    b.title,
-						    b.content,
-						    b.m_id,
-						    b.visitcount,
-						    b.likecount,
-						    DECODE(TRUNC(SYSDATE), TRUNC(b.regdate), TO_CHAR(b.regdate, 'HH24:MI:SS'), TO_CHAR(b.regdate, 'YYYY-MM-DD')) AS regdate,
-						    b.updatedate,
-						    b.category,
-						    m.nickname
-						FROM 
-						    board b
-						LEFT JOIN 
-						    member m ON b.m_id = m.M_ID
-						WHERE 
-							1=1
-								]]>
-						<include refid="criteria"></include>
-						ORDER BY 
-						    b.bno DESC 
-					 ) t
-			)
-		where rn between #{startNo} and #{endNo}
-	</select>
-	
-	
 	
 	<select id="selectOne" resultType="com.peco.vo.BoardVO">
 	 	SELECT 

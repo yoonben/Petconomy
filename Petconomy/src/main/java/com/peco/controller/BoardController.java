@@ -43,8 +43,8 @@ public class BoardController extends CommonRestController{
 	public String board(Model model,Criteria cri) {
 
 		List<BoardVO> Bestlist = service.getBest();
-		List<BoardVO> Free = service.getFree(cri, model);
-		List<BoardVO> Healing = service.getHealing(cri,model);
+		List<BoardVO> Freelist = service.getFree(cri, model);
+		List<BoardVO> Healinglist = service.getHealing(cri,model);
 		
 	    // 파일 경로를 슬래시(/)로 변경
 	    if (Bestlist != null) {
@@ -55,11 +55,29 @@ public class BoardController extends CommonRestController{
 	        Best.setS_savePath(convertedThumPath);
 	    	}
 	    }
+	    // 파일 경로를 슬래시(/)로 변경
+	    if (Freelist != null) {
+	    	for (BoardVO Free : Freelist) {
+	    		String convertedPath = Free.getSavePath().replace("\\", "/");
+	    		String convertedThumPath = Free.getS_savePath().replace("\\", "/");
+	    		Free.setSavePath(convertedPath);
+	    		Free.setS_savePath(convertedThumPath);
+	    	}
+	    }
+	    // 파일 경로를 슬래시(/)로 변경
+	    if (Healinglist != null) {
+	    	for (BoardVO Healing : Healinglist) {
+	    		String convertedPath = Healing.getSavePath().replace("\\", "/");
+	    		String convertedThumPath = Healing.getS_savePath().replace("\\", "/");
+	    		Healing.setSavePath(convertedPath);
+	    		Healing.setS_savePath(convertedThumPath);
+	    	}
+	    }
 		
 		
 		model.addAttribute("Best",Bestlist);
-		model.addAttribute("Free",Free);
-		model.addAttribute("Healing",Healing);
+		model.addAttribute("Free",Freelist);
+		model.addAttribute("Healing",Healinglist);
 		
 		return "board/main";
 		
@@ -83,16 +101,6 @@ public class BoardController extends CommonRestController{
 		model.addAttribute("list",list);
 		
 		return "board/healing";
-	}
-	
-	@GetMapping("/board/search")
-	public String search(Model model,Criteria cri) {
-		
-		List<BoardVO> list = service.getSearch(cri,model);
-		
-		model.addAttribute("list",list);
-		
-		return "board/search";
 	}
 	
 	/*
@@ -154,15 +162,11 @@ public class BoardController extends CommonRestController{
 			}
 			
 		} catch (Exception e) {
-			log.info(e.getMessage());
-			if(e.getMessage().indexOf("첨부파일")> -1) {
-				model.addAttribute("msg",e.getMessage());
-			}else {
-				model.addAttribute("msg","등록중 예외사항이 발생하였습니다.");	
-			}
-			e.printStackTrace();
-			return "/board/free";
-		}
+	        log.info(e.getMessage());
+	        model.addAttribute("msg", e.getMessage());
+	        e.printStackTrace();
+	        return "/board/free";
+	    }
 				
 	}
 	
