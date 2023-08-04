@@ -96,7 +96,26 @@ public class FileuploadController extends CommonRestController{
 	}
 	
 	
-	
+	@GetMapping("/profile/{uuid}/{m_id}")
+	public @ResponseBody Map<String, Object> delete(
+							@PathVariable("uuid") String uuid
+							, @PathVariable("m_id") String m_id){
+		Map<String, Object> response = new HashMap();
+		
+		int res = service.delete_Img(m_id, uuid);
+		
+	    if (res > 0) {
+	        response.put("success", true);
+	        response.put("message", "프로필 사진이 삭제되었습니다.");
+	    } else {
+	        response.put("success", false);
+	        response.put("message", "프로필 사진 삭제에 실패하였습니다.");
+	    }
+
+	    return response;
+
+		}
+
 	
 	
 	@GetMapping("/file/delete/{uuid}/{bno}")

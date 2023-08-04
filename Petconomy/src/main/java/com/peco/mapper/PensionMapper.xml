@@ -10,6 +10,20 @@
   	 select * from(select t.*, rownum rn from(select p_Id, Addr, openHour, ParkYN, latitude, longitude from pension where category='펜션' order by p_id desc) t) 
 	where rn between 1 and 10
   	</select>
+  	<select id="getOne_P" resultType="com.peco.vo.PensionVO">
+		select * from Pension where m_id=#{m_id}
+	</select>
+  	
+  	<update id = "update_P">
+		update Pension set
+			p_id = #{p_id},
+			pName = #{pName},
+			Addr = #{Addr},
+			openHour = #{openHour},
+			ParkYN = #{ParkYN},
+			checkYN = #{checkYN}
+			where m_id = #{m_id}
+	</update>
   	
   	<insert id="pensionInsert">
   	insert into pension(P_ID, M_ID, PNAME, ADDR, OPENHOUR, PARKYN) values(pension_seq.nextval, 'M0002', 

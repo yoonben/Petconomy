@@ -47,6 +47,16 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
+	public MemberVO getOne(String m_id) {
+		return memberMapper.member_getOne(m_id);
+	}
+	
+	@Override
+	public int update(MemberVO vo) {
+		return memberMapper.update(vo);
+	}
+	
+	@Override
 	public MemberVO apiLogin(MemberVO apiMember) {
 		MemberVO member = memberMapper.login(apiMember);
 

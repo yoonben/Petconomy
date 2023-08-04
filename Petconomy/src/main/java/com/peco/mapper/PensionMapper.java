@@ -11,5 +11,9 @@ public interface PensionMapper {
 	
 	public List<PensionVO> pensionList();
 	
-	public int pensionInsert(PensionVO vo);
+
+	public PensionVO getOne_P(String m_id);
+	
+	public int update_P(PensionVO vo);
+
 }

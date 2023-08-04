@@ -15,6 +15,16 @@ public class PensionServiceImpl implements PensionService {
 	PensionMapper pensionMapper;
 	
 	@Override
+	public PensionVO getOne_P(String m_id) {
+		return pensionMapper.getOne_P(m_id);
+	}
+
+	@Override
+	public int update_P(PensionVO vo) {
+		return pensionMapper.update_P(vo);
+	}
+	
+	@Override
 	public List<PensionVO> mapList() {
 		// TODO Auto-generated method stub
 		return pensionMapper.mapList();
