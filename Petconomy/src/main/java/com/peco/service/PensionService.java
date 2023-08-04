@@ -12,4 +12,8 @@ import com.peco.vo.PensionVO;
 public interface PensionService {
 
 	public List<PensionVO> mapList();
+
+	public List<PensionVO> pensionList();
+	
+	public int pensionInsert(PensionVO vo);
 }

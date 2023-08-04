@@ -207,7 +207,7 @@
 
 
 </tr>
-    <c:forEach items="${lists }" var="list">
+    <c:forEach items="${list }" var="list">
 <tr>
 
 <td >${list.p_Id }</td>
