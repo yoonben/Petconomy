@@ -62,22 +62,25 @@ public class MainController {
 	public Map<String, Object> insertMemberInfo(@RequestParam String data, PensionVO vo){
 
 	  Map<String, Object> result = new HashMap<>();
+
 	  try {
 	    /*JSONArray jsonArray = JSONArray.fromObject(paramData);*/
 	    List<Map<String,Object>> info = new ArrayList<Map<String,Object>>();
 	    info = JSONArray.fromObject(data);
-	    	
+
 	    for (Map<String, Object> pensionInfo : info) {
-//	    	String pname = pensionInfo.get("시설명").toString();
-//	    	String addr = pensionInfo.get("도로명주소").toString();
-//	    	String openHour = pensionInfo.get("운영시간").toString();
-//	    	String parkYN = pensionInfo.get("주차 가능").toString();
-//	    	String pname = pensionInfo.get("시설명").toString();
-//	    	String addr = pensionInfo.get("도로명주소").toString();
-//	    	String openHour = pensionInfo.get("운영시간").toString();
-//	    	String parkYN = pensionInfo.get("주차 가능").toString();
-	        System.out.println(pensionInfo.get("시설명") + " : " + pensionInfo.get("경도"));
-	        //pensionService.pensionInsert(vo);
+	    	String pname = pensionInfo.get("시설명").toString();
+	    	String addr = pensionInfo.get("도로명주소").toString();
+	    	String openHour = pensionInfo.get("운영시간").toString();
+	    	String parkYN = pensionInfo.get("주차 가능여부").toString();
+
+	        vo.setPname(pname);
+	        vo.setAddr(addr);
+	        vo.setOpenHour(openHour);
+	        vo.setParkYN(parkYN);
+	        pensionService.pensionInsert(vo);
+	        
+
 	    }  
 	      result.put("result", true);
 	  } catch (Exception e) {

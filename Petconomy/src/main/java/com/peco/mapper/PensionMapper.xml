@@ -26,12 +26,7 @@
 	</update>
   	
   	<insert id="pensionInsert">
-  	insert into pension(P_ID, M_ID, PNAME, ADDR, OPENHOUR, PARKYN) values(pension_seq.nextval, 'M0002', 
-  	json_object(
-    'pname', #{pname}, 
-    'addr', #{addr}, 
-    'openhour', #{openHour},
-    'parkyn', #{parkYN}
-))
+  	insert ignore into pension(P_ID, M_ID, PNAME, ADDR, OPENHOUR, PARKYN, CHECKYN) 
+  	values(pension_seq.nextval, 'M0002', #{pname}, #{addr}, #{openHour}, #{parkYN} ,'N')
   	</insert>
   </mapper>

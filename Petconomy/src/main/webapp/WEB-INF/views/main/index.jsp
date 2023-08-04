@@ -9,16 +9,20 @@
     
 <script>
 var response_data= [];
-function getAjax(){
-
-	    
-}
-
 
 $(document).ready(function () {
+	  var baseURL = "https://api.odcloud.kr/api/15111389/v1/uddi:41944402-8249-4e45-9e9d-a52d0a7db1cc?"
+			  + "serviceKey=JWFQQ8%2Fl2mzSIciMFp6OsEWf0FY%2FjZtaVBpKpNb2ga1UmCMhSzskajf3HKN%2Beu3E959Qv6UYx6vq0jKX3tB0hA%3D%3D
+			  + "&perPage=1000
+			  + "&returnType=Json";
+
+	  // Loop through page numbers 1 to 10
+	  for (var pageNo = 1; pageNo <= 25; pageNo++) {
+	    // Append the current page number to the base URL
+	    var url = baseURL + "&page=" + pageNo;
 	$.ajax({
 	    type : "GET",
-	    url : "https://api.odcloud.kr/api/15111389/v1/uddi:41944402-8249-4e45-9e9d-a52d0a7db1cc?serviceKey=JWFQQ8%2Fl2mzSIciMFp6OsEWf0FY%2FjZtaVBpKpNb2ga1UmCMhSzskajf3HKN%2Beu3E959Qv6UYx6vq0jKX3tB0hA%3D%3D&page=1&perPage=1000&returnType=Json",
+	    url : url,
 	    data : {},
 	    success : function(response){
 
@@ -27,7 +31,7 @@ $(document).ready(function () {
 		    	  if(response.data[i].카테고리3=="펜션"){
 		    	  response_data.push(response.data[i]); 		    		  
 		    	  }
-		    	//console.log(response.data[i].시설명)  
+
 		      })
 
 		      $.ajax({
@@ -40,19 +44,15 @@ $(document).ready(function () {
 		    	     dataType: 'json',
 		    	     success: function (res) {
 		    	        if (res.result) {
-		    	          alert("완료 되었습니다");
+		    	          console.log("완료")
 		    	        }
 		    	     }
 		    	   });
 	    }
 	    
 	})
-
-
-
+  }
 })
-
-
 
 </script>
 </head>
