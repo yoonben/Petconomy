@@ -71,6 +71,20 @@
       
    </bean>
    
+   	<!-- 파일업로드시 지정 사이즈 초과할 경우 예외처리 -->
+ 	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+	<property name="defaultErrorView" value="error/error"/>
+	<property name="exceptionMappings">
+	<props>
+	<prop key="org.springframework.dao.DataAccessException">error/error</prop>
+	<prop key="org.springframework.transaction.TransactionException">error/error</prop>
+	<prop key="egovframework.rte.fdl.cmmn.exception.EgovBizException">error/error</prop>
+	<prop key="org.apache.commons.fileupload.FileUploadBase$SizeLimitExceededException">error/error</prop>
+	</props>
+	</property>
+	</bean> 
+	
+   
 	<mybatis-spring:scan base-package="com.peco.mapper"/>	
 	
 	<!-- 트랜잭션 어노테이션 쓸때 필요 -->

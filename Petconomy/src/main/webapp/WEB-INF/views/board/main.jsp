@@ -83,13 +83,6 @@ https://templatemo.com/tm-579-cyborg-gaming
 
 <script type="text/javascript">
 
-//검색 페이징 Action
-function go(page){
-	document.searchForm.pageNo.value=page;
-	document.searchForm.action = "/peco/board/search";
-	document.searchForm.submit();
-}
-
 	function requestAction(url, bno){
 		// 폼이름을 확인!
 		searchForm.action = url;
@@ -186,12 +179,13 @@ function go(page){
             <div class="row">
             
             <!-- -------일상 게시글 시작---------- -->
-            <c:forEach var="f" items="${Free}">
+            <c:forEach var="f" items="${Free}" varStatus="loop">
+            <c:if test="${loop.index < 8}">
               <div class="col-lg-3 col-sm-6">
                 <div class="item">
                   <div class="thumb">
             		<a onclick="requestAction('/peco/board/view', ${f.bno })">
-                    <img src="/resources/assets/images/stream-05.jpg" alt="">
+                    <img src="/peco/display?fileName=${f.s_savePath}" alt="">
                     <div class="hover-effect">
                       <div class="content">
                         <div class="live">
@@ -214,6 +208,7 @@ function go(page){
                   </div> 
                 </div>
               </div>
+              </c:if>
           	</c:forEach>
           	<!-- -------게시글 끝---------- -->
           	
@@ -230,12 +225,13 @@ function go(page){
             </div>
             <div class="row">
             
-            <c:forEach var="h" items="${Healing}">
+            <c:forEach var="h" items="${Healing}" varStatus="loop">
+            <c:if test="${loop.index < 8}">
               <div class="col-lg-3 col-sm-6">
                 <div class="item">
                   <div class="thumb">
-                  	<a onclick="requestAction('/peco/board/view', ${h.bno })">
-                    <img src="/resources/assets/images/stream-05.jpg" alt="">
+                  <a onclick="requestAction('/peco/board/view', ${h.bno })">
+                    <img src="/peco/display?fileName=${h.s_savePath}" alt="">
                     <div class="hover-effect">
                       <div class="content">
                         <div class="live">
@@ -243,7 +239,7 @@ function go(page){
                         </div>
                         <ul>
                           <li><a href="#"><i class="fa fa-eye"></i>${h.visitcount}</a></li>
-                          <li><a href="#"><i class="fa fa-gamepad"></i> CS-GO</a></li>
+                          <li><i id="animated-icon" class="fa-regular fa-thumbs-up fa-lg" style="color: #ffa200;">${h.likecount }</i>
                         </ul>
                       </div>
                     </div>
@@ -254,10 +250,11 @@ function go(page){
                     </div>
                     <span><i class="fa fa-check"></i> ${h.nickname}</span>
                     <h4>${h.title}</h4>
-                    </a>
+                  </a>
                   </div> 
                 </div>
               </div>
+            </c:if>
             </c:forEach>
 
             </div>

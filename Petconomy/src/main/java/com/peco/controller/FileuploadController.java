@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.peco.controller.CommonRestController;
+import com.peco.controller.FileuploadController;
 import com.peco.service.FileuploadService;
 
 import lombok.extern.log4j.Log4j;
@@ -102,7 +104,7 @@ public class FileuploadController extends CommonRestController{
 							, @PathVariable("m_id") String m_id){
 		Map<String, Object> response = new HashMap();
 		
-		int res = service.delete_Img(m_id);
+		int res = service.delete_Img(m_id, uuid);
 		
 	    if (res > 0) {
 	        response.put("success", true);

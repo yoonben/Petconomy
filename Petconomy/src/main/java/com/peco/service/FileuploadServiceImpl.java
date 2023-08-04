@@ -32,9 +32,15 @@ public class FileuploadServiceImpl implements FileuploadService{
 	}
 	
 	@Override
+	public int delete_Img(String m_id, String uuid) {
+		return mapper.delete_Img(m_id, uuid);
+	}
+	
+	@Override
 	public int delete_Img(String m_id) {
 		return mapper.delete_Img(m_id);
 	}
+	
 	/**
 	 * 첨부파일 저장및 데이터 베이스에 등록
 	 * @param files
