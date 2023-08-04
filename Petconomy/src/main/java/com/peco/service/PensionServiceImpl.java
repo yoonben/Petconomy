@@ -59,4 +59,12 @@ public class PensionServiceImpl implements PensionService {
 		return pensionMapper.starAvg(p_id);
 	}
 
+	@Override
+	public List<PensionVO> pensionList() {
+		// TODO Auto-generated method stub
+		return pensionMapper.pensionList();
+	}
+
+
+
 }

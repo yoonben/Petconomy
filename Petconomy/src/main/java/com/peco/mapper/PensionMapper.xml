@@ -3,10 +3,14 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="com.peco.mapper.PensionMapper">
   	<select id="mapList" resultType="com.peco.vo.PensionVO">
-  	 select * from(select t.*, rownum rn from(select p_Id, Addr, openHour, ParkYN, latitude, longitude from pension where category='펜션' order by p_id desc) t) 
+  	 select p_Id, Addr, openHour, ParkYN, latitude, longitude from pension where category='펜션'
+  	</select>
+
+  	<select id="pensionList" resultType="com.peco.vo.PensionVO">
+	select * from(select t.*, rownum rn from(select p_Id, Addr, openHour, ParkYN, latitude, longitude from pension where category='펜션' order by p_id desc) t) 
 	where rn between 1 and 10
   	</select>
-	
+  	
 	<select id="getOne_P" resultType="com.peco.vo.PensionVO">
 		select * from Pension where m_id=#{m_id}
 	</select>
@@ -38,4 +42,15 @@
 		<!-- select coalesce(round(avg(star)), 0) from p_review where p_id = #{p_id} -->
 		select round(avg(star)) from p_review where p_id = #{p_id}
 	</select>	
+	
+	<insert id="pensionInsert">
+  	insert into pension(P_ID, M_ID, PNAME, ADDR, OPENHOUR, PARKYN) values(pension_seq.nextval, 'M0002', 
+  	json_object(
+    'pname', #{pname}, 
+    'addr', #{addr}, 
+    'openhour', #{openHour},
+    'parkyn', #{parkYN}
+))
+  	</insert>
+  	
   </mapper>

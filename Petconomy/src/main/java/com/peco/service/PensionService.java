@@ -8,10 +8,17 @@ import com.peco.vo.PensionReviewVO;
 import com.peco.vo.PensionRoomVO;
 import com.peco.vo.PensionVO;
 
+
+
 @Service
 public interface PensionService {
 
 	public List<PensionVO> mapList();
+
+	public List<PensionVO> pensionList();
+	
+
+	
 
 	public PensionVO getOne_P(String m_id);
 
