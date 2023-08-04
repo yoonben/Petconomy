@@ -5,7 +5,7 @@
 <mapper namespace="com.peco.mapper.FileuploadMapper">
 	
 	<insert id="insertProfile">
-		insert into F_img
+		insert into F_img (uploadpath, filename, filetype, m_id, uuid)
 				values (#{uploadpath},#{filename},#{filetype},#{m_id},#{uuid})
 	</insert>
 	
