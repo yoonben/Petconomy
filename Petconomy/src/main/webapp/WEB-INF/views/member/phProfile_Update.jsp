@@ -25,7 +25,7 @@ System.out.println("m_id : " + m_id);
 
 %>
 
-<form id='phProfileUpdateForm' name='phProfileUpdate' action='/member/phProfile' method='post'>
+<form id='phProfileUpdateForm' name='phProfileUpdate' action='/peco/phProfile?m_id=${pension.m_id}' method='post'>
 	<c:set var="pensionVO" value="${pension }"/>
 		<table border='1px' width='400px' height='300px'>
 		<tr>
@@ -38,23 +38,31 @@ System.out.println("m_id : " + m_id);
 		</tr>
 		<tr>
 			<th>펜션명</th>
-			<td><input type='text' name='pName' value='${pension.getPName() }' style="height:100%; width:99%"></td>
+			<td><input type='text' name='pName' value='${pension.pname }' style="height:100%; width:99%"></td>
 		</tr>
 		<tr>
 			<th>도로명주소</th>
-			<td><input type='text' name='Addr' value='${pension.getAddr() }' style="height:100%; width:99%"></td>
+			<td><input type='text' name='Addr' value='${pension.addr }' style="height:100%; width:99%"></td>
 		</tr>
 		<tr>
 			<th>운영시간</th>
-			<td><input type='text' name='openHour' value='${pension.openHour }' style="height:100%; width:99%"></td>
+			<td><input type='text' name='openHour' value='${pension.openhour }' style="height:100%; width:99%"></td>
 		</tr>
 		<tr>
 			<th>주차여부</th>
-			<td><input type='text' name='ParkYN' value='${pension.getParkYN()}'  style="height:100%; width:99%"></td>
+			<td><input type='text' name='ParkYN' value='${pension.parkyn}'  style="height:100%; width:99%"></td>
 		</tr>
 		<tr>
 			<th>승인여부</th>
-			<td><input type='text' name='checkYN' value='${pension.getCheckYN()}' style="height:100%; width:99%"></td>
+			<td><input type='text' name='checkYN' value='${pension.checkyn}' style="height:100%; width:99%"></td>
+		</tr>
+		<tr>
+			<th>위도</th>
+			<td><input type='text' name='latitude' readonly value='${pension.latitude}' style="height:100%; width:99%"></td>
+		</tr>
+		<tr>
+			<th>경도</th>
+			<td><input type='text' name='latitude' readonly value='${pension.longitude}' style="height:100%; width:99%"></td>
 		</tr>
 	</table>
 	

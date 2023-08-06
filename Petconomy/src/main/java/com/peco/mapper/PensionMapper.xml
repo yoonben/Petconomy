@@ -17,11 +17,11 @@
   	<update id = "update_P">
 		update Pension set
 			p_id = #{p_id},
-			pName = #{pName},
-			Addr = #{Addr},
-			openHour = #{openHour},
-			ParkYN = #{ParkYN},
-			checkYN = #{checkYN}
+			pname = #{pname},
+			addr = #{addr},
+			openhour = #{openhour},
+			parkyn = #{parkyn},
+			checkyn = #{checkyn}
 			where m_id = #{m_id}
 	</update>
   	

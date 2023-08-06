@@ -26,10 +26,10 @@
   	</select>
   	
   	<select id="member_getOne" resultType="com.peco.vo.MemberVO">
-		select member.*
-		, uploadpath||F_img.m_id||'_'||filename savePath 
-		from member, F_img where 
-		member.m_id = F_img.m_id and member.m_id = #{m_id}
+		select member.*, uploadpath||F_img.m_id||'_'||filename savePath 
+		from member, F_img 
+		where member.m_id = F_img.m_id 
+		and member.m_id = #{m_id}
 	</select>
 	
 

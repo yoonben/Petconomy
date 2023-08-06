@@ -49,7 +49,6 @@
 	<table border='1px' width='400px' height='450px'>
 		<tr>
 			<th>프로필사진</th>
-		
 			<td><img id='img_profile' src="/peco/display?fileName=${profile}"></td> <!-- 회원가입시 등록한 프로필사진 -->
 		</tr>
 		<tr>

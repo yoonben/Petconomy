@@ -9,94 +9,140 @@
 <title>Insert title here</title>
 
 <script type="text/javascript">
-
-// 가상의 함수로 암호화된 비밀번호를 가져오는 것을 시뮬레이션합니다.
-function getEncryptedPasswordFromDatabase() {
-    return "7a24f95d72a81367e9ab6f13721c2bfa"; // 가상의 암호화된 비밀번호
-}
-
-//회원 비밀번호를 '*'로 표시하는 함수
-function displayEncryptedPassword() {
-    let encryptedPassword = getEncryptedPasswordFromDatabase();
-    let maskedPassword = document.getElementById("maskedPassword");
-    
-    const maxStars = 10; // 원하는 '*' 개수를 설정합니다
-    
-    maskedPassword.value = "*".repeat(Math.min(encryptedPassword.length, maxStars));
-}
-
-window.addEventListener('load', function(){
-	//비밀번호 '*'처리
-	displayEncryptedPassword();
 	
-	btnUdate.addEventListener('click', function(e){
+	// 가상의 함수로 암호화된 비밀번호를 가져오는 것을 시뮬레이션합니다.
+	function getEncryptedPasswordFromDatabase() {
+	    return "7a24f95d72a81367e9ab6f13721c2bfa"; // 가상의 암호화된 비밀번호
+	}
+	
+	//회원 비밀번호를 '*'로 표시하는 함수
+	function displayEncryptedPassword() {
+	    let encryptedPassword = getEncryptedPasswordFromDatabase();
+	    let maskedPassword = document.getElementById("maskedPassword");
+	    
+	    const maxStars = 10; // 원하는 '*' 개수를 설정합니다
+	    
+	    maskedPassword.value = "*".repeat(Math.min(encryptedPassword.length, maxStars));
+	}
+	
+	
+	window.addEventListener('load', function(){
 		
-		e.preventDefault();
+		//비밀번호 '*'처리
+		displayEncryptedPassword();
 		
-		let my_m_id = m_id.value;
-		let my_id = id.value;
-		let my_pw = document.getElementById("maskedPassword").value;
-		let my_name = mName.value;
-		let my_nickname = nickname.value
-		let my_emailValue  = email.value;
-		let my_mage = age.value;
-		let my_mPhone = mPhone.value;
+		
+		// "사진 변경" 버튼 클릭 시
+		  files.addEventListener('click', function() {
+			console.log('클릭 이벤트 발생');
+		   
+		  files.addEventListener('change', function() {
+			console.log('파일 선택 이벤트 발생');
+			  
+		    let formData = new FormData();
+		    formData.append('files', this.files[0]);
+		    
+			console.log("formData(1)=====================");
+		    
 
-		obj = {
-				m_id : my_m_id
-				,id : my_id
-				,pw : my_pw
-				,mname : my_name
-				,age : my_mage
-				,mphone  : my_mPhone
-				,email : my_emailValue 
-				,nickname : my_nickname
-		}
+		    fetch('/peco/profile_Update', {
+		      method: 'POST'
+		      , body : formData
+		    })
+		    .then(response => {
+			  if (!response.ok) {
+			    throw new Error('Network response was not ok');
+			  }
+			console.log("formData(2)=====================");
+			  return response.json(); // JSON으로 파싱하여 반환
+			console.log("formData(3)=====================");
+			})
+		    .then(map => {
+		      if (map.result === 'success') {
+		        img_profile.src = '/peco/display?fileName=' + ${profile};
+		         console.log("일단 여기까지는 된다");
+		      } else {
+		        console.error('프로필 사진 업데이트 실패');
+		        alert("프로필 사진 업데이트 실패입니다.");
+		      }
+		    });
+		  });
+		  })
+		  
+		let btnUdate = document.getElementById("btnUdate");  
 		
-		console.log('회원기입 obj : ', obj);
-		
-		fetchPost('/peco/profile', obj, (map)=>{
-			if(map.result == 'success'){
-				document.querySelector('#m_id').value = map.m_id;
-				
-				let formData = new FormData(profileUpdateForm);
-				 
-				
-				console.log("formData : ", formData);
-				
-				for(var pair of formData.entries()){
-					console.log(pair);
-					if(typeof(pair[1]) == 'object'){
-						let fileName = pair[1].name;
-						let fileSize = pair[1].size;
-						// 파일 확장자, 크기 체크
-						// 서버에 전송 가능한 형식인지 확인
-						// 최대 전송가능한 용량을 초과하지 않는지
-						if(!checkExtension(fileName,fileSize)){
-							return false;
-						}
-						
-						console.log('fileName',pair[1].name);
-						console.log('fileSize',pair[1].size);
-					
-					}
-				}
-				
-				fetch('/peco/ProfileloadActionFetch'
-						,{ 
-							method : 'post'
-							, body : formData
-				})
-				.then(response=>response.json())
-				.then(map => fileuploadRes(map));
-			}else{
-				updateMsg.innerHTML = map.msg;
+		//'확인' 버튼 클릭시 
+		btnUdate.addEventListener('click', function(e){
+			
+			e.preventDefault();
+			
+			let my_m_id = m_id.value;
+			let my_id = id.value;
+			let my_pw = document.getElementById("maskedPassword").value;
+			let my_name = mName.value;
+			let my_nickname = nickname.value
+			let my_emailValue  = email.value;
+			let my_mage = age.value;
+			let my_mPhone = mPhone.value;
+	
+			obj = {
+					m_id : my_m_id
+					,id : my_id
+					,pw : my_pw
+					,mname : my_name
+					,age : my_mage
+					,mphone  : my_mPhone
+					,email : my_emailValue 
+					,nickname : my_nickname
 			}
-	});
-	
+			
+			console.log('회원기입 obj : ', obj);
+			
+			fetchGet('/peco/profile', obj, (map)=>{
+				if(map.result == 'success'){
+					console.log("일단 여기까지==============")
+					document.querySelector('#m_id').value = map.m_id;
+					
+					let formData = new FormData(profileUpdateForm);
+					 
+					
+					console.log("formData : ", formData);
+					
+					for(var pair of formData.entries()){
+						console.log(pair);
+						if(typeof(pair[0]) == 'object'){
+							let fileName = pair[0].name;
+							let fileSize = pair[0].size;
+							// 파일 확장자, 크기 체크
+							// 서버에 전송 가능한 형식인지 확인
+							// 최대 전송가능한 용량을 초과하지 않는지
+							if(!checkExtension(fileName,fileSize)){
+								return false;
+							}
+							
+							console.log('fileName',pair[0].name);
+							console.log('fileSize',pair[0].size);
+						
+						}
+					}
+					
+					fetch('/peco/ProfileloadActionFetch'
+							,{ 
+								method : 'post'
+								, body : formData
+					})
+					.then(response=>response.json())
+					.then(map => {
+					      if (map.result === 'success') {
+					        // 정보 업데이트 성공 시, 마이페이지로 이동
+					        window.location.href = '/peco/profile?m_id='+${member.m_id};
+					      } else {
+					        updateMsg.innerHTML = map.msg;
+					      }
+				});	
+			}
+		})
 	})
-	
-})
 
 // post방식 요청
 	function fetchPost(url, obj, callback){
@@ -118,48 +164,51 @@ window.addEventListener('load', function(){
 		
 	}
 	
-//get방식 요청
-function fetchGet(url, callback){
-	try{
-		// url 요청
-		fetch(url)
-			// 요청결과 json문자열을 javascript 객체로 반환
-			.then(response => response.json())
-			// 콜백함수 실행
-			.then(map => callback(map));			
-	}catch(e){
-		console.log('fetchGet',e);
-	}
-}
-
-function checkExtension(fileName, fileSize) {
-	let MaxSize = 1024 * 1024 *10;
-	// .exe, .sh, .zip, .alz 끝나는 문자열
-	// 정규표현식 : 특정 규칙을 가진 문자열을 검색하거나 치환 할때 사용
-	let regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
-	if(MaxSize <= fileSize){
-		alert("파일 사이즈 초과");
-		return false;
+	//get방식 요청
+	function fetchGet(url, callback){
+		try{
+			// url 요청
+			fetch(url)
+				// 요청결과 json문자열을 javascript 객체로 반환
+				.then(response => response.json())
+				// 콜백함수 실행
+				.then(map => callback(map));			
+		}catch(e){
+			console.log('fetchGet',e);
+		}
 	}
 	
-	// 문자열에 정규식 패턴을 만족하는 값이 있으면 true, 없으면 ㄹ먀ㅣ
-	if(regex.test(fileName)){
-		alert("해당 종류의 파일은 업로드 할 수 없습니다");
-		return false;
+	function checkExtension(fileName, fileSize) {
+		let MaxSize = 1024 * 1024 *10;
+		// .exe, .sh, .zip, .alz 끝나는 문자열
+		// 정규표현식 : 특정 규칙을 가진 문자열을 검색하거나 치환 할때 사용
+		let regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
+		if(MaxSize <= fileSize){
+			alert("파일 사이즈 초과");
+			return false;
+		}
+		
+		// 문자열에 정규식 패턴을 만족하는 값이 있으면 true, 없으면 false
+		if(regex.test(fileName)){
+			alert("해당 종류의 파일은 업로드 할 수 없습니다");
+			return false;
+		}
+		return true;
 	}
-	return true;
-}
-
-function fileuploadRes(map){
-	if(map.result == 'success'){
-		alert(map.msg);
-	}else{
-		alert(map.msg);
+	
+	function fileuploadRes(map){
+		if(map.result == 'success'){
+			alert(map.msg);
+		}else{
+			alert(map.msg);
+		}
 	}
-}
+})
 
 
 </script>
+
+
 
 
 </head>
@@ -179,6 +228,7 @@ System.out.println("id : " + id);
 System.out.println("pw : " + pw);
 
 %>
+
 <input type="text" id="updateMsg" name="updateMsg">
 <form id='profileUpdateForm' name='profileUpdateForm' action='/peco/profile?m_id=${member.m_id}' method="post">
 	<c:set var="memberVO" value="${member }"/>
@@ -187,7 +237,10 @@ System.out.println("pw : " + pw);
 			<th>프로필사진</th>
 			<td style="height:150px">
 				<img id='img_profile' src="/peco/display?fileName=${profile}">
-				<input type="file" name="profileImage">
+				<div class="custom-file-input">
+				  <input type="file" id="files" style="display: none;">
+				  <label for="files" id="customFileLabel" style="display: inline-block; padding: 8px 20px; background-color: #007bff; color: #fff; cursor: pointer; border-radius: 5px;">사진 변경</label>
+				</div>
 			</td>
 		</tr>
 		<tr>
