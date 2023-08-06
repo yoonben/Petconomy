@@ -11,4 +11,73 @@
 		
 		select round(avg(star)) from h_review where h_id = #{h_id}
 	</select>	
+	
+	<select id="mapList" resultType="com.peco.vo.HospitalVO">
+  	 select h_id, pname, Addr, openHour, substr(ParkYN,3,2) ParkYN from hospital where 1=1
+  	 <include refid="mega"></include> 
+  	 <include refid="small"></include> 
+  	</select>
+	
+	<insert id="hospitalInsert">
+  	insert into hospital(h_id, M_ID, PNAME, ADDR, OPENHOUR, PARKYN) 
+  	values(hospital_seq.nextval, 'M0002', #{pname}, #{addr}, #{openhour}, #{parkyn})
+  	</insert>
+  	
+  	<select id="hospitalList" resultType="com.peco.vo.HospitalVO">
+  	 select * from(select t.*, rownum rn from(select h_id, pname, Addr, openHour, substr(ParkYN,3,2) ParkYN from hospital order by h_id desc) t) 
+	where rn between 1 and 10 <include refid="mega"></include><include refid="small"></include>
+  	</select>
+  	
+
+  	  	<sql id="mega">
+		<choose>
+			<when test="megaregion == 'gangwon'">
+				and ADDR like '%강원%'
+			</when>
+			<when test="megaregion == 'gyeonggi'">
+				and content like '%경기%'
+			</when>
+			<when test="megaregion == 'gyeongsang'">
+				and writer like '%경상%'
+			</when>
+			<when test="megaregion == 'busan'">
+				and bno like '%부산%'
+			</when>
+			<when test="megaregion == 'incheon'">
+				and bno like '%인천%'
+			</when>
+			<when test="megaregion == 'jeolla'">
+				and bno like '%전라%'
+			</when>
+			<when test="megaregion == 'chungcheong'">
+				and bno like '%충청%'
+			</when>
+			<when test="megaregion == 'jeju'">
+				and bno like '%제주%'
+			</when>
+		</choose>
+	</sql>
+	  	<sql id="small">
+		<choose>
+			<when test="smallregion == '춘천·인제·철원'">
+				and ( ADDR like '%춘천%' or ADDR like '%인제%' or ADDR like '%철원%')
+			</when>
+			<when test="smallregion == '평창·정선·영월'">
+				and ( ADDR like '%평창%' or ADDR like '%정선%' or ADDR like '%영월%')
+			</when>
+			<when test="smallregion == '속초·양양·고성'">
+				and ( ADDR like '%속초%' or ADDR like '%양양%' or ADDR like '%고성%')
+			</when>
+			<when test="smallregion == '강릉'">
+				and ADDR like '%강릉%'
+			</when>
+			<when test="smallregion == '동해·삼척·태백'">
+				and ( ADDR like '%동해%' or ADDR like '%삼척%' or ADDR like '%태백%')
+			</when>
+			<when test="smallregion == '홍천·횡성·원주'">
+				and ( ADDR like '%홍천%' or ADDR like '%횡성%' or ADDR like '%원주%')
+			</when>
+
+		</choose>
+	</sql>
 </mapper>

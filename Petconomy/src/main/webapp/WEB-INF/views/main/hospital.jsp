@@ -95,7 +95,7 @@
                     <!-- ***** Menu End ***** -->
                 </nav>
             </div>
-              <div class="col-lg-12">
+                        <div class="col-lg-12">
               <nav class="main-nav">
                     <ul class="nav">
                         <li><a href="../main/pension">펜션</a></li>
@@ -151,7 +151,7 @@
           <div class="game-details">
             <div class="row">
               <div class="col-lg-12">
-                <h2>펜션 리스트</h2>
+                <h2>병원 리스트</h2>
               </div>
               		<!-- 지도보기 -->
                     <div class="col-lg-12">
@@ -163,6 +163,13 @@
                 <div class="content">
                   <div class="row">
 
+                    
+                    <div class="col-lg-4">
+                    </div>
+                    <div class="col-lg-4">
+                    </div>
+                    <div class="col-lg-4">
+                    </div>
                     
                     <div class="col-lg-12">
                       <div><%@include file="kakaomap.jsp"%></div>
@@ -182,10 +189,10 @@
             <div class="row">
               <div class="col-lg-12">
                 <div class="heading-section">
-                  <h4><em>펜션</em> 리스트</h4>
-         <!--  <div class="main-button">
+                  <h4><em>병원</em> 리스트</h4>
+         <div class="main-button">
            <a href="#" onclick="regionSelect()">지역</a>
-         </div> -->
+         </div>
          <div style="text-align:center;"><%@include file="searchForm.jsp"%></div>
                   <table style="color:white;">
 
@@ -201,8 +208,8 @@
 
 <tr>
 <th >번호</th>
-<th>펜션명</th>
-<th>펜션주소</th>
+<th>병원명</th>
+<th>병원주소</th>
 <th>운영시간</th>
 <th>주차</th>
 
@@ -211,7 +218,7 @@
     <c:forEach items="${list }" var="list">
 <tr>
 
-<td >${list.p_id }</td>
+<td >${list.h_id }</td>
 <td>${list.pname }</td>
 <td>${list.addr }</td>
 <td>${list.openhour }</td>
@@ -225,10 +232,9 @@
               </div>
 
             </div>
-
           </div>
           <!-- ***** Other End ***** -->
-<div style="text-align:center;"><%@include file = "../common/pageNavi.jsp" %></div>
+<div style="text-align:center;"></div>
         </div>
       </div>
     </div>
