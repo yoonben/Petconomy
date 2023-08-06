@@ -3,21 +3,28 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="com.peco.mapper.PensionMapper">
   	<select id="mapList" resultType="com.peco.vo.PensionVO">
-  	 select p_Id, pname, Addr, openHour, substr(ParkYN,3,2) ParkYN, longitude, latitude from pension where 1=1
+  	 select p_Id, pname, Addr, openHour, substr(ParkYN,3,2) ParkYN from pension 
+  	 where 1=1
   	 <include refid="mega"></include> 
   	 <include refid="small"></include> 
   	</select>
 
   	<select id="pensionList" resultType="com.peco.vo.PensionVO">
-  	 select * from(select t.*, rownum rn from(select p_Id, pname, Addr, openHour, substr(ParkYN,3,2) ParkYN, longitude, latitude from pension order by p_id desc) t) 
-	where rn between 1 and 10 <include refid="mega"></include><include refid="small"></include>
+  	 select * from(select t.*, rownum rn from(select p_Id, pname, Addr, openHour, substr(ParkYN,3,2) ParkYN from pension
+  	 where 1=1 <include refid="mega"/><include refid="small"/>
+  	 order by p_id desc) t) 
+	 where rn between #{startNo} and #{endNo} 
   	</select>
   	
   	<select id="pensiontop" resultType="com.peco.vo.PensionVO">
-  	 select * from(select t.*, rownum rn from(select p_Id, pname, Addr, openHour, substr(ParkYN,3,2) ParkYN, longitude, latitude from pension order by p_id desc) t) 
-	where rn between 1 and 10 <include refid="mega"></include><include refid="small"></include>
+    select * from(
+    select t.*, rownum rn from(
+    select p.p_id, pname, addr, star from 
+    pension p LEFT JOIN(
+    select p_id, round(avg(star)) star from p_review group by p_id) r ON p.p_id = r.p_id WHERE r.star IS NOT NULL order by r.star desc)t )
+    where rn between 1 and 10
   	</select>
-  	
+
   	<select id="getOne_P" resultType="com.peco.vo.PensionVO">
 		select * from Pension where m_id=#{m_id}
 	</select>
@@ -50,36 +57,44 @@
 		select round(avg(star)) from p_review where p_id = #{p_id}
 	</select>	
 	
+	
   	<insert id="pensionInsert">
   	insert into pension(p_id, M_ID, PNAME, ADDR, OPENHOUR, PARKYN) 
   	values(pension_seq.nextval, 'M0002', #{pname}, #{addr}, #{openhour}, #{parkyn})
   	</insert>
 
+	<select id="totalCnt" resultType="int">
+		select count(*) from pension
+		where 1=1
+	  	<include refid="mega"></include> 
+	  	<include refid="small"></include>  
+	</select>	
+	
   	<sql id="mega">
 		<choose>
 			<when test="megaregion == 'gangwon'">
-				and ADDR like '%강원%'
+				and ADDR like '강원%'
 			</when>
 			<when test="megaregion == 'gyeonggi'">
-				and content like '%경기%'
+				and ADDR like '경기%'
 			</when>
 			<when test="megaregion == 'gyeongsang'">
-				and writer like '%경상%'
+				and ADDR like '경상%'
 			</when>
 			<when test="megaregion == 'busan'">
-				and bno like '%부산%'
+				and ADDR like '부산%'
 			</when>
 			<when test="megaregion == 'incheon'">
-				and bno like '%인천%'
+				and ADDR like '인천%'
 			</when>
 			<when test="megaregion == 'jeolla'">
-				and bno like '%전라%'
+				and ADDR like '전라%'
 			</when>
 			<when test="megaregion == 'chungcheong'">
-				and bno like '%충청%'
+				and ADDR like '충청%'
 			</when>
 			<when test="megaregion == 'jeju'">
-				and bno like '%제주%'
+				and ADDR like '제주%'
 			</when>
 		</choose>
 	</sql>

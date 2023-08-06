@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.peco.vo.PensionReviewVO;
 import com.peco.vo.PensionRoomVO;
 import com.peco.vo.PensionVO;
+import com.peco.vo.RegionCri;
 
 
 
@@ -15,12 +16,13 @@ public interface PensionService {
 
 	public List<PensionVO> mapList();
 
-	public List<PensionVO> pensionList();
+	public List<PensionVO> pensionList(RegionCri cri);
 	
-
+	public List<PensionVO> pensiontop();
+	
 	public int pensionInsert(PensionVO vo);
 	
-	
+	public int totalCnt(RegionCri cri);
 
 	public PensionVO getOne_P(String m_id);
 

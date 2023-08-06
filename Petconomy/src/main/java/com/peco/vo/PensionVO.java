@@ -15,7 +15,9 @@ public class PensionVO {
 	private String checkyn;    
 	private String registerimg;
 	private String pensionimg; 
-	private String latitude;   
-	private String longitude;
+	
+	private String rn; 
+	private int star;
+
 }
 

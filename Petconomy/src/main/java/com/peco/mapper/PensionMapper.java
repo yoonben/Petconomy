@@ -7,13 +7,16 @@ import org.apache.ibatis.annotations.Param;
 import com.peco.vo.PensionReviewVO;
 import com.peco.vo.PensionRoomVO;
 import com.peco.vo.PensionVO;
+import com.peco.vo.RegionCri;
 
 
 
 public interface PensionMapper {
 	public List<PensionVO> mapList();
 	
-	public List<PensionVO> pensionList();
+	public List<PensionVO> pensionList(RegionCri cri);
+
+	public List<PensionVO> pensiontop();
 	
 	public int pensionInsert(PensionVO vo);
 	
@@ -28,4 +31,6 @@ public interface PensionMapper {
 	public List<PensionReviewVO> reviewList(@Param(value="p_id") String p_id);
 	
 	public int starAvg(@Param(value="p_id") String p_id);
+	
+	public int totalCnt(RegionCri cri);
 }

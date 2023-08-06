@@ -9,6 +9,7 @@ import com.peco.mapper.PensionMapper;
 import com.peco.vo.PensionReviewVO;
 import com.peco.vo.PensionRoomVO;
 import com.peco.vo.PensionVO;
+import com.peco.vo.RegionCri;
 
 @Service
 public class PensionServiceImpl implements PensionService {
@@ -60,9 +61,9 @@ public class PensionServiceImpl implements PensionService {
 	}
 
 	@Override
-	public List<PensionVO> pensionList() {
+	public List<PensionVO> pensionList(RegionCri cri) {
 		// TODO Auto-generated method stub
-		return pensionMapper.pensionList();
+		return pensionMapper.pensionList(cri);
 	}
 
 	@Override
@@ -70,6 +71,18 @@ public class PensionServiceImpl implements PensionService {
 		// TODO Auto-generated method stub
 		return pensionMapper.pensionInsert(vo); 
 		
+	}
+
+	@Override
+	public int totalCnt(RegionCri cri) {
+		// TODO Auto-generated method stub
+		return pensionMapper.totalCnt(cri);
+	}
+
+	@Override
+	public List<PensionVO> pensiontop() {
+		// TODO Auto-generated method stub
+		return pensionMapper.pensiontop();
 	}
 
 

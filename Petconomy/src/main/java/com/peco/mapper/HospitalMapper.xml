@@ -13,9 +13,10 @@
 	</select>	
 	
 	<select id="mapList" resultType="com.peco.vo.HospitalVO">
-  	 select h_id, pname, Addr, openHour, substr(ParkYN,3,2) ParkYN from hospital where 1=1
-  	 <include refid="mega"></include> 
-  	 <include refid="small"></include> 
+  	 select h_id, pname, Addr, openHour, substr(ParkYN,3,2) ParkYN 
+  	 from hospital where 1=1
+  	 <include refid="mega"/> 
+  	 <include refid="small"/> 
   	</select>
 	
 	<insert id="hospitalInsert">
@@ -24,36 +25,44 @@
   	</insert>
   	
   	<select id="hospitalList" resultType="com.peco.vo.HospitalVO">
-  	 select * from(select t.*, rownum rn from(select h_id, pname, Addr, openHour, substr(ParkYN,3,2) ParkYN from hospital order by h_id desc) t) 
+  	 select * from(select t.*, rownum rn from(select h_id, pname, Addr, openHour, substr(ParkYN,3,2) ParkYN from hospital
+  	  where 1=1 <include refid="mega"/><include refid="small"/>
+  	  order by h_id desc) t) 
 	where rn between 1 and 10 <include refid="mega"></include><include refid="small"></include>
   	</select>
   	
-
+	<select id="totalCnt" resultType="int">
+		select count(*) from hospital
+		where 1=1
+	  	<include refid="mega"></include> 
+	  	<include refid="small"></include>  
+	</select>	
+	
   	  	<sql id="mega">
 		<choose>
 			<when test="megaregion == 'gangwon'">
-				and ADDR like '%강원%'
+				and ADDR like '강원%'
 			</when>
 			<when test="megaregion == 'gyeonggi'">
-				and content like '%경기%'
+				and ADDR like '경기%'
 			</when>
 			<when test="megaregion == 'gyeongsang'">
-				and writer like '%경상%'
+				and ADDR like '경상%'
 			</when>
 			<when test="megaregion == 'busan'">
-				and bno like '%부산%'
+				and ADDR like '부산%'
 			</when>
 			<when test="megaregion == 'incheon'">
-				and bno like '%인천%'
+				and ADDR like '인천%'
 			</when>
 			<when test="megaregion == 'jeolla'">
-				and bno like '%전라%'
+				and ADDR like '전라%'
 			</when>
 			<when test="megaregion == 'chungcheong'">
-				and bno like '%충청%'
+				and ADDR like '충청%'
 			</when>
 			<when test="megaregion == 'jeju'">
-				and bno like '%제주%'
+				and ADDR like '제주%'
 			</when>
 		</choose>
 	</sql>

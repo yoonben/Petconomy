@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.peco.mapper.HospitalMapper;
 import com.peco.vo.HospitalVO;
+import com.peco.vo.RegionCri;
 
 @Service
 public class HospitalServiceImpl implements HospitalService {
@@ -33,15 +34,22 @@ public class HospitalServiceImpl implements HospitalService {
 	}
 
 	@Override
-	public List<HospitalVO> hospitalList() {
+	public List<HospitalVO> hospitalList(RegionCri cri) {
 		// TODO Auto-generated method stub
-		return hospitalMapper.hospitalList();
+		return hospitalMapper.hospitalList(cri);
 	}
 
 	@Override
 	public int hospitalInsert(HospitalVO vo) {
 		// TODO Auto-generated method stub
 		return hospitalMapper.hospitalInsert(vo);
+	}
+
+
+	@Override
+	public int totalCnt(RegionCri cri) {
+		// TODO Auto-generated method stub
+		return hospitalMapper.totalCnt(cri);
 	}
 
 }

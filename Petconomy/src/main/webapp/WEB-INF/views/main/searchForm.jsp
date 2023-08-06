@@ -4,14 +4,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+	<!-- jquery -->
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	    
+	<!-- 별점 cdn -->
+	<script src="https://cdn.jsdelivr.net/gh/hiphop5782/score@latest/score.js"></script>
     
 </head>
 <body>
+
 <script>
-
-
-
+$(function(){
+    $(".test-score1").score();
+})
 function regionChange(e){
 	var gangwondo = ["강원도 전체","춘천·인제·철원","평창·정선·영월","속초·양양·고성","강릉","동해·삼척·태백","홍천·횡성·원주"];
 	var gyeonggido = ["경기도 전체","가평·청평·양평","수원·화성","고양·파주·김포","의정부·포천·동두천","용인·동탄","오산·평택","남양주·구리·성남·분당","이천·광주·여주·하남","부천·광명·시흥·안산","안양·의왕·군포"];
@@ -24,8 +29,6 @@ function regionChange(e){
 	 
 	var smallregion =document.querySelector("#smallregion");
 	 
-
-	  
 	if(e.value == "gangwon") var changeItem = gangwondo;
 	else if(e.value == "gyeonggi") var changeItem = gyeonggido;
 	else if(e.value == "gyeongsang") var changeItem = gyeongsangdo;
@@ -39,26 +42,27 @@ function regionChange(e){
 	 
 	for(item in changeItem){                
 		var opt = document.createElement("option");
-		opt.value=changeItem[item];
-		opt.innerHTML=changeItem[item];
-		smallregion.appendChild(opt);
+			opt.value=changeItem[item];
+			opt.innerHTML=changeItem[item];
+			smallregion.appendChild(opt);
 	            }
 }
 	 
 
 </script>
-<form id="search" action="/main/pension" method="get" name="selectForm">
-
+<form id="search" action="/peco/main/pension" method="get" name="selectForm">
+<div class="test-score1" data-max="5" data-rate="5"></div>
+<input type="text" name="pageNo" value="${pageDto.regioncri.pageNo}">
 <select class="form-select" id="megaregion" name="megaregion"  onchange="regionChange(this)" style="display:inline-block;">
   <option value='' selected>시·도</option>
-  <option value="gangwon">강원</option>
-  <option value="gyeonggi">경기</option>
-  <option value="gyeongsang">경상</option>
-  <option value="busan">부산</option>
-  <option value="incheon">인천</option>
-  <option value="jeolla">전라</option>
-  <option value="chungcheong">충청</option>
-  <option value="jeju">제주</option>
+  <option value="gangwon" ${pageDto.regioncri.megaregion eq "gangwon" ? "selected" : " " }>강원</option>
+  <option value="gyeonggi" ${pageDto.regioncri.megaregion eq "gyeonggi" ? "selected" : " " }>경기</option>
+  <option value="gyeongsang" ${pageDto.regioncri.megaregion eq "gyeongsang" ? "selected" : " " }>경상</option>
+  <option value="busan" ${pageDto.regioncri.megaregion eq "busan" ? "selected" : " " }>부산</option>
+  <option value="incheon" ${pageDto.regioncri.megaregion eq "incheon" ? "selected" : " " }>인천</option>
+  <option value="jeolla" ${pageDto.regioncri.megaregion eq "jeolla" ? "selected" : " " }>전라</option>
+  <option value="chungcheong" ${pageDto.regioncri.megaregion eq "chungcheong" ? "selected" : " " }>충청</option>
+  <option value="jeju" ${pageDto.regioncri.megaregion eq "jeju" ? "selected" : " " }>제주</option>
 </select>
 <select class="form-select form-select-inline" name="smallregion" onchange="this.form.submit()" id="smallregion" style="display:inline-block;">
 <option>군·구</option>

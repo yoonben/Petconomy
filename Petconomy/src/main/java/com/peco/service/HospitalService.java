@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.peco.vo.HospitalVO;
+import com.peco.vo.RegionCri;
 
 @Service
 public interface HospitalService {
@@ -15,7 +16,9 @@ public interface HospitalService {
 
 	public List<HospitalVO> mapList();
 	
-	public List<HospitalVO> hospitalList();
+	public List<HospitalVO> hospitalList(RegionCri cri);
 	
 	public int hospitalInsert(HospitalVO vo);
+	
+	public int totalCnt(RegionCri cri);
 }

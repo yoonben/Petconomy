@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.peco.vo.HospitalVO;
+import com.peco.vo.RegionCri;
 
 public interface HospitalMapper {
 
@@ -14,7 +15,9 @@ public interface HospitalMapper {
 	
 	public List<HospitalVO> mapList();
 	
-	public List<HospitalVO> hospitalList();
+	public List<HospitalVO> hospitalList(RegionCri cri);
 	
 	public int hospitalInsert(HospitalVO vo);
+	
+	public int totalCnt(RegionCri cri);
 }

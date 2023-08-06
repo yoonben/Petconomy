@@ -10,7 +10,7 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b4793f7e09cabda709895d2261a8c2af"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b4793f7e09cabda709895d2261a8c2af&libraries=services"></script>
 
     <title>Cyborg - Awesome HTML5 Template</title>
 
@@ -71,7 +71,7 @@
             <div class="col-12">
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
-                    <a href="index.html" class="logo">
+                    <a href="../main/mainpage" class="logo">
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Search End ***** -->
@@ -153,23 +153,10 @@
               <div class="col-lg-12">
                 <h2>병원 리스트</h2>
               </div>
-              		<!-- 지도보기 -->
-                    <div class="col-lg-12">
-                      <div class="main-border-button">
-                        <a href="#">지도보기</a>
-                      </div>
-                    </div>
+
               <div class="col-lg-12">
                 <div class="content">
                   <div class="row">
-
-                    
-                    <div class="col-lg-4">
-                    </div>
-                    <div class="col-lg-4">
-                    </div>
-                    <div class="col-lg-4">
-                    </div>
                     
                     <div class="col-lg-12">
                       <div><%@include file="kakaomap.jsp"%></div>
@@ -194,39 +181,40 @@
            <a href="#" onclick="regionSelect()">지역</a>
          </div>
          <div style="text-align:center;"><%@include file="searchForm.jsp"%></div>
-                  <table style="color:white;">
+         <br>
+         <h5>총 ${totalCnt } 건</h5>
+         <table style="color:white;">
 
+			<colgroup>
+				<col width="7%"/>
+				<col width="27%"/>
+				<col width="35%"/>
+				<col width="25%"/>
+				<col width="5%"/>
+			</colgroup>
 
-	<colgroup>
-		<col width="5%"/>
-		<col width="25%"/>
-		<col width="35%"/>
-		<col width="30%"/>
-		<col width="5%"/>
-	</colgroup>
-
-
-<tr>
-<th >번호</th>
-<th>병원명</th>
-<th>병원주소</th>
-<th>운영시간</th>
-<th>주차</th>
-
-
-</tr>
-    <c:forEach items="${list }" var="list">
-<tr>
-
-<td >${list.h_id }</td>
-<td>${list.pname }</td>
-<td>${list.addr }</td>
-<td>${list.openhour }</td>
-<td>${list.parkyn }</td>
-
-</tr>
-    </c:forEach>
-</table>
+			<tr height="50" style="font-size:1.4em;">
+			<th >번호</th>
+			<th>병원명</th>
+			<th>병원주소</th>
+			<th>운영시간</th>
+			<th>주차</th>
+			</tr>
+			
+			<c:forEach items="${list }" var="list">
+				<tr height="50" style="font-size:1em;">
+				<td >${list.h_id }</td>
+				<td><a href="/peco/detail/hospitalDetailPage?h_id=${list.h_id }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}">${list.pname }</a></td>
+				<td>${list.addr }</td>
+				<td>${list.openhour }</td>
+				<td>${list.parkyn }</td>
+				</tr>
+			    </c:forEach>
+			    
+			    				<tr style="text-align: center">
+					<td colspan="6"><%@include file = "pageNavi.jsp" %></td>
+				</tr>
+			</table>
 
                 </div>
               </div>
@@ -234,7 +222,7 @@
             </div>
           </div>
           <!-- ***** Other End ***** -->
-<div style="text-align:center;"></div>
+
         </div>
       </div>
     </div>

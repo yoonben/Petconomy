@@ -1,18 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html lang="ko">
 
   <head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+	
+	<!-- jquery -->
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	    
+	<!-- 별점 cdn -->
+	<script src="https://cdn.jsdelivr.net/gh/hiphop5782/score@latest/score.js"></script>
+	
+	<script>
+	  var jq = jQuery.noConflict();
+	</script>
     <title>펫코노미 홈페이지</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 
     <!-- Additional CSS Files -->
@@ -33,7 +43,16 @@ https://templatemo.com/tm-579-cyborg-gaming
 .main-banner {
     background-image: url(/resources/img/puppy.jpg);
 }
+.gaming-library .item ul li h4 {
+    font-size: 15px;
+    /* margin-bottom: 5px; */
+}
 </style>
+<script>
+jQuery(function ($) {
+	jq(".test-score1").score();
+})
+</script>
 <body>
 
   <!-- ***** Preloader Start ***** -->
@@ -112,37 +131,21 @@ https://templatemo.com/tm-579-cyborg-gaming
             <div class="col-lg-12">
               <div class="heading-section">
                 <h4><em>Top10</em> 펜션</h4>
+             <c:forEach items="${list }" var="vo">
+			${vo.pname }
+			</c:forEach>	                
               </div>
+             <c:forEach items="${list }" var="vo">
               <div class="item">
                 <ul>
-                  <li><img src="assets/images/game-01.jpg" alt="" class="templatemo-item"></li>
-                  <li><h4>Dota 2</h4><span>Sandbox</span></li>
-                  <li><h4>Date Added</h4><span>24/08/2036</span></li>
-                  <li><h4>Hours Played</h4><span>634 H 22 Mins</span></li>
-                  <li><h4>Currently</h4><span>Downloaded</span></li>
-                  <li><div class="main-border-button border-no-active"><a href="#">Donwloaded</a></div></li>
+                  <li style="width: 5%;"><h3>${vo.rn }</h3></li>
+                  <li style="width: 25%;"><h3>${vo.pname }</h3></li>
+                  <li style="width: 55%;"><h3>${vo.addr }</h3></li>
+                  <li style="width: 10%; font-size:2em"><div class="test-score1" data-max="5" data-rate="${vo.star }"></div></li>
                 </ul>
               </div>
-              <div class="item">
-                <ul>
-                  <li><img src="assets/images/game-02.jpg" alt="" class="templatemo-item"></li>
-                  <li><h4>Fortnite</h4><span>Sandbox</span></li>
-                  <li><h4>Date Added</h4><span>22/06/2036</span></li>
-                  <li><h4>Hours Played</h4><span>740 H 52 Mins</span></li>
-                  <li><h4>Currently</h4><span>Downloaded</span></li>
-                  <li><div class="main-border-button"><a href="#">Donwload</a></div></li>
-                </ul>
-              </div>
-              <div class="item last-item">
-                <ul>
-                  <li><img src="assets/images/game-03.jpg" alt="" class="templatemo-item"></li>
-                  <li><h4>CS-GO</h4><span>Sandbox</span></li>
-                  <li><h4>Date Added</h4><span>21/04/2036</span></li>
-                  <li><h4>Hours Played</h4><span>892 H 14 Mins</span></li>
-                  <li><h4>Currently</h4><span>Downloaded</span></li>
-                  <li><div class="main-border-button border-no-active"><a href="#">Donwloaded</a></div></li>
-                </ul>
-              </div>
+              </c:forEach>
+             
             </div>
             <div class="col-lg-12">
               <div class="main-button">
