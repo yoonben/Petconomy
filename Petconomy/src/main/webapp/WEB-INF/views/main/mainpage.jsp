@@ -70,8 +70,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                     <!-- ***** Search End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li><a href="index.html" class="active">Home</a></li>
-                        <li><a href="browse.html">펜션/병원</a></li>
+                        <li><a href="../main/pension">펜션/병원</a></li>
                         <li><a href="details.html">커뮤니티</a></li>
                         <li><a href="streams.html">업소등록</a></li>
                         <li><a href="profile.html">로그인 <img src="assets/images/profile-header.jpg" alt=""></a></li>

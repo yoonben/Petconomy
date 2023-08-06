@@ -3,13 +3,21 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="com.peco.mapper.PensionMapper">
   	<select id="mapList" resultType="com.peco.vo.PensionVO">
-  	 select p_Id, Addr, openHour, ParkYN, latitude, longitude from pension where category='펜션'
+  	 select p_Id, pname, Addr, openHour, substr(ParkYN,3,2) ParkYN, longitude, latitude from pension where 1=1
+  	 <include refid="mega"></include> 
+  	 <include refid="small"></include> 
   	</select>
 
   	<select id="pensionList" resultType="com.peco.vo.PensionVO">
-  	 select * from(select t.*, rownum rn from(select p_Id, Addr, openHour, ParkYN, latitude, longitude from pension where category='펜션' order by p_id desc) t) 
-	where rn between 1 and 10
+  	 select * from(select t.*, rownum rn from(select p_Id, pname, Addr, openHour, substr(ParkYN,3,2) ParkYN, longitude, latitude from pension order by p_id desc) t) 
+	where rn between 1 and 10 <include refid="mega"></include><include refid="small"></include>
   	</select>
+  	
+  	<select id="pensiontop" resultType="com.peco.vo.PensionVO">
+  	 select * from(select t.*, rownum rn from(select p_Id, pname, Addr, openHour, substr(ParkYN,3,2) ParkYN, longitude, latitude from pension order by p_id desc) t) 
+	where rn between 1 and 10 <include refid="mega"></include><include refid="small"></include>
+  	</select>
+  	
   	<select id="getOne_P" resultType="com.peco.vo.PensionVO">
 		select * from Pension where m_id=#{m_id}
 	</select>
@@ -43,7 +51,59 @@
 	</select>	
 	
   	<insert id="pensionInsert">
-  	insert ignore into pension(M_ID, PNAME, ADDR, OPENHOUR, PARKYN, CHECKYN) 
-  	values('M0002', #{pname}, #{addr}, #{openHour}, #{parkYN} ,'N')
+  	insert into pension(p_id, M_ID, PNAME, ADDR, OPENHOUR, PARKYN) 
+  	values(pension_seq.nextval, 'M0002', #{pname}, #{addr}, #{openhour}, #{parkyn})
   	</insert>
+
+  	<sql id="mega">
+		<choose>
+			<when test="megaregion == 'gangwon'">
+				and ADDR like '%강원%'
+			</when>
+			<when test="megaregion == 'gyeonggi'">
+				and content like '%경기%'
+			</when>
+			<when test="megaregion == 'gyeongsang'">
+				and writer like '%경상%'
+			</when>
+			<when test="megaregion == 'busan'">
+				and bno like '%부산%'
+			</when>
+			<when test="megaregion == 'incheon'">
+				and bno like '%인천%'
+			</when>
+			<when test="megaregion == 'jeolla'">
+				and bno like '%전라%'
+			</when>
+			<when test="megaregion == 'chungcheong'">
+				and bno like '%충청%'
+			</when>
+			<when test="megaregion == 'jeju'">
+				and bno like '%제주%'
+			</when>
+		</choose>
+	</sql>
+	  	<sql id="small">
+		<choose>
+			<when test="smallregion == '춘천·인제·철원'">
+				and ( ADDR like '%춘천%' or ADDR like '%인제%' or ADDR like '%철원%')
+			</when>
+			<when test="smallregion == '평창·정선·영월'">
+				and ( ADDR like '%평창%' or ADDR like '%정선%' or ADDR like '%영월%')
+			</when>
+			<when test="smallregion == '속초·양양·고성'">
+				and ( ADDR like '%속초%' or ADDR like '%양양%' or ADDR like '%고성%')
+			</when>
+			<when test="smallregion == '강릉'">
+				and ADDR like '%강릉%'
+			</when>
+			<when test="smallregion == '동해·삼척·태백'">
+				and ( ADDR like '%동해%' or ADDR like '%삼척%' or ADDR like '%태백%')
+			</when>
+			<when test="smallregion == '홍천·횡성·원주'">
+				and ( ADDR like '%홍천%' or ADDR like '%횡성%' or ADDR like '%원주%')
+			</when>
+
+		</choose>
+	</sql>
   </mapper>

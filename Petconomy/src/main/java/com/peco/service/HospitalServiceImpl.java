@@ -1,5 +1,7 @@
 package com.peco.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,24 @@ public class HospitalServiceImpl implements HospitalService {
 	public int starAvg(String h_id) {
 		// TODO Auto-generated method stub
 		return hospitalMapper.starAvg(h_id);
+	}
+
+	@Override
+	public List<HospitalVO> mapList() {
+		// TODO Auto-generated method stub
+		return hospitalMapper.mapList();
+	}
+
+	@Override
+	public List<HospitalVO> hospitalList() {
+		// TODO Auto-generated method stub
+		return hospitalMapper.hospitalList();
+	}
+
+	@Override
+	public int hospitalInsert(HospitalVO vo) {
+		// TODO Auto-generated method stub
+		return hospitalMapper.hospitalInsert(vo);
 	}
 
 }

@@ -20,7 +20,7 @@
                     
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li><a href="index.html">펜션</a></li>
+                        <li><a href="../main/pension">펜션</a></li>
                         <li><a href="browse.html">병원</a></li>
                         <li><a href="details.html">커뮤니티</a></li>
                         <li><a href="streams.html" class="active">업소 등록</a></li>
