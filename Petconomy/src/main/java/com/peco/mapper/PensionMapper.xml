@@ -26,18 +26,19 @@
   	</select>
 
   	<select id="getOne_P" resultType="com.peco.vo.PensionVO">
-		select * from Pension where m_id=#{m_id}
+		select * from pension where m_id=#{m_id}
 	</select>
   	
   	<update id = "update_P">
-		update Pension set
-			p_id = #{p_id},
-			pname = #{pname},
-			addr = #{addr},
-			openhour = #{openhour},
-			parkyn = #{parkyn},
-			checkyn = #{checkyn}
-			where m_id = #{m_id}
+		update pension set
+			pname = #{pname, javaType=String ,jdbcType=VARCHAR}, 
+			addr = #{addr, javaType=String ,jdbcType=VARCHAR} ,
+			openhour = #{openhour, javaType=String ,jdbcType=VARCHAR} ,
+			parkyn = #{parkyn, javaType=String ,jdbcType=VARCHAR} ,
+			checkyn = #{checkyn, javaType=String ,jdbcType=VARCHAR} ,
+			latitude = #{latitude, jdbcType=DOUBLE} ,
+			longitude = #{longitude , jdbcType=DOUBLE} 
+			where m_id = #{m_id} 
 	</update>
   	
   	<select id="getOne" resultType="com.peco.vo.PensionVO">

@@ -11,5 +11,6 @@ ${nickName}<br>
  아이디 : ${userId }<br>
   이름 : ${member.mname }<br>
  이메일 : ${member.email }<br>
+ <a href="/peco/profile?m_id=m_3">프로필로 이동</a>
 </body>
 </html>

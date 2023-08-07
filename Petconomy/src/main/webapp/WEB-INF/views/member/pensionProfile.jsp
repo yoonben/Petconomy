@@ -10,10 +10,11 @@
 <body>
 
 <h1>사업자 페이지</h1>
+<h2>나의 펜션 정보</h2>
 
-<form id='phProfileForm' name='phProfile' action='/peco/phProfile_Update?m_id=${pension.m_id}' method='post'>
+<form id='P_ProfileForm' name='P_Profile' action='/peco/pensionProfile_Update?m_id=${pension.m_id}' method='post'>
 
-	<c:set var="pensionVO" value="${pension }"/>
+	<c:set var="PensionVO" value="${pension }"/>
 
 	<table border='1px' width='400px' height='450px'>
 
@@ -55,11 +56,14 @@
 		</tr>
 	</table>
 							
-	<input type="submit" value="수정하기" class="btn" ><br><br>
+	<input type="submit" value="수정하기" class="btn" >
 		
 	<!-- TODO : 삭제 버튼 클릭시 기존 등록된 업체글 모두 삭제될 수 있도록  처리 매퍼에서 쿼리문 조인으로 작성-->
-	<input type="button" value="삭제">
+	<input type="button" value="삭제"><br><br>
 </form>
+
+<!-- ↓ ↓ ↓  예약정보 구현 ↓ ↓ ↓  -->
+<h2>펜션 예약 정보</h2>
 
 </body>
 </html>

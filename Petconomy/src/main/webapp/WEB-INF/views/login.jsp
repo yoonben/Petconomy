@@ -54,11 +54,11 @@
 				<h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
 				<div class="form-floating">
-					<input type="text" class="form-control" id="id"> <label
+					<input type="text" class="form-control" id="id" value="test01"> <label
 						for="id">id</label>
 				</div>
 				<div class="form-floating">
-					<input type="password" class="form-control" id="pw"> <label
+					<input type="password" class="form-control" id="pw" value="1234"> <label
 						for="pw">Password</label>
 				</div>
 

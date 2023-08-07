@@ -58,7 +58,7 @@ public class FileuploadController extends CommonRestController{
 		log.info("fileuploadActionFetch");
 		int insertRes = service.Profileupload(files, m_id);
 		log.info("업로드 건수 : " + insertRes);
-		return responseMap("success", "회원가입되었습니다");
+		return responseMap("success", "프로필이 수정 되었습니다");
 
 	}
 	

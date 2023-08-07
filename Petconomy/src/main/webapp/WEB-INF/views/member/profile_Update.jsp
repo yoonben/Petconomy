@@ -33,19 +33,17 @@
 		
 		
 		// "사진 변경" 버튼 클릭 시
-		  files.addEventListener('click', function() {
-			console.log('클릭 이벤트 발생');
-		   
 		  files.addEventListener('change', function() {
 			console.log('파일 선택 이벤트 발생');
 			  
-		    let formData = new FormData();
+		    let formData = new FormData(profileUpdateForm);
+		    
 		    formData.append('files', this.files[0]);
 		    
 			console.log("formData(1)=====================");
 		    
 
-		    fetch('/peco/profile_Update', {
+		    fetch('/peco/profile_update_img', {
 		      method: 'POST'
 		      , body : formData
 		    })
@@ -59,7 +57,7 @@
 			})
 		    .then(map => {
 		      if (map.result === 'success') {
-		        img_profile.src = '/peco/display?fileName=' + ${profile};
+		        img_profile.src = '/peco/display?fileName=' + map.profileImg;
 		         console.log("일단 여기까지는 된다");
 		      } else {
 		        console.error('프로필 사진 업데이트 실패');
@@ -67,8 +65,8 @@
 		      }
 		    });
 		  });
-		  })
 		  
+		/*
 		let btnUdate = document.getElementById("btnUdate");  
 		
 		//'확인' 버튼 클릭시 
@@ -79,11 +77,11 @@
 			let my_m_id = m_id.value;
 			let my_id = id.value;
 			let my_pw = document.getElementById("maskedPassword").value;
-			let my_name = mName.value;
+			let my_name = mname.value;
 			let my_nickname = nickname.value
 			let my_emailValue  = email.value;
 			let my_mage = age.value;
-			let my_mPhone = mPhone.value;
+			let my_mphone = mphone.value;
 	
 			obj = {
 					m_id : my_m_id
@@ -91,13 +89,14 @@
 					,pw : my_pw
 					,mname : my_name
 					,age : my_mage
-					,mphone  : my_mPhone
+					,mphone  : my_mphone
 					,email : my_emailValue 
 					,nickname : my_nickname
 			}
 			
 			console.log('회원기입 obj : ', obj);
-			
+	*/
+			/*		
 			fetchGet('/peco/profile', obj, (map)=>{
 				if(map.result == 'success'){
 					console.log("일단 여기까지==============")
@@ -125,23 +124,29 @@
 						
 						}
 					}
+*/
+/*
+					let formData = new FormData(profileUpdateForm);
 					
-					fetch('/peco/ProfileloadActionFetch'
+					fetch('/peco/profileSave'
 							,{ 
 								method : 'post'
-								, body : formData
+								, body : profileUpdateForm
 					})
 					.then(response=>response.json())
 					.then(map => {
 					      if (map.result === 'success') {
 					        // 정보 업데이트 성공 시, 마이페이지로 이동
-					        window.location.href = '/peco/profile?m_id='+${member.m_id};
+					        window.location.href = '/peco/profile';
 					      } else {
 					        updateMsg.innerHTML = map.msg;
 					      }
 				});	
-			}
+					
+					*/
+/*			}
 		})
+		*/
 	})
 
 // post방식 요청
@@ -230,7 +235,7 @@ System.out.println("pw : " + pw);
 %>
 
 <input type="text" id="updateMsg" name="updateMsg">
-<form id='profileUpdateForm' name='profileUpdateForm' action='/peco/profile?m_id=${member.m_id}' method="post">
+<form id='profileUpdateForm' name='profileUpdateForm' action='/peco/profile' method="post">
 	<c:set var="memberVO" value="${member }"/>
 		<table border='1px' width='400px' height='450px'>
 		<tr>
@@ -257,11 +262,11 @@ System.out.println("pw : " + pw);
 		</tr>
 		<tr>
 			<th>이름</th>
-			<td><input type='text' name='mName' id="mName" value='${member.mname }' style="height:100%; width:99%"></td>
+			<td><input type='text' name='mname' id="mname" value='${member.mname }' style="height:100%; width:99%"></td>
 		</tr>
 		<tr>
 			<th>전화번호</th>
-			<td><input type='text' name='mPhone' id="mPhone" value='${member.mphone }' style="height:100%; width:99%"></td>
+			<td><input type='text' name='mphone' id="mphone" value='${member.mphone }' style="height:100%; width:99%"></td>
 		</tr>
 		<tr>
 			<th>이메일</th>

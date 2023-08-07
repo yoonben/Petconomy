@@ -20,4 +20,5 @@ public interface HospitalMapper {
 	public int hospitalInsert(HospitalVO vo);
 	
 	public int totalCnt(RegionCri cri);
+	
 }

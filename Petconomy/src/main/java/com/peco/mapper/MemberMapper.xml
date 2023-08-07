@@ -34,10 +34,10 @@
 	
 
 	<update id="update">
-		update P_member set 
+		update member set 
 			pw = #{pw},
-			mName = #{mName},
-			mPhone = #{mPhone},
+			mname = #{mname},
+			mphone = #{mphone},
 			email = #{email},
 			nickname = #{nickname},
 			age = #{age}

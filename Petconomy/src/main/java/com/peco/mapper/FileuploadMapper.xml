@@ -32,6 +32,15 @@
 		</insert>
 
 		<!-- 쿼리문에서 #{}변수를 두개이상 받아야할 경우엔 무조건 @Param 이용해야함 -->
+		<delete id="delete_Img">
+		delete
+		from F_Img
+		where m_id=#{m_id}
+		and	uuid=#{uuid}
+		
+		</delete>
+
+		<!-- 쿼리문에서 #{}변수를 두개이상 받아야할 경우엔 무조건 @Param 이용해야함 -->
 		<delete id="delete">
 		delete
 		from b_img

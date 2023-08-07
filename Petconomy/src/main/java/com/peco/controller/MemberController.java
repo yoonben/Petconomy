@@ -1,6 +1,7 @@
 package com.peco.controller;
 
 import java.io.File;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -75,14 +76,19 @@ public class MemberController extends CommonRestController{
 		}
 	}
 	
-	//회원프로필 수정페이지
+	//회원프로필 수정페이지로 이동
+	//프로필 이미지 조회
 	@PostMapping("profile_Update")
-	public String updatePage(Model model, HttpSession session, @RequestParam String m_id, MemberVO vo) {
-	    
+	public String updatePage(Model model, HttpSession session, MemberVO vo) {
+	    System.out.println("vo : "+ vo);
 	    MemberVO member = (MemberVO) session.getAttribute("member");
+	    System.out.println(member);
 	    model.addAttribute("member", member);
-
-	    FileuploadVO fileuploadVO = fileuploadService.getProfile(m_id);
+	    
+	    System.out.println(vo.getM_id());
+	    
+	    //프로필 이미지 조회
+	    FileuploadVO fileuploadVO = fileuploadService.getProfile(vo.getM_id());
 	    
 	    if (fileuploadVO != null) {
 	        String profile = fileuploadVO.getS_savePath();
@@ -106,14 +112,65 @@ public class MemberController extends CommonRestController{
 	}
 	
 	
-	//회원프로필 수정페이지
-	@PostMapping("profile")
-	public String reloadPage(Model model, HttpSession session, @RequestParam String m_id, MemberVO vo) {
-	    
+	//프로필 이미지 수정(업로드)
+	//db에 사진파일이  한 개가 초과되어 저장될 경우 프로필 조회시 오류발생
+	@PostMapping("profile_update_img")
+	public @ResponseBody Map<String, Object> profile_Update_Img( List<MultipartFile> files,  HttpSession session, MemberVO vo) {
+		System.out.println(files);
+		System.out.println(vo);
+		
+		try {
+			//프로필 사진 조회
+			FileuploadVO fileuploadVO = fileuploadService.getProfile(vo.getM_id());
+			
+			//프로필 사진 업로드
+			int res = fileuploadService.Profileupload(files, vo.getM_id());
+			
+			//기존에 등록된 이미지가 있으면 삭제처리
+			if(res > 0) {
+			fileuploadService.delete_Img(vo.getM_id(), fileuploadVO.getUuid());
+			} 
+			
+			//프로필 이미지 조회
+		    fileuploadVO = fileuploadService.getProfile(vo.getM_id());
+		    
+		   Map<String, Object> map = responseMap(REST_SUCCESS, "파일업로드 성공");
+		    if (fileuploadVO != null) {
+		        String profile = fileuploadVO.getS_savePath();
+		        
+		        // 파일 경로를 슬래시(/)로 변경
+		        if (profile != null) {     
+		            String convertedPath = profile.replace("\\", "/");
+		            String convertedThumPath = profile.replace("\\", "/");
+		            fileuploadVO.setSavePath(convertedPath);
+		            fileuploadVO.setS_savePath(convertedThumPath);
+		        }
+
+		        map.put("profileImg",  fileuploadVO.getS_savePath());
+		    } else {
+		        // 파일 정보가 없을 경우에 대한 처리 (예: 기본 이미지 사용 또는 알림)
+		        map.put("profile", "default_profile_image.jpg");
+		    }
+		    
+			return map;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return responseMap(REST_FAIL, "파일업로드 중 오류발생");
+		}
+		
+		
+	}
+	
+	//회원프로필 수정 후 마이페이지 이동
+	@PostMapping("/profile")
+	public  String profileSave(Model model, HttpSession session, MemberVO vo) {
+		
 	    MemberVO member = (MemberVO) session.getAttribute("member");
 	    model.addAttribute("member", member);
 
-	    FileuploadVO fileuploadVO = fileuploadService.getProfile(m_id);
+	    // 프로필 이미지 처리========================================================
+	    FileuploadVO fileuploadVO = fileuploadService.getProfile(vo.getM_id());
 	    
 	    if (fileuploadVO != null) {
 	        String profile = fileuploadVO.getS_savePath();
@@ -131,77 +188,26 @@ public class MemberController extends CommonRestController{
 	        // 파일 정보가 없을 경우에 대한 처리 (예: 기본 이미지 사용 또는 알림)
 	        model.addAttribute("profile", "default_profile_image.jpg");
 	    }
+	    // 프로필 이미지 처리========================================================
 	    
-	  //회원정보 업데이트
+	    	//회원정보 업데이트
 	  		int res = service.update(vo);
+	  		System.out.println("================= 회원프로필 수정저장 : " + vo);
+	  		
 	  		//업데이트된 회원정보 다시 조회
 	  		MemberVO updateMember = service.getOne(vo.getM_id());
+	  		System.out.println("================= 회원프로필 정보조회 : " + updateMember);
+	  		
+	  		// 기존 세션 무료화
+	  		session.removeAttribute("member");
 	  		
 	  		//모델에 업데이트된 회원 정보 추가
-	  		model.addAttribute("member", updateMember);
+	  		session.setAttribute("member", updateMember);
 	  		
-	  		Map<String, Object> map = responseWriteMap(res);
-	    
-
 	    return "/member/profile";
 	}
 	
-	/*
-	//수정페이지에서 데이터 입력 후 저장
-	@PostMapping("profile")
-	public @ResponseBody Map<String, Object> updateSave(Model model, @RequestBody MemberVO vo, @RequestParam String m_id,
-															@RequestParam("files") MultipartFile profileImage) {
-		
-		
-		FileuploadVO fileuploadVO = fileuploadService.getProfile(m_id);
-		if (fileuploadVO != null) {
-			String profile = fileuploadVO.getS_savePath();
-			
-			// 파일 경로를 슬래시(/)로 변경
-			if (profile != null) {     
-				String convertedPath = profile.replace("\\", "/");
-				String convertedThumPath = profile.replace("\\", "/");
-				fileuploadVO.setSavePath(convertedPath);
-				fileuploadVO.setS_savePath(convertedThumPath);
-			}
-			
-			model.addAttribute("profile", fileuploadVO.getS_savePath());
-		} else {
-			// 파일 정보가 없을 경우에 대한 처리 (예: 기본 이미지 사용 또는 알림)
-			model.addAttribute("profile", "default_profile_image.jpg");
-		}
-		
-		
-		// 프로필 사진 업로드 처리 (프로필사진만 바로 변경되게끔 처리)
-	    if (!profileImage.isEmpty()) {
-	        // 기존 프로필 사진 삭제
-	        if (fileuploadVO != null) {
-	            String existingProfilePath = fileuploadVO.getUploadpath() + fileuploadVO.getUuid() + "_" + fileuploadVO.getFilename();
-	            File existingProfileFile = new File(existingProfilePath);
-	            existingProfileFile.delete();
-	        }
-	        
-		    
-		    
-		    
-		//회원정보 업데이트
-		int res = service.update(vo);
-		//업데이트된 회원정보 다시 조회
-		MemberVO updateMember = service.getOne(vo.getM_id());
-		
-		//모델에 업데이트된 회원 정보 추가
-		model.addAttribute("member", updateMember);
-		
-		Map<String, Object> map = responseWriteMap(res);
-		
-		return map;
-	}
-		return null;
-}
-	// int member = service.update(vo);
-	// model.addAttribute("member", member);
 	
-*/
 	/*
 	//TODO : 펜션매퍼,서비스, 컨트롤러  > 펜션을 등록한 회원 m_id와  펜션등록 테이블에 있는 m_id가 일치하면 펜션정보 화면에 출력할 수 있는 컨트롤러 작성
 	//웹브라우저에서 원활하게 실행되려면 수정해야함 (삭제하니까 잘돌아감 - 세션이 연결안되서 그런것 같기도..)
@@ -236,7 +242,7 @@ public class MemberController extends CommonRestController{
 	*/
 	
 	//하나의 펜션 조회
-	@GetMapping("phProfile")
+	@GetMapping("pensionProfile")
 	public String getOne_P(HttpSession session, PensionVO vo, @RequestParam String m_id) {
 		try {
 			if(vo.getM_id()==null || vo.getM_id().equals("")) {
@@ -247,7 +253,7 @@ public class MemberController extends CommonRestController{
 			
 			PensionVO pension = pensionService.getOne_P(vo.getM_id());
 			session.setAttribute("pension", pension);
-			return "/member/phProfile";
+			return "/member/pensionProfile";
 			
 		} catch (Exception e) {
 			// TODO: 메세지 처리
@@ -257,44 +263,32 @@ public class MemberController extends CommonRestController{
 	
 	
 	//펜션 수정페이지 이동
-	@PostMapping("phProfile_Update")
+	@PostMapping("pensionProfile_Update")
 	public String phProfileUpdatePage(Model model, HttpSession session) {
 		
 		PensionVO pension = (PensionVO) session.getAttribute("pension");
 		    //model.addAttribute("pension", pension);
 			session.setAttribute("pension", pension);
-	    return "/member/phProfile_Update";
+	    return "/member/pensionProfile_Update";
 	}
+	
 	
 	//수정 후 펜션페이지로 다시 이동
-	@PostMapping("phProfile")
+	@PostMapping("pensionProfile")
 	public String phProfilePage(Model model, HttpSession session, PensionVO vo) {
 		
-		int pension = pensionService.update_P(vo);
-				
-		
-			session.setAttribute("pension ", pension );
-	    return "/member/phProfile";
-	}
-	/*
-	// 펜션 수정페이지에서 데이터 입력 후 저장
-	@PostMapping("phProfile")
-	public String phProfileUpdateSave(Model model, PensionVO vo, HttpSession session) {
-		
-		//펜션정보 업데이트
+		//PensionVO pension1 = pensionService.getOne_P(vo.getM_id());
 		pensionService.update_P(vo);
+		PensionVO updatedPension = pensionService.getOne_P(vo.getM_id());
+		//model.addAttribute("pension2", pension2);
+		 session.setAttribute("pension", updatedPension);		
+		 
 		
-		//업데이트된 펜션정보 다시 조회
-		PensionVO updatePension = pensionService.getOne_P(vo.getM_id());
-		
-		//모델에 업데이트된 회원 정보 추가
-		session.setAttribute("updatePension", updatePension);
-		
-		return "/member/phProfile";
+	    return "/member/pensionProfile";
 	}
+
 	
-	*/
-	
+
 	
 	@GetMapping("css")
 	public String css(){
