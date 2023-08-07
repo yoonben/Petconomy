@@ -287,13 +287,13 @@ window.addEventListener('load', function(){
 		// 정규표현식 : 특정 규칙을 가진 문자열을 검색하거나 치환 할때 사용
 		let regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
 		if(MaxSize <= fileSize){
-			alert("파일 사이즈 초과");
+			alert("파일 사이즈가 초과하였습니다.");
 			return false;
 		}
 		
 		// 문자열에 정규식 패턴을 만족하는 값이 있으면 true, 없으면 ㄹ먀ㅣ
 		if(regex.test(fileName)){
-			alert("해당 종류의 파일은 업로드 할 수 없습니다");
+			alert("해당 종류의 파일은 업로드 할 수 없습니다.");
 			return false;
 		}
 		return true;
