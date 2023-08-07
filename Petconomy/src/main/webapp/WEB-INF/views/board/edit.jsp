@@ -330,7 +330,7 @@ window.addEventListener('load', function() {
         <input type="text" name="pageNo" value="${param.pageNo }">
         <input type="text" name="searchField" value="${param.searchField }">
         <input type="text" name="searchWord" value="${param.searchWord }">
-        <input type="text" name="writer" value="${sessionScope.nickName }">
+        <input type="text" name="writer" value="${board.nickname }">
         <input type="text" name="bno" value="${board.bno}">
         
         <!-- 페이징 처리 하기 위해 있어야함 -->

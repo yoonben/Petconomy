@@ -87,6 +87,7 @@ function replyView(map){
 	console.log("pageDto 받고있니? -> ",pageDto);
 	console.log("totalCnt 받고있니? -> ",totalCnt);
 	
+	
 	if(list.length > 0 ){
 		let replyDivStr = '' 
 						+  '<table class="table text-break text-center">                       '
@@ -100,11 +101,13 @@ function replyView(map){
 						+ '  <tbody>                                   ';					
 							
 	list.forEach((reply, index)=>{
+		console.log("reply.nickname는? -> ",reply.nickname);
+		console.log("board.nickname -> ",nickname);
 		replyDivStr 	+='' 					
 						+ '    <tr id="tr'+reply.rno+'" data-value="'+reply.reply+'">                                    '
 						+ '      <th scope="row">'+reply.rno+'</th>                '
 						+ '      <td class="text-start">'+reply.reply
-if(userNick == reply.nickname){
+if(nickname == reply.nickname){
 		replyDivStr		+='			<i class="fa-regular fa-pen-to-square"  onclick="replyEdit('+reply.rno+')"></i>	'
 						+ ' 		<i class="fa-regular fa-trash-can" onclick="replyDelete('+reply.rno+')"></i>		'
 							};
@@ -157,11 +160,14 @@ if(userNick == reply.nickname){
 }
 
 function replyWrite(){
-	//bno,reply,replyer(나중엔 세션에서 가져올거임)
+	//bno 게시글번호
+	//m_id 회원번호
+	//reply 댓글내용
+	//replyer 댓글 작성자
 	let bno = document.querySelector('#bno').value;
 	let reply = document.querySelector('#reply').value;
 	let m_id = document.querySelector('#m_id').value;
-	let replyer = userNick; //jsp내에서 변수로 선언해놓고 js에 가져와서 사용
+	let replyer = document.querySelector('.writer').value;
 
 	
 	//전달할 객체로 생성

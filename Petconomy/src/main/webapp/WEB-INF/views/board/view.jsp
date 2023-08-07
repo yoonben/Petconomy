@@ -138,7 +138,8 @@
       getFileList();
     });
 
-    var userNick = "${sessionScope.nickName}"; // 닉네임 전역변수 선언
+   
+    var nickname = "${board.nickname}"; // 닉네임 전역변수 선언
     
     
     /* -------------------좋아요 증가 시작--------------------------- */
@@ -338,7 +339,7 @@
                           <h4>${board.nickname }</h4>
                         </div>
                         <ul>
-                          <li><h4>${board.nickname }</h4></li>
+                         <li><i class="fa fa-eye"></i> ${board.visitcount} </li>
                           <li><h4>${board.nickname }</h4></li>
                         </ul>
                       </div>
@@ -346,7 +347,7 @@
                     <div class="col-lg-6">
                       <div class="right-info ">
                         <ul class="d-flex justify-content-around">
-						  <c:if test="${sessionScope.nickName eq board.nickname}">
+						  <c:if test="${sessionScope.m_id eq board.m_id}">
 						    <li>
 						      <label for="btnEdit"  onclick="postEdit()">
 						        <i id="btnEdit" class="fa-solid fa-pen-to-square" style="color: #ffa200;"></i>
@@ -411,6 +412,8 @@
         <!-- 총댓글수 들어오는곳 -->
         <div id="totalCnt"></div>
         
+        <!-- TODO 닉네임을 변경했을때 세션에 바로 갱신을 해주어야 작성자에 새로운 닉네임이 반영됨
+                그렇지않으면 세션 만료 전까지 이적 닉네임으로 저장됨 -->
         <div class="input-group">
           <span class="input-group-text">답글 작성</span>
           <input type="text" aria-label="First name" class="form-control" id="reply">
