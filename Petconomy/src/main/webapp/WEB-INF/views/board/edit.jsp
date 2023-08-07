@@ -26,6 +26,8 @@
     <link rel="stylesheet" href="/resources/assets/css/animate.css">
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
 
+	<!--fetchGet Post JS -->
+  	<script src="/resources/js/reply.js"></script>
 
 
 
@@ -143,6 +145,41 @@
 window.addEventListener('load', function() {
 
 
+	
+	// btnEdit 버튼 클릭 시 이벤트 리스너
+	document.getElementById('btnEdit').addEventListener('click', FileCheck);
+	
+
+	// 파일 유형과 크기 처리 함수
+	function FileCheck() {
+	  
+	  // 기본 이벤트 제거
+	  event.preventDefault(); 
+	  const filesInput = document.getElementById('files');
+	  const files = filesInput.files;
+
+	  // 파일 유형 확인
+	  const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+	  for (let i = 0; i < files.length; i++) {
+	    if (!allowedTypes.includes(files[i].type)) {
+	      alert('이미지 파일만 업로드할 수 있습니다.');
+	      return;
+	    }
+	  }
+
+	  // 파일 크기 확인
+	  const maxSize = 10 * 1024 * 1024; // 10MB
+	  for (let i = 0; i < files.length; i++) {
+	    if (files[i].size > maxSize) {
+	      alert('파일 크기가 10MB 이하여야 합니다.');
+	      return;
+	    }
+	  }
+
+	  // 파일 유형과 크기가 모두 유효한 경우, 추가로 처리할 로직을 작성합니다.
+	  editForm.submit();
+	}
+
 
 	//파일목록 조회 및 출력
 	getFileList();
@@ -158,7 +195,7 @@ window.addEventListener('load', function() {
   	console.log(bno);
   	
   	if(bno){
-  	fetch('/file/list/'+bno)
+  	fetch('/peco/file/list/'+bno)
   		.then(response => response.json())
   		.then(map => viewFileList(map));
   	}
@@ -208,8 +245,9 @@ window.addEventListener('load', function() {
   	//jsp 자바스크립트에서 백틱쓰려면 변수앞에 \${} 역슬래쉬 붙여줘야함
   	//EL 표현식과 충돌나서 에러발생하는것
   	//*주석처리해도 변수 앞에 역슬래쉬 안붙이면 에러 뜸!!*
-  	 fetchGet(`/file/delete/\${uuid}/\${bno}`, fileuploadRes); 
+  	 fetchGet(`/peco/file/delete/\${uuid}/\${bno}`, fileuploadRes); 
   	//fetchGet('/file/delete/'+uuid+'/'+bno+'', fileuploadRes);
+  	
   }
 
   function fileuploadRes(map){
@@ -292,11 +330,11 @@ window.addEventListener('load', function() {
         <input type="text" name="pageNo" value="${param.pageNo }">
         <input type="text" name="searchField" value="${param.searchField }">
         <input type="text" name="searchWord" value="${param.searchWord }">
-        <input type="text" name="m_id" value="${sessionScope.mid }">
-        <input type="text" name="writer" value="${sessionScope.nickName }">
+        <input type="text" name="writer" value="${board.nickname }">
         <input type="text" name="bno" value="${board.bno}">
         
         <!-- 페이징 처리 하기 위해 있어야함 -->
+        <input type="text" name="m_id" value="${sessionScope.m_id }">
         <input type="hidden" id="page" name="page" value="1">
         
         
@@ -323,7 +361,7 @@ window.addEventListener('load', function() {
         
         <div class="mb-3">
 			<label for="files" class="form-label">첨부파일</label>
-		    <input name="files" type="file" class="form-control" id="files" multiple>
+		    <input name="files" type="file" class="form-control" id="files" accept="image/*" multiple>
 		</div>
 		
         <!-- 첨부파일 목록 표시 -->
@@ -331,7 +369,7 @@ window.addEventListener('load', function() {
         
 
         <div style="text-align: center;">
-            <button type="submit" class="btn btn-danger btn-lg">글 수정</button>
+            <button type="submit" id="btnEdit" class="btn btn-danger btn-lg">글 수정</button>
         </div>
 
 

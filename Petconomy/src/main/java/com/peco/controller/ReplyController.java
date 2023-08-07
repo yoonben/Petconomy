@@ -29,7 +29,7 @@ public class ReplyController extends CommonRestController{
 	@GetMapping("/reply/list/{bno}/{page}")
 	public Map<String,Object> getList(@PathVariable("bno") int bno,@PathVariable("page") int page){
 		
-		
+		System.out.println("--댓글 조회 진입--");
 		log.info("bno : "+bno);
 		log.info("page : "+page);
 		
@@ -55,7 +55,7 @@ public class ReplyController extends CommonRestController{
 	
 	@GetMapping("/reply/delete/{rno}")
 	public Map<String,Object> delete(@PathVariable("rno")String rno) {
-		System.out.println("컨트롤러 진입");
+		System.out.println("--- 댓글 삭제 진입 ---");
 		/*
 		 * Map<String,Object> map = new HashMap<String, Object>();
 		 * 
@@ -79,6 +79,8 @@ public class ReplyController extends CommonRestController{
 	 */
 	@PostMapping("/reply/insert/")
 	public Map<String,Object> insert(@RequestBody ReplyVO vo) {
+		System.out.println("--- 댓글 추가 진입 ---");
+		
 		log.info("replyVO :"+vo);
 		Map<String,Object> map = new HashMap<String, Object>();
 		
@@ -110,6 +112,8 @@ public class ReplyController extends CommonRestController{
 	
 	@PostMapping("/reply/update/")
 	public Map<String,Object> update(@RequestBody ReplyVO vo) {
+		
+		System.out.println("--- 댓글 수정 진입 ---");
 		
 		log.info("replyVO :"+vo);
 		
