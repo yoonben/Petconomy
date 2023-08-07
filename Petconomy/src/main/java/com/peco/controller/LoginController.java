@@ -53,7 +53,7 @@ public class LoginController extends CommonRestController {
 			session.setAttribute("member", member);
 			session.setAttribute("userId", member.getId());
 			session.setAttribute("nickName", member.getNickname());
-			session.setAttribute("mid", member.getM_id());
+			session.setAttribute("m_id", member.getM_id());
 			Map<String, Object> map = responseMap(REST_SUCCESS, "로그인 되엇습니다.");
 			map.put("url", "/peco/main");
 
@@ -109,7 +109,22 @@ public class LoginController extends CommonRestController {
 		}
 
 	}
+	
+	@PostMapping("/findId")
+	public @ResponseBody Map<String, Object> findId(@RequestBody MemberVO member) {
+		System.out.println(member.getMname());
+		
+		int res = memberService.nameCheck(member);
+		
+		if (res > 0) {
+			MemberVO findid = memberService.findId(member);
+			return responseMap(REST_SUCCESS, findid.getId());
+		} else {
+			return responseMap(REST_FAIL, "아이디를 찾을 수 없습니다.이름을 확인해주세요");
+		}
 
+	}
+	
 	@GetMapping("/naver_callback")
 	public String naverLogin_callback(HttpServletRequest request, HttpSession session, Model model) {
 		Map<String, String> naverData = memberService.naverLogin(request, model);

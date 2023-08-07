@@ -207,7 +207,7 @@ public class FileuploadServiceImpl implements FileuploadService{
 		for(MultipartFile file : files) {
 					
 					//continue를 걸어주는 이유는
-					//jsp에서 input type:file 요소가 여러개일 경우
+					//jsp에서 input type:file 요소가 여러개일 경우 *multiple 아닌경우
 					//선택된 파일이 없는 경우 다음 파일로 이동
 					if(file.isEmpty()) {
 						continue;
@@ -253,7 +253,7 @@ public class FileuploadServiceImpl implements FileuploadService{
 							
 							//썸네일 생성
 											  //원본파일, 크기 ,저장될 경로
-							Thumbnails.of(sFile).size(250, 250).toFile(thumbnail);
+							Thumbnails.of(sFile).size(500, 500).toFile(thumbnail);
 							log.info("------파일경로-------");
 							log.info(sFile.getPath());
 							log.info("------파일경로-------");

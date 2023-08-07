@@ -75,7 +75,60 @@ https://templatemo.com/tm-579-cyborg-gaming
  	width: 292px;
  	height: 292px;
  }
+ 
+ 
+ .featured-games .hover-effect ul {
+  position: absolute;
+  bottom: 20px;
+  text-align: center;
+  width: 100%;
+}
 
+.featured-games .hover-effect ul li {
+  display: inline-block;
+  margin: 0px 5px;
+}
+
+.featured-games .hover-effect ul li a {
+  background-color: rgba(236, 96, 144, 0.9);
+  padding: 5px 10px;
+  border-radius: 23px;
+  color: #fff;
+  font-size: 14px;
+}
+
+.featured-games .item ul li:first-child i {
+  color: white;
+}
+
+.featured-games span i {
+  color: #fff;
+  background-color: #ec6090;
+  border-radius: 50%;
+  font-size: 12px;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  text-align: center;
+  line-height: 20px;
+  margin-right: 3px;
+}
+
+.featured-games span {
+  font-size: 14px;
+  color: #ec6090;
+}
+
+.featured-games .down-content h4 {
+  margin-top: 8px;
+  font-size: 20px;
+  font-weight: 700;
+  margin-left: 61px;
+}
+
+.featured-games .avatar img {
+  margin-right: 15px;
+}
 
 </style>
 
@@ -140,10 +193,15 @@ https://templatemo.com/tm-579-cyborg-gaming
 				  <div class="item">
 				    <div class="thumb bestthumb">
             		<a onclick="requestAction('/peco/board/view', ${b.bno })">
-				      <img src="/peco/display?fileName=${b.s_savePath}" alt="" class="thumbnail-image">
+				      <img src="/peco/display?fileName=${b.savePath}" alt="" class="thumbnail-image">
 				    </a>
 				      <div class="hover-effect">
-				        <i id="animated-icon" class="fa-regular fa-thumbs-up fa-lg" style="color: #ffa200;"> <h4> ${b.likecount }</h4></i>
+				      <div class="content">
+				       <ul>
+				        <li><a href="#"><i class="fa fa-eye"></i>${b.visitcount} </a></li>
+				        <li><i id="animated-icon" class="fa-regular fa-thumbs-up fa-lg" style="color: #ffa200;">${b.likecount }</i></li>
+				       </ul>
+				      </div>
 				      </div>
 				    </div>
 					    <div class="down-content">
@@ -185,7 +243,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                 <div class="item">
                   <div class="thumb">
             		<a onclick="requestAction('/peco/board/view', ${f.bno })">
-                    <img src="/peco/display?fileName=${f.s_savePath}" alt="">
+                    <img src="/peco/display?fileName=${f.savePath}" alt="">
                     <div class="hover-effect">
                       <div class="content">
                         <div class="live">
@@ -231,7 +289,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                 <div class="item">
                   <div class="thumb">
                   <a onclick="requestAction('/peco/board/view', ${h.bno })">
-                    <img src="/peco/display?fileName=${h.s_savePath}" alt="">
+                    <img src="/peco/display?fileName=${h.savePath}" alt="">
                     <div class="hover-effect">
                       <div class="content">
                         <div class="live">

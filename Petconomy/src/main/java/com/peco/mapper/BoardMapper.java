@@ -40,6 +40,8 @@ public interface BoardMapper {
 	
 	public int likeCnt(int bno);
 	
+	public int visitCnt(int bno);
+	
 	public int updateReplyCnt(@Param("bno") int bno,@Param("amount") int amount);
 
 }

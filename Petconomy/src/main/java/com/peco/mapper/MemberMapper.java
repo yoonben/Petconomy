@@ -11,4 +11,6 @@ public interface MemberMapper {
 	public MemberVO apiLogin(MemberVO apiMember);
 	public MemberVO member_getOne(String m_id);
 	public int update(MemberVO vo);
+	public int nameCheck(MemberVO member);
+	public MemberVO findId(MemberVO member);
 }

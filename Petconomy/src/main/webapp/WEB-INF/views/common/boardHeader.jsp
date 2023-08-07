@@ -70,6 +70,7 @@
 		if(msg != ''){
 			// 메세지 출력
 			document.querySelector(".modal-body").innerHTML = msg;
+			
 			// 버튼 출력 제어
 			document.querySelector("#btnModalSave").style.display='none';
 			
@@ -77,18 +78,17 @@
 			let myModal = new bootstrap.Modal(document.getElementById('myModal'), {
 				  keyboard: false
 			});
+			s
 			// 모달 보여주기
 			myModal.show();
 			const myModalEl = document.getElementById('myModal')
 			myModalEl.addEventListener('hidden.bs.modal', event => {
 				//컨트롤러에서 원하는 url저장해서 넘겨주면 그곳으로 이동시킴
-				let url = '${url}'
-				if(url){
-					location.href = url;
-				}else{
-				/* history.go(-1); */
-					location.href = "/peco/board/free";
-					
+				let res = '${res}'
+				//res < 0 = 처리가 안됐다는것
+				if(res<0){
+					//뒤로가기
+					history.go(-1);
 				}
 			});
 		}
