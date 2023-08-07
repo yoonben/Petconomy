@@ -42,6 +42,9 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public BoardVO selectOne(int bno) {
+		//조회수 증가
+		mapper.visitCnt(bno);
+		
 		return mapper.selectOne(bno);
 	}
 
@@ -187,6 +190,12 @@ public class BoardServiceImpl implements BoardService {
 		
 		
 		return mapper.likeCnt(bno);
+	}
+
+	@Override
+	public int visitCnt(int bno) {
+	
+		return mapper.visitCnt(bno);
 	}
 
 

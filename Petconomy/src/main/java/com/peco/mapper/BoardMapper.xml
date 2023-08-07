@@ -40,7 +40,7 @@
 	    END AS regdate,
 	    b.updatedate,
 	    m.nickname,
-	    a.uploadpath || a.uuid || '_' || a.filename AS savePath,
+	    DECODE(a.filetype, 'I', a.uploadpath || a.uuid || '_' || a.filename, '/default/NO_image.jpg') AS savePath,
 	    DECODE(a.filetype, 'I', a.uploadpath || 's_' || a.uuid || '_' || a.filename, '/default/NO_image.jpg') AS s_savePath
 	FROM (
 	    SELECT 
@@ -123,10 +123,10 @@
 		                           to_char(b.regdate, 'YYYY-MM-DD')) AS regdate,
 		                    b.updatedate,
 		                    m.nickname,
-		                    a.uploadpath
-		                    || a.uuid
-		                    || '_'
-		                    || a.filename                            AS savepath,
+		                    DECODE(a.filetype, 'I', a.uploadpath 
+		                    						|| a.uuid 
+		                    						|| '_' 
+		                    						|| a.filename, '/default/NO_image.jpg') AS savePath,
 		                    decode(a.filetype, 'I', a.uploadpath
 		                                            || 's_'
 		                                            || a.uuid
@@ -174,10 +174,10 @@
 		                           to_char(b.regdate, 'YYYY-MM-DD')) AS regdate,
 		                    b.updatedate,
 		                    m.nickname,
-		                    a.uploadpath
-		                    || a.uuid
-		                    || '_'
-		                    || a.filename                            AS savepath,
+		                    DECODE(a.filetype, 'I', a.uploadpath 
+		                    						|| a.uuid 
+		                    						|| '_' 
+		                    						|| a.filename, '/default/NO_image.jpg') AS savePath,
 		                    decode(a.filetype, 'I', a.uploadpath
 		                                            || 's_'
 		                                            || a.uuid
@@ -209,6 +209,7 @@
 		    b.likecount,
 		    DECODE(TRUNC(SYSDATE), TRUNC(b.regdate), TO_CHAR(b.regdate, 'HH24:MI:SS'), TO_CHAR(b.regdate, 'YYYY-MM-DD')) AS regdate,
 		    b.updatedate,
+		    b.category,
 		    m.nickname
 		FROM 
 		    board b
@@ -278,6 +279,11 @@
 	
 	<update id="likeCnt">
 	update board set likecount= likecount+1 
+	where bno = #{bno}
+	</update>
+	
+	<update id="visitCnt">
+	update board set visitcount = visitcount+1 
 	where bno = #{bno}
 	</update>
 	

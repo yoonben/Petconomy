@@ -95,6 +95,7 @@
   <script>
   
     window.addEventListener('load', () => {
+    	
       /* --------------좋아요버튼-------------- */
       const animatedIcon = document.getElementById('animated-icon');
       const likebox = document.getElementById('likebox');
@@ -124,6 +125,7 @@
     	}
 
       /* --------------좋아요버튼 끝-------------- */
+      
 
       btnReplyWrite.addEventListener('click', function () {
         replyWrite()
@@ -136,7 +138,7 @@
       getFileList();
     });
 
-    var userNick = "${sessionScope.nickName}"; // userId 전역변수 선언
+    var userNick = "${sessionScope.nickName}"; // 닉네임 전역변수 선언
     
     
     /* -------------------좋아요 증가 시작--------------------------- */
@@ -197,8 +199,6 @@
             + '<img src="/peco/display?fileName=' + s_savePath + '" style="border-radius: 23px; margin-bottom: 30px; width: 100px; height: 100px;"></a> <br>'
             + item.filename
             + '</a>'
-            + '<i class="fa-regular fa-trash-can" onclick="FileDelete(this)"		'
-            + 'data-bno="' + item.bno + '" data-uuid="' + item.uuid + '"></i>		'
             + ' <br>			';
         })
 
@@ -211,21 +211,6 @@
       divFileupload.innerHTML = content;
     }
     
-	/* 업로드한 파일 삭제버튼 눌렀을때 삭제 */
-    function FileDelete(e) {
-      //e.data 값 가져오는법
-      console.log(e.dataset.bno, e.dataset.uuid, e.dataset.aaa)
-
-      let bno = e.dataset.bno
-      let uuid = e.dataset.uuid
-
-      //fetch요청
-      //jsp 자바스크립트에서 백틱쓰려면 변수앞에 \${} 역슬래쉬 붙여줘야함
-      //EL 표현식과 충돌나서 에러발생하는것
-      //*주석처리해도 변수 앞에 역슬래쉬 안붙이면 에러 뜸!!*
-      fetchGet(`/peco/file/delete/\${uuid}/\${bno}`, fileuploadRes);
-      //fetchGet('/file/delete/'+uuid+'/'+bno+'', fileuploadRes);
-    }
     
 	/* 파일업로드처리 끝난 후 실행할 콜백함수 */
     function fileuploadRes(map) {
@@ -238,6 +223,26 @@
         getFileList()
       }
     }
+	
+	/* 게시글  목록  */
+	/* 검색어,페이지 정보 유지하고 리스트로 돌아가기 */
+    function postList() {
+    	var category = document.querySelector('#category').value // category 파라미터 값 가져오기
+        var url;
+        
+        // category 값에 따라 요청할 URL 결정
+        if (category === "free") {
+            url = "/peco/board/free?&pageNo=${param.pageNo}&searchField=${param.searchField}&searchWord=${param.searchWord}"; //일상 게시판
+        } else if (category === "healing") {
+            url = "/peco/board/healing?&pageNo=${param.pageNo}&searchField=${param.searchField}&searchWord=${param.searchWord}"; //힐링 게시판
+        } else {
+            url = "/peco/board/main?&pageNo=${param.pageNo}&searchField=${param.searchField}&searchWord=${param.searchWord}"; 
+        }
+        
+        // 요청할 URL로 이동
+        window.location.href = url;
+
+      }
 	
 	/* 게시글 수정 */
     function postEdit() {
@@ -314,9 +319,12 @@
           <input type="text" name="searchField" value="${param.searchField }">
           <input type="text" name="searchWord" value="${param.searchWord }">
           <input type="text" name="bno" id="bno" value="${board.bno }">
+          <input type="text" name="m_id" id="m_id" value="${sessionScope.m_id }">
 
           <!-- 페이징 처리 하기 위해 있어야함 -->
           <input type="hidden" id="page" name="page" value=1>
+          <input type="text" id="category" name="category" value="${board.category }">
+          
           <!-- ***** Details Start ***** -->
           <div class="game-details">
             <div class="col-lg-12">
@@ -347,14 +355,14 @@
 						    </li>
 						    <li>
 						      <label for="btnDeleteModal" onclick="postDeleteModal()">
-						        <i class="fa-solid fa-trash" style="color: #ffa200;"></i>
+						        <i id="btnDeleteModal" class="fa-solid fa-trash" style="color: #ffa200;"></i>
 						        <span style="margin-left: 5px; font-weight: bold;">글 삭제</span>
 						      </label>
 						    </li>
 						  </c:if>
 						  <li>
-						    <label for="btnList">
-						      <i class="fa-regular fa-rectangle-list" style="color: #ffa200;"></i>
+						    <label for="btnList" onclick="postList()">
+						      <i id="btnList" class="fa-regular fa-rectangle-list" style="color: #ffa200;"></i>
 						      <span style="margin-left: 5px; font-weight: bold;">목록</span>
 						    </label>
 						  </li>
@@ -372,8 +380,8 @@
                           </a>
                           <br>
                         </c:forEach>
-                      </div>
                       <p>${board.content }</p>
+                      </div>
                     </div>
                     
                     <!-- 좋아요 표시하는곳 -->

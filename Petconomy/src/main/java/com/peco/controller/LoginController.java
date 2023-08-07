@@ -53,7 +53,7 @@ public class LoginController extends CommonRestController {
 			session.setAttribute("member", member);
 			session.setAttribute("userId", member.getId());
 			session.setAttribute("nickName", member.getNickname());
-			session.setAttribute("mid", member.getM_id());
+			session.setAttribute("m_id", member.getM_id());
 			Map<String, Object> map = responseMap(REST_SUCCESS, "로그인 되엇습니다.");
 			map.put("url", "/peco/main");
 
