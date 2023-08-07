@@ -161,6 +161,25 @@ window.addEventListener('load', function(){
 			
 		})
 		
+		findIdbtn.addEventListener('click', function(e){
+			// 기본 이벤트 제거
+			e.preventDefault();
+			
+			if(!findname.value){
+				findIdText.innerHTML = '아이디를 입력해주세요';
+				return
+			}
+			
+			let obj={mname : findname.value};
+			
+			console.log("아이디 찾기 체크", obj);
+			
+			fetchPost('/peco/findId', obj, (map)=>{
+				findIdText.innerHTML = map.msg;
+			});
+			
+		})
+		
 		// 닉네임 체크 버튼
 		btnNickName.addEventListener('click', function(e){
 	

@@ -76,12 +76,25 @@ public class MemberServiceImpl implements MemberService {
 
 		return memberMapper.idCheck(member);
 	}
-
+	
 	@Override
 	public int nicknameCheck(MemberVO member) {
 	
 		return memberMapper.nicknameCheck(member);
 	}
+	
+	@Override
+	public int nameCheck(MemberVO member) {
+	
+		return memberMapper.nameCheck(member);
+	}
+	
+	@Override
+	public MemberVO findId(MemberVO member) {
+		// TODO Auto-generated method stub
+		return memberMapper.findId(member);
+	}
+	
 	
 	@Autowired
 	ApiExamMemberProfile apiExam;
@@ -178,4 +191,5 @@ public class MemberServiceImpl implements MemberService {
 		}
 
 	}
+
 }

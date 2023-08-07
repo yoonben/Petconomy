@@ -116,10 +116,13 @@
 				<div id="myModal" class="modal">
 				  <div class="modal-content">
 				    <span class="close">&times;</span>
-				    <!-- 모달 내용을 여기에 추가하세요. 예를 들면 아이디를 찾기 위한 폼 등 -->
-				    <form>
-				      <!-- 폼 필드들을 여기에 추가하세요 -->
+				    <h1 class="h3 mb-3 fw-normal text-dark">아이디 찾기</h1>
+				     
+				    <form >
+				    	<input type="text" name="findname" id="findname" placeholder="이름">
+				    	<input type="submit" value="아이디 찾기" id="findIdbtn">
 				    </form>
+				    	<div id="findIdText"></div>
 				  </div>
 				</div>
 			
