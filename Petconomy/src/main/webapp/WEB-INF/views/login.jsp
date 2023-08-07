@@ -21,58 +21,6 @@
 
 <!-- Bootstrap core CSS -->
 <%@include file="./commo/css.jsp"%>
-<style type="text/css">
-.page-login {
-	width: 500px; 
-	margin: 0 auto;
-}
-.page-content {
-	width: 600px; 
-	margin: 0 auto;
-}
-.form-login{
-	padding-bottom: 10px;
-}
-.msg{
-	padding-top: 10px;
-}
-.login-img{
-  background-image: url(/resources/img/cat.PNG);
-  background-position: center center;
-  background-size: cover;
-  min-height: 100px;
-  width: 70px;
-  border-radius: 23px;
-  padding: 80px 60px;
-  margin-bottom: 10px;
-}
-.text-line{
-	width: 500px;	
-}
-.text-btnline{
-	width: 395px;
-	float: left;
-	margin-bottom: 10px;
-}
-.text-btn{
-	width: 95px;
-	font-size: 5px;
-	float: right;
-	margin-bottom: 10px;
-}
-.login-api{
-	width: 250px;
-	height: 50px;
-	float: left;
-}
-.login-menu{
-	height: 30px;
-}
-.text-or{
-	text-align: center;
-	font-size: 3px;
-}
-</style>
 </head>
 
 <body>
@@ -106,9 +54,14 @@
 					id="btnLogin">Login</button>
 				
 				<div class="login-menu">
-					<a class="mt-5 mb-3 text-muted" id='btnSignupView'>회원가입</a>
+					<div class="login-menu_left">
+						<a class="mt-5 mb-3 text-muted" id='btnSignupView'>회원가입</a>
+					</div>
+					
+					<div class="login-menu_right">
+						<a class="mt-5 mb-3 text-muted" id='openModalButton'>아이디 찾기</a>
+					</div>
 				</div>
-				
 					<p class="text-muted text-or"> 또는 </p>
 				
 				<!-- 네이버 로그인 -->
@@ -158,7 +111,18 @@
 				<!-- 카카오 로그인 End -->
 			</form>
 			<!-- ***** login End ***** -->
-
+			
+			<!-- 모달 -->
+				<div id="myModal" class="modal">
+				  <div class="modal-content">
+				    <span class="close">&times;</span>
+				    <!-- 모달 내용을 여기에 추가하세요. 예를 들면 아이디를 찾기 위한 폼 등 -->
+				    <form>
+				      <!-- 폼 필드들을 여기에 추가하세요 -->
+				    </form>
+				  </div>
+				</div>
+			
 			<!-- ***** 회원 가입 ***** -->
 			<form name='signupForm' id='signupForm'
 				<c:if test="${empty showSignupForm}"> style='display: none;' </c:if>>
@@ -175,7 +139,8 @@
 				<c:if test="${not empty showSignupForm}">
 					<input type="hidden" id="idCheckRes" value="1">
 				</c:if>
-
+				
+				
 				<c:if test="${empty showSignupForm}">
 					<input type="hidden" id="emailCheckRes">
 				</c:if>

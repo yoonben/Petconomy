@@ -126,11 +126,22 @@ window.addEventListener('load', function(){
 		
 		// 아이디 체크 버튼
 		btnid.addEventListener('click', function(e){
-	
+			
 			if(!signUpId.value){
 				signupMsg.innerHTML = '아이디를 입력해주세요';
 				return
 			}
+			
+			  const id = signUpId.value;
+			  
+			  // 정규식을 이용하여 영어와 숫자로만 구성되고, 7자리 이상 12자리 이하인지를 검사
+			  const isValidId = /^[a-zA-Z0-9]{7,12}$/.test(id);
+
+			  // 결과에 따라 메시지 출력
+			  if (!isValidId) {
+			    signupMsg.innerHTML = "아이디는 영어와 숫자로만 구성되고, 7자리 이상 12자리 이하이어야 합니다.";
+			    return
+			  }
 			
 			let obj={id : signUpId.value};
 			console.log("아이디 체크", obj);
@@ -318,3 +329,22 @@ window.addEventListener('load', function(){
 		}
 		
 	}
+	
+	$(document).ready(function() {
+		  // "아이디 찾기" 버튼을 클릭하면 모달이 나타납니다.
+		  $("#openModalButton").click(function() {
+		    $("#myModal").css("display", "block");
+		  });
+
+		  // 모달 내부의 닫기 버튼 (×)을 클릭하면 모달이 숨겨집니다.
+		  $(".close").click(function() {
+		    $("#myModal").css("display", "none");
+		  });
+
+		  // 또한, 사용자가 모달 영역 밖을 클릭하면 모달이 숨겨집니다.
+		  $(window).click(function(event) {
+		    if (event.target == $("#myModal")[0]) {
+		      $("#myModal").css("display", "none");
+		    }
+		  });
+		});
