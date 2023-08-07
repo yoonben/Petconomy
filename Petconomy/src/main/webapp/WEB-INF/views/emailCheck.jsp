@@ -5,18 +5,33 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	.input-group{
+		margin-bottom: 10px;
+	}
+	.input-group-addon{
+		width: 95px;
+		float: left;
+		margin-bottom: 10px;
+	}
+	.mail-check-box{
+		width: 400px;
+		float: right;
+		margin-bottom: 10px;
+	}
+</style>
 </head>
 <body>
-<div class="form-group email-form">
-	 <div class="input-group">
-	<input type="text" class="form-control" name="userEmail1" id="userEmail1" placeholder="이메일" >
-	<select class="form-control" name="userEmail2" id="userEmail2" >
-	<option>@naver.com</option>
-	<option>@daum.net</option>
-	<option>@gmail.com</option>
-	<option>@hanmail.com</option>
-	</select>
-</div>
+	<div class="form-group email-form">
+		 <div class="input-group">
+		<input type="text" class="form-control" name="userEmail1" id="userEmail1" placeholder="이메일" >
+		<select class="form-control" name="userEmail2" id="userEmail2" >
+		<option>@naver.com</option>
+		<option>@daum.net</option>
+		<option>@gmail.com</option>
+		<option>@hanmail.com</option>
+		</select>
+	</div>
 <div class="form-login">
 	<div class="input-group-addon">
 		<button type="button" class="btn btn-primary" id="mail-Check-Btn">본인인증</button>

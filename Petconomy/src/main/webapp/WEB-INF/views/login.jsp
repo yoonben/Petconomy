@@ -23,11 +23,11 @@
 <%@include file="./commo/css.jsp"%>
 <style type="text/css">
 .page-login {
-	width: 600px; 
+	width: 500px; 
 	margin: 0 auto;
 }
 .page-content {
-	width: 700px; 
+	width: 600px; 
 	margin: 0 auto;
 }
 .form-login{
@@ -45,6 +45,32 @@
   border-radius: 23px;
   padding: 80px 60px;
   margin-bottom: 10px;
+}
+.text-line{
+	width: 500px;	
+}
+.text-btnline{
+	width: 395px;
+	float: left;
+	margin-bottom: 10px;
+}
+.text-btn{
+	width: 95px;
+	font-size: 5px;
+	float: right;
+	margin-bottom: 10px;
+}
+.login-api{
+	width: 250px;
+	height: 50px;
+	float: left;
+}
+.login-menu{
+	height: 30px;
+}
+.text-or{
+	text-align: center;
+	font-size: 3px;
 }
 </style>
 </head>
@@ -78,8 +104,13 @@
 
 				<button class="w-100 btn btn-lg btn-warning" type="submit"
 					id="btnLogin">Login</button>
-
-				<a class="mt-5 mb-3 text-muted" id='btnSignupView'>회원가입</a>
+				
+				<div class="login-menu">
+					<a class="mt-5 mb-3 text-muted" id='btnSignupView'>회원가입</a>
+				</div>
+				
+					<p class="text-muted text-or"> 또는 </p>
+				
 				<!-- 네이버 로그인 -->
 				<%
 					String clientId = "vThUa8bHb7IlAn52GUi5";//애플리케이션 클라이언트 아이디값";
@@ -95,16 +126,18 @@
 					session.setAttribute("state", state);
 				%>
 				
-				
-				<a href="<%=apiURL%>"><img height="80"
-					src="/resources/img/naver.png" /></a>
+				<div class="login-api">
+					<a href="<%=apiURL%>"><img height="50px"
+						src="/resources/img/naver_login.jpg" /></a>
+				</div>
 				<!-- 네이버 로그인 end-->
 
 				<!-- 카카오 로그인 -->
-
-					<img alt="카카오로그인"
+				<div class="login-api" >
+					<img alt="카카오로그인" height="50px"
 						src="/resources/img/certi_kakao_login.png"
-						onclick="loginWithKakao()">
+						onclick="loginWithKakao()">	
+				</div>	
 
 				<script type="text/javascript"
 					src="https://developers.kakao.com/sdk/js/kakao.min.js"
@@ -164,7 +197,7 @@
 				<h1 class="h3 mb-3 fw-normal">회원가입</h1>
 				<div id="signupMsg"></div>
 				<div class="form-login">
-					<div class="">
+					<div class="text-line">
 						<input type="text" class="form-control" id="signUpName"	
 						value="${apiName }" placeholder="이름"> 
 					</div>
@@ -172,10 +205,13 @@
 
 				<c:if test="${empty showSignupForm}">
 					<div class="form-login">
-						<input type="text" class="form-control" id="signUpId" 
-						value="${apiId }" placeholder="아이디"> 
-						<button class="btn btn-primary" type="button" id="btnid" >아이디
-							중복 검사</button>
+						<div class="text-btnline">
+							<input type="text" class="form-control" id="signUpId" 
+							value="${apiId }" placeholder="아이디"> 
+						</div>
+						<div class="text-btn">
+							<button class="btn btn-primary" type="button" id="btnid" >중복 확인</button>
+						</div>
 					</div>
 				</c:if>
 
@@ -187,13 +223,17 @@
 
 				<c:if test="${empty showSignupForm}">
 					<div class="form-login"> 
-						<input type="password" class="form-control" id="signUpPw"
-						placeholder="비밀번호" >
+						<div class="text-line">
+							<input type="password" class="form-control" id="signUpPw"
+							placeholder="비밀번호" >
+						</div>
 					</div>
 
 					<div class="form-login">
-						<input type="password" class="form-control" id="pwCheck"
-						placeholder="비밀번호 확인" >
+						<div class="text-line">
+							<input type="password" class="form-control" id="pwCheck"
+							placeholder="비밀번호 확인" >
+						</div>
 					</div>
 				</c:if>
 
@@ -210,12 +250,18 @@
 				</c:if>
 
 				<div class="form-login">
-					<input type="text" class="form-control" id="nickName" placeholder="닉네임"> 
-					<button class="btn btn-primary" type="button" id="btnNickName">닉네임 중복 검사</button>
+					<div class="text-btnline">
+						<input type="text" class="form-control" id="nickName" placeholder="닉네임"> 
+					</div>
+					<div class="text-btn">
+						<button class="btn btn-primary" type="button" id="btnNickName">중복 확인</button>
+					</div>
 				</div>
-
-				<div class="form-login">
-					<input type="text" class="form-control" id="age" placeholder="나이"> 
+				
+				<div class="text-line">
+					<div class="form-login">
+						<input type="text" class="form-control" id="age" placeholder="나이"> 
+					</div>
 				</div>
 
 				<c:if test="${empty showSignupForm}">
@@ -230,10 +276,12 @@
 						<input type="hidden" id="email" value=${apiEmail }>
 					</div>
 				</c:if>
-
-				<div class="form-login">
-					<input type="text" class="form-control" id="phone" 
-					value="${apiMobile }" placeholder="핸드폰 번호"> 
+				
+				<div class="text-line">
+					<div class="form-login">
+						<input type="text" class="form-control" id="phone" 
+						value="${apiMobile }" placeholder="핸드폰 번호"> 
+					</div>
 				</div>
 
 				<div class="form-login">
