@@ -40,5 +40,7 @@ public interface BoardService {
 	public int getLike(int bno);
 	
 	public int likeCnt(int bno);
+	
+	public int visitCnt(int bno);
 
 }

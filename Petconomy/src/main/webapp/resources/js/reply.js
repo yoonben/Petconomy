@@ -160,13 +160,15 @@ function replyWrite(){
 	//bno,reply,replyer(나중엔 세션에서 가져올거임)
 	let bno = document.querySelector('#bno').value;
 	let reply = document.querySelector('#reply').value;
+	let m_id = document.querySelector('#m_id').value;
 	let replyer = userNick; //jsp내에서 변수로 선언해놓고 js에 가져와서 사용
 
 	
 	//전달할 객체로 생성
 	let obj = {bno : bno
 			,  reply : reply
-			,  replyer : replyer}
+			,  replyer : replyer
+			,  m_id : m_id}
 	
 	//url : /reply/insert/
 	//ojb : JSON형식으로 전달할 데이터

@@ -34,10 +34,11 @@
 		from(
 				select t.*, rownum rn
 				from (
-						select r.rno, r.reply, r.regdate, m.nickname
-						from reply r
-						inner join member m on r.replyer = m.nickname
-						where r.bno = #{bno}
+						SELECT R.REPLY, R.REGDATE, M.NICKNAME,R.RNO
+						FROM REPLY R
+						JOIN BOARD B ON R.BNO = B.BNO
+						JOIN MEMBER M ON R.M_ID = M.M_ID
+						WHERE B.BNO = #{bno}
 						ORDER BY
 						    r.rno DESC
 
@@ -47,8 +48,8 @@
 	</select>
 	
 	<insert id="insert">
-		insert into reply (rno, bno, reply, replyer,regdate)
-    	values (seq_reply.NEXTVAL, #{bno}, #{reply}, #{replyer},sysdate)
+		insert into reply (rno, bno,m_id, reply, replyer,regdate)
+    	values (seq_reply.NEXTVAL, #{bno},#{m_id}, #{reply}, #{replyer},sysdate)
 	</insert>
  
  	<delete id ="delete">
