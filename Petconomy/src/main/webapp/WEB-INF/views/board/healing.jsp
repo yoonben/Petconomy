@@ -230,7 +230,7 @@ https://templatemo.com/tm-579-cyborg-gaming
 		                    <div class="avatar">
 		                      <img src="/resources/images/default.png" alt="" style="max-width: 46px; border-radius: 50%; float: left;">
 		                    </div>
-		                    <span><i class="fa fa-check"></i> ${b.nickname}</span>
+		                    <span><i class="fa fa-check"></i> ${b.writer}</span>
 		                    <a onclick="requestAction('/peco/board/view', ${b.bno })">
 		                    <h4 class="besttitle">${b.title } </h4>
 		                    </a>
@@ -256,7 +256,7 @@ https://templatemo.com/tm-579-cyborg-gaming
 						    <a onclick="requestAction('/peco/board/view', ${board.bno })" href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
 						      <div class="d-flex gap-2 w-100 justify-content-between">
 						        <div>
-						          <p class="mb-0 opacity-75">작성자 : ${board.nickname }</p>
+						          <p class="mb-0 opacity-75">작성자 : ${board.writer }</p>
 						          <h6 class="mb-0">${board.title }</h6>
 						        </div>
 						        <small class="opacity-50 text-nowrap">등록일 : ${board.regdate }</small>
