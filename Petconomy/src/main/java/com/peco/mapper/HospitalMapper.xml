@@ -5,11 +5,10 @@
 <mapper namespace="com.peco.mapper.HospitalMapper">
 	<select id="getOne" resultType="com.peco.vo.HospitalVO">
 		select * from hospital where h_id = #{h_id}
-	</select>
+	</select>	
 	
 	<select id="starAvg" resultType="int">
-		
-		select round(avg(star)) from h_review where h_id = #{h_id}
+		SELECT COALESCE(ROUND(AVG(star)), 0) FROM h_review where h_id = #{h_id}
 	</select>	
 	
 	<select id="mapList" resultType="com.peco.vo.HospitalVO">

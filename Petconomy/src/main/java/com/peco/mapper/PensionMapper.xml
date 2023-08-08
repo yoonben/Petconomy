@@ -46,7 +46,7 @@
 	</select>
 	
 	<select id="roomList" resultType="com.peco.vo.PensionRoomVO">
-		select * from p_room where p_id = #{p_id}
+		select * from p_room where p_id = #{p_id} order by room_no asc
 	</select>
 	
 	<select id="reviewList" resultType="com.peco.vo.PensionReviewVO">
@@ -55,7 +55,7 @@
 	
 	<select id="starAvg" resultType="int">
 		<!-- select coalesce(round(avg(star)), 0) from p_review where p_id = #{p_id} -->
-		select round(avg(star)) from p_review where p_id = #{p_id}
+		SELECT COALESCE(ROUND(AVG(star)), 0) FROM p_review where p_id = #{p_id}
 	</select>	
 	
 	
