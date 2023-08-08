@@ -5,6 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+div >.page-content{
+    margin-top: 200px;
+  }
+</style>
 </head>
 <body>
   <header class="header-area header-sticky">

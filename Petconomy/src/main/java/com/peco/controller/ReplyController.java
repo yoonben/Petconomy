@@ -99,8 +99,11 @@ public class ReplyController extends CommonRestController{
 	            map.put("message", "로그인 후 등록가능합니다.");
 	            
 	            
-	        } else {
-	            map.put("message", errorMessage);
+	        } else if(errorMessage.contains("SQLIntegrityConstraintViolationException")) {
+	        	map.put("message", "로그인 후 등록가능합니다.");
+	        }else {
+	        	map.put("message", errorMessage);
+	        	
 	        }
 			
 		}

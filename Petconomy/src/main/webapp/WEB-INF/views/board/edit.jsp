@@ -36,8 +36,9 @@
         background-color: white;
       }
     
-      div >.page-content{
+  	  div >.page-content{
         background-color: rgb(255, 187, 0);
+        padding: 30px;
       }
     
       .top-streamers{
@@ -260,6 +261,11 @@ window.addEventListener('load', function() {
   		getFileList()
   	}
   }
+  
+  //목록 뒤로가기 함수 
+  function goBack() {
+      window.history.back();
+  }
 
 
   </script>
@@ -370,6 +376,7 @@ window.addEventListener('load', function() {
 
         <div style="text-align: center;">
             <button type="submit" id="btnEdit" class="btn btn-danger btn-lg">글 수정</button>
+            <button type="button" id="btnback" class="btn btn-danger btn-lg" onclick="goBack()">목록으로</button>
         </div>
 
 

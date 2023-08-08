@@ -167,7 +167,7 @@ function replyWrite(){
 	let bno = document.querySelector('#bno').value;
 	let reply = document.querySelector('#reply').value;
 	let m_id = document.querySelector('#m_id').value;
-	let replyer = document.querySelector('.writer').value;
+	let replyer = document.querySelector('#writer').value;
 
 	
 	//전달할 객체로 생성

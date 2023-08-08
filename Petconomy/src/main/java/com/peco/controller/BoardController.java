@@ -83,26 +83,51 @@ public class BoardController extends CommonRestController{
 		
 	}
 	
-	@GetMapping("/board/free")
-	public String free(Model model,Criteria cri) {
-		
-		List<BoardVO> list = service.getFree(cri,model);
-		
-		model.addAttribute("list",list);
-		
-		return "board/free";
-	}
+	
+	  @GetMapping("/board/free")
+	  public String free(Model model,Criteria cri) {
+	  
+	  List<BoardVO> list = service.getFree(cri,model); List<BoardVO> 
+	  
+	  Bestlist = service.getBest(); 
+	  
+	  
+	  // 파일 경로를 슬래시(/)로 변경 
+	  if (Bestlist != null) { for (BoardVO Best : Bestlist) {
+	  String convertedPath = Best.getSavePath().replace("\\", "/"); String
+	  convertedThumPath = Best.getS_savePath().replace("\\", "/");
+	  Best.setSavePath(convertedPath); Best.setS_savePath(convertedThumPath); } }
+	 
+	  
+	  model.addAttribute("list",list); model.addAttribute("Best",Bestlist);
+	  
+	  return "board/free"; 
+	  }
+	 
 	
 	@GetMapping("/board/healing")
 	public String healing(Model model,Criteria cri) {
 		
-		List<BoardVO> list = service.getHealing(cri,model);
+	  List<BoardVO> list = service.getFree(cri,model); List<BoardVO> 
+	  
+	  Bestlist = service.getBest(); 
+	  
+	  
+	  // 파일 경로를 슬래시(/)로 변경 
+	  if (Bestlist != null) { for (BoardVO Best : Bestlist) {
+	  String convertedPath = Best.getSavePath().replace("\\", "/"); String
+	  convertedThumPath = Best.getS_savePath().replace("\\", "/");
+	  Best.setSavePath(convertedPath); Best.setS_savePath(convertedThumPath); } }
+	 
+	  
+	  model.addAttribute("list",list); model.addAttribute("Best",Bestlist);
+
 		
-		model.addAttribute("list",list);
+	  model.addAttribute("list",list);
 		
 		
 		
-		return "board/healing";
+	  return "board/healing";
 	}
 	
 	/*

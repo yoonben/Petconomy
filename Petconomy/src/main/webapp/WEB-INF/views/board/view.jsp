@@ -126,10 +126,13 @@
 
       /* --------------좋아요버튼 끝-------------- */
       
-
+    //답글 등록 버튼이 있을경우에만 이벤트 등록 = 답글 등록 버튼은 세션이 존재할 경우에만 표시  
+    let btnReplyWrite = document.getElementById('btnReplyWrite'); 
+	if(btnReplyWrite){
       btnReplyWrite.addEventListener('click', function () {
         replyWrite()
       });
+	}
 
       //댓글목록 조회 및 출력
       getReplyList();
@@ -139,7 +142,7 @@
     });
 
    
-    var nickname = "${board.nickname}"; // 닉네임 전역변수 선언
+    var nickname = "${sessionScope.member.nickname}"; // 닉네임 전역변수 선언
     
     
     /* -------------------좋아요 증가 시작--------------------------- */
@@ -320,7 +323,8 @@
           <input type="text" name="searchField" value="${param.searchField }">
           <input type="text" name="searchWord" value="${param.searchWord }">
           <input type="text" name="bno" id="bno" value="${board.bno }">
-          <input type="text" name="m_id" id="m_id" value="${sessionScope.m_id }">
+          <input type="text" name="m_id" id="m_id" value="${sessionScope.member.m_id }">
+          <input type="text" name="writer" id="writer" value="${board.nickname }">
 
           <!-- 페이징 처리 하기 위해 있어야함 -->
           <input type="hidden" id="page" name="page" value=1>
@@ -347,7 +351,7 @@
                     <div class="col-lg-6">
                       <div class="right-info ">
                         <ul class="d-flex justify-content-around">
-						  <c:if test="${sessionScope.m_id eq board.m_id}">
+						  <c:if test="${sessionScope.member.m_id eq board.m_id}">
 						    <li>
 						      <label for="btnEdit"  onclick="postEdit()">
 						        <i id="btnEdit" class="fa-solid fa-pen-to-square" style="color: #ffa200;"></i>
@@ -414,15 +418,18 @@
         
         <!-- TODO 닉네임을 변경했을때 세션에 바로 갱신을 해주어야 작성자에 새로운 닉네임이 반영됨
                 그렇지않으면 세션 만료 전까지 이적 닉네임으로 저장됨 -->
+        <c:if test="${not empty sessionScope.member.m_id}">
         <div class="input-group">
           <span class="input-group-text">답글 작성</span>
           <input type="text" aria-label="First name" class="form-control" id="reply">
           <input type="text" aria-label="Last name" class="input-group-text" id="btnReplyWrite" value="등록하기">
         </div>
+        </c:if>
 
         <!-- ----------------댓글창 들어가는곳----------------- -->
         <div class="content">
           <div id="replyDiv">
+          dddddddddddd
           </div>
         </div>
       </div>
