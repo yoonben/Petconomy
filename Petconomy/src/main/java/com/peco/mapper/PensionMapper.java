@@ -33,4 +33,6 @@ public interface PensionMapper {
 	public int starAvg(@Param(value="p_id") String p_id);
 	
 	public int totalCnt(RegionCri cri);
+	
+	public PensionVO selectPensionList();
 }

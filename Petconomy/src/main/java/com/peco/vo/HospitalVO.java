@@ -14,4 +14,8 @@ public class HospitalVO {
 	private String m_id;
 	private String homepage;
 	private String phone;
+	
+	private String rn; 
+	private int star;
+	private int cnt;
 }

@@ -36,10 +36,11 @@
     
       div >.page-content{
         background-color: rgb(255, 187, 0);
+        padding: 30px;
       }
     
       .top-streamers{
-          margin-top: 50px;
+        margin-top: 50px;
       
         overflow: auto;
     
@@ -292,24 +293,26 @@ window.addEventListener('load', function() {
         <input type="text" name="pageNo" value="${param.pageNo }">
         <input type="text" name="searchField" value="${param.searchField }">
         <input type="text" name="searchWord" value="${param.searchWord }">
-        <input type="text" name="m_id" value="${sessionScope.mid }">
-        <input type="text" name="writer" value="${sessionScope.nickName }">
+        <input type="text" name="writer" value="${sessionScope.member.nickname}">
         
         <!-- 페이징 처리 하기 위해 있어야함 -->
+        <input type="text" name="m_id" value="${sessionScope.member.m_id }">
         <input type="hidden" id="page" name="page" value="1">
+  
         
         
         
         <h4 class="category">카테고리</h4>
 
         <!-- 일상게시판 박스 -->
-        <input type="radio" class="btn-check" name="category" id="free" autocomplete="off" value="free" checked >
+        <input type="radio" class="btn-check" name="category" id="free" autocomplete="off" value="free" ${param.category eq 'free' ? 'checked' : ''} >
         <label class="btn btn-secondary board-box" for="free">일상</label>
 
 
         <!-- 힐링게시판 박스 -->
-        <input type="radio" class="btn-check" name="category" id="healing" autocomplete="off" value="healing">
+        <input type="radio" class="btn-check" name="category" id="healing" autocomplete="off" value="healing" ${param.category eq 'healing' ? 'checked' : ''}>
         <label class="btn btn-secondary board-box" for="healing">힐링</label>
+        
 		<br>
         <br>
         <br>
@@ -325,8 +328,6 @@ window.addEventListener('load', function() {
 		    <input name="files" type="file" class="form-control" id="files" multiple>
 		</div>
         
-        
-
         <div style="text-align: center;">
             <button type="submit" class="btn btn-danger btn-lg">글 작성</button>
         </div>

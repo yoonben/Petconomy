@@ -5,6 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
+
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,9 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
+import com.peco.service.BoardService;
 import com.peco.service.HospitalService;
 import com.peco.service.PensionService;
+import com.peco.vo.BoardVO;
 import com.peco.vo.HospitalVO;
 import com.peco.vo.PageDto;
 import com.peco.vo.PensionVO;
@@ -36,15 +42,25 @@ public class MainController {
 	@Autowired
 	HospitalService hospitalService;
 	
+	@Autowired
+	BoardService boardService;
+	
+	//펜션 페이지
 	//펜션 페이지
 	@GetMapping("/main/pension")
-	public String plist(RegionCri cri, Model model) {
+	public String plist(RegionCri cri, Model model, HttpServletRequest request) {
+		
 		List<PensionVO> list = pensionService.pensionList(cri);
 		List<PensionVO> lists = pensionService.mapList();
 		int totalCnt = pensionService.totalCnt(cri);
 		PageDto pageDto = new PageDto(cri, totalCnt);
 		
-
+//		String megaregion = request.getParameter("megaregion");
+//		String smallregion = request.getParameter("smallregion");
+//		System.out.println("megaregion"+ megaregion);
+//		System.out.println("smallregion"+smallregion);
+		System.out.println("======"+cri);
+		
 		model.addAttribute("totalCnt", totalCnt);
 		model.addAttribute("pageDto", pageDto);
 		model.addAttribute("list", list);
@@ -72,8 +88,10 @@ public class MainController {
 	public String main(Model model) {
 		List<PensionVO> plist = pensionService.pensiontop();
 		List<HospitalVO> hlist = hospitalService.hospitaltop();
+		List<BoardVO> blist = boardService.getBest();
 		model.addAttribute("plist", plist);
 		model.addAttribute("hlist", hlist);
+		model.addAttribute("blist", blist);
 		return "/main/mainpage";
 	}
 	

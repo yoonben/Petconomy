@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
         <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+        <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -34,11 +35,13 @@ https://templatemo.com/tm-579-cyborg-gaming
 <style>
   body{
    margin: 0 auto; /* 바디 마진을 0으로 하고 가로 가운데 정렬 */
-    background-color: rgba(250, 149, 16, 0.979);
+    background-color: #ffec90;
   }
 
+      
   div >.page-content{
-    background-color: rgb(255, 187, 0);
+    background-color: white;
+    padding: 30px;
   }
 
   .top-streamers{
@@ -58,24 +61,53 @@ https://templatemo.com/tm-579-cyborg-gaming
     background-color: bisque;
   }
   
-  .thumbnail-image {
-    width: 100%; /* 이미지의 가로 크기를 부모 요소의 100%로 조정 */
-    height: 100%; /* 이미지의 세로 크기를 부모 요소의 100%로 조정 */
-    object-fit: cover;
-    border-radius: 23px;
-    margin-bottom: 30px;
+  .most-popular{
+    background-color: bisque;
+  }
+  
+  
+  .bestbox{
+  	width: 25%; 
+    height: 333px;
+  }
+  .item{
+  	width: 90%; 
+    height: 90%;
+  }  
+ .bestbox .thumbnail-image {
+    width: 100%; 
+    height: 180px; 
+  }
+  .item h4 {
+  color : white;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.item ul {
+  margin-right: 5px;
 }
 
 
-  .besttitle {
-  	margin-left: 10px; /* 탑 마진을 0으로 설정 */
-    margin-top: 0; /* 탑 마진을 0으로 설정 */
-}
- .bestthumb{
- 	width: 292px;
- 	height: 292px;
- }
+.boardbox{
+	width:25%;
 
+}
+
+.boardbox .item{
+	width:90%;
+	heigth:90%;
+
+}
+
+.boardbox .thumbnail-image{
+	width:100%;
+	height:200px;
+	object-fit: cover;
+
+}
+  
 
 </style>
 
@@ -124,48 +156,45 @@ https://templatemo.com/tm-579-cyborg-gaming
 
 			<%@include file = "../common/searchForm.jsp" %>
 		
-		
-          <!-- ***** Featured Games Start ***** -->
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="featured-games header-text">
+		<!-- ***** Most Popular Start ***** -->
+          <div class="most-popular">
+            <div class="row">
+              <div class="col-lg-12">
                 <div class="heading-section">
-                  <h4><em>베스트</em> 게시글</h4>
+                  <h4><em>펫코</em> 인기 게시글</h4>
                 </div>
-                <div class="owl-features owl-carousel">
                 
-                
-            <!------------------- 베스트 게시글 시작-------------------->
-            <c:forEach var="b" items="${Best}">
-				  <div class="item">
-				    <div class="thumb bestthumb">
-            		<a onclick="requestAction('/peco/board/view', ${b.bno })">
-				      <img src="/peco/display?fileName=${b.s_savePath}" alt="" class="thumbnail-image">
-				    </a>
-				      <div class="hover-effect">
-				        <i id="animated-icon" class="fa-regular fa-thumbs-up fa-lg" style="color: #ffa200;"> <h4> ${b.likecount }</h4></i>
-				      </div>
-				    </div>
-					    <div class="down-content">
-		                    <div class="avatar">
-		                      <img src="/resources/images/default.png" alt="" style="max-width: 46px; border-radius: 50%; float: left;">
-		                    </div>
-		                    <span><i class="fa fa-check"></i> ${b.nickname}</span>
-		                    <a onclick="requestAction('/peco/board/view', ${b.bno })">
-		                    <h4 class="besttitle">${b.title } </h4>
-		                    </a>
-		                </div> 
-				  </div>
-			</c:forEach>
-            <!------------------- 베스트 게시글  끝-------------------->
-
-
-            
+                <div class="row">
+                <c:forEach var="b" items="${Best}" varStatus="loop">
+                <c:if test="${loop.index < 8}">
+                  <div class="col-lg-3 col-sm-6 bestbox">
+                    <div class="item">
+	                    <a onclick="requestAction('/peco/board/view', ${b.bno })">
+	                    <img src="/peco/display?fileName=${b.savePath}" alt="" class="thumbnail-image">
+	                    </a>
+	                    <br>
+	                      <h4>${fn:substring(b.title, 0, 10)}${fn:length(b.title) > 10 ? '...' : ''}
+	                      <span>${b.writer}</span></h4>
+	                      <ul>
+	                        <li><i id="animated-icon" class="fa-regular fa-thumbs-up fa-lg"></i> ${b.likecount}</li>
+	                        <li><i class="fa fa-eye"></i> ${b.visitcount}</li>
+	                      </ul>
+                    </div>
+                  </div>
+                </c:if>
+                </c:forEach>
+                  <div class="col-lg-12">
+                    <div class="main-button">
+                      <a href="browse.html">Discover Popular</a>
+                    </div>
+                  </div>
                 </div>
+                
               </div>
             </div>
           </div>
-          <!-- ***** Featured Games End ***** -->
+          <!-- ***** Most Popular End ***** -->
+          
           
           <!-- ***** Live Stream Start ***** -->
           <div class="live-stream">
@@ -181,19 +210,19 @@ https://templatemo.com/tm-579-cyborg-gaming
             <!-- -------일상 게시글 시작---------- -->
             <c:forEach var="f" items="${Free}" varStatus="loop">
             <c:if test="${loop.index < 8}">
-              <div class="col-lg-3 col-sm-6">
+              <div class="col-lg-3 col-sm-6 boardbox">
                 <div class="item">
                   <div class="thumb">
             		<a onclick="requestAction('/peco/board/view', ${f.bno })">
-                    <img src="/peco/display?fileName=${f.s_savePath}" alt="">
+                    <img src="/peco/display?fileName=${f.savePath}" alt="" class="thumbnail-image">
                     <div class="hover-effect">
                       <div class="content">
                         <div class="live">
                           <a href="#">Live</a>
                         </div>
                         <ul>
-                          <li><a href="#"><i class="fa fa-eye"></i>${f.visitcount} </a></li>
-                          <li><i id="animated-icon" class="fa-regular fa-thumbs-up fa-lg" style="color: #ffa200;">${f.likecount }</i>
+                          <li><i class="fa fa-eye"></i>${f.visitcount} </a></li>
+                          <li><i id="animated-icon" class="fa-regular fa-thumbs-up fa-lg"></i>${f.likecount }</li>
                         </ul>
                       </div>
                     </div>
@@ -202,7 +231,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                     <div class="avatar">
                       <img src="/resources/images/default.png" alt="" style="max-width: 46px; border-radius: 50%; float: left;">
                     </div>
-                    <span><i class="fa fa-check"></i> ${f.nickname}</span>
+                    <span><i class="fa fa-check"></i> ${f.writer}</span>
                     <h4>${f.title} </h4>
               		</a>
                   </div> 
@@ -231,7 +260,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                 <div class="item">
                   <div class="thumb">
                   <a onclick="requestAction('/peco/board/view', ${h.bno })">
-                    <img src="/peco/display?fileName=${h.s_savePath}" alt="">
+                    <img src="/peco/display?fileName=${h.savePath}" alt="">
                     <div class="hover-effect">
                       <div class="content">
                         <div class="live">
@@ -248,7 +277,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                     <div class="avatar">
                       <img src="/resources/images/default.png" alt="" style="max-width: 46px; border-radius: 50%; float: left;">
                     </div>
-                    <span><i class="fa fa-check"></i> ${h.nickname}</span>
+                    <span><i class="fa fa-check"></i> ${h.writer}</span>
                     <h4>${h.title}</h4>
                   </a>
                   </div> 

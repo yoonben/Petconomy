@@ -255,8 +255,8 @@ https://templatemo.com/tm-579-cyborg-gaming
 	<!-- 헤더 끝 -->
 	
   <div class="container">
-  <input type="text" name="p_id" id="p_id" value="${pension.p_id }">
-  <input type="text" id="reviewer" value="테스트닉네임9">
+  <input type="hidden" name="p_id" id="p_id" value="${pension.p_id }">
+  <input type="hidden" id="reviewer" value="${sessionScope.member.nickname }">
     <div class="row">
       <div class="col-lg-12">
         <div class="page-content">
@@ -273,16 +273,13 @@ https://templatemo.com/tm-579-cyborg-gaming
                   </div>
                   <div class="col-lg-8">
                     <div class="item">
+                      <br>
                       <h4>${pension.pname }</h4><!-- 펜션이름 -->
                       <p>${pension.addr }</p><!-- 펜션주소 -->
                       <br>
-                      <p style='font-size: 20px;'>펜션소개</p>
-                      <p>
-                        사장님 한마디
-                        접기
-                        유럽풍 외관이 돋보이는 별장형 펜션으로 아름다운 자연의 경치를 감상할 수 있습니다
-                        산책로와 작은 계곡을 이용할 수 있어 마음껏 사색과 휴식을 즐길 수 있는 곳입니다
-                      </p>
+                      <p style='font-size: 15px;'>주차 여부 : ${pension.parkyn }</p>
+                      <br>
+                      <p style='font-size: 15px;'>오픈 시간 : ${pension.openhour }</p>                      
                     </div>
                   </div>
                 </div>
@@ -299,7 +296,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                 <input id="all" type="radio" name="tab_item" checked>
                 <label class="tab_item" for="all">객실 안내</label>
                 <input id="programming" type="radio" name="tab_item">
-                <label class="tab_item" for="programming" onclick="kakaoLoad()">숙소 정보</label>
+                <label class="tab_item" for="programming" onclick="kakaoLoad()">위치 및 숙소 정보</label>
                 <input id="design" type="radio" name="tab_item">
                 <label class="tab_item" for="design">리뷰</label>
                 <div class="tab_content" id="all_content">
@@ -338,23 +335,15 @@ https://templatemo.com/tm-579-cyborg-gaming
                   <div class="content" style='background-color: white;'>
                     <div class="row">
                       <div class="col-lg-17">
+                      	<p style='font-size: 2em; color: black;'>위치정보</p>
+                        <hr style="height: 4px; background-color: black;">
+                        <div id="map" style="width:100%;height:500px;"></div>                        
+                        <br>
                         <p>
                         <p style='font-size: 2em; color: black;'>기본정보</p>
                         <hr style="height: 4px; background-color: black;">
                         <p style='font-size: 1em;'>
-                          주변정보
-                          <li style='list-style-type: disc;'>용문산 차량 12분</li>
-                          <li style='list-style-type: disc;'>용문산관광단지 차량 12분</li>
-                          <li style='list-style-type: disc;'>중원계곡 차량 16분</li>
-
-                          <br>
-                          기본 정보
-                          <li style='list-style-type: disc;'>입실 : 15:00 | 퇴실 : 12:00</li>
-                          <li style='list-style-type: disc;'>22시 이후 입실 시 사전문의 (필수)</li>
-                          <li style='list-style-type: disc;'>무료 Wi-Fi</li>
-                          <li style='list-style-type: disc;'>전 객실 금연</li>
-                          <li style='list-style-type: disc;'>주차 가능</li>
-                          <li style='list-style-type: disc;'>펜션 픽업 (커플룸 예약 고객에 한해 가능 / 사전예약 및 문의필수)</li>
+                          
 
                           <br>
                           취소 및 환불 규정
@@ -365,14 +354,24 @@ https://templatemo.com/tm-579-cyborg-gaming
                           <li style='list-style-type: disc;'>숙박일 기준 2일전 : 50% 환불</li>
                           <li style='list-style-type: disc;'>숙박일 기준 1일전 : 30% 환불</li>
                           <li style='list-style-type: disc;'>숙박일 당일 및 No-show : 환불불가</li>
-                          <li style='list-style-type: disc;'>취소, 환불 시 수수료가 발생할 수 있습니다</li>
+                          <li style='list-style-type: disc;'>취소, 환불 시 수수료가 발생할 수 있습니다</li>                          
                           <br>
-
+                          
+                          확인사항 및 기타
+                          <li style='list-style-type: disc;'>최대 인원 초과시 입실이 불가 합니다 (방문객 불가)</li>
+                          <li style='list-style-type: disc;'>객실내 구이류, 튀김류 조리금지입니다.</li>
+                          <li style='list-style-type: disc;'>애견동반 가능 객실 외 애완동물 출입불가합니다.</li>
+                          <li style='list-style-type: disc;'>보호자 동반없는 미성년자는 이용하실 수 없습니다</li>
+                          <li style='list-style-type: disc;'>해당 이미지는 실제와 상이 할 수 있습니다</li>
+                          <li style='list-style-type: disc;'>숙박일 기준 1일전 : 30% 환불</li>
+                          <li style='list-style-type: disc;'>이용시설의 분실 및 훼손의 책임은 이용자에게 있으니 주의부탁드립니다</li>
+                          <li style='list-style-type: disc;'>객실 내에서는 화재위험물질 (화약, 폭죽 등)은 사용 하실 수 없습니다 (화재로 인한 책임은 이용자에게 있습니다)</li>
+                          <li style='list-style-type: disc;'>쓰레기는 지정된 장소에 분리하여 주시기 바랍니다</li> 
+                          <li style='list-style-type: disc;'>위의 정보는 펜션의 사정에 따라 변경될 수 있습니다</li> 
+                          <li style='list-style-type: disc;'>성수기 기간동안 일부 객실의 경우 요금변동이 있을 수 있습니다</li>
+                          <li style='list-style-type: disc;'>수영장 운영은 날씨 또는 펜션 상황에 따라 변동 될 수 있습니다</li>  
                         </p>
-                        <p style='font-size: 2em; color: black;'>위치정보</p>
-                        <hr style="height: 4px; background-color: black;">
-                        <div id="map" style="width:100%;height:350px;"></div>                        
-                        <%-- <%@ include file="../common/kakaoMap.jsp" %> --%>
+                        
                       </div>
                     </div>
                   </div>
@@ -401,7 +400,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                         <div class="col-lg-17" id="reviewPossible">
                           <div class="left-info" style='background-color: rgb(247, 218, 218);'>
                             <div class="left">
-                              <h4 style='text-align: left; color: black;'><b><input type="text" id="reviewer" value="테스트닉네임9" readonly></b></h4>
+                              <h4 style='text-align: left; color: black;'><b><input type="hidden" id="reviewer" value="${sessionScope.member.nickname }" readonly></b></h4>
                               <br>
                             </div>
                             <div class="col-lg-13"> <textarea name="review" id="review" rows="5" style='width: 100%; border-radius: 15px;'></textarea>

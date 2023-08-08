@@ -8,6 +8,7 @@
  	SELECT 
 	    b.bno,
 	    b.title,
+	    b.writer,
 	    b.content,
 	    b.m_id,
 	    b.visitcount,
@@ -29,6 +30,7 @@
  	SELECT 
 	    b.bno,
 	    b.title,
+	    b.writer,
 	    b.content,
 	    b.m_id,
 	    b.visitcount,
@@ -40,12 +42,13 @@
 	    END AS regdate,
 	    b.updatedate,
 	    m.nickname,
-	    a.uploadpath || a.uuid || '_' || a.filename AS savePath,
+	    DECODE(a.filetype, 'I', a.uploadpath || a.uuid || '_' || a.filename, '/default/NO_image.jpg') AS savePath,
 	    DECODE(a.filetype, 'I', a.uploadpath || 's_' || a.uuid || '_' || a.filename, '/default/NO_image.jpg') AS s_savePath
 	FROM (
 	    SELECT 
 	        b2.bno,
 	        b2.title,
+	        b2.writer,
 	        b2.content,
 	        b2.m_id,
 	        b2.visitcount,
@@ -73,33 +76,6 @@
 	
 	
 	<select id="getFree" resultType="com.peco.vo.BoardVO">
-	 <!-- select 
-		from(
-				select t.*, rownum rn
-				from (
-					 	SELECT 
-						    b.bno,
-						    b.title,
-						    b.content,
-						    b.m_id,
-						    b.visitcount,
-						    b.likecount,
-						    DECODE(TRUNC(SYSDATE), TRUNC(b.regdate), TO_CHAR(b.regdate, 'HH24:MI:SS'), TO_CHAR(b.regdate, 'YYYY-MM-DD')) AS regdate,
-						    b.updatedate,
-						    m.nickname
-						FROM 
-						    board b
-						LEFT JOIN 
-						    member m ON b.m_id = m.M_ID
-						WHERE 
-							category='free'
-								]]>
-						<include refid="criteria"></include>
-						ORDER BY 
-						    b.bno DESC 
-					 ) t
-			)
-		where rn between #{startNo} and #{endNo} -->
 	<![CDATA[
 		SELECT
 		    *
@@ -113,6 +89,7 @@
 		                SELECT
 		                    b.bno,
 		                    b.title,
+		                    b.writer,
 		                    b.content,
 		                    b.m_id,
 		                    b.visitcount,
@@ -122,11 +99,12 @@
 		                           to_char(b.regdate, 'HH24:MI:SS'),
 		                           to_char(b.regdate, 'YYYY-MM-DD')) AS regdate,
 		                    b.updatedate,
+		                    b.category,
 		                    m.nickname,
-		                    a.uploadpath
-		                    || a.uuid
-		                    || '_'
-		                    || a.filename                            AS savepath,
+		                    DECODE(a.filetype, 'I', a.uploadpath 
+		                    						|| a.uuid 
+		                    						|| '_' 
+		                    						|| a.filename, '/default/NO_image.jpg') AS savePath,
 		                    decode(a.filetype, 'I', a.uploadpath
 		                                            || 's_'
 		                                            || a.uuid
@@ -164,6 +142,7 @@
 		                SELECT
 		                    b.bno,
 		                    b.title,
+		                    b.writer,
 		                    b.content,
 		                    b.m_id,
 		                    b.visitcount,
@@ -173,11 +152,12 @@
 		                           to_char(b.regdate, 'HH24:MI:SS'),
 		                           to_char(b.regdate, 'YYYY-MM-DD')) AS regdate,
 		                    b.updatedate,
+		                    b.category,
 		                    m.nickname,
-		                    a.uploadpath
-		                    || a.uuid
-		                    || '_'
-		                    || a.filename                            AS savepath,
+		                    DECODE(a.filetype, 'I', a.uploadpath 
+		                    						|| a.uuid 
+		                    						|| '_' 
+		                    						|| a.filename, '/default/NO_image.jpg') AS savePath,
 		                    decode(a.filetype, 'I', a.uploadpath
 		                                            || 's_'
 		                                            || a.uuid
@@ -199,16 +179,68 @@
 		    rn BETWEEN #{startNo} AND #{endNo}
 	</select>
 	
+	<select id="getSearch" resultType="com.peco.vo.BoardVO">
+		<![CDATA[
+		SELECT
+		    *
+		FROM
+		    (
+		        SELECT
+		            t.*,
+		            ROWNUM rn
+		        FROM
+		            (
+		                SELECT
+		                    b.bno,
+		                    b.title,
+		                    b.writer,
+		                    b.content,
+		                    b.m_id,
+		                    b.visitcount,
+		                    b.likecount,
+		                    decode(trunc(sysdate),
+		                           trunc(b.regdate),
+		                           to_char(b.regdate, 'HH24:MI:SS'),
+		                           to_char(b.regdate, 'YYYY-MM-DD')) AS regdate,
+		                    b.updatedate,
+		                    b.category,
+		                    m.nickname,
+		                    DECODE(a.filetype, 'I', a.uploadpath 
+		                    						|| a.uuid 
+		                    						|| '_' 
+		                    						|| a.filename, '/default/NO_image.jpg') AS savePath,
+		                    decode(a.filetype, 'I', a.uploadpath
+		                                            || 's_'
+		                                            || a.uuid
+		                                            || '_'
+		                                            || a.filename, '/default/NO_image.jpg')  AS s_savepath
+		                FROM
+		                    board  b
+		                    LEFT JOIN member m ON b.m_id = m.m_id
+		                    LEFT JOIN b_img  a ON b.bno = a.bno
+		                WHERE 1=1
+		                    ]]>
+		                    <include refid="criteria"></include>
+		                ORDER BY
+		                    b.bno DESC
+		            ) t
+		    )
+		WHERE
+		    rn BETWEEN #{startNo} AND #{endNo}
+	</select>
+	
 	<select id="selectOne" resultType="com.peco.vo.BoardVO">
 	 	SELECT 
 		    b.bno,
 		    b.title,
+		    b.writer,
 		    b.content,
 		    b.m_id,
 		    b.visitcount,
 		    b.likecount,
 		    DECODE(TRUNC(SYSDATE), TRUNC(b.regdate), TO_CHAR(b.regdate, 'HH24:MI:SS'), TO_CHAR(b.regdate, 'YYYY-MM-DD')) AS regdate,
 		    b.updatedate,
+		    b.category,
 		    m.nickname
 		FROM 
 		    board b
@@ -278,6 +310,11 @@
 	
 	<update id="likeCnt">
 	update board set likecount= likecount+1 
+	where bno = #{bno}
+	</update>
+	
+	<update id="visitCnt">
+	update board set visitcount = visitcount+1 
 	where bno = #{bno}
 	</update>
 	

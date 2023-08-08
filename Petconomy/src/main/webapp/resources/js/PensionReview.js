@@ -39,8 +39,8 @@ function fetchPost(url, obj, callback){
 function getReplyList(page){
 	
 	/**
-	 * falsey : false, 0, "", NaN, undefined, null
-	 * falsey한 값 이외의 값이 들어 있으면  true를 반환
+	 * falsey : false, 0, "", NaN, undefined, null falsey한 값 이외의 값이 들어 있으면 true를
+	 * 반환
 	 * 
 	 * page에 입력된 값이 없으면 1을 세팅
 	 */
@@ -73,6 +73,8 @@ function replyView(map){
 	console.log('pageDto=============', pageDto);
 
 	console.log(reviewer);
+	
+	
 	 
 	reviewerList.forEach(reply => {
 		
@@ -91,9 +93,17 @@ function replyView(map){
 	})
 	
 	
+	
 	// 리스트 사이즈를 확인하여 메세지 처리
 	if(list.length == 0){
-		replyDiv.innerHTML = '등록된 댓글이 없어요~!'
+		replyDiv.innerHTML = 
+			'	<div class="col-lg-17">'
+		    +'        <div class="left-info" style="background-color: rgb(247, 218, 218);">'
+		    +'                                      '
+		    +'            <span style="text-align: left; color: black;"><b>등록된 리뷰가 없습니다.</b></span>'
+		    +'                                                                 '
+		    +'        </div>'
+		    +'   </div>'
 	} else {		
 		
 		let replyDivStr = '';
@@ -147,7 +157,7 @@ function replyView(map){
 		                   				
 
 		
-		//별 시작
+		// 별 시작
 		
 		jb(".starReview").score({
 	        display: {
@@ -158,7 +168,7 @@ function replyView(map){
 		
 
 	    
-	    //별 끝
+	    // 별 끝
 		
 		// 페이지 블럭 생성
 		let pageBlock = 

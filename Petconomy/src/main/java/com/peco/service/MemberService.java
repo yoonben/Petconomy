@@ -21,4 +21,6 @@ public interface MemberService {
 	
 	public Map<String, String> naverLogin(HttpServletRequest request, Model model);
 	public MemberVO apiLogin(MemberVO apiMember);
+	public int nameCheck(MemberVO member);
+	public MemberVO findId(MemberVO member);
 }

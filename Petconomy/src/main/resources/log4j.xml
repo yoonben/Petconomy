@@ -11,8 +11,8 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.peco.petconomy">
-		<level value="info" />
+	<logger name="com.peco">
+		<level value="debug" />
 	</logger>
 	
 	<!-- 3rdparty Loggers -->

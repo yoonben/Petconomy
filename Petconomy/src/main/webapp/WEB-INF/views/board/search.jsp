@@ -121,8 +121,8 @@ https://templatemo.com/tm-579-cyborg-gaming
 		        <div class="row">
 					<div >
 				    	<h1>조회결과</h1>
-					  <c:if test="${not empty sessionScope.nickName}">
-					    <p class="lead"><b>${sessionScope.nickName}</b>님 환영합니다👋👋 </p>
+					  <c:if test="${not empty sessionScope.member.nickname}">
+					    <p class="lead"><b>${sessionScope.member.nickname}</b>님 환영합니다👋👋 </p>
 					    <a class="btn btn-lg btn-primary" href="/peco/board/write?pageNo=${pageDto.cri.pageNo }" role="button">글쓰기 &raquo;</a>
 					  </c:if>
 				  	</div>
@@ -135,6 +135,7 @@ https://templatemo.com/tm-579-cyborg-gaming
 						      <div class="d-flex gap-2 w-100 justify-content-between">
 						        <div>
 						          <p class="mb-0 opacity-75">작성자 : ${board.nickname }</p>
+						          <p class="mb-0 opacity-75">카테고리:${board.category }</p>
 						          <h6 class="mb-0">${board.title }</h6>
 						        </div>
 						        <small class="opacity-50 text-nowrap">등록일 : ${board.regdate }</small>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.peco.mapper.BusinessMapper">
+
+	<insert id="pensionInsert">
+		insert into pension(m_id,p_id,pname,addr,openhour,parkyn,checkyn,latitude,longitude)
+    		values (#{m_id},'p_'||SEQ_PENSION_NUM.nextval,#{pname},#{addr},#{openhour},#{parkyn},'N',#{latitude},#{longitude})
+	</insert>
+	
+	<select id="pensionGetOne" resultType="com.peco.vo.PensionVO">
+		select * from pension where m_id = #{m_id} and addr = #{addr}
+	</select>
+
+</mapper>

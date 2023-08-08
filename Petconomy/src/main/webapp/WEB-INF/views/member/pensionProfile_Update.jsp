@@ -9,7 +9,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2>마이페이지</h2>
+<h1>사업자 페이지</h1>
+<h2>나의 펜션 정보 수정</h2>
 
 <%
 String p_id = request.getParameter("p_id");
@@ -25,9 +26,9 @@ System.out.println("m_id : " + m_id);
 
 %>
 
-<form id='phProfileUpdateForm' name='phProfileUpdate' action='/peco/phProfile?m_id=${pension.m_id}' method='post'>
-	<c:set var="pensionVO" value="${pension }"/>
-		<table border='1px' width='400px' height='300px'>
+<form id='P_ProfileUpdateForm' name='P_ProfileUpdate' action='/peco/pensionProfile' method='post'>
+	<c:set var="PensionVO" value="${pension }"/>
+		<table border='1px' width='400px' height='450px'>
 		<tr>
 			<th>펜션번호</th>
 			<td><input type='text' name='p_id' readonly value='${pension.p_id }' style="height:100%; width:99%"></td>
@@ -38,23 +39,23 @@ System.out.println("m_id : " + m_id);
 		</tr>
 		<tr>
 			<th>펜션명</th>
-			<td><input type='text' name='pName' value='${pension.pname }' style="height:100%; width:99%"></td>
+			<td><input type='text' name='pname' value='${pension.pname }' style="height:100%; width:99%"></td>
 		</tr>
 		<tr>
 			<th>도로명주소</th>
-			<td><input type='text' name='Addr' value='${pension.addr }' style="height:100%; width:99%"></td>
+			<td><input type='text' name='addr' value='${pension.addr }' style="height:100%; width:99%"></td>
 		</tr>
 		<tr>
 			<th>운영시간</th>
-			<td><input type='text' name='openHour' value='${pension.openhour }' style="height:100%; width:99%"></td>
+			<td><input type='text' name='openhour' value='${pension.openhour }' style="height:100%; width:99%"></td>
 		</tr>
 		<tr>
 			<th>주차여부</th>
-			<td><input type='text' name='ParkYN' value='${pension.parkyn}'  style="height:100%; width:99%"></td>
+			<td><input type='text' name='parkyn' value='${pension.parkyn}'  style="height:100%; width:99%"></td>
 		</tr>
 		<tr>
 			<th>승인여부</th>
-			<td><input type='text' name='checkYN' value='${pension.checkyn}' style="height:100%; width:99%"></td>
+			<td><input type='text' name='checkyn' value='${pension.checkyn}' style="height:100%; width:99%"></td>
 		</tr>
 		<tr>
 			<th>위도</th>
@@ -62,7 +63,7 @@ System.out.println("m_id : " + m_id);
 		</tr>
 		<tr>
 			<th>경도</th>
-			<td><input type='text' name='latitude' readonly value='${pension.longitude}' style="height:100%; width:99%"></td>
+			<td><input type='text' name='longitude' readonly value='${pension.longitude}' style="height:100%; width:99%"></td>
 		</tr>
 	</table>
 	

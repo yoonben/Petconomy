@@ -58,7 +58,31 @@ public class FileuploadController extends CommonRestController{
 		log.info("fileuploadActionFetch");
 		int insertRes = service.Profileupload(files, m_id);
 		log.info("업로드 건수 : " + insertRes);
-		return responseMap("success", "회원가입되었습니다");
+		return responseMap("success", "프로필이 수정 되었습니다");
+
+	}
+	
+	@PostMapping("/ProfileloadActionFetchs")
+	public @ResponseBody Map<String, Object> ProfileloadActionFetchs(List<MultipartFile> files, String m_id, RedirectAttributes rttr) throws Exception {
+		log.info("fileuploadActionFetch");
+		int insertRes = service.Profileupload(files, m_id);
+		log.info("업로드 건수 : " + insertRes);
+		return responseMap("success", "회원 가입이 되었습니다.");
+
+	}
+	
+	@PostMapping("/PenssionloadActionFetch")
+	public @ResponseBody Map<String, Object> PenssionloadActionFetch(List<MultipartFile> files,List<MultipartFile> pensionimg,List<MultipartFile> roonimg, String p_id, RedirectAttributes rttr) throws Exception {
+		log.info("fileuploadActionFetch");
+		int insertRes = service.Businessfileupload(files, p_id);
+		log.info("업로드 건수 : " + insertRes);
+		
+		int insertRes2 = service.Pensionfileupload(pensionimg, p_id);
+		log.info("업로드 건수 : " + insertRes2);
+		
+		int insertRes3 = service.PensionfileupRoomload(roonimg, p_id);
+		log.info("업로드 건수 : " + insertRes3);
+		return responseMap("success", "파일 업로드 성공");
 
 	}
 	

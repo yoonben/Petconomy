@@ -21,21 +21,9 @@
 
 <!-- Bootstrap core CSS -->
 <%@include file="./commo/css.jsp"%>
-
 </head>
 
 <body>
-
-	<!-- ***** Preloader Start ***** -->
-	<div id="js-preloader" class="js-preloader">
-		<div class="preloader-inner">
-			<span class="dot"></span>
-			<div class="dots">
-				<span></span> <span></span> <span></span>
-			</div>
-		</div>
-	</div>
-	<!-- ***** Preloader End ***** -->
 
 	<!-- header -->
 	<%@include file="./commo/header.jsp"%>
@@ -44,28 +32,38 @@
 	<div class="container">
 		<div class="page-content">
 			<!-- ***** login Start *****-->
-
+			<div class="page-login">
+			
 			<form name="signinForm" id="signinForm"
 				<c:if test="${not empty showSignupForm}"> style='display: none;' </c:if>>
 				<div class="login-img">
 					<!-- 이미지 -->
 				</div>
-				<div id="msg"></div>
-				<h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-
-				<div class="form-floating">
-					<input type="text" class="form-control" id="id"> <label
-						for="id">id</label>
+				<div id="msg">
+					<h1 class="h3 mb-3 fw-normal">로그인</h1>
 				</div>
-				<div class="form-floating">
-					<input type="password" class="form-control" id="pw"> <label
-						for="pw">Password</label>
+
+				<div class="form-login">
+					<input type="text" class="form-control" id="id" placeholder="아이디"> 
+				</div>
+				<div class="form-login">
+					<input type="password" class="form-control" id="pw" placeholder="비밀번호"> 
 				</div>
 
 				<button class="w-100 btn btn-lg btn-warning" type="submit"
 					id="btnLogin">Login</button>
-
-				<a class="mt-5 mb-3 text-muted" id='btnSignupView'>회원가입</a>
+				
+				<div class="login-menu">
+					<div class="login-menu_left">
+						<a class="mt-5 mb-3 text-muted" id='btnSignupView'>회원가입</a>
+					</div>
+					
+					<div class="login-menu_right">
+						<a class="mt-5 mb-3 text-muted" id='openModalButton'>아이디 찾기</a>
+					</div>
+				</div>
+					<p class="text-muted text-or"> 또는 </p>
+				
 				<!-- 네이버 로그인 -->
 				<%
 					String clientId = "vThUa8bHb7IlAn52GUi5";//애플리케이션 클라이언트 아이디값";
@@ -81,16 +79,18 @@
 					session.setAttribute("state", state);
 				%>
 				
-				
-				<a href="<%=apiURL%>"><img height="80"
-					src="/resources/img/naver.png" /></a>
+				<div class="login-api">
+					<a href="<%=apiURL%>"><img height="50px"
+						src="/resources/img/naver_login.jpg" /></a>
+				</div>
 				<!-- 네이버 로그인 end-->
 
 				<!-- 카카오 로그인 -->
-
-					<img alt="카카오로그인"
+				<div class="login-api" >
+					<img alt="카카오로그인" height="50px"
 						src="/resources/img/certi_kakao_login.png"
-						onclick="loginWithKakao()">
+						onclick="loginWithKakao()">	
+				</div>	
 
 				<script type="text/javascript"
 					src="https://developers.kakao.com/sdk/js/kakao.min.js"
@@ -111,7 +111,21 @@
 				<!-- 카카오 로그인 End -->
 			</form>
 			<!-- ***** login End ***** -->
-
+			
+			<!-- 모달 -->
+				<div id="myModal" class="modal">
+				  <div class="modal-content">
+				    <span class="close">&times;</span>
+				    <h1 class="h3 mb-3 fw-normal text-dark">아이디 찾기</h1>
+				     
+				    <form >
+				    	<input type="text" name="findname" id="findname" placeholder="이름">
+				    	<input type="submit" value="아이디 찾기" id="findIdbtn">
+				    </form>
+				    	<div id="findIdText"></div>
+				  </div>
+				</div>
+			
 			<!-- ***** 회원 가입 ***** -->
 			<form name='signupForm' id='signupForm'
 				<c:if test="${empty showSignupForm}"> style='display: none;' </c:if>>
@@ -128,7 +142,8 @@
 				<c:if test="${not empty showSignupForm}">
 					<input type="hidden" id="idCheckRes" value="1">
 				</c:if>
-
+				
+				
 				<c:if test="${empty showSignupForm}">
 					<input type="hidden" id="emailCheckRes">
 				</c:if>
@@ -145,99 +160,108 @@
 
 				<input type="hidden" id="nickNameRes">
 				 
-				<input type="text" name="m_id" id="m_id" value="">
+				<input type="hidden" name="m_id" id="m_id" value="">
 				
-				<h1 class="h3 mb-3 fw-normal">Please sign up</h1>
+				<h1 class="h3 mb-3 fw-normal">회원가입</h1>
 				<div id="signupMsg"></div>
-				<div class="form-floating">
-					<input type="text" class="form-control" id="signUpName"
-						value="${apiName }"> <label for="signUpName">name</label>
+				<div class="form-login">
+					<div class="text-line">
+						<input type="text" class="form-control" id="signUpName"	
+						value="${apiName }" placeholder="이름"> 
+					</div>
 				</div>
 
 				<c:if test="${empty showSignupForm}">
-					<div class="form-floating">
-						<input type="text" class="form-control" id="signUpId"
-							value="${apiId }"> <label for="signUpid">Id</label>
-						<button class="btn btn-lg btn-warning" type="button" id="btnid">아이디
-							중복 검사</button>
+					<div class="form-login">
+						<div class="text-btnline">
+							<input type="text" class="form-control" id="signUpId" 
+							value="${apiId }" placeholder="아이디"> 
+						</div>
+						<div class="text-btn">
+							<button class="btn btn-primary" type="button" id="btnid" >중복 확인</button>
+						</div>
 					</div>
 				</c:if>
 
 				<c:if test="${not empty showSignupForm}">
-					<div class="form-floating">
-						<input type="hidden" class="form-control" id="signUpId"
-							value="${apiId }">
-						<button class="btn btn-lg btn-warning" type="hidden" id="btnid"
-							style="display: none;">아이디 중복 검사</button>
+					<div class="form-login">
+						<input type="hidden" class="form-control" id="signUpId" value="${apiId }">
 					</div>
 				</c:if>
 
 				<c:if test="${empty showSignupForm}">
-					<div class="form-floating">
-						<input type="password" class="form-control" id="signUpPw">
+					<div class="form-login"> 
+						<div class="text-line">
+							<input type="password" class="form-control" id="signUpPw"
+							placeholder="비밀번호" >
+						</div>
+					</div>
+
+					<div class="form-login">
+						<div class="text-line">
+							<input type="password" class="form-control" id="pwCheck"
+							placeholder="비밀번호 확인" >
+						</div>
+					</div>
+				</c:if>
+
+				<c:if test="${not empty showSignupForm}">
+					<div class="form-login">
 						<label for="signUpPw">Password</label>
+						<input type="hidden" class="form-control" id="signUpPw"	value="null"> 
 					</div>
 
-					<div class="form-floating">
-						<input type="password" class="form-control" id="pwCheck">
+					<div class="form-login">
 						<label for="signUpPwCheck">Password Check</label>
+						<input type="hidden" class="form-control" id="pwCheck" value="null"> 
 					</div>
 				</c:if>
 
-				<c:if test="${not empty showSignupForm}">
-					<div class="form-floating">
-						<input type="hidden" class="form-control" id="signUpPw"
-							value="null"> <label for="signUpPw">Password</label>
+				<div class="form-login">
+					<div class="text-btnline">
+						<input type="text" class="form-control" id="nickName" placeholder="닉네임"> 
 					</div>
-
-					<div class="form-floating">
-						<input type="hidden" class="form-control" id="pwCheck"
-							value="null"> <label for="signUpPwCheck">Password
-							Check</label>
+					<div class="text-btn">
+						<button class="btn btn-primary" type="button" id="btnNickName">중복 확인</button>
 					</div>
-				</c:if>
-
-				<div class="form-floating">
-					<input type="text" class="form-control" id="nickName"> <label
-						for="signUpPwCheck">NickName</label>
-					<button class="btn btn-lg btn-warning" required="required"
-						type="button" id="btnNickName">닉네임 중복 검사</button>
 				</div>
-
-				<div class="form-floating">
-					<input type="text" class="form-control" id="age"> <label
-						for="signUpPwCheck">Age</label>
+				
+				<div class="text-line">
+					<div class="form-login">
+						<input type="text" class="form-control" id="age" placeholder="나이"> 
+					</div>
 				</div>
 
 				<c:if test="${empty showSignupForm}">
-					<div class="form-floating">
+					<div class="form-login">
 						<%@include file="./emailCheck.jsp"%>
 						<input type="hidden" id="email">
 					</div>
 				</c:if>
 
 				<c:if test="${not empty showSignupForm}">
-					<div class="form-floating">
-						<input type="" hidden"" id="email" value=${apiEmail }>
+					<div class="form-login">
+						<input type="hidden" id="email" value=${apiEmail }>
 					</div>
 				</c:if>
-
-				<div class="form-floating">
-					<input type="text" class="form-control" id="phone"
-						value="${apiMobile }"> <label for="signUpPwCheck">Phone
-						number</label>
+				
+				<div class="text-line">
+					<div class="form-login">
+						<input type="text" class="form-control" id="phone" 
+						value="${apiMobile }" placeholder="핸드폰 번호"> 
+					</div>
 				</div>
 
-				<div class="form-floating">
-					<input type="file" class="form-control" id="files" name="files">
+				<div class="form-login">
 					<label for="signUpPwCheck">프로필첨부</label>
+					<input type="file" class="form-control" id="files" name="files">
 				</div>
 
 
-				<button class="w-100 btn btn-lg btn-primary" type="submit"
-					id="btnSignup">회원가입</button>
+				<button class="w-100 btn btn-lg btn-primary" type="submit"  id="btnSignup">회원가입</button>
 				<a class="mt-5 mb-3 text-muted" id='btnSigninView'>로그인</a>
 			</form>
+			</div>
 			<!-- ***** 회원가입 End ***** -->
 		</div>
 	</div>

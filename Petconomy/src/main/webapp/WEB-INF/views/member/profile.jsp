@@ -34,18 +34,18 @@
 	    
 	window.addEventListener('load', function(){
 		displayEncryptedPassword();
-			
-	})
-	
+		
+		})
+		
 </script>
 
 
     
     
 
-<form id='profileForm' name='profile' action='/peco/profile_Update?m_id=${member.m_id}' method='post'>
-	<c:set var="memberVO" value="${member }"/>
-
+<form id='profileForm' name='profile' action='/peco/profile_Update' method='post'>
+	<c:set var="memberVO" value="${member}"/>
+<input type="text" name="m_id" value="${member.m_id}">
 	<table border='1px' width='400px' height='450px'>
 		<tr>
 			<th>프로필사진</th>
@@ -87,7 +87,8 @@
 														
 	<input type="submit" value="수정하기" class="btn" ><br><br>
 </form>
-	<button id="P&H"  onclick="location.href='/peco/phProfile'">내 업체 관리</button>
+	<button id="pension" name="pension" onclick="location.href='/peco/pensionProfile?m_id=${member.m_id}'">나의 펜션 관리</button>
+	<button id="hospital" name="hospital" onclick="location.href='/peco/hospitalProfile?m_id=${member.m_id}'">나의 병원 관리</button>
 
 </body>
 </html>

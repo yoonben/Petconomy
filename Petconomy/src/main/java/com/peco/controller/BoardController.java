@@ -83,26 +83,67 @@ public class BoardController extends CommonRestController{
 		
 	}
 	
-	@GetMapping("/board/free")
-	public String free(Model model,Criteria cri) {
-		
-		List<BoardVO> list = service.getFree(cri,model);
-		
-		model.addAttribute("list",list);
-		
-		return "board/free";
-	}
+	
+	  @GetMapping("/board/free")
+	  public String free(Model model,Criteria cri) {
+	  
+	  List<BoardVO> list = service.getFree(cri,model); List<BoardVO> 
+	  
+	  Bestlist = service.getBest(); 
+	  
+	  
+	  // 파일 경로를 슬래시(/)로 변경 
+	  if (Bestlist != null) { for (BoardVO Best : Bestlist) {
+	  String convertedPath = Best.getSavePath().replace("\\", "/"); String
+	  convertedThumPath = Best.getS_savePath().replace("\\", "/");
+	  Best.setSavePath(convertedPath); Best.setS_savePath(convertedThumPath); } }
+	 
+	  
+	  model.addAttribute("list",list); model.addAttribute("Best",Bestlist);
+	  
+	  return "board/free"; 
+	  }
+	 
 	
 	@GetMapping("/board/healing")
 	public String healing(Model model,Criteria cri) {
 		
-		List<BoardVO> list = service.getHealing(cri,model);
+	  List<BoardVO> list = service.getHealing(cri,model); 
+	  
+	  List<BoardVO> Bestlist = service.getBest(); 
+	  
+	  
+	  // 파일 경로를 슬래시(/)로 변경 
+	  if (Bestlist != null) { 
+		  for (BoardVO Best : Bestlist) {
+		  String convertedPath = Best.getSavePath().replace("\\", "/"); 
+		  String convertedThumPath = Best.getS_savePath().replace("\\", "/");
+		  Best.setSavePath(convertedPath); Best.setS_savePath(convertedThumPath); 
+		  } 
+	  }
+	 
+	  
+	  model.addAttribute("Best",Bestlist);
+
 		
-		model.addAttribute("list",list);
+	  model.addAttribute("list",list);
 		
-		return "board/healing";
+		
+		
+	  return "board/healing";
 	}
 	
+	@GetMapping("/board/search")
+	public String search(Model model,Criteria cri) {
+		
+	  List<BoardVO> list = service.getSearch(cri, model); 
+
+
+		
+	  model.addAttribute("list",list);
+
+	  return "board/search";
+	}
 	/*
 	 * @GetMapping("/board") public String freeboard(@RequestParam("category")
 	 * String category, Model model) {
@@ -126,24 +167,22 @@ public class BoardController extends CommonRestController{
 	}
 	
 	@PostMapping("/board/write")
-	public String writeAction(Model model,BoardVO boardvo,RedirectAttributes rttr,List<MultipartFile> files) {
+	public String writeAction(Criteria cri,Model model,BoardVO board,RedirectAttributes rttr,List<MultipartFile> files) {
 		System.out.println("작성 포스트 진입");
 		
-		log.info(boardvo);
+		log.info(board);
 		
 		int res;
 		try {
 			//board.getBno로 값을 가져오기 위해 insertSelectKey를 써야함
 			//시퀀스를 먼저 조회후 시퀀스 번호를 bno에 저장 하고 난 후에 실행함
 			//게시물 등록 및 파일 첨부
-			res = service.insertSelectKey(boardvo,files);
+			res = service.insertSelectKey(board,files);
 			
 			System.out.println(res);
 			String msg = "";
 			
 			if(res>0) {
-				
-				msg = boardvo.getBno()+"번 등록되었습니다.";
 			
 				//rttr.addAttribute는 
 				//url?msg=등록되었습니다 (쿼리스트링으로 전환됨. 화면에서 받을때 param.으로 받아야함)
@@ -151,9 +190,13 @@ public class BoardController extends CommonRestController{
 				
 				//세션영역에 잠시 저장 -> param. 안붙이고 msg로 호출 가능
 				//잠깐 쓰고 사라지기때문에 새로고침시 유지되지않음
-				rttr.addFlashAttribute("msg",msg);
 				
-				return "redirect:/peco/board/main";
+				
+				rttr.addFlashAttribute("msg",msg);
+				rttr.addAttribute("pageNo",cri.getPageNo());
+				rttr.addAttribute("searchField",cri.getSearchField());
+				rttr.addAttribute("searchWord",cri.getSearchWord());
+				return "redirect:/peco/board/view?bno="+board.getBno();
 				
 			}else {
 				msg="등록중 오류가 발생하였습니다.";
@@ -207,8 +250,9 @@ public class BoardController extends CommonRestController{
 			if(res>0) {
 				
 				msg = "게시글이 수정되었습니다.";
-				url = "redirect:/peco/board/view?bno="+board.getBno();
-				rttr.addFlashAttribute("url",url);
+				
+				rttr.addFlashAttribute("res",res);
+				 
 				
 				//rttr.addAttribute는 
 				//url?msg=등록되었습니다 (쿼리스트링으로 전환됨. 화면에서 받을때 param.으로 받아야함)
@@ -225,15 +269,13 @@ public class BoardController extends CommonRestController{
 				rttr.addAttribute("searchField",cri.getSearchField());
 				rttr.addAttribute("searchWord",cri.getSearchWord());
 				return "redirect:/peco/board/view?bno="+board.getBno();
-				//return "redirect:/board/view?bno="+board.getBno()+"&pageNo="+cri.getPageNo()+"&searchField="+cri.getSearchField()+"&searchWord="+cri.getSearchWord();
 				
-				//리턴 그냥 경로를 적으면 컨트롤을 거치지않고 해당 경로내의 .jsp를 바로 호출함
-				//return "/board/view";
+	
 				
 			}else {
 				msg="수정중 오류가 발생하였습니다.";
 				model.addAttribute("msg",msg);
-				return "/peco/board/free";
+				return "/peco/board/main";
 			}
 		} catch (Exception e) {
 			log.info(e.getMessage());
@@ -243,7 +285,7 @@ public class BoardController extends CommonRestController{
 				model.addAttribute("msg","등록중 예외사항이 발생하였습니다.");	
 			}
 			e.printStackTrace();
-			return "/peco/board/free";
+			return "/peco/board/main";
 		}
 	}
 	
