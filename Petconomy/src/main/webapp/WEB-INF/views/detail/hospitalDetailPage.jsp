@@ -121,6 +121,8 @@ https://templatemo.com/tm-579-cyborg-gaming
 	</script>
 
   <script>
+  // This function replaces commas with line breaks
+  
   
  window.addEventListener('load',function(){		
 		
@@ -131,12 +133,10 @@ https://templatemo.com/tm-579-cyborg-gaming
  
 		
 		// 댓글목록 조회및 출력
-		getReplyList();	
-		
-		
+		getReplyList();
  
 });
- 
+
  function kakaoLoad() {
 
 	 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -253,8 +253,8 @@ https://templatemo.com/tm-579-cyborg-gaming
 	<!-- 헤더 끝 -->
 	
   <div class="container">
-  <input type="text" name="h_id" id="h_id" value="${hospital.h_id }">
-  <input type="text" id="reviewer" value="테스트닉네임1">
+  <input type="hidden" name="h_id" id="h_id" value="${hospital.h_id }">
+  <input type="hidden" id="reviewer" value="${sessionScope.member.nickname }">
     <div class="row">
       <div class="col-lg-12">
         <div class="page-content">
@@ -309,7 +309,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                           <li style='list-style-type: disc;'>${hospital.addr }</li>
                           <br>
                           	영업 시간
-                          <li id="openhourOutput">${hospital.openhour }</li>
+                          <li id="openhourOutput">${hospital.openhour}</li>
                           <br>
                           	홈페이지
                           <li style='list-style-type: disc;'><a href="${hospital.homepage }">병원 홈페이지 바로가기</a></li>
@@ -365,7 +365,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                         <div class="col-lg-17" id="reviewPossible">
                           <div class="left-info" style='background-color: rgb(247, 218, 218);'>
                             <div class="left">
-                              <h4 style='text-align: left; color: black;'><b><input type="text" id="reviewer" value="테스트닉네임1" readonly></b></h4>
+                              <h4 style='text-align: left; color: black;'><b><input type="text" id="reviewer" value="${sessionScope.member.nickname }" readonly></b></h4>
                               <br>
                             </div>
                             <div class="col-lg-13"> <textarea name="review" id="review" rows="5" style='width: 100%; border-radius: 15px;'></textarea>
@@ -406,22 +406,7 @@ https://templatemo.com/tm-579-cyborg-gaming
       <!-- 풋터 시작 -->
 		<%@ include file="../common/footer.jsp" %>
 	  <!-- 풋터 끝 -->		
-		
-		<script>
-		  // 영업 시간 데이터를 가져와서 쉼표를 <br>로 바꾸는 함수
-		  function formatOpenHour(openhour) {
-		    return openhour.replace(/,/g, '<br>');
-		  }
-		
-		  // 페이지 로드 후 영업 시간 데이터를 처리하여 출력
-		  window.addEventListener('load', function() {
-		    var openhourSpan = document.getElementById('openhourOutput');
-		    if (openhourSpan) {
-		      var hospitalOpenHour = openhourSpan.innerHTML;
-		      openhourSpan.innerHTML = formatOpenHour(hospitalOpenHour);
-		    }
-		  });
-		</script>
+
 		
 		<!-- 카카오 지도 api 시작 -->
      

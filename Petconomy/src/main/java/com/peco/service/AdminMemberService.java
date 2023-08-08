@@ -8,10 +8,13 @@ import com.peco.vo.Criteria;
 import com.peco.vo.MemberVO;
 
 @Service
-public interface AdminPageService {
+public interface AdminMemberService {
 	
 	List<MemberVO> getMemberList(Criteria cri);
 	
 	int totalCnt();
 	
+	int delete(String m_id);
+	
+	int update(String m_id);
 }
