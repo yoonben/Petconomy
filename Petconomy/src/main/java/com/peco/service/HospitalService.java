@@ -23,5 +23,9 @@ public interface HospitalService {
 	public int totalCnt(RegionCri cri);
 	
 	public List<HospitalVO> hospitaltop();
+	
+	public int update_H(HospitalVO vo);
+	
+	public HospitalVO getOne_H(String m_id);
 }
 

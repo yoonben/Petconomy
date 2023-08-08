@@ -7,10 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-${member.nickname}<br>
- 아이디 : ${member.id }<br>
-  이름 : ${member.mname }<br>
- 이메일 : ${member.email }<br>
- 	<a href="/peco/profile?m_id=${member.m_id} ">프로필로 이동</a>
+<script type="text/javascript">
+	
+	//페이지 이동시 없으면
+	alert("등록된 정보가 없습니다");
+	
+	//이전 페이지 이동
+	window.history.back();
+
+</script>
 </body>
 </html>

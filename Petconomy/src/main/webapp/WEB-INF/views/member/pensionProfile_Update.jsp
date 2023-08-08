@@ -9,7 +9,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2>마이페이지</h2>
+<h1>사업자 페이지</h1>
+<h2>나의 펜션 정보 수정</h2>
 
 <%
 String p_id = request.getParameter("p_id");

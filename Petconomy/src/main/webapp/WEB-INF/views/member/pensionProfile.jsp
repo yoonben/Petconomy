@@ -14,45 +14,45 @@
 
 <form id='P_ProfileForm' name='P_Profile' action='/peco/pensionProfile_Update?m_id=${pension.m_id}' method='post'>
 
-	<c:set var="PensionVO" value="${pension }"/>
+	<c:set var="PensionVO" value="${pension}"/>
 
 	<table border='1px' width='400px' height='450px'>
 
 		<tr>
 			<th>펜션번호</th>
-			<td>${pension.p_id }</td>
+			<td>${PensionVO.p_id }</td>
 		</tr>
 		<tr>
 			<th>회원번호</th>
-			<td>${pension.m_id }</td>
+			<td>${PensionVO.m_id }</td>
 		</tr>
 		<tr>
 			<th>펜션명</th>
-			<td>${pension.pname }</td>
+			<td>${PensionVO.pname }</td>
 		</tr>
 		<tr>
 			<th>도로명주소</th>
-			<td>${pension.addr }</td>
+			<td>${PensionVO.addr }</td>
 		</tr>
 		<tr>
 			<th>운영시간</th>
-			<td>${pension.openhour}</td>
+			<td>${PensionVO.openhour}</td>
 		</tr>
 		<tr>
 			<th>주차여부</th>
-			<td>${pension.parkyn}</td>
+			<td>${PensionVO.parkyn}</td>
 		</tr>
 		<tr>
 			<th>승인여부</th>
-			<td>${pension.checkyn}</td>
+			<td>${PensionVO.checkyn}</td>
 		</tr>
 		<tr>
 			<th>위도</th>
-			<td>${pension.latitude}</td>
+			<td>${PensionVO.latitude}</td>
 		</tr>
 		<tr>
 			<th>경도</th>
-			<td>${pension.longitude}</td>
+			<td>${PensionVO.longitude}</td>
 		</tr>
 	</table>
 							
@@ -63,7 +63,7 @@
 </form>
 
 <!-- ↓ ↓ ↓  예약정보 구현 ↓ ↓ ↓  -->
-<h2>펜션 예약 정보</h2>
+<h2>펜션 예약 고객정보</h2>
 
 </body>
 </html>
