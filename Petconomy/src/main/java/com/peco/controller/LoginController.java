@@ -51,9 +51,7 @@ public class LoginController extends CommonRestController {
 		member = memberService.login(member);
 		if (member != null) {
 			session.setAttribute("member", member);
-			session.setAttribute("userId", member.getId());
-			session.setAttribute("nickName", member.getNickname());
-			session.setAttribute("m_id", member.getM_id());
+
 			Map<String, Object> map = responseMap(REST_SUCCESS, "로그인 되엇습니다.");
 			map.put("url", "/peco/main");
 
@@ -144,8 +142,6 @@ public class LoginController extends CommonRestController {
 				return "/login";
 			}
 			session.setAttribute("member", member);
-	        session.setAttribute("userId", member.getId());
-	        session.setAttribute("nickName", member.getNickname());
 	        
 	        return "redirect:/peco/main";
 
@@ -204,8 +200,6 @@ public class LoginController extends CommonRestController {
 				return "/login";
 			}
 			session.setAttribute("member", memberVO);
-	        session.setAttribute("userId", memberVO.getId());
-	        session.setAttribute("nickName", memberVO.getNickname());
 	        
 	        return "redirect:/peco/main";
 

@@ -121,8 +121,8 @@ https://templatemo.com/tm-579-cyborg-gaming
 		        <div class="row">
 					<div >
 				    	<h1>조회결과</h1>
-					  <c:if test="${not empty sessionScope.nickName}">
-					    <p class="lead"><b>${sessionScope.nickName}</b>님 환영합니다👋👋 </p>
+					  <c:if test="${not empty sessionScope.member.nickname}">
+					    <p class="lead"><b>${sessionScope.member.nickname}</b>님 환영합니다👋👋 </p>
 					    <a class="btn btn-lg btn-primary" href="/peco/board/write?pageNo=${pageDto.cri.pageNo }" role="button">글쓰기 &raquo;</a>
 					  </c:if>
 				  	</div>

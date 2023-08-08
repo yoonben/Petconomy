@@ -34,12 +34,14 @@ https://templatemo.com/tm-579-cyborg-gaming
 
 <style>
   body{
-    background-color: rgba(250, 149, 16, 0.979);
+     margin: 0 auto; /* 바디 마진을 0으로 하고 가로 가운데 정렬 */
+    background-color: #ffec90;
   }
 
   div >.page-content{
-    background-color: rgb(255, 187, 0);
-  }
+        background-color: white;
+        padding: 30px;
+      }
 
   .top-streamers{
   	margin-top: 50px;
@@ -58,6 +60,78 @@ https://templatemo.com/tm-579-cyborg-gaming
     background-color: bisque;
   }
 
+
+ .thumbnail-image {
+    width: 100%; /* 이미지의 가로 크기를 부모 요소의 100%로 조정 */
+    height: 100%; /* 이미지의 세로 크기를 부모 요소의 100%로 조정 */
+    object-fit: cover;
+    border-radius: 23px;
+    margin-bottom: 30px;
+}
+
+
+  .besttitle {
+  	margin-left: 10px; /* 탑 마진을 0으로 설정 */
+    margin-top: 0; /* 탑 마진을 0으로 설정 */
+}
+ .bestthumb{
+ 	width: 292px;
+ 	height: 292px;
+ }
+ 
+ 
+ .featured-games .hover-effect ul {
+  position: absolute;
+  bottom: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.featured-games .hover-effect ul li {
+  display: inline-block;
+  margin: 0px 5px;
+}
+
+.featured-games .hover-effect ul li a {
+  background-color: rgba(236, 96, 144, 0.9);
+  padding: 5px 10px;
+  border-radius: 23px;
+  color: #fff;
+  font-size: 14px;
+}
+
+.featured-games .item ul li:first-child i {
+  color: white;
+}
+
+.featured-games span i {
+  color: #fff;
+  background-color: #ec6090;
+  border-radius: 50%;
+  font-size: 12px;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  text-align: center;
+  line-height: 20px;
+  margin-right: 3px;
+}
+
+.featured-games span {
+  font-size: 14px;
+  color: #ec6090;
+}
+
+.featured-games .down-content h4 {
+  margin-top: 8px;
+  font-size: 20px;
+  font-weight: 700;
+  margin-left: 61px;
+}
+
+.featured-games .avatar img {
+  margin-right: 15px;
+}
 </style>
 
 
@@ -107,27 +181,76 @@ https://templatemo.com/tm-579-cyborg-gaming
       <div class="col-lg-12">
         <div class="page-content">
         
+        <!-- ***** Banner Start ***** -->
+          <div class="main-banner">
+            <div class="row">
+              <div class="col-lg-7">
+                <div class="header-text">
+                  <c:if test="${not empty sessionScope.member.nickname}">
+                  <h6>Welcome To ${sessionScope.member.nickname}</h6>
+                  </c:if>
+                  <h4><em>Browse</em> Our Popular Games Here</h4>
+                  <c:if test="${not empty sessionScope.member.nickname}">
+                  <div class="main-button">
+                    <a href="/peco/board/write?pageNo=${pageDto.cri.pageNo }&category=free">글 쓰기</a>
+                  </div>
+                  </c:if>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- ***** Banner End ***** -->
         
+        <!-- ***** Featured Games Start ***** -->
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="featured-games header-text">
+                <div class="heading-section">
+                  <h4><em>베스트</em> 게시글</h4>
+                </div>
+                <div class="owl-features owl-carousel">
+                
+                
+            <!------------------- 베스트 게시글 시작-------------------->
+            <c:forEach var="b" items="${Best}">
+				  <div class="item">
+				    <div class="thumb bestthumb">
+            		<a onclick="requestAction('/peco/board/view', ${b.bno })">
+				      <img src="/peco/display?fileName=${b.savePath}" alt="" class="thumbnail-image">
+				    </a>
+				      <div class="hover-effect">
+				      <div class="content">
+				       <ul>
+				        <li><a href="#"><i class="fa fa-eye"></i>${b.visitcount} </a></li>
+				        <li><i id="animated-icon" class="fa-regular fa-thumbs-up fa-lg" style="color: #ffa200;">${b.likecount }</i></li>
+				       </ul>
+				      </div>
+				      </div>
+				    </div>
+					    <div class="down-content">
+		                    <div class="avatar">
+		                      <img src="/resources/images/default.png" alt="" style="max-width: 46px; border-radius: 50%; float: left;">
+		                    </div>
+		                    <span><i class="fa fa-check"></i> ${b.nickname}</span>
+		                    <a onclick="requestAction('/peco/board/view', ${b.bno })">
+		                    <h4 class="besttitle">${b.title } </h4>
+		                    </a>
+		                </div> 
+				  </div>
+			</c:forEach>
+            <!------------------- 베스트 게시글  끝-------------------->
+
+
+            
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- ***** Featured Games End ***** -->
         
         
 	        <div class="live-stream">
-	            <div class="col-lg-12">
-	              <div class="heading-section">
-	                <h4><em>일상</em> 게시판</h4>
-	              </div>
-	            </div>
-	            
-	            
-		        <div class="row">
-					<div >
-				    	<h1>게시판</h1>
-					  <c:if test="${not empty sessionScope.nickName}">
-					    <p class="lead"><b>${sessionScope.nickName}</b>님 환영합니다👋👋 </p>
-					    <a class="btn btn-lg btn-primary" href="/peco/board/write?pageNo=${pageDto.cri.pageNo }&category=free" role="button">글쓰기 &raquo;</a>
-					  </c:if>
-				  	</div>
-				</div>
-	
+	          
 				<%@include file = "../common/searchForm.jsp" %>
 				<c:forEach var="board" items="${list}">
 						  <div class="list-group w-auto">

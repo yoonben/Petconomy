@@ -9,6 +9,16 @@
 				values (#{uploadpath},#{filename},#{filetype},#{m_id},#{uuid})
 	</insert>
 	
+	<insert id="insertPensionfile">
+		insert into P_img (pi_id, p_id, uploadpath, filename, filetype, fileroom)
+				values ('pi_'||SEQ_PI_ID_NUM.nextval,#{p_id},#{uploadpath},#{filename},#{filetype},#{fileroom})
+	</insert>
+	
+	<insert id="insertBusinessfile">
+		insert into R_img (ri_id, p_id, uploadpath, filename, filetype)
+				values ('ri_'||SEQ_RI_ID_NUM.nextval,#{p_id},#{uploadpath},#{filename},#{filetype})
+	</insert>
+	
 	<select id="getList" resultType="com.peco.vo.FileuploadVO">
 		SELECT t.*,
 		      uploadpath || uuid || '_' || filename AS savePath,

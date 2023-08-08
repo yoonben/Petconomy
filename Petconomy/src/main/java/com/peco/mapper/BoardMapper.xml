@@ -73,33 +73,6 @@
 	
 	
 	<select id="getFree" resultType="com.peco.vo.BoardVO">
-	 <!-- select 
-		from(
-				select t.*, rownum rn
-				from (
-					 	SELECT 
-						    b.bno,
-						    b.title,
-						    b.content,
-						    b.m_id,
-						    b.visitcount,
-						    b.likecount,
-						    DECODE(TRUNC(SYSDATE), TRUNC(b.regdate), TO_CHAR(b.regdate, 'HH24:MI:SS'), TO_CHAR(b.regdate, 'YYYY-MM-DD')) AS regdate,
-						    b.updatedate,
-						    m.nickname
-						FROM 
-						    board b
-						LEFT JOIN 
-						    member m ON b.m_id = m.M_ID
-						WHERE 
-							category='free'
-								]]>
-						<include refid="criteria"></include>
-						ORDER BY 
-						    b.bno DESC 
-					 ) t
-			)
-		where rn between #{startNo} and #{endNo} -->
 	<![CDATA[
 		SELECT
 		    *
@@ -122,6 +95,7 @@
 		                           to_char(b.regdate, 'HH24:MI:SS'),
 		                           to_char(b.regdate, 'YYYY-MM-DD')) AS regdate,
 		                    b.updatedate,
+		                    b.category,
 		                    m.nickname,
 		                    DECODE(a.filetype, 'I', a.uploadpath 
 		                    						|| a.uuid 
@@ -173,6 +147,7 @@
 		                           to_char(b.regdate, 'HH24:MI:SS'),
 		                           to_char(b.regdate, 'YYYY-MM-DD')) AS regdate,
 		                    b.updatedate,
+		                    b.category,
 		                    m.nickname,
 		                    DECODE(a.filetype, 'I', a.uploadpath 
 		                    						|| a.uuid 

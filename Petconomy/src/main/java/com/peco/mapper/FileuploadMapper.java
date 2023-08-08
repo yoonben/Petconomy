@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.peco.vo.BusinessFileuploadVO;
 import com.peco.vo.FileuploadVO;
+import com.peco.vo.PensionFiileuploadVO;
 
 public interface FileuploadMapper {
 	
@@ -13,6 +15,10 @@ public interface FileuploadMapper {
 	public List<FileuploadVO> getList(int bno); 
 	
 	public int insert(FileuploadVO vo);
+	
+	public int insertPensionfile(PensionFiileuploadVO vo);
+	
+	public int insertBusinessfile(BusinessFileuploadVO vo);
 	
 	public int delete_Img(@Param("m_id")String m_id, @Param("uuid") String uuid);
 	
