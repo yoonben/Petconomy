@@ -3,48 +3,67 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.peco.mapper.HospitalMapper">
-<select id="getOne" resultType="com.peco.vo.HospitalVO"> select * from hospital where h_id = #{h_id} </select>
-<select id="starAvg" resultType="int"> select round(avg(star)) from h_review where h_id = #{h_id} </select>
-<select id="mapList" resultType="com.peco.vo.HospitalVO">
-select h_id, pname, Addr, openHour, substr(ParkYN,3,2) ParkYN from hospital where 1=1
-<include refid="mega"/>
-<include refid="small"/>
-</select>
-<insert id="hospitalInsert"> insert into hospital(h_id, M_ID, PNAME, ADDR, OPENHOUR, PARKYN) values(hospital_seq.nextval, 'M0002', #{pname}, #{addr}, #{openhour}, #{parkyn}) </insert>
-<select id="hospitalList" resultType="com.peco.vo.HospitalVO">
-select * from(select t.*, rownum rn from(select h_id, pname, Addr, openHour, substr(ParkYN,3,2) ParkYN from hospital where 1=1
-<include refid="mega"/>
-<include refid="small"/>
-order by h_id desc) t) where rn between 1 and 10
-<include refid="mega"/>
-<include refid="small"/>
-</select>
-<select id="totalCnt" resultType="int">
-select count(*) from hospital where 1=1
-<include refid="mega"/>
-<include refid="small"/>
-</select>
-<select id="hospitaltop" resultType="com.peco.vo.HospitalVO"> select * from( select t.*, rownum rn from( select h.h_id, pname, addr, star, cnt from hospital h LEFT JOIN( select h_id, round(avg(star)) star, count(*) cnt from h_review group by h_id) r ON h.h_id = r.h_id WHERE r.star IS NOT NULL order by r.star desc, cnt desc)t ) where rn between 1 and 10 </select>
-<sql id="mega">
-<choose>
-<when test="megaregion == 'gangwon'"> and ADDR like '강원%' </when>
-<when test="megaregion == 'gyeonggi'"> and ADDR like '경기%' </when>
-<when test="megaregion == 'gyeongsang'"> and ADDR like '경상%' </when>
-<when test="megaregion == 'busan'"> and ADDR like '부산%' </when>
-<when test="megaregion == 'incheon'"> and ADDR like '인천%' </when>
-<when test="megaregion == 'jeolla'"> and ADDR like '전라%' </when>
-<when test="megaregion == 'chungcheong'"> and ADDR like '충청%' </when>
-<when test="megaregion == 'jeju'"> and ADDR like '제주%' </when>
-</choose>
-</sql>
-<sql id="small">
-<choose>
-<when test="smallregion == '춘천·인제·철원'"> and ( ADDR like '%춘천%' or ADDR like '%인제%' or ADDR like '%철원%') </when>
-<when test="smallregion == '평창·정선·영월'"> and ( ADDR like '%평창%' or ADDR like '%정선%' or ADDR like '%영월%') </when>
-<when test="smallregion == '속초·양양·고성'"> and ( ADDR like '%속초%' or ADDR like '%양양%' or ADDR like '%고성%') </when>
-<when test="smallregion == '강릉'"> and ADDR like '%강릉%' </when>
-<when test="smallregion == '동해·삼척·태백'"> and ( ADDR like '%동해%' or ADDR like '%삼척%' or ADDR like '%태백%') </when>
-<when test="smallregion == '홍천·횡성·원주'"> and ( ADDR like '%홍천%' or ADDR like '%횡성%' or ADDR like '%원주%') </when>
-</choose>
-</sql>
+		<select id="getOne" resultType="com.peco.vo.HospitalVO"> 
+		select * from hospital where h_id = #{h_id} 
+		</select>
+		
+		<select id="starAvg" resultType="int"> 
+		select round(avg(star)) from h_review where h_id = #{h_id} 
+		</select>
+		
+		<select id="mapList" resultType="com.peco.vo.HospitalVO">
+		select h_id, pname, Addr, openHour, substr(ParkYN,3,2) ParkYN from hospital where 1=1
+		<include refid="mega"/>
+		<include refid="small"/>
+		</select>
+		
+		<insert id="hospitalInsert"> 
+		insert into hospital(h_id, M_ID, PNAME, ADDR, OPENHOUR, PARKYN) 
+		values(hospital_seq.nextval, 'M0002', #{pname}, #{addr}, #{openhour}, #{parkyn}) 
+		</insert>
+		
+		<select id="hospitalList" resultType="com.peco.vo.HospitalVO">
+		select * from(select t.*, rownum rn from
+		(select h_id, pname, Addr, openHour, substr(ParkYN,3,2) ParkYN from hospital where 1=1
+		<include refid="mega"/>
+		<include refid="small"/>
+		order by h_id desc) t) where rn between 1 and 10
+		</select>
+		
+		<select id="totalCnt" resultType="int">
+		select count(*) from hospital where 1=1
+		<include refid="mega"/>
+		<include refid="small"/>
+		</select>
+		
+		<select id="hospitaltop" resultType="com.peco.vo.HospitalVO"> 
+		select * from( select t.*, rownum rn from
+		( select h.h_id, pname, addr, star, cnt from hospital h LEFT JOIN
+		( select h_id, round(avg(star)) star, count(*) cnt from h_review group by h_id) r ON h.h_id = r.h_id WHERE r.star IS NOT NULL order by r.star desc, cnt desc)t ) 
+		where rn between 1 and 10 
+		</select>
+		
+		<sql id="mega">
+		<choose>
+		<when test="megaregion == 'gangwon'"> and ADDR like '강원%' </when>
+		<when test="megaregion == 'gyeonggi'"> and ADDR like '경기%' </when>
+		<when test="megaregion == 'gyeongsang'"> and ADDR like '경상%' </when>
+		<when test="megaregion == 'busan'"> and ADDR like '부산%' </when>
+		<when test="megaregion == 'incheon'"> and ADDR like '인천%' </when>
+		<when test="megaregion == 'jeolla'"> and ADDR like '전라%' </when>
+		<when test="megaregion == 'chungcheong'"> and ADDR like '충청%' </when>
+		<when test="megaregion == 'jeju'"> and ADDR like '제주%' </when>
+		</choose>
+		</sql>
+		
+		<sql id="small">
+		<choose>
+		<when test="smallregion == '춘천·인제·철원'"> and ( ADDR like '%춘천%' or ADDR like '%인제%' or ADDR like '%철원%') </when>
+		<when test="smallregion == '평창·정선·영월'"> and ( ADDR like '%평창%' or ADDR like '%정선%' or ADDR like '%영월%') </when>
+		<when test="smallregion == '속초·양양·고성'"> and ( ADDR like '%속초%' or ADDR like '%양양%' or ADDR like '%고성%') </when>
+		<when test="smallregion == '강릉'"> and ADDR like '%강릉%' </when>
+		<when test="smallregion == '동해·삼척·태백'"> and ( ADDR like '%동해%' or ADDR like '%삼척%' or ADDR like '%태백%') </when>
+		<when test="smallregion == '홍천·횡성·원주'"> and ( ADDR like '%홍천%' or ADDR like '%횡성%' or ADDR like '%원주%') </when>
+		</choose>
+		</sql>
 </mapper>
