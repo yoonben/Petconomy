@@ -48,7 +48,11 @@
 	}
 
 
-
+	function go(page){
+		document.selectForm.pageNo.value=page;
+		document.selectForm.action = "/peco/main/hospital";
+		document.selectForm.submit();
+	}
 
 </script>
 
@@ -65,47 +69,12 @@
       </div>
     </div>
   </div>
-<header class="header-area header-sticky">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <nav class="main-nav">
-                    <!-- ***** Logo Start ***** -->
-                    <a href="../main/mainpage" class="logo">
-                    </a>
-                    <!-- ***** Logo End ***** -->
-                    <!-- ***** Search End ***** -->
-                    <div class="search-input">
-                      <form id="search" action="#">
-                        <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
-                        <i class="fa fa-search"></i>
-                      </form>
-                    </div>
-                    <!-- ***** Search End ***** -->
-                    <!-- ***** Menu Start ***** -->
-                    <ul class="nav">
-                        <li><a href="../main/pension">펜션/병원</a></li>
-                        <li><a href="details.html">커뮤니티</a></li>
-                        <li><a href="streams.html">업소등록</a></li>
-                        <li><a href="profile.html">로그인 <img src="assets/images/profile-header.jpg" alt=""></a></li>
-                    </ul>   
-                    <a class='menu-trigger'>
-                        <span>Menu</span>
-                    </a>
-                    <!-- ***** Menu End ***** -->
-                </nav>
-            </div>
-                        <div class="col-lg-12">
-              <nav class="main-nav">
-                    <ul class="nav">
-                        <li><a href="../main/pension">펜션</a></li>
-						<li><a href="../main/hospital">병원<a></li>
-                	</ul>
-              </nav>
-            </div>
-        </div>
-    </div>
-  </header>
+  
+  <!-- 헤더영역 시작-->
+	<%@include file="../common/header.jsp" %>
+  <!-- 헤더영역  끝-->
+	
+	
   <!-- ***** Header Area End ***** -->
  <div id="myModal" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -149,11 +118,14 @@
 
           <!-- ***** Details Start ***** -->
           <div class="game-details">
-            <div class="row">
-              <div class="col-lg-12">
-                <h2>병원 리스트</h2>
+              <div class="main-button" style="display:inline-block">
+                <a href="../main/pension" style="color:white; font-size:1.5em">펜션</a>
               </div>
-
+              
+              <div class="main-button" style="display:inline-block">
+                <a  href="../main/hospital" style="color:white; font-size:1.5em">병원</a>
+              </div>
+            <div class="row">
               <div class="col-lg-12">
                 <div class="content">
                   <div class="row">
@@ -183,7 +155,7 @@
          <div style="text-align:center;"><%@include file="searchForm.jsp"%></div>
          <br>
          <h5>총 ${totalCnt } 건</h5>
-         <table style="color:white;">
+         <table>
 
 			<colgroup>
 				<col width="7%"/>

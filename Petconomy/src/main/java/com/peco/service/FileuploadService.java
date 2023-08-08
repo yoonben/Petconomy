@@ -6,14 +6,26 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.peco.vo.BusinessFileuploadVO;
 import com.peco.vo.FileuploadVO;
+import com.peco.vo.PensionFiileuploadVO;
 
 @Service
 public interface FileuploadService {
 	
-	int insertProfile(FileuploadVO vo);
+	public int insertProfile(FileuploadVO vo);
+	
+	public int insertPensionfile(PensionFiileuploadVO vo);
 
-	int Profileupload(List<MultipartFile> files, String m_id) throws Exception;
+	public int insertBusinessfile(BusinessFileuploadVO vo);
+	
+	public int Pensionfileupload(List<MultipartFile> pensionimg, String p_id)throws Exception;
+	
+	public int PensionfileupRoomload(List<MultipartFile> roonimg, String p_id)throws Exception;
+	
+	public int Businessfileupload(List<MultipartFile> files, String p_id)throws Exception;
+	
+	public int Profileupload(List<MultipartFile> files, String m_id) throws Exception;
 	
 	public int delete_Img(@Param("m_id")String m_id, @Param("uuid") String uuid);
 	

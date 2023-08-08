@@ -21,4 +21,7 @@ public interface HospitalService {
 	public int hospitalInsert(HospitalVO vo);
 	
 	public int totalCnt(RegionCri cri);
+	
+	public List<HospitalVO> hospitaltop();
 }
+

@@ -2,12 +2,21 @@
 		width: 500px; 
 		margin: 0 auto;
 	}
-	.page-content {
-		width: 600px; 
+	.page-business{
+		width: 500px; 
 		margin: 0 auto;
+	}
+	.page-content {
+		width: 610px; 
+		margin: 0 auto;
+		padding-bottom: 60px;
+		padding-top: 10px;
 	}
 	.form-login{
 		padding-bottom: 10px;
+	}
+	.form-tude{
+		width: 250px;
 	}
 	.msg{
 		padding-top: 10px;

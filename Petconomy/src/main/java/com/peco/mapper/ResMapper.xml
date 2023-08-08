@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- mapper의 namespace속성은 연결할 mapper의 interface 풀 경로로 작성  -->
+<mapper namespace="com.peco.mapper.ResMapper">
+
+   <select id="getMemberList" resultType="com.peco.vo.MemberVO">
+   select mname, email, mphone, m_id from member
+	where m_id = 'm0000001'
+   </select>
+   
+   <select id="getPensionList" resultType="com.peco.vo.PensionVO">
+   select pname, roomname, price, pension.p_id
+	from pension left outer join room
+	on pension.p_id = room.p_id
+	where pension.p_id = 'p00001' and roomno = 'r01' 
+   </select>
+   
+   <select id="getDisableDate" resultType="com.peco.vo.P_RESVO">
+   	select STARTDATE, ENDDATE from p_res
+   </select>
+   
+   <select id="getResvationList" resultType="com.peco.vo.P_RESVO">
+   	select imp_uid, startdate, enddate, pr_name, pr_email, pr_tel, roomname, pname, pricecnt, p_id 
+	from p_res
+	where m_id = 'm0000001'
+   </select>
+   
+   <insert id="insertResvation">
+   insert into P_RES (PR_ID, STARTDATE, ENDDATE, PR_PAY, PERIOD
+                  , P_ID, PRICECNT, PR_NAME, PR_EMAIL, PR_TEL, IMP_UID, M_ID, PNAME, ROOMNAME)
+             values (#{pr_id}, #{startdate}, #{enddate}, #{pr_pay}, #{period}
+             , #{p_id}, #{pricecnt}, #{pr_name}, #{pr_email}, #{pr_tel}, #{imp_uid}, #{m_id}
+             , #{pname}, #{roomname})
+   </insert>
+   
+   <delete id="deleteRes">
+		delete P_RES where IMP_UID=#{imp_uid}
+	</delete>
+   
+</mapper>

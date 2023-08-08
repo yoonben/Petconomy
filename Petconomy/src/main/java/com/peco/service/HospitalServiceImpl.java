@@ -52,4 +52,10 @@ public class HospitalServiceImpl implements HospitalService {
 		return hospitalMapper.totalCnt(cri);
 	}
 
+	@Override
+	public List<HospitalVO> hospitaltop() {
+		// TODO Auto-generated method stub
+		return hospitalMapper.hospitaltop();
+	}
+
 }
