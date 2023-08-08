@@ -14,7 +14,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.peco.controller.FileuploadController;
 import com.peco.mapper.FileuploadMapper;
+import com.peco.vo.BusinessFileuploadVO;
 import com.peco.vo.FileuploadVO;
+import com.peco.vo.PensionFiileuploadVO;
 
 import lombok.extern.log4j.Log4j;
 import net.coobird.thumbnailator.Thumbnails;
@@ -29,6 +31,21 @@ public class FileuploadServiceImpl implements FileuploadService{
 	@Override
 	public int insertProfile(FileuploadVO vo) {
 		return mapper.insertProfile(vo);
+	}
+	
+	@Override
+	public int insertPensionfile(PensionFiileuploadVO vo) {
+		return mapper.insertPensionfile(vo);
+	}
+	
+	@Override
+	public int insertPensionRoomfile(PensionFiileuploadVO vo) {
+		return mapper.insertPensionfile(vo);
+	}
+	
+	@Override
+	public int insertBusinessfile(BusinessFileuploadVO vo) {
+		return mapper.insertBusinessfile(vo);
 	}
 	
 	@Override

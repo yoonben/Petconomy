@@ -62,6 +62,15 @@ public class FileuploadController extends CommonRestController{
 
 	}
 	
+	@PostMapping("/PenssionloadActionFetch")
+	public @ResponseBody Map<String, Object> PenssionloadActionFetch(List<MultipartFile> files,List<MultipartFile> pensionimg,List<MultipartFile> roonimg, String p_id, RedirectAttributes rttr) throws Exception {
+		log.info("fileuploadActionFetch");
+		int insertRes = service.Profileupload(files, p_id);
+		log.info("업로드 건수 : " + insertRes);
+		return responseMap("success", "프로필이 수정 되었습니다");
+
+	}
+	
 	@PostMapping("/file/fileUploadAction")
 	public  String fileUploadAction(List<MultipartFile> files, int bno ,RedirectAttributes rttr) throws Exception {
 		
