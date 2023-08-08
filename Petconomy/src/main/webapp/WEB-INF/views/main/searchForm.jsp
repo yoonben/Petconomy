@@ -52,7 +52,7 @@ function regionChange(e){
 </script>
 <form id="search" action="/peco/main/pension" method="get" name="selectForm">
 <div class="test-score1" data-max="5" data-rate="5"></div>
-<input type="text" name="pageNo" value="${pageDto.regioncri.pageNo}">
+<input type="hidden" name="pageNo" value="${pageDto.regioncri.pageNo}">
 <select class="form-select" id="megaregion" name="megaregion"  onchange="regionChange(this)" style="display:inline-block;">
   <option value='' selected>시·도</option>
   <option value="gangwon" ${pageDto.regioncri.megaregion eq "gangwon" ? "selected" : " " }>강원</option>

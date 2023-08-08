@@ -19,9 +19,9 @@
   	<select id="pensiontop" resultType="com.peco.vo.PensionVO">
     select * from(
     select t.*, rownum rn from(
-    select p.p_id, pname, addr, star from 
+    select p.p_id, pname, addr, star, cnt from 
     pension p LEFT JOIN(
-    select p_id, round(avg(star)) star from p_review group by p_id) r ON p.p_id = r.p_id WHERE r.star IS NOT NULL order by r.star desc)t )
+    select p_id, round(avg(star)) star, count(*) cnt from p_review group by p_id) r ON p.p_id = r.p_id WHERE r.star IS NOT NULL order by r.star desc, cnt desc)t )
     where rn between 1 and 10
   	</select>
 
@@ -100,6 +100,9 @@
 	</sql>
 	  	<sql id="small">
 		<choose>
+			<when test="smallregion == '강원도 전체'">
+				and 1=1
+			</when>
 			<when test="smallregion == '춘천·인제·철원'">
 				and ( ADDR like '%춘천%' or ADDR like '%인제%' or ADDR like '%철원%')
 			</when>

@@ -177,9 +177,11 @@
               <div class="col-lg-12">
                 <div class="heading-section">
                   <h4><em>병원</em> 리스트</h4>
+         <!--  
          <div class="main-button">
            <a href="#" onclick="regionSelect()">지역</a>
          </div>
+         -->
          <div style="text-align:center;"><%@include file="searchForm.jsp"%></div>
          <br>
          <h5>총 ${totalCnt } 건</h5>

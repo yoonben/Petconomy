@@ -108,6 +108,7 @@
         </div>
     </div>
   </header>
+  
   <!-- ***** Header Area End ***** -->
  <div id="myModal" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -154,9 +155,6 @@
             <div class="row">
               <div class="col-lg-12">
                 <h2>펜션 리스트</h2>
-                ${pageDto }
-                ${totalCnt }
-                ${pageDto.regioncri.pageNo}
               </div>
 
               <div class="col-lg-12">
@@ -213,7 +211,7 @@
 				<tr height="50" style="font-size:1em;">
 				
 				<td >${list.p_id }</td>
-				<td>${list.pname }</td>
+				<td><a href="#">${list.pname }</a></td>
 				<td>${list.addr }</td>
 				<td>${list.openhour }</td>
 				<td>${list.parkyn }</td>

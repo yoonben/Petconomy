@@ -17,6 +17,7 @@ public class PensionVO {
 	private String pensionimg; 
 	
 	private String rn; 
+	private int cnt; 
 	private int star;
 
 }

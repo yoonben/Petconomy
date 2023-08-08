@@ -42,16 +42,42 @@ https://templatemo.com/tm-579-cyborg-gaming
 <style>
 .main-banner {
     background-image: url(/resources/img/puppy.jpg);
+    margin-bottom: 20px;
 }
 .gaming-library .item ul li h4 {
     font-size: 15px;
     /* margin-bottom: 5px; */
+}
+
+.gaming-library .main-button {
+    text-align: left;
+    margin-bottom: -53px;
+}
+
+.gaming-library{
+	margin : 10px;
 }
 </style>
 <script>
 jQuery(function ($) {
 	jq(".test-score1").score();
 })
+
+		window.onload = function(){
+    	// 로그인 폼 출력
+        btn1.addEventListener('click',function(){
+		var btn1= document.querySelector(".btn1");
+          hospitalList.style.display='none';
+          pensionList.style.display='';
+        })
+		
+        // 회원가입폼 출력
+        btn2.addEventListener('click',function(){
+        	var btn2= document.querySelector(".btn2");
+        	hospitalList.style.display='';
+        	pensionList.style.display='none';
+        })
+      }
 </script>
 <body>
 
@@ -127,32 +153,60 @@ jQuery(function ($) {
           <!-- ***** Banner End ***** -->
 
           <!-- ***** Gaming Library Start ***** -->
-          <div class="gaming-library">
             <div class="col-lg-12">
-              <div class="heading-section">
-                <h4><em>Top10</em> 펜션</h4>
-             <c:forEach items="${list }" var="vo">
-			${vo.pname }
-			</c:forEach>	                
+              <div class="main-button">
+                <a class="btn1">펜션</a>
               </div>
-             <c:forEach items="${list }" var="vo">
-              <div class="item">
-                <ul>
-                  <li style="width: 5%;"><h3>${vo.rn }</h3></li>
-                  <li style="width: 25%;"><h3>${vo.pname }</h3></li>
-                  <li style="width: 55%;"><h3>${vo.addr }</h3></li>
-                  <li style="width: 10%; font-size:2em"><div class="test-score1" data-max="5" data-rate="${vo.star }"></div></li>
-                </ul>
-              </div>
-              </c:forEach>
-             
             </div>
             <div class="col-lg-12">
               <div class="main-button">
-                <a href="profile.html">View Your Library</a>
+                <a class="btn2">병원</a>
               </div>
             </div>
-          </div>
+            
+		          <form name='pensionList'>
+		          <div class="gaming-library">
+		            <div class="col-lg-12">
+		              <div class="heading-section">
+		                <h4><em>Top10</em> 펜션</h4>	                
+		              </div>
+		             <c:forEach items="${plist }" var="pvo">
+		              <div class="item">
+		                <ul>
+		                  <li style="width: 3%;"><h3>${pvo.rn }</h3></li>
+		                  <li style="width: 25%;"><h3>${pvo.pname }</h3></li>
+		                  <li style="width: 53%;"><h3>${pvo.addr }</h3></li>
+		                  <li style="width: 15%; font-size:1.5em; color:white"><div class="test-score1" data-max="5" data-rate="${pvo.star }"></div>
+		                  (${pvo.cnt })
+		                  </li>
+		                </ul>
+		              </div>
+		              </c:forEach>
+		            </div>
+		          </div>
+		          </form>
+		          
+		          <form name='hospitalList' style='display:none'>
+		          <div class="gaming-library">
+		            <div class="col-lg-12">
+		              <div class="heading-section">
+		                <h4><em>Top10</em> 병원</h4>                
+		              </div>
+		             <c:forEach items="${hlist }" var="hvo">
+		              <div class="item">
+		                <ul>
+		                  <li style="width: 3%;"><h3>${hvo.rn }</h3></li>
+		                  <li style="width: 25%;"><h3>${hvo.pname }</h3></li>
+		                  <li style="width: 53%;"><h3>${hvo.addr }</h3></li>
+		                  <li style="width: 15%; font-size:1.5em; color:white"><div class="test-score1" data-max="5" data-rate="${hvo.star }"></div>
+		                  (${hvo.cnt })
+		                  </li>
+		                </ul>
+		              </div>
+		              </c:forEach>
+		            </div>
+		          </div>
+		          </form>
           <!-- ***** Gaming Library End ***** -->
 
           <!-- ***** Most Popular Start ***** -->
@@ -162,7 +216,8 @@ jQuery(function ($) {
                 <div class="heading-section">
                   <h4><em>오늘의 BEST</em> 짤</h4>
                 </div>
-                <div class="row">
+                <div class="row carousel slide" id="carouselExampleSlidesOnly" data-bs-ride="carousel">
+                
                   <div class="col-lg-3 col-sm-6">
                     <div class="item">
                       <img src="assets/images/popular-01.jpg" alt="">
@@ -173,6 +228,7 @@ jQuery(function ($) {
                       </ul>
                     </div>
                   </div>
+                  
                   <div class="col-lg-3 col-sm-6">
                     <div class="item">
                       <img src="assets/images/popular-02.jpg" alt="">
@@ -183,6 +239,7 @@ jQuery(function ($) {
                       </ul>
                     </div>
                   </div>
+                  
                   <div class="col-lg-3 col-sm-6">
                     <div class="item">
                       <img src="assets/images/popular-03.jpg" alt="">
@@ -193,6 +250,7 @@ jQuery(function ($) {
                       </ul>
                     </div>
                   </div>
+                  
                   <div class="col-lg-3 col-sm-6">
                     <div class="item">
                       <img src="assets/images/popular-04.jpg" alt="">
@@ -203,52 +261,8 @@ jQuery(function ($) {
                       </ul>
                     </div>
                   </div>
-                  <div class="col-lg-6">
-                    <div class="item">
-                      <div class="row">
-                        <div class="col-lg-6 col-sm-6">
-                          <div class="item inner-item">
-                            <img src="assets/images/popular-05.jpg" alt="">
-                            <h4>Mini Craft<br><span>Legendary</span></h4>
-                            <ul>
-                              <li><i class="fa fa-star"></i> 4.8</li>
-                              <li><i class="fa fa-download"></i> 2.3M</li>
-                            </ul>
-                          </div>
-                        </div>
-                        <div class="col-lg-6 col-sm-6">
-                          <div class="item">
-                            <img src="assets/images/popular-06.jpg" alt="">
-                            <h4>Eagles Fly<br><span>Matrix Games</span></h4>
-                            <ul>
-                              <li><i class="fa fa-star"></i> 4.8</li>
-                              <li><i class="fa fa-download"></i> 2.3M</li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-3 col-sm-6">
-                    <div class="item">
-                      <img src="assets/images/popular-07.jpg" alt="">
-                      <h4>Warface<br><span>Max 3D</span></h4>
-                      <ul>
-                        <li><i class="fa fa-star"></i> 4.8</li>
-                        <li><i class="fa fa-download"></i> 2.3M</li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="col-lg-3 col-sm-6">
-                    <div class="item">
-                      <img src="assets/images/popular-08.jpg" alt="">
-                      <h4>Warcraft<br><span>Legend</span></h4>
-                      <ul>
-                        <li><i class="fa fa-star"></i> 4.8</li>
-                        <li><i class="fa fa-download"></i> 2.3M</li>
-                      </ul>
-                    </div>
-                  </div>
+
+
                   <div class="col-lg-12">
                     <div class="main-button">
                       <a href="browse.html">Discover Popular</a>

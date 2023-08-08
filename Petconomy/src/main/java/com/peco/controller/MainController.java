@@ -57,7 +57,7 @@ public class MainController {
 	public String hlist(RegionCri cri, Model model) {
 		List<HospitalVO> list = hospitalService.hospitalList(cri);
 		List<HospitalVO> lists = hospitalService.mapList();
-		int totalCnt = pensionService.totalCnt(cri);
+		int totalCnt = hospitalService.totalCnt(cri);
 		PageDto pageDto = new PageDto(cri, totalCnt);
 		
 		model.addAttribute("totalCnt", totalCnt);
@@ -70,8 +70,10 @@ public class MainController {
 	//메인 페이지
 	@GetMapping("/main/mainpage")
 	public String main(Model model) {
-		List<PensionVO> list = pensionService.pensiontop();
-		model.addAttribute("list", list);
+		List<PensionVO> plist = pensionService.pensiontop();
+		List<HospitalVO> hlist = hospitalService.hospitaltop();
+		model.addAttribute("plist", plist);
+		model.addAttribute("hlist", hlist);
 		return "/main/mainpage";
 	}
 	

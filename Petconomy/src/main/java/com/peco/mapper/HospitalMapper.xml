@@ -31,6 +31,15 @@
 	where rn between 1 and 10 <include refid="mega"></include><include refid="small"></include>
   	</select>
   	
+  	<select id="hospitaltop" resultType="com.peco.vo.PensionVO">
+    	    select * from(
+	    select t.*, rownum rn from(
+	    select h.h_id, pname, addr, star, cnt from 
+	    hospital h LEFT JOIN(
+	    select h_id, round(avg(star)) star, count(*) cnt from h_review group by h_id) r ON h.h_id = r.h_id WHERE r.star IS NOT NULL order by r.star desc, cnt desc)t )
+	    where rn between 1 and 10
+  	</select>
+  	
 	<select id="totalCnt" resultType="int">
 		select count(*) from hospital
 		where 1=1
