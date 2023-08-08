@@ -22,6 +22,7 @@
 		values(hospital_seq.nextval, 'M0002', #{pname}, #{addr}, #{openhour}, #{parkyn}) 
 		</insert>
 		
+
 		<select id="hospitalList" resultType="com.peco.vo.HospitalVO">
 		select * from(select t.*, rownum rn from
 		(select h_id, pname, Addr, openHour, substr(ParkYN,3,2) ParkYN from hospital where 1=1
@@ -34,6 +35,22 @@
 		select count(*) from hospital where 1=1
 		<include refid="mega"/>
 		<include refid="small"/>
+		</select>
+		
+		<update id ="update_H">
+			update hospital 
+				set pname = #{pname},
+				addr = #{addr},
+				openhour = #{openhour},
+				parkyn = #{parkyn},
+				checkyn = #{checkyn},
+				homepage = #{homepage},
+				phone = #{phone}
+				where m_id = #{m_id}
+		</update>
+
+		<select id="getOne_H" resultType="com.peco.vo.HospitalVO"> 
+		select * from hospital where m_id = #{m_id} 
 		</select>
 		
 		<select id="hospitaltop" resultType="com.peco.vo.HospitalVO"> 

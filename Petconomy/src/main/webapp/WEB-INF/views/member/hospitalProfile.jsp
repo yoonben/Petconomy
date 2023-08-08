@@ -12,7 +12,7 @@
 <h1>사업자 페이지</h1>
 <h2>나의 병원 정보</h2>
 
-<form id='H_ProfileForm' name='H_Profile' action='/peco/hospitalProfile_Update?m_id=${hospital.m_id}' method='post'>
+<form id='H_ProfileForm' name='H_Profile' action='/peco/hospitalProfile_Update?m_id=${member.m_id}' method='post'>
 
 	<c:set var="HospitalVO" value="${hospital }"/>
 
@@ -54,6 +54,7 @@
 			<th>전화번호</th>
 			<td>${hospital.phone}</td>
 		</tr>
+
 	</table>
 							
 	<input type="submit" value="수정하기" class="btn" >
@@ -63,7 +64,7 @@
 </form>
 
 <!-- ↓ ↓ ↓  예약정보 구현 ↓ ↓ ↓  -->
-<h2>펜션 예약 정보</h2>
+<h2>병원 예약 고객정보</h2>
 
 </body>
 </html>

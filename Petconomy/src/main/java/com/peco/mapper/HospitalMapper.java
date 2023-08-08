@@ -9,9 +9,9 @@ import com.peco.vo.RegionCri;
 
 public interface HospitalMapper {
 
-	public HospitalVO getOne(@Param(value="h_id") String p_id);
+	public HospitalVO getOne(@Param(value="h_id") String h_id);
 	
-	public int starAvg(@Param(value="h_id") String p_id);
+	public int starAvg(@Param(value="h_id") String h_id);
 	
 	public List<HospitalVO> mapList();
 	
@@ -22,5 +22,9 @@ public interface HospitalMapper {
 	public int hospitalInsert(HospitalVO vo);
 	
 	public int totalCnt(RegionCri cri);
+	
+	public int update_H(HospitalVO vo);
+	
+	public HospitalVO getOne_H(String m_id);
 	
 }

@@ -34,9 +34,9 @@
 	    
 	window.addEventListener('load', function(){
 		displayEncryptedPassword();
-			
-	})
-	
+		
+		})
+		
 </script>
 
 
@@ -87,7 +87,8 @@
 														
 	<input type="submit" value="수정하기" class="btn" ><br><br>
 </form>
-	<button id="P&H"  onclick="location.href='/peco/pensionProfile'">내 업체 관리</button>
+	<button id="pension" name="pension" onclick="location.href='/peco/pensionProfile?m_id=${member.m_id}'">나의 펜션 관리</button>
+	<button id="hospital" name="hospital" onclick="location.href='/peco/hospitalProfile?m_id=${member.m_id}'">나의 병원 관리</button>
 
 </body>
 </html>

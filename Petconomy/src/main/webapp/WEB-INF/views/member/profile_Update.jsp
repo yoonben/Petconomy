@@ -142,8 +142,7 @@
 					        updateMsg.innerHTML = map.msg;
 					      }
 				});	
-					
-					*/
+*/	
 /*			}
 		})
 		*/
@@ -204,11 +203,10 @@
 	function fileuploadRes(map){
 		if(map.result == 'success'){
 			alert(map.msg);
-		}else{
+		} else{
 			alert(map.msg);
 		}
 	}
-})
 
 
 </script>
