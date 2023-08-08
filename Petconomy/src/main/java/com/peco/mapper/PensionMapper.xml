@@ -1,125 +1,58 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="com.peco.mapper.PensionMapper">
-  	<select id="mapList" resultType="com.peco.vo.PensionVO">
-  	 select p_Id, pname, Addr, openHour, substr(ParkYN,3,2) ParkYN from pension 
-  	 where 1=1
-  	 <include refid="mega"></include> 
-  	 <include refid="small"></include> 
-  	</select>
-
-  	<select id="pensionList" resultType="com.peco.vo.PensionVO">
-  	 select * from(select t.*, rownum rn from(select p_Id, pname, Addr, openHour, substr(ParkYN,3,2) ParkYN from pension
-  	 where 1=1 <include refid="mega"/><include refid="small"/>
-  	 order by p_id desc) t) 
-	 where rn between #{startNo} and #{endNo} 
-  	</select>
-  	
-  	<select id="pensiontop" resultType="com.peco.vo.PensionVO">
-    select * from(
-    select t.*, rownum rn from(
-    select p.p_id, pname, addr, star from 
-    pension p LEFT JOIN(
-    select p_id, round(avg(star)) star from p_review group by p_id) r ON p.p_id = r.p_id WHERE r.star IS NOT NULL order by r.star desc)t )
-    where rn between 1 and 10
-  	</select>
-
-  	<select id="getOne_P" resultType="com.peco.vo.PensionVO">
-		select * from pension where m_id=#{m_id}
-	</select>
-  	
-  	<update id = "update_P">
-		update pension set
-			pname = #{pname, javaType=String ,jdbcType=VARCHAR}, 
-			addr = #{addr, javaType=String ,jdbcType=VARCHAR} ,
-			openhour = #{openhour, javaType=String ,jdbcType=VARCHAR} ,
-			parkyn = #{parkyn, javaType=String ,jdbcType=VARCHAR} ,
-			checkyn = #{checkyn, javaType=String ,jdbcType=VARCHAR} ,
-			latitude = #{latitude, jdbcType=DOUBLE} ,
-			longitude = #{longitude , jdbcType=DOUBLE} 
-			where m_id = #{m_id} 
-	</update>
-  	
-  	<select id="getOne" resultType="com.peco.vo.PensionVO">
-		select * from pension where p_id = #{p_id}
-	</select>
-	
-	<select id="roomList" resultType="com.peco.vo.PensionRoomVO">
-		select * from p_room where p_id = #{p_id}
-	</select>
-	
-	<select id="reviewList" resultType="com.peco.vo.PensionReviewVO">
-		select * from p_review where p_id = #{p_id}
-	</select>
-	
-	<select id="starAvg" resultType="int">
-		<!-- select coalesce(round(avg(star)), 0) from p_review where p_id = #{p_id} -->
-		select round(avg(star)) from p_review where p_id = #{p_id}
-	</select>	
-	
-	
-  	<insert id="pensionInsert">
-  	insert into pension(p_id, M_ID, PNAME, ADDR, OPENHOUR, PARKYN) 
-  	values(pension_seq.nextval, 'M0002', #{pname}, #{addr}, #{openhour}, #{parkyn})
-  	</insert>
-
-	<select id="totalCnt" resultType="int">
-		select count(*) from pension
-		where 1=1
-	  	<include refid="mega"></include> 
-	  	<include refid="small"></include>  
-	</select>	
-	
-  	<sql id="mega">
-		<choose>
-			<when test="megaregion == 'gangwon'">
-				and ADDR like '강원%'
-			</when>
-			<when test="megaregion == 'gyeonggi'">
-				and ADDR like '경기%'
-			</when>
-			<when test="megaregion == 'gyeongsang'">
-				and ADDR like '경상%'
-			</when>
-			<when test="megaregion == 'busan'">
-				and ADDR like '부산%'
-			</when>
-			<when test="megaregion == 'incheon'">
-				and ADDR like '인천%'
-			</when>
-			<when test="megaregion == 'jeolla'">
-				and ADDR like '전라%'
-			</when>
-			<when test="megaregion == 'chungcheong'">
-				and ADDR like '충청%'
-			</when>
-			<when test="megaregion == 'jeju'">
-				and ADDR like '제주%'
-			</when>
-		</choose>
-	</sql>
-	  	<sql id="small">
-		<choose>
-			<when test="smallregion == '춘천·인제·철원'">
-				and ( ADDR like '%춘천%' or ADDR like '%인제%' or ADDR like '%철원%')
-			</when>
-			<when test="smallregion == '평창·정선·영월'">
-				and ( ADDR like '%평창%' or ADDR like '%정선%' or ADDR like '%영월%')
-			</when>
-			<when test="smallregion == '속초·양양·고성'">
-				and ( ADDR like '%속초%' or ADDR like '%양양%' or ADDR like '%고성%')
-			</when>
-			<when test="smallregion == '강릉'">
-				and ADDR like '%강릉%'
-			</when>
-			<when test="smallregion == '동해·삼척·태백'">
-				and ( ADDR like '%동해%' or ADDR like '%삼척%' or ADDR like '%태백%')
-			</when>
-			<when test="smallregion == '홍천·횡성·원주'">
-				and ( ADDR like '%홍천%' or ADDR like '%횡성%' or ADDR like '%원주%')
-			</when>
-
-		</choose>
-	</sql>
-  </mapper>
+This XML file does not appear to have any style information associated with it. The document tree is shown below.
+<mapper namespace="com.peco.mapper.PensionMapper">
+<select id="mapList" resultType="com.peco.vo.PensionVO">
+select p_Id, pname, Addr, openHour, substr(ParkYN,3,2) ParkYN from pension where 1=1
+<include refid="mega"/>
+<include refid="small"/>
+</select>
+<select id="pensionList" resultType="com.peco.vo.PensionVO">
+select * from(select t.*, rownum rn from(select p_Id, pname, Addr, openHour, substr(ParkYN,3,2) ParkYN from pension where 1=1
+<include refid="mega"/>
+<include refid="small"/>
+order by p_id desc) t) where rn between #{startNo} and #{endNo}
+</select>
+<select id="pensiontop" resultType="com.peco.vo.PensionVO"> select * from( select t.*, rownum rn from( select p.p_id, pname, addr, star, cnt from pension p LEFT JOIN( select p_id, round(avg(star)) star, count(*) cnt from p_review group by p_id) r ON p.p_id = r.p_id WHERE r.star IS NOT NULL order by r.star desc, cnt desc)t ) where rn between 1 and 10 </select>
+<select id="getOne_P" resultType="com.peco.vo.PensionVO"> select * from pension where m_id=#{m_id} </select>
+<update id="update_P"> update pension set pname = #{pname, javaType=String ,jdbcType=VARCHAR}, addr = #{addr, javaType=String ,jdbcType=VARCHAR} , openhour = #{openhour, javaType=String ,jdbcType=VARCHAR} , parkyn = #{parkyn, javaType=String ,jdbcType=VARCHAR} , checkyn = #{checkyn, javaType=String ,jdbcType=VARCHAR} , latitude = #{latitude, jdbcType=DOUBLE} , longitude = #{longitude , jdbcType=DOUBLE} where m_id = #{m_id} </update>
+<select id="getOne" resultType="com.peco.vo.PensionVO"> select * from pension where p_id = #{p_id} </select>
+<select id="roomList" resultType="com.peco.vo.PensionRoomVO"> select * from p_room where p_id = #{p_id} </select>
+<select id="reviewList" resultType="com.peco.vo.PensionReviewVO"> select * from p_review where p_id = #{p_id} </select>
+<select id="starAvg" resultType="int">
+<!--  select coalesce(round(avg(star)), 0) from p_review where p_id = #{p_id}  -->
+select round(avg(star)) from p_review where p_id = #{p_id}
+</select>
+<insert id="pensionInsert"> insert into pension(p_id, M_ID, PNAME, ADDR, OPENHOUR, PARKYN) values(pension_seq.nextval, 'M0002', #{pname}, #{addr}, #{openhour}, #{parkyn}) </insert>
+<select id="totalCnt" resultType="int">
+select count(*) from pension where 1=1
+<include refid="mega"/>
+<include refid="small"/>
+</select>
+<select id="selectPensionList" resultType="com.peco.vo.PensionVO">
+SELECT * FROM pension where
+<include refid="mega"/>
+substr(addr,instr(addr, ' ',1)+1,3) in
+<foreach item="item" collection="pList" open="(" separator="," close=")"> #{item} </foreach>
+</select>
+<sql id="mega">
+<choose>
+<when test="megaregion == 'gangwon'"> and ADDR like '강원%' </when>
+<when test="megaregion == 'gyeonggi'"> and ADDR like '경기%' </when>
+<when test="megaregion == 'gyeongsang'"> and ADDR like '경상%' </when>
+<when test="megaregion == 'busan'"> and ADDR like '부산%' </when>
+<when test="megaregion == 'incheon'"> and ADDR like '인천%' </when>
+<when test="megaregion == 'jeolla'"> and ADDR like '전라%' </when>
+<when test="megaregion == 'chungcheong'"> and ADDR like '충청%' </when>
+<when test="megaregion == 'jeju'"> and ADDR like '제주%' </when>
+</choose>
+</sql>
+<sql id="small">
+<choose>
+<when test="smallregion == '춘천·인제·철원'"> and ( ADDR like '%춘천%' or ADDR like '%인제%' or ADDR like '%철원%') </when>
+<when test="smallregion == '평창·정선·영월'"> and ( ADDR like '%평창%' or ADDR like '%정선%' or ADDR like '%영월%') </when>
+<when test="smallregion == '속초·양양·고성'"> and ( ADDR like '%속초%' or ADDR like '%양양%' or ADDR like '%고성%') </when>
+<when test="smallregion == '강릉'"> and ADDR like '%강릉%' </when>
+<when test="smallregion == '동해·삼척·태백'"> and ( ADDR like '%동해%' or ADDR like '%삼척%' or ADDR like '%태백%') </when>
+<when test="smallregion == '홍천·횡성·원주'"> and ( ADDR like '%홍천%' or ADDR like '%횡성%' or ADDR like '%원주%') </when>
+</choose>
+</sql>
+</mapper>

@@ -22,6 +22,7 @@ public class PensionVO {
 	
 	private String rn; 
 	private int star;
+	private int cnt;
 
 }
 
