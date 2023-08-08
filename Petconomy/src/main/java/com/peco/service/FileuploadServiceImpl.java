@@ -38,10 +38,6 @@ public class FileuploadServiceImpl implements FileuploadService{
 		return mapper.insertPensionfile(vo);
 	}
 	
-	@Override
-	public int insertPensionRoomfile(PensionFiileuploadVO vo) {
-		return mapper.insertPensionfile(vo);
-	}
 	
 	@Override
 	public int insertBusinessfile(BusinessFileuploadVO vo) {
@@ -121,6 +117,204 @@ public class FileuploadServiceImpl implements FileuploadService{
 				vo.setUuid(uuid.toString());
 				
 				int res = insertProfile(vo);
+				
+				if(res>0) {
+					insertRes++;
+				}
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+				throw new Exception("첨부파일 등록중 예외사항이 발생 하였습ㄴ디ㅏ.(IllegalStateException)");
+			} catch (IOException e) {
+				e.printStackTrace();
+				throw new Exception("첨부파일 등록중 예외사항이 발생 하였습ㄴ디ㅏ.(IOException)");
+			} catch(Exception e) {
+				e.printStackTrace();
+				throw new Exception("첨부파일 등록중 예외사항이 발생 하였습ㄴ디ㅏ.(Exception)");
+			}
+		}
+		return insertRes;
+	}
+	
+	// 패션 업로드
+	@Override
+	public int Pensionfileupload(List<MultipartFile> pensionimg, String p_id) throws Exception {
+		int insertRes = 0;
+		for(MultipartFile file : pensionimg) {
+			if(file.isEmpty()) {
+				continue;
+			}
+			log.info("=====================================");
+			log.info("oFileName : "+file.getOriginalFilename());
+			log.info("name : "+file.getName());
+			log.info("size : "+file.getSize());
+			
+			
+			try {
+				// UUID
+				/**
+				 * 소프트웨어 구축에 쓰이는 식별자 표준
+				 * 파일이름이 중복되어 파일이 소실되지 않도록 uuid를 붙여서 저장
+				 */
+				String saveFileName = p_id+file.getOriginalFilename();
+				String uploadPath = getProfile();
+				String fileroom = "P";
+				
+				File sFile = new File(FileuploadController.ATTACHES_DIR
+						+fileroom 
+						+saveFileName);
+				
+				// file(원본파일)을 sFile(저장 대상 파일)에 저장
+				file.transferTo(sFile);
+				
+				//주어진 파일의 Mine유형
+				String contentType = Files.probeContentType(sFile.toPath());
+				PensionFiileuploadVO vo = new PensionFiileuploadVO();
+				
+				// Mine타입을 확인하여 이미지인 경우 썸네일을 생성
+				if(contentType.startsWith("image")) {
+					vo.setFiletype("I");
+					
+				}else {
+					vo.setFiletype("F");
+				}
+				
+				vo.setP_id(p_id);
+				vo.setFilename(file.getOriginalFilename());
+				vo.setUploadpath(uploadPath);
+				vo.setFileroom(fileroom);
+				
+				int res = insertPensionfile(vo);
+				
+				if(res>0) {
+					insertRes++;
+				}
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+				throw new Exception("첨부파일 등록중 예외사항이 발생 하였습ㄴ디ㅏ.(IllegalStateException)");
+			} catch (IOException e) {
+				e.printStackTrace();
+				throw new Exception("첨부파일 등록중 예외사항이 발생 하였습ㄴ디ㅏ.(IOException)");
+			} catch(Exception e) {
+				e.printStackTrace();
+				throw new Exception("첨부파일 등록중 예외사항이 발생 하였습ㄴ디ㅏ.(Exception)");
+			}
+		}
+		return insertRes;
+	}
+
+	@Override
+	public int PensionfileupRoomload(List<MultipartFile> roonimg, String p_id) throws Exception {
+		int insertRes = 0;
+		for(MultipartFile file : roonimg) {
+			if(file.isEmpty()) {
+				continue;
+			}
+			log.info("=====================================");
+			log.info("oFileName : "+file.getOriginalFilename());
+			log.info("name : "+file.getName());
+			log.info("size : "+file.getSize());
+			
+			
+			try {
+				// UUID
+				/**
+				 * 소프트웨어 구축에 쓰이는 식별자 표준
+				 * 파일이름이 중복되어 파일이 소실되지 않도록 uuid를 붙여서 저장
+				 */
+				
+				String saveFileName = p_id+file.getOriginalFilename();
+				String uploadPath = getProfile();
+				String fileroom = "R";
+				
+				File sFile = new File(FileuploadController.ATTACHES_DIR
+						+fileroom 
+						+saveFileName);
+				
+				// file(원본파일)을 sFile(저장 대상 파일)에 저장
+				file.transferTo(sFile);
+				
+				//주어진 파일의 Mine유형
+				String contentType = Files.probeContentType(sFile.toPath());
+				PensionFiileuploadVO vo = new PensionFiileuploadVO();
+				
+				// Mine타입을 확인하여 이미지인 경우 썸네일을 생성
+				if(contentType.startsWith("image")) {
+					vo.setFiletype("I");
+					
+				}else {
+					vo.setFiletype("F");
+				}
+				
+				vo.setP_id(p_id);
+				vo.setFilename(file.getOriginalFilename());
+				vo.setUploadpath(uploadPath);
+				vo.setFileroom(fileroom);
+				
+				int res = insertPensionfile(vo);
+				
+				if(res>0) {
+					insertRes++;
+				}
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+				throw new Exception("첨부파일 등록중 예외사항이 발생 하였습ㄴ디ㅏ.(IllegalStateException)");
+			} catch (IOException e) {
+				e.printStackTrace();
+				throw new Exception("첨부파일 등록중 예외사항이 발생 하였습ㄴ디ㅏ.(IOException)");
+			} catch(Exception e) {
+				e.printStackTrace();
+				throw new Exception("첨부파일 등록중 예외사항이 발생 하였습ㄴ디ㅏ.(Exception)");
+			}
+		}
+		return insertRes;
+	}
+
+	@Override
+	public int Businessfileupload(List<MultipartFile> files, String p_id) throws Exception {
+		int insertRes = 0;
+		for(MultipartFile file : files) {
+			if(file.isEmpty()) {
+				continue;
+			}
+			log.info("=====================================");
+			log.info("oFileName : "+file.getOriginalFilename());
+			log.info("name : "+file.getName());
+			log.info("size : "+file.getSize());
+			
+			
+			try {
+				// UUID
+				/**
+				 * 소프트웨어 구축에 쓰이는 식별자 표준
+				 * 파일이름이 중복되어 파일이 소실되지 않도록 uuid를 붙여서 저장
+				 */
+				String saveFileName = p_id+file.getOriginalFilename();
+				String uploadPath = getProfile();
+				
+				File sFile = new File(FileuploadController.ATTACHES_DIR
+						+uploadPath 
+						+saveFileName);
+				
+				// file(원본파일)을 sFile(저장 대상 파일)에 저장
+				file.transferTo(sFile);
+				
+				//주어진 파일의 Mine유형
+				String contentType = Files.probeContentType(sFile.toPath());
+				BusinessFileuploadVO vo = new BusinessFileuploadVO();
+				
+				// Mine타입을 확인하여 이미지인 경우 썸네일을 생성
+				if(contentType.startsWith("image")) {
+					vo.setFiletype("I");
+					
+				}else {
+					vo.setFiletype("F");
+				}
+				
+				vo.setP_id(p_id);
+				vo.setFilename(file.getOriginalFilename());
+				vo.setUploadpath(uploadPath);
+				
+				int res = insertBusinessfile(vo);
 				
 				if(res>0) {
 					insertRes++;

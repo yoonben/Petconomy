@@ -20,8 +20,6 @@ public interface FileuploadMapper {
 	
 	public int insertBusinessfile(BusinessFileuploadVO vo);
 	
-	public int insertPensionRoomfile(PensionFiileuploadVO vo);
-	
 	public int delete_Img(@Param("m_id")String m_id, @Param("uuid") String uuid);
 	
 	public int delete_Img(String m_id);

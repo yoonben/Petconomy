@@ -16,10 +16,14 @@ public interface FileuploadService {
 	public int insertProfile(FileuploadVO vo);
 	
 	public int insertPensionfile(PensionFiileuploadVO vo);
-	
-	public int insertPensionRoomfile(PensionFiileuploadVO vo);
 
 	public int insertBusinessfile(BusinessFileuploadVO vo);
+	
+	public int Pensionfileupload(List<MultipartFile> pensionimg, String p_id)throws Exception;
+	
+	public int PensionfileupRoomload(List<MultipartFile> roonimg, String p_id)throws Exception;
+	
+	public int Businessfileupload(List<MultipartFile> files, String p_id)throws Exception;
 	
 	public int Profileupload(List<MultipartFile> files, String m_id) throws Exception;
 	
