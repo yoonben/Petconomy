@@ -95,7 +95,7 @@ jQuery(function ($) {
   <!-- ***** Preloader End ***** -->
 
   <!-- 헤더영역 시작-->
-	<%@include file="../common/header.jsp" %>
+	<%@include file="header.jsp" %>
   <!-- 헤더영역  끝-->
 
   <div class="container">
@@ -108,10 +108,10 @@ jQuery(function ($) {
             <div class="row">
               <div class="col-lg-7">
                 <div class="header-text">
-                  <h2 style="color:white;">Welcome To Petconomy</h2>
-                  <h4 style="color:white;"><em>Browse</em> Our Popular Ameneties Here</h4>
+
+                  <h4 style="color:white;"><em style="color:#ffec90">펫코노미</em>에 오신걸 환영합니다</h4>
                   <div class="main-button">
-                    <a href="browse.html">예약 바로가기</a>
+                    <a href="../main/pension" style="background-color: #ffec90; color:black; font-weight: 900">펜션 예약 바로가기</a>
                   </div>
                 </div>
               </div>
@@ -120,11 +120,11 @@ jQuery(function ($) {
           <!-- ***** Banner End ***** -->
 
               <div class="main-button" style="display:inline-block">
-                <a id="btn1" style="color:white; font-size:1.5em">펜션</a>
+                <a id="btn1" style="font-size:1.5em; background-color: #ffec90; font-weight: 900;">펜션</a>
               </div>
               
               <div class="main-button" style="display:inline-block">
-                <a id="btn2" style="color:white; font-size:1.5em">병원</a>
+                <a id="btn2" style="font-size:1.5em; background-color: #ffec90; font-weight: 900;">병원</a>
               </div>
               
 
@@ -134,15 +134,15 @@ jQuery(function ($) {
 		   <div class="gaming-library">
             <div class="col-lg-12" >
               <div class="heading-section">
-                <h4><em>Top10</em> 펜션</h4>
+                <h4 style="color:#ffec90"><em>Top10</em> 펜션</h4>
                
               </div>
              <c:forEach items="${plist }" var="pvo">
-              <div class="item">
+              <div class="item" >
                 <ul>
-                  <li style="width: 3%;"><h3>${pvo.rn }</h3></li>
-                  <li style="width: 27%;"><h3>${pvo.pname }</h3></li>
-                  <li style="width: 53%;"><h3>${pvo.addr }</h3></li>
+                  <li style="width: 3%;"><h3 style="color:white;">${pvo.rn }</h3></li>
+                  <li style="width: 27%;"><h3 style="color:white;">${pvo.pname }</h3></li>
+                  <li style="width: 53%;"><h3 style="color:white; font-size : 1.5em; font-bold:100">${pvo.addr }</h3></li>
                   <li style="width: 15%; font-size:1.5em; color:white;"><div class="test-score1" data-max="5" data-rate="${pvo.star }"></div>
                   (${pvo.cnt })</li>
                 </ul>
@@ -159,14 +159,14 @@ jQuery(function ($) {
 		    <div class="gaming-library">
             <div class="col-lg-12">
               <div class="heading-section">
-                <h4><em>Top10</em> 병원</h4>
+                <h4 style="color:#ffec90"><em>Top10</em> 병원</h4>
               </div>
 	             <c:forEach items="${hlist }" var="hvo">
 	              <div class="item">
 	                <ul>
-	                  <li style="width: 3%;"><h3>${hvo.rn }</h3></li>
-	                  <li style="width: 25%;"><h3>${hvo.pname }</h3></li>
-	                  <li style="width: 55%;"><h3>${hvo.addr }</h3></li>
+	                  <li style="width: 3%;"><h3 style="color:white">${hvo.rn }</h3></li>
+	                  <li style="width: 27%;"><h3 style="color:white">${hvo.pname }</h3></li>
+	                  <li style="width: 53%;"><h3 style="color:white">${hvo.addr }</h3></li>
 	                  <li style="width: 15%; font-size:1.5em; color:white;"><div class="test-score1" data-max="5" data-rate="${hvo.star }"></div>
 	                  (${hvo.cnt })</li>
 	                </ul>
@@ -181,38 +181,33 @@ jQuery(function ($) {
             <div class="row">
               <div class="col-lg-12">
                 <div class="heading-section">
-                  <h4><em>오늘의 BEST</em> 짤</h4>
+                  <h4 style="color:#ffec90">금일 <em>BEST</em> 짤</h4>
                 </div>
                 <div class="owl-features owl-carousel">
-                
-            <c:forEach items="${blist}" var="bvo" >
-				  <div class="item">
-				    <div class="thumb bestthumb">
-				    
-            		<a onclick="requestAction('/peco/board/view', ${bvo.bno })">
-				      <img src="/peco/display?fileName=${bvo.s_savePath}" alt="" class="thumbnail-image">
-				    </a>
-				    
-				      <div class="hover-effect">
-				        <i id="animated-icon" class="fa-regular fa-thumbs-up fa-lg" style="color: #ffa200;"> <h4> ${bvo.likecount }</h4></i>
-				      </div>
-				      
-				    </div>
-					    <div class="down-content">
-		                    <div class="avatar">
-		                      <img src="/resources/images/default.png" alt="" style="max-width: 46px; border-radius: 50%; float: left;">
-		                    </div>
-		                    <span style="color:white;"><i class="fa fa-check"></i> ${bvo.nickname}
-		                    <h4 class="besttitle">${bvo.title } </h4></span>
-		                    <a onclick="requestAction('/peco/board/view', ${bvo.bno })">
-		                    </a>
-		                </div> 
-				  </div>
-			</c:forEach>
-
-
-
-            
+		            <c:forEach items="${blist}" var="bvo" >
+						  <div class="item">
+						    <div class="thumb bestthumb">
+						    
+		            		<a onclick="requestAction('/peco/board/view', ${bvo.bno })">
+						      <img src="/peco/display?fileName=${bvo.s_savePath}" alt="" class="thumbnail-image">
+						    </a>
+						    
+						      <div class="hover-effect">
+						        <i id="animated-icon" class="fa-regular fa-thumbs-up fa-lg" style="color: #ffa200;"> <h4> ${bvo.likecount }</h4></i>
+						      </div>
+						      
+						    </div>
+							    <div class="down-content">
+				                    <div class="avatar">
+				                      <img src="/resources/images/default.png" alt="" style="max-width: 46px; border-radius: 50%; float: left;">
+				                    </div>
+				                    <span style="color:white;"><i class="fa fa-check"></i> ${bvo.nickname}
+				                    <h4 class="besttitle">${bvo.title } </h4></span>
+				                    <a onclick="requestAction('/peco/board/view', ${bvo.bno })">
+				                    </a>
+				                </div> 
+						  </div>
+					</c:forEach>
                 </div>
               </div>
             </div>

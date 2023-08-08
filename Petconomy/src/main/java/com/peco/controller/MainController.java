@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,13 +44,19 @@ public class MainController {
 	
 	//펜션 페이지
 	@GetMapping("/main/pension")
-	public String plist(RegionCri cri, Model model) {
+	public String plist(RegionCri cri, Model model, HttpServletRequest request) {
+		
 		List<PensionVO> list = pensionService.pensionList(cri);
 		List<PensionVO> lists = pensionService.mapList();
 		int totalCnt = pensionService.totalCnt(cri);
 		PageDto pageDto = new PageDto(cri, totalCnt);
 		
-
+//		String megaregion = request.getParameter("megaregion");
+//		String smallregion = request.getParameter("smallregion");
+//		System.out.println("megaregion"+ megaregion);
+//		System.out.println("smallregion"+smallregion);
+		System.out.println("======"+cri);
+		
 		model.addAttribute("totalCnt", totalCnt);
 		model.addAttribute("pageDto", pageDto);
 		model.addAttribute("list", list);

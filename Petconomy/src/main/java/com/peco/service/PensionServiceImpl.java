@@ -29,13 +29,13 @@ public class PensionServiceImpl implements PensionService {
 	
 	@Override
 	public List<PensionVO> mapList() {
-		// TODO Auto-generated method stub
+
 		return pensionMapper.mapList();
 	}
 	
 	@Override
 	public PensionVO getOne(String p_id) {
-		// TODO Auto-generated method stub
+
 		return pensionMapper.getOne(p_id);
 	}
 
@@ -62,26 +62,26 @@ public class PensionServiceImpl implements PensionService {
 
 	@Override
 	public List<PensionVO> pensionList(RegionCri cri) {
-		// TODO Auto-generated method stub
+
 		return pensionMapper.pensionList(cri);
 	}
 
 	@Override
 	public int pensionInsert(PensionVO vo) {
-		// TODO Auto-generated method stub
+
 		return pensionMapper.pensionInsert(vo); 
 		
 	}
 
 	@Override
 	public int totalCnt(RegionCri cri) {
-		// TODO Auto-generated method stub
+
 		return pensionMapper.totalCnt(cri);
 	}
 
 	@Override
 	public List<PensionVO> pensiontop() {
-		// TODO Auto-generated method stub
+
 		return pensionMapper.pensiontop();
 	}
 

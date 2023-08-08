@@ -23,6 +23,9 @@ public class PensionVO {
 	private String rn; 
 	private int star;
 	private int cnt;
+	
+	private String megaregion;
+	private String smallregion;
 
 }
 
