@@ -88,8 +88,6 @@ window.addEventListener('load', function(){
 	
 	function fileuploadRes(map){
 		if(map.result == 'success'){
-			signupForm.style.display = 'none'; // signupForm 숨기기
-			signinForm.style.display = ''; // signinForm 보이기
 			alert(map.msg);
 		}else{
 			alert(map.msg);

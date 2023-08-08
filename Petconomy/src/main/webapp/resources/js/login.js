@@ -110,7 +110,7 @@ window.addEventListener('load', function(){
 								}
 							}
 							
-							fetch('/peco/ProfileloadActionFetch'
+							fetch('/peco/ProfileloadActionFetchs'
 									,{ 
 										method : 'post'
 										, body : formData

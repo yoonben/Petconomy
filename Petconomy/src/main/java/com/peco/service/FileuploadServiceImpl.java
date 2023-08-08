@@ -136,7 +136,6 @@ public class FileuploadServiceImpl implements FileuploadService{
 	}
 	
 	// 패션 업로드
-	@Override
 	public int Pensionfileupload(List<MultipartFile> pensionimg, String p_id) throws Exception {
 		int insertRes = 0;
 		for(MultipartFile file : pensionimg) {
@@ -156,10 +155,11 @@ public class FileuploadServiceImpl implements FileuploadService{
 				 * 파일이름이 중복되어 파일이 소실되지 않도록 uuid를 붙여서 저장
 				 */
 				String saveFileName = p_id+file.getOriginalFilename();
-				String uploadPath = getProfile();
+				String uploadPath = getPension();
 				String fileroom = "P";
 				
 				File sFile = new File(FileuploadController.ATTACHES_DIR
+						+uploadPath
 						+fileroom 
 						+saveFileName);
 				
@@ -170,7 +170,6 @@ public class FileuploadServiceImpl implements FileuploadService{
 				String contentType = Files.probeContentType(sFile.toPath());
 				PensionFiileuploadVO vo = new PensionFiileuploadVO();
 				
-				// Mine타입을 확인하여 이미지인 경우 썸네일을 생성
 				if(contentType.startsWith("image")) {
 					vo.setFiletype("I");
 					
@@ -202,7 +201,6 @@ public class FileuploadServiceImpl implements FileuploadService{
 		return insertRes;
 	}
 
-	@Override
 	public int PensionfileupRoomload(List<MultipartFile> roonimg, String p_id) throws Exception {
 		int insertRes = 0;
 		for(MultipartFile file : roonimg) {
@@ -223,10 +221,11 @@ public class FileuploadServiceImpl implements FileuploadService{
 				 */
 				
 				String saveFileName = p_id+file.getOriginalFilename();
-				String uploadPath = getProfile();
+				String uploadPath = getPension();
 				String fileroom = "R";
 				
 				File sFile = new File(FileuploadController.ATTACHES_DIR
+						+uploadPath
 						+fileroom 
 						+saveFileName);
 				
@@ -269,7 +268,6 @@ public class FileuploadServiceImpl implements FileuploadService{
 		return insertRes;
 	}
 
-	@Override
 	public int Businessfileupload(List<MultipartFile> files, String p_id) throws Exception {
 		int insertRes = 0;
 		for(MultipartFile file : files) {
@@ -289,7 +287,7 @@ public class FileuploadServiceImpl implements FileuploadService{
 				 * 파일이름이 중복되어 파일이 소실되지 않도록 uuid를 붙여서 저장
 				 */
 				String saveFileName = p_id+file.getOriginalFilename();
-				String uploadPath = getProfile();
+				String uploadPath = getBusiness();
 				
 				File sFile = new File(FileuploadController.ATTACHES_DIR
 						+uploadPath 
@@ -337,6 +335,38 @@ public class FileuploadServiceImpl implements FileuploadService{
 	//		업로드 날짜를 폴더 이름으로 사용
 	public String getProfile() {
 		String uploadPath = "profile" + File.separator;
+		log.info("경로 : " + uploadPath);
+		
+		File saveDir = new File(FileuploadController.ATTACHES_DIR + uploadPath);
+		if(!saveDir.exists()) {
+			if(saveDir.mkdirs()) {
+				log.info("폴더 생성!!");
+			}else {
+				log.info("폴더 생성 실패!!");
+			}
+		}
+		
+		return uploadPath;
+	}
+	
+	public String getPension() {
+		String uploadPath = "pension" + File.separator;
+		log.info("경로 : " + uploadPath);
+		
+		File saveDir = new File(FileuploadController.ATTACHES_DIR + uploadPath);
+		if(!saveDir.exists()) {
+			if(saveDir.mkdirs()) {
+				log.info("폴더 생성!!");
+			}else {
+				log.info("폴더 생성 실패!!");
+			}
+		}
+		
+		return uploadPath;
+	}
+	
+	public String getBusiness() {
+		String uploadPath = "business" + File.separator;
 		log.info("경로 : " + uploadPath);
 		
 		File saveDir = new File(FileuploadController.ATTACHES_DIR + uploadPath);
