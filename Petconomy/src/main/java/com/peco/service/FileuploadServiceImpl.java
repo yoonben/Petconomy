@@ -156,7 +156,7 @@ public class FileuploadServiceImpl implements FileuploadService{
 				 */
 				String saveFileName = p_id+file.getOriginalFilename();
 				String uploadPath = getPension();
-				String fileroom = "P";
+				String fileroom = "P_";
 				
 				File sFile = new File(FileuploadController.ATTACHES_DIR
 						+uploadPath
@@ -222,7 +222,7 @@ public class FileuploadServiceImpl implements FileuploadService{
 				
 				String saveFileName = p_id+file.getOriginalFilename();
 				String uploadPath = getPension();
-				String fileroom = "R";
+				String fileroom = "R_";
 				
 				File sFile = new File(FileuploadController.ATTACHES_DIR
 						+uploadPath
