@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.peco.mapper.ResMapper;
+import com.peco.vo.H_RESVO;
+import com.peco.vo.HospitalVO;
 import com.peco.vo.MemberVO;
 import com.peco.vo.P_RESVO;
 import com.peco.vo.PensionVO;
@@ -27,23 +29,48 @@ public class ResServiceimpl implements ResService{
 	}
 
 	@Override
-	public int insertResvation(P_RESVO p_resVO) {
-		return mapper.insertResvation(p_resVO);
+	public int insertResvationPension(P_RESVO p_resVO) {
+		return mapper.insertResvationPension(p_resVO);
 	}
 
 	@Override
-	public List<P_RESVO> getDisableDate() {
-		return mapper.getDisableDate();
+	public List<P_RESVO> getPensionDisableDate() {
+		return mapper.getPensionDisableDate();
 	}
 
 	@Override
-	public List<P_RESVO> getResvationList() {
-		return mapper.getResvationList();
+	public List<P_RESVO> getResPensionList() {
+		return mapper.getResPensionList();
 	}
 
 	@Override
-	public int deleteRes(String imp_uid) {
-		return mapper.deleteRes(imp_uid);
+	public int deleteResPension(String imp_uid) {
+		return mapper.deleteResPension(imp_uid);
+	}
+
+	@Override
+	public List<HospitalVO> getHospitalList() {
+		return mapper.getHospitalList();
+	}
+
+	@Override
+	public List<H_RESVO> getHospitalDisableDate() {
+		return mapper.getHospitalDisableDate();
+	}
+
+	@Override
+	public List<H_RESVO> getResHospitalList() {
+		return mapper.getResHospitalList();
+	}
+
+	@Override
+	public int insertResvationHospital(H_RESVO h_resVO) {
+		return mapper.insertResvationHospital(h_resVO);
+	}
+
+	@Override
+	public int deleteResHospital(String imp_uid) {
+		return mapper.deleteResHospital(imp_uid);
 	}
 
 }

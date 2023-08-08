@@ -18,17 +18,17 @@
 	where pension.p_id = 'p00001' and roomno = 'r01' 
    </select>
    
-   <select id="getDisableDate" resultType="com.peco.vo.P_RESVO">
+   <select id="getPensionDisableDate" resultType="com.peco.vo.P_RESVO">
    	select STARTDATE, ENDDATE from p_res
    </select>
    
-   <select id="getResvationList" resultType="com.peco.vo.P_RESVO">
+   <select id="getResPensionList" resultType="com.peco.vo.P_RESVO">
    	select imp_uid, startdate, enddate, pr_name, pr_email, pr_tel, roomname, pname, pricecnt, p_id 
 	from p_res
 	where m_id = 'm0000001'
    </select>
    
-   <insert id="insertResvation">
+   <insert id="insertResvationPension">
    insert into P_RES (PR_ID, STARTDATE, ENDDATE, PR_PAY, PERIOD
                   , P_ID, PRICECNT, PR_NAME, PR_EMAIL, PR_TEL, IMP_UID, M_ID, PNAME, ROOMNAME)
              values (#{pr_id}, #{startdate}, #{enddate}, #{pr_pay}, #{period}
@@ -36,8 +36,35 @@
              , #{pname}, #{roomname})
    </insert>
    
-   <delete id="deleteRes">
+   <delete id="deleteResPension">
 		delete P_RES where IMP_UID=#{imp_uid}
-	</delete>
+   </delete>
+   
+   <select id="getHospitalList" resultType="com.peco.vo.HospitalVO">
+   		select pname, h_id, addr, openhour, parkyn, homepage, phone from hospital
+   		where h_id = 'h00001'
+   </select>
+   
+   <select id="getHospitalDisableDate" resultType="com.peco.vo.H_RESVO">
+   		select hr_date, hr_time from h_res
+   </select>
+   
+   <select id="getResHospitalList" resultType="com.peco.vo.H_RESVO">
+	   	select imp_uid, hr_date, hr_time, hr_name, hr_email, hr_tel, pname, pricecnt, h_id
+		from h_res
+		where m_id = 'm0000001'
+   </select>
+   
+   <insert id="insertResvationHospital">
+	   insert into H_RES (HR_ID, HR_DATE, HR_TIME, HR_PAY, H_ID, PNAME
+	                  , PRICECNT, HR_NAME, HR_EMAIL, HR_TEL, IMP_UID, M_ID)
+	             values (#{hr_id}, #{hr_date}, #{hr_time}, #{hr_pay}, #{h_id}
+	             , #{pname}, #{pricecnt}, #{hr_name}, #{hr_email}, #{hr_tel}
+	             , #{imp_uid}, #{m_id})
+   </insert>
+   
+   <delete id="deleteResHospital">
+		delete H_RES where IMP_UID=#{imp_uid}
+   </delete>
    
 </mapper>
