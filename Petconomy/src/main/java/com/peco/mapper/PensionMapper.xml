@@ -5,7 +5,18 @@
 <mapper namespace="com.peco.mapper.PensionMapper">
 
 		<select id="mapList" resultType="com.peco.vo.PensionVO">
-		select p_Id, pname, Addr, openHour, substr(ParkYN,3,2) ParkYN from pension where 1=1
+		select p_Id, pname, Addr, openHour, substr(parkyn,-2) ParkYN 
+		from pension where 1=1
+		<if test="megaregion=='전체' || smallregion=='전체'">
+		</if>
+		
+		<if test="megaregion!=null">
+			and addr like  '%'||#{megaregion}||'%'
+		</if>
+		
+		<if test="smallregion!=null">		 
+			and addr like  '%'||#{smallregion}||'%' 
+		</if>
 		<include refid="mega"/>
 
 		</select>
@@ -13,11 +24,8 @@
 		<select id="pensionList" resultType="com.peco.vo.PensionVO">
 			select * from
 			(select t.*, rownum rn from
-			(select p_Id, pname, Addr, openHour, substr(ParkYN,3,2) ParkYN 
+			(select p_Id, pname, Addr, openHour, substr(parkyn,-2) ParkYN 
 			from pension where 1=1
-		<if test="megaregion=='전체' || smallregion=='전체'">
-			
-		</if>
 		<if test="megaregion!=null">
 			and addr like  '%'||#{megaregion}||'%'
 		</if>

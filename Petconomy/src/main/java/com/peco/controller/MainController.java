@@ -47,7 +47,7 @@ public class MainController {
 	public String plist(RegionCri cri, Model model, HttpServletRequest request) {
 		
 		List<PensionVO> list = pensionService.pensionList(cri);
-		List<PensionVO> lists = pensionService.mapList();
+		List<PensionVO> lists = pensionService.mapList(cri);
 		int totalCnt = pensionService.totalCnt(cri);
 		PageDto pageDto = new PageDto(cri, totalCnt);
 		

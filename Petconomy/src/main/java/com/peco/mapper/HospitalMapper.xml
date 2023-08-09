@@ -12,7 +12,7 @@
 	</select>	
 		
 		<select id="mapList" resultType="com.peco.vo.HospitalVO">
-		select h_id, pname, Addr, openHour, substr(ParkYN,3,2) ParkYN from hospital where 1=1
+		select h_id, pname, Addr, openHour, substr(parkyn,-2) ParkYN from hospital where 1=1
 		<include refid="mega"/>
 		<include refid="small"/>
 		</select>

@@ -14,7 +14,7 @@ import com.peco.vo.RegionCri;
 @Service
 public interface PensionService {
 
-	public List<PensionVO> mapList();
+	public List<PensionVO> mapList(RegionCri cri);
 
 	public List<PensionVO> pensionList(RegionCri cri);
 	
