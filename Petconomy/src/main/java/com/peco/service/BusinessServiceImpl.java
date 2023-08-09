@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.peco.mapper.BusinessMapper;
+import com.peco.vo.PensionRoomVO;
 import com.peco.vo.PensionVO;
 
 @Service
@@ -20,5 +21,10 @@ public class BusinessServiceImpl implements BusinessService{
 	public PensionVO pensionGetOne(PensionVO pension) {
 		return businessMapper.pensionGetOne(pension);
 	}
-	
+
+	@Override
+	public int pensionRoomInsert(PensionRoomVO pensionroom) {
+		return businessMapper.pensionRoomInsert(pensionroom);
+	}
+
 }

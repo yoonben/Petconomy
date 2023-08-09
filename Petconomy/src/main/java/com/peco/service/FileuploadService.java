@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.peco.vo.BusinessFileuploadVO;
 import com.peco.vo.FileuploadVO;
 import com.peco.vo.PensionFiileuploadVO;
+import com.peco.vo.PensionRoomFiluploadVo;
 
 @Service
 public interface FileuploadService {
@@ -16,6 +17,8 @@ public interface FileuploadService {
 	public int insertProfile(FileuploadVO vo);
 	
 	public int insertPensionfile(PensionFiileuploadVO vo);
+	
+	public int insertPensionRoomfile(PensionRoomFiluploadVo vo);
 
 	public int insertBusinessfile(BusinessFileuploadVO vo);
 	

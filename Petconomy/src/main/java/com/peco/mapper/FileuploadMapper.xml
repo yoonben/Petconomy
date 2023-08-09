@@ -10,8 +10,13 @@
 	</insert>
 	
 	<insert id="insertPensionfile">
-		insert into P_img (pi_id, p_id, uploadpath, filename, filetype, fileroom)
-				values ('pi_'||SEQ_PI_ID_NUM.nextval,#{p_id},#{uploadpath},#{filename},#{filetype},#{fileroom})
+		insert into P_img (pi_id, p_id, uploadpath, filename, filetype)
+				values ('pi_'||SEQ_PI_ID_NUM.nextval,#{p_id},#{uploadpath},#{filename},#{filetype})
+	</insert>
+	
+	<insert id="insertPensionRoomfile">
+		insert into PR_img (pr_id, uploadpath, filename, filetype, room_no, p_id)
+				values ('pr_'||SEQ_PR_ID_NUM.nextval,#{uploadpath},#{filename},#{filetype},#{room_no},#{p_id})
 	</insert>
 	
 	<insert id="insertBusinessfile">
