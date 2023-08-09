@@ -124,7 +124,11 @@ window.addEventListener('load', function(){
 									, body : formData
 						})
 						.then(response=>response.json())
-						.then(map => fileuploadRes(map));
+						.then(map => {
+							 fileuploadRes(map);
+				                // 페이지 리디렉션 실행
+				             window.location.href = '/peco/main'; // 원하는 페이지 URL로 변경
+						});
 					}else{
 						signupMsg.innerHTML = map.msg;
 					}
