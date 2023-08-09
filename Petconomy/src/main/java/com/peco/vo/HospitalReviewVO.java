@@ -10,4 +10,6 @@ public class HospitalReviewVO {
 	private String regitdate;
 	private String star;
 	private String reviewer;
+	
+	private String pname;
 }
