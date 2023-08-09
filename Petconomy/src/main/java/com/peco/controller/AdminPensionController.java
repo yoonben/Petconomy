@@ -38,4 +38,10 @@ public class AdminPensionController extends CommonRestController {
 		return responseMemberListMap(list, pageDto);
 	}
 	
+	@GetMapping("/adminPension/update/{p_id}")
+	public Map<String, Object> update(@PathVariable("p_id") String p_id){
+		
+		return responseDeleteMap(adminPensionService.update(p_id));
+	}
+	
 }

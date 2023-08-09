@@ -13,4 +13,6 @@ public interface AdminPensionMapper {
 	
 	public int totalCnt();
 	
+	public int update(String p_id);
+	
 }

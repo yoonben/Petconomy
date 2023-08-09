@@ -412,7 +412,7 @@ https://templatemo.com/tm-579-cyborg-gaming
      
       <!-- 카카오 지도 api 끝 -->
 
-		<script src="/resources/js/HospiralReview.js"></script>
+		<script src="/resources/js/HospitalReview.js"></script>
       <!-- Scripts -->
       <!-- Bootstrap core JavaScript -->
       <script src="/resources/vendor/jquery/jquery.min.js"></script>

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -313,9 +313,9 @@ https://templatemo.com/tm-579-cyborg-gaming
                           </div>                          
                           <div class="col-lg-8">
                             <p>
-                            <p style='font-size: 2em; color: #ec6090;'>${roomList.roomname }</p>
-                            <hr style="height: 4px; background-color: #ec6090;">
-                            <p style='font-size: 2em; color: #ec6090;'>가격 : ${roomList.price } 원</p>
+	                            <p style='font-size: 2em; color: #ec6090;'>${roomList.roomname }</p>
+	                            <hr style="height: 4px; background-color: #ec6090;">
+	                            <p style='font-size: 2em; color: #ec6090;'>가격 : ${roomList.price } 원</p>
                             </p>
                           </div>
                           <div class="col-lg-12">
@@ -437,6 +437,9 @@ https://templatemo.com/tm-579-cyborg-gaming
           
         </div>
       </div>
+      </div>
+      </div>
+      
 
       <!-- 풋터 시작 -->
 		<%@ include file="../common/footer.jsp" %>

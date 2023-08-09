@@ -13,4 +13,10 @@
 		 where checkyn = 'N'
 	</select>
 	
+	<update id="update">
+		update pension
+		   set checkyn = 'Y'
+		 where p_id= #{p_id}
+	</update>
+	
 </mapper>
