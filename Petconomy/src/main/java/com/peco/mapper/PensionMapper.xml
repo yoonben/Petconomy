@@ -83,7 +83,7 @@
 		
 		
 	<select id="totalCnt" resultType="int">
-	select count(*) from pension where p_id=#{p_id}
+	select count(*) from pension <!-- where p_id=#{p_id} -->
 	</select>	
 	
   	<sql id="mega">

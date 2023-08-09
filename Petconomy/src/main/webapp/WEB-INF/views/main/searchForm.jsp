@@ -32,13 +32,16 @@ function regionChange(e){
 	else if(e.value == "충청") var changeItem = chungcheongdo;
 	else if(e.value == "제주") var changeItem = jejudo;
 	
+	$('#smallregion').empty();
 
-	
 	for(item in changeItem){                
-		var option = $("<option ${'"+changeItem[item]+"' eq smallregion ? 'selected' : ' ' }>"+changeItem[item]+"</option>");
-	        $('#smallregion').append(option);
+		//var isSelected = (changeItem[item] === ) ? 'selected' : '';
+		var option = $("<option id='"+changeItem[item]+"' value='"+changeItem[item]+"' selected>"+changeItem[item]+"</option>");
+		
+        $('#smallregion').append(option);
 		    }
-	$('#smallregion').val($('input[name=sRegion]').val());
+
+
 }	
 
 
@@ -46,11 +49,6 @@ function go(page){
 	selectForm.pageNo.value=page;
 	selectForm.submit();
 }
-
-$(function() {
-    $("select[name=road_x1]").val((("${searchVO.road_x1}" == '') ? "" : "${searchVO.road_x1}")).prop("selected", true);              //select문
-});
-
 </script>
 <form id="search" action="/peco/main/pension" method="get" name="selectForm">
 <div class="test-score1" data-max="5" data-rate="5"></div>
@@ -67,8 +65,8 @@ $(function() {
   <option value="충청" ${pageDto.regioncri.megaregion eq "충청" ? "selected" : " " }>충청도</option>
   <option value="제주" ${pageDto.regioncri.megaregion eq "제주" ? "selected" : " " }>제주도</option>
 </select>
-<select class="form-select form-select-inline" id="smallregion" name="smallregion" id="smallregion" style=" width:100px; display:inline-block;">
-<option value=''>군·구</option>
+<select class="form-select form-select-inline" id="smallregion" name="smallregion" onchange="this.form.submit(this.value)" id="smallregion" style=" width:100px; display:inline-block;">
+<option value='' class="smallOpt">군·구</option>
 </select>
 
 <select class="form-select form-select-inline" id="sort" name="sort" id="smallregion" style=" width:150px; display:inline-block; ">
