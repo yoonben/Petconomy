@@ -92,12 +92,66 @@
  
 
 	
+	
+	
+	.reply-form-container {
+    width: 100%;
+    background-color: #f5f5f5;
+    padding: 10px;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden; /* 내용 오버플로우 시 스크롤 생성 */
+}
+
+.header-and-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.reply-form-header {
+    font-weight: bold;
+}
+
+.close-button {
+    padding: 5px 10px;
+    color: #555;
+    cursor: pointer;
+}
+
+.reply-textarea {
+    width: 93%;
+    height: 80px;
+    padding: 5px;
+    box-sizing: border-box;
+    resize: none;
+}
+
+.submit-button {
+    position: absolute;
+	width: 6%;
+    height: 80px;
+    bottom: 17px;
+    right: 10px;
+    padding: 5px 10px;
+    background-color: #4285f4;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+	
+	
+	
+	
     
   </style>
   <script>
   
-    window.addEventListener('load', () => {
-    	
+window.addEventListener('load', () => {
+
+	
       /* --------------좋아요버튼-------------- */
       const animatedIcon = document.getElementById('animated-icon');
       const likebox = document.getElementById('likebox');
@@ -142,7 +196,8 @@
 
       //파일목록 조회 및 출력
       getFileList();
-    });
+    
+});
 
    
     var nickname = "${sessionScope.member.nickname}"; // 닉네임 전역변수 선언
@@ -270,7 +325,7 @@
         viewForm.action = '/peco/board/delete';
         viewForm.submit();
         hideModal();
-      }
+    }
 
 	/* 게시글 삭제 모달 */
     function postDeleteModal() {
@@ -294,9 +349,14 @@
     	    // 모달 창이 닫힐 때 배경 blur 처리 스타일을 원래대로 변경
     	    backdrop.style.display = 'none';
     	  });
-    	}
+    }
 	
-
+    /* 댓글창 닫기 */
+    function closeReply() {
+    	
+    	document.querySelector('.reply-form-container').style.display = 'none';
+    	
+    }
 
 
     
@@ -419,6 +479,10 @@
         
         <br>
         
+
+        
+        
+        
         <!-- 비동기로 js에서 작성한 파일 목록 태그 들어갈 자리 -->
         <div id="divFileupload"></div>
         
@@ -428,11 +492,13 @@
         <!-- TODO 닉네임을 변경했을때 세션에 바로 갱신을 해주어야 작성자에 새로운 닉네임이 반영됨
                 그렇지않으면 세션 만료 전까지 이적 닉네임으로 저장됨 -->
         <c:if test="${not empty sessionScope.member.m_id}">
-        <div class="input-group">
-          <span class="input-group-text">답글 작성</span>
-          <input type="text" aria-label="First name" class="form-control" id="reply">
-          <input type="text" aria-label="Last name" class="input-group-text" id="btnReplyWrite" value="등록하기">
-        </div>
+	        <div class="reply-form-container">
+			    <div class="header-and-buttons">
+			        <div class="reply-form-header">댓글쓰기</div>
+			    </div>
+			    <textarea class="reply-textarea"  id="reply"></textarea>
+			    <button class="submit-button" id="btnReplyWrite">등록</button>
+			</div>                                           
         </c:if>
 
         <!-- ----------------댓글창 들어가는곳----------------- -->

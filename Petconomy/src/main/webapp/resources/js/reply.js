@@ -50,7 +50,6 @@ function fetchPost(url,obj,callback){
 //덧글 조회 및 출력
 function getReplyList(page){
 	let bno = document.querySelector('#bno').value;
-	//let page = document.querySelector('#page').value;
 	
 	/**
 	 * falsey : false, 0, "", NaN, undefined, null
@@ -63,9 +62,7 @@ function getReplyList(page){
 	if(!page){
 		page = 1;
 	}
-	
-	console.log("bno : "+bno);
-	console.log("page : "+page);
+
 	
 	//백팃 쓰는법
 	console.log("패치 매핑"+`/reply/list/${bno}/${page}`);
@@ -101,29 +98,36 @@ function replyView(map){
 						+ '  <tbody>                                   ';					
 							
 	list.forEach((reply, index)=>{
-		console.log("reply.nickname는? -> ",reply.nickname);
-		console.log("board.nickname -> ",nickname);
+		
 		replyDivStr 	+='' 					
-						+ '    <tr id="tr'+reply.rno+'" data-value="'+reply.reply+'">                                    '
+						+ '    <tr id="tr'+reply.rno+'" data-value="'+reply.reply+'" data-rno="'+reply.rno+'">                                    '
 						+ '      <th scope="row">'+reply.rno+'</th>                '
 						+ '      <td class="text-start">'+reply.reply
-if(nickname == reply.nickname){
+						
+						
+	if(nickname == reply.nickname){
 		replyDivStr		+='			<i class="fa-regular fa-pen-to-square"  onclick="replyEdit('+reply.rno+')"></i>	'
 						+ ' 		<i class="fa-regular fa-trash-can" onclick="replyDelete('+reply.rno+')"></i>		'
-							};
+							      };
+							
+							
 		replyDivStr		+=''
+						+ ' 		<a onclick="r_replyWrite('+reply.rno+')">답글달기</a>		'
 						+ '		 </td>        										'
 						+ '      <td>'+reply.nickname
 						+ '        <br>'
 						+ '           '+reply.regdate         
 						+ '      </td>                         '
-						+ '    </tr>                                   ';
+						+ '    </tr>                                   '
+						+ '    <div id="r_replyDiv'+reply.rno+'">                                   '
+						+ '    </div>                                   ';
 	});
 	
 		replyDivStr 	+='' 
 						+ '  </tbody>                                  '
 						+ '</table>                                    ';
-							replyDiv.innerHTML = replyDivStr;
+		
+		replyDiv.innerHTML = replyDivStr;
 							
 	//페이지 블록 붙이기
 	let pageBlock 		=``						
@@ -158,6 +162,10 @@ if(nickname == reply.nickname){
 						
 	
 }
+
+
+
+
 
 function replyWrite(){
 	//bno 게시글번호
@@ -206,19 +214,47 @@ function replyDelete(rno){
 	fetchGet(`/reply/delete/${rno}`, replyRes);
 }
 
+
+function r_replyWrite(rno){
+	let r_replyDiv = document.querySelector('#r_replyDiv'+rno);
+	r_replyDiv.innerHTML    =''
+							+'<th colspan="3" class="Show_reply">'   
+					        +'<div class="reply-form-container">                                   '
+							+'    <div class="header-and-buttons">                                 '
+							+'        <div class="reply-form-header">댓글쓰기</div>                '
+							+'        <div class="close-button" onclick="closeReply()">닫기</div>                         '
+							+'    </div>                                                           '
+							+'    <textarea class="reply-textarea"  id="reply"></textarea>         '
+							+'    <button class="submit-button" id="btnReplyWrite">등록</button>   '
+							+'</div>                                                               '
+							+'</th>'                                                               
+}
+
 function replyEdit(rno){
 										//rno매개변수를 줄때는 function replyEdit(rno)의 rno를 그대로 줘야함. 
 										//reply.rno 아님
 	let tr = document.querySelector('#tr'+rno);
 	let replyTxt = tr.dataset.value; //답글 수정 눌렀을때 기존 답글내용 유지 접근하기
 	tr.innerHTML = ''
-		+'<th colspan="3">                                '
+/*		+'<th colspan="3">                                '
 		+'<div class="input-group">																								'
 		+'  <span class="input-group-text">답글 수정</span>                                                                       	'
 		+'  <input type="text" aria-label="First name" class="form-control" id="editReply'+rno+'" value="'+replyTxt+'">                                         '
 		+'  <input type="text" aria-label="Last name" class="input-group-text" id="btnReplyWrite" onclick="replyEditAction('+rno+')" value="수정하기">               '
 	  	+'</div>                                                                                                                '
-        +'</th>'                                                                                                                        
+        +'</th>'  */
+        
+        
+		+'<th colspan="3" class="Show_reply">'   
+        +'<div class="reply-form-container">                                   '
+		+'    <div class="header-and-buttons">                                 '
+		+'        <div class="reply-form-header">댓글 수정</div>                '
+		+'        <div class="close-button" onclick="closeReply()">닫기</div>                         '
+		+'    </div>                                                           '
+		+'    <textarea class="reply-textarea"  id="editReply'+rno+'" >'+replyTxt+'</textarea>         '
+		+'    <button class="submit-button" id="btnReplyWrite" onclick="replyEditAction('+rno+')">수정하기</button>   '
+		+'</div>                                                               '
+		+'</th>' 
 }
 
 function replyEditAction(rno){
