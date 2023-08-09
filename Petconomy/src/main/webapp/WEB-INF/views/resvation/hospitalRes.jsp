@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -267,7 +268,9 @@
          	
          	<!-- 폼 -->
          	<div class="datepicker" style="display: inline-block;"></div>
-           	<div style="display: inline-block;"><input type="text" class="timepicker"></div>
+           	
+           	<!-- timepicker -->
+           	<div class="timepicker" style="display: inline-block;"></div>
          	
          	<!-- 출력 -->
          	<div id="datepick">
@@ -307,8 +310,8 @@
 	
 	<!-- 비활성화 날짜 계산 -->
   <c:forEach var="dis" items="${disabledate}">
-   date<input type="text" value="${dis.hr_date}" name="hr_date">
-   time<input type="text" value="${dis.hr_time}" name="hr_time">
+   <input type="hidden" value="${dis.hr_date}" name="hrDate">
+   <input type="hidden" value="${dis.hr_time}" name="hrTime">
   </c:forEach>
 			
 			</div>
@@ -318,19 +321,152 @@
 
 		  
   <script>
-  //db에서 운영시간 가져와서 max min 설정
-  //예약된 date와 time값 선택 비활성화 -> 이차원배열?
-  //time은 1개만 date는 예약가능한 시간이 없을 경우
-  //css
-  //로고
+
+  let create2dArr = function() { //선택불가날짜 배열 만들기
+	  
+	  let disdateArr = []; //선택불가날짜 받을 배열
+	  let distimeArr = []; //선택불가시간 받을 배열
+	  
+	  let count = 0;
+	  
+	  //선택불가날짜 배열에 값 삽입하고 배열 길이 설정
+	  $("input[name=hrDate]").each(function(index, item){
+      	var hrDate = $(item).val(); //값 가져오기
+      	disdateArr.push(hrDate); //배열에 값 삽입
+      	count += 1; 
+      });
+	  
+	  //선택불가시간 배열에 값 삽입하고 배열 길이 설정
+	  $("input[name=hrTime]").each(function(index, item){
+      	var hrTime = $(item).val(); //값 가져오기
+      	distimeArr.push(hrTime); //배열에 값 삽입
+      });
+		
+      	//console.log(disdateArr);
+      	//console.log(distimeArr);
+
+	  //배열 선언1
+	  let arr = [];
+	  
+	  //배열에 [날짜, 시간] 값 삽입
+	 for(let i=0; i<count; i++) { //3
+		arr.push([disdateArr[i],distimeArr[i]]);
+	 }
+	  //console.log('a'+arr);
+	  
+	  //배열 선언2
+	  let dtArr = [];
+	  
+	 for(let i=0; i<disdateArr.length; i++) { //위 배열의 값을 밑의 배열에 삽입
+				dtArr.push(arr[i]);
+	}
+	 //console.log(dtArr);
+	  
+	 return dtArr;
+  }
   
-  //date값이 선택될때마다 time테이블 리로드
-  //date-time의 값을 비활성화
-  //date의 값을 가진 이차원배열에서 time값을 빼내 비활성화 없을경우 그냥 리로드
-  //이차원 배열에서 date-time가 있는지 확인하는건 함수로 리턴이 true일 경우 배열값 빼내 비활성화 
-  //가져올 수 있는 time 값이 없는 경우 date 비활성화
-  
+//날짜마다의 선택불가 시간 가져오기
+let getdisDate = function() {
+	let disable = create2dArr();
+	let date = document.querySelector('#date').value; //화면에서 선택된 값
+
+	let distime = []; //비활성화할 시간
+	
+	//선택된 날짜에 예약된 시간이 있는지 체크
+	for(var i=0; i<disable.length; i++) {
+		//console.log(disable[i][0]);
+		//console.log('d'+date);
+		
+		if(disable[i][0] === date) {
+			distime.push(disable[i][1]);
+		}
+	}
+	console.log(distime);
+	
+	return distime;
+	
+}
+
+//선택불가 시간
+let checkDisable = function() {
+	
+	$(".timepicker").empty();
+	
+	let time = openHour();  
+	let dis = getdisDate();
+
+	console.log(dis.length);
+	console.log(time.length);
+	var myClass = "time";
+	
+	if(dis.length === 0) {
+		
+		for(let i=0; i<time.length; i++) {
+			var div = $("<input type='button' value='" + time[i] + "'></input>").addClass(myClass);
+            $(".timepicker").append(div);
+		}
+		
+	} else {
+		
+		
+		for (let j = 0; j < time.length; j++) {
+		    let isDuplicate = false;
+		    
+		    for (let i = 0; i < dis.length; i++) {
+		        if (dis[i] === time[j]) {
+		            isDuplicate = true;
+		            break; // No need to continue checking
+		        }
+		    }
+
+		    if (isDuplicate) {
+		        console.log('dis[i]' + time[j]);
+		        console.log('time[j]' + time[j]);
+
+		        if (!$(".timepicker").find("input[value='" + time[j] + "']").length) {
+		            var div = $("<input type='button' disabled='disabled' value='" + time[j] + "'></input>").addClass(myClass);
+		            $(".timepicker").append(div);
+		        }
+		    } else {
+		        if (!$(".timepicker").find("input[value='" + time[j] + "']").length) {
+		            var div = $("<input type='button' value='" + time[j] + "'></input>").addClass(myClass);
+		            $(".timepicker").append(div);
+		        }
+		    }
+		}
+		
+	}
+				
+}
+
+
+//운영시간 가져오기
+function openHour() {
+	
+	//전체시간 배열
+	let time = ['07:00','08:00','09:00','10:00','11:00'
+				,'12:00','13:00','14:00','15:00','16:00'
+				,'17:00','19:00','20:00','21:00','22:00','23:00']
+	
+	//console.log(time);
+	
+	let openhour = document.querySelector('#openhour').value;
+	let str = openhour.split('~');
+	let open =  str[0];
+	let close =  str[1];
+	
+	//console.log(time.indexOf(open));
+	//console.log(time.indexOf(close));
+	
+	//운영시간에 맞춰 배열 자름
+	time = time.slice(time.indexOf(open), time.indexOf(close)+1);
+	
+	//console.log(time);
+	
+	return time;	
+}
 	$(function() {
+		
 		
 		$(".datepicker").datepicker({ //달력1
             showOtherMonths: true
@@ -347,29 +483,12 @@
             ,dateFormat: 'yy-mm-dd'
             ,onSelect: function(date) {
              $('#date').val(date);
+             checkDisable();
              }
         }); 
-    
-		$('.timepicker').datetimepicker({
-			  datepicker:false,
-			  format:'H:i',
-			  minDate:'-1970/01/02',
-			  maxDate:'+1970/01/02',
-			  opened: true,
-			  inline: true,
-		    onSelectTime:function(time){
-
-		    	 $('#time').val(getTime());
-		    }
-		});      
 		
-		//timepicker 시간 가져오기
-		let getTime = function() {
-		    var selectVal = $('.timepicker').datetimepicker('getValue');
-		    var selectValstr = selectVal.toString();
-		    var time = selectValstr.substr(16,5);
-		    return time;
-		}
+		
+		
 		
 	});
 
@@ -377,8 +496,8 @@
        Resbtn.addEventListener('click', function() { //선택 버튼 눌렀을 때 
     	   let date = document.querySelector('#date').value;
            let time = document.querySelector('#time').value;
-           console.log(date);
-           console.log(time);
+           //console.log(date);
+           //console.log(time);
            
            if(!date.length || !time.length) { //만약에 input 값이 비었다면
        		alert('날짜/시간을 선택해주세요');
@@ -390,6 +509,15 @@
            
            
         }) //resbtn event
+        
+        //선택 버튼 값 가져와서 박스에 출력
+        
+	        $(document).on("click",".time",function(){
+	        	var idx = $('.time').index(this);
+	        	var idxVal = $('.time').eq(idx).val();
+	            console.log(idxVal);
+	            $('#time').val(idxVal);
+	        })
 
 
                //예약자정보 직접입력 전환 기본값:readonly(disable로 설정 시 서브밋할때 안넘어감)
@@ -397,7 +525,6 @@
                   $('#user_id').attr('readonly',false);
                   $('#user_email').attr('readonly',false);
                   $('#user_tel').attr('readonly',false);
-                  //console.log('aaa');
                })
                
     
@@ -515,11 +642,6 @@
 
  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
- 
- <!-- datetimepicker -->
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <script src="/resources/datetimepicker/jquery.datetimepicker.full.min.js"></script>
-  <link rel="stylesheet" href="/resources/datetimepicker/jquery.datetimepicker.min.css"/> 
  
  <link rel="stylesheet" href="/resources/datepicker/css/jquery-ui.css">
  </body>
