@@ -42,5 +42,7 @@ public interface BoardService {
 	public int likeCnt(int bno);
 	
 	public int visitCnt(int bno);
+	
+	public List<BoardVO> selectMyBoard(String m_id);
 
 }

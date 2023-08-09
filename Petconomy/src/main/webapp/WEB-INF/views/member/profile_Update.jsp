@@ -216,7 +216,7 @@
 
 </head>
 <body>
-<h2>마이페이지</h2>
+<h2>나의 정보 수정</h2>
 
 <%
 String id = request.getParameter("id");

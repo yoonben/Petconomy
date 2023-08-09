@@ -12,7 +12,10 @@ public class PensionVO {
 	private String category;   
 	private String openhour;   
 	private String parkyn;     
-	private String checkyn;    
+	private String checkyn;   
+	private String latitude;
+	private String longitude;
+	
 
 	private String registerimg;
 	private String pensionimg; 

@@ -198,6 +198,11 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.visitCnt(bno);
 	}
 
+	@Override
+	public List<BoardVO> selectMyBoard(String m_id) {
+		return mapper.selectMyBoard(m_id);
+	}
+
 
 
 

@@ -323,6 +323,25 @@
 	<update id="updateReplyCnt">
     update board set replycnt = replycnt + #{amount} where bno = #{bno}
   	</update>
+  	
+  	<select id="selectMyBoard" resultType="com.peco.vo.BoardVO">
+  	SELECT 
+            b.bno,
+		    b.title,
+		    b.writer,
+		    b.content,
+		    b.m_id,
+		    b.visitcount,
+		    b.likecount,
+		    DECODE(TRUNC(SYSDATE), TRUNC(b.regdate), TO_CHAR(b.regdate, 'HH24:MI:SS'), TO_CHAR(b.regdate, 'YYYY-MM-DD')) AS regdate,
+		    b.updatedate,
+		    b.category,
+            b.replycnt
+		FROM  Board b
+		LEFT JOIN Member m ON b.m_Id = m.m_Id
+		WHERE b.m_Id=#{m.m_Id}
+		ORDER BY b.bno DESC 
+  	</select>
 
 
 

@@ -43,5 +43,7 @@ public interface BoardMapper {
 	public int visitCnt(int bno);
 	
 	public int updateReplyCnt(@Param("bno") int bno,@Param("amount") int amount);
+	
+	public List<BoardVO> selectMyBoard(String m_id);
 
 }

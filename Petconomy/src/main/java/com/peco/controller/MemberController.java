@@ -19,10 +19,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.peco.service.BoardService;
 import com.peco.service.FileuploadService;
 import com.peco.service.HospitalService;
 import com.peco.service.MemberService;
 import com.peco.service.PensionService;
+import com.peco.vo.BoardVO;
 import com.peco.vo.FileuploadVO;
 import com.peco.vo.HospitalVO;
 import com.peco.vo.MemberVO;
@@ -48,22 +50,38 @@ public class MemberController extends CommonRestController{
 	@Autowired
 	HospitalService hospitalService;
 	
+	@Autowired
+	BoardService boardService;
+	
 	
 	//회원 프로필 조회
 	@GetMapping("profile")
-	public String getOne(HttpSession session, MemberVO vo, Model model ,@RequestParam String m_id) {
+	public String getOne(HttpSession session, MemberVO vo, Model model, BoardVO boardVo, FileuploadVO fileVo) {
 		try {
 			log.info("======================= m_id" + vo);
 			if(vo.getM_id().equals("") || vo.getM_id() == null ) {
 				System.out.println("msg");
 				return "msg";
 			}
-			
+			//하나의 회원 조회
 			MemberVO member = service.getOne(vo.getM_id());
 			
-			System.out.println(fileuploadService.getProfile(m_id));
+			//==================================================================
+			// 게시글 조회
+			/*	List<BoardVO> board = boardService.selectMyBoard(boardVo.getM_id());
+
+			if(board != null && member.getM_id().equals(boardVo.getM_id())) {
+				for(BoardVO boardvo : board) {
+					model.addAttribute("boardvo", boardvo);
+				}
+			}
 			
-			FileuploadVO fileuploadVO = fileuploadService.getProfile(m_id);
+			*/
+			//==================================================================
+			// 프로필 사진 조회
+			System.out.println(fileuploadService.getProfile(fileVo.getM_id()));
+			
+			FileuploadVO fileuploadVO = fileuploadService.getProfile(fileVo.getM_id());
 			
 			String profile = fileuploadVO.getS_savePath();
 			
@@ -77,6 +95,8 @@ public class MemberController extends CommonRestController{
 
 		    model.addAttribute("profile", fileuploadVO.getS_savePath());
 			
+		    
+		    
 			return "/member/profile";
 			
 		} catch (Exception e) {
@@ -218,11 +238,22 @@ public class MemberController extends CommonRestController{
 	    return "/member/profile";
 	}
 	
-
-	//TODO : 펜션매퍼,서비스, 컨트롤러  > 펜션, 병원을 등록한 회원 m_id와  펜션등록 테이블에 있는 m_id가 일치하면 펜션정보 화면에 출력할 수 있는 컨트롤러 작성
+	
+	
+	// 게시글 조회
+	@GetMapping("myBoard")
+	public String myBoard(Model model, BoardVO vo) {
+		List<BoardVO> board = boardService.selectMyBoard(vo.getM_id());
+		System.out.println("board ================== : " + board);
+		model.addAttribute("board", board);
+		
+		return "/member/myBoard";
+	}
 
 
 // 펜션 컨트롤러 부분==========================================================================	
+// 펜션 컨트롤러 부분==========================================================================	
+//TODO : 펜션매퍼,서비스, 컨트롤러  > 펜션, 병원을 등록한 회원 m_id와  펜션등록 테이블에 있는 m_id가 일치하면 펜션정보 화면에 출력할 수 있는 컨트롤러 작성
 	
 	//하나의 펜션 조회
 	@GetMapping("pensionProfile")
@@ -234,11 +265,10 @@ public class MemberController extends CommonRestController{
 			System.out.println("pension================== (1) : " + pension);	
 			
 			if(pension != null && member.getM_id().equals(pension.getM_id())) {
-					PensionVO mypension = pensionService.getOne_P(vo.getM_id());
+					//PensionVO mypension = pensionService.getOne_P(vo.getM_id()); 다시 안담고 바로 조회후 담아주면된다!!
 					
-					model.addAttribute("mypension", mypension);
-					
-			System.out.println("mypension================== (2) : " + mypension);		
+					model.addAttribute("pension", pension);
+						
 			
 				} else {
 					//메세지 처리
@@ -249,7 +279,7 @@ public class MemberController extends CommonRestController{
 				
 			} catch (Exception e) {
 				e.printStackTrace(); 
-		        return "/member/nodata";
+		        return "";
 			}
 	}
 	
@@ -280,6 +310,7 @@ public class MemberController extends CommonRestController{
 
 	
 // 병원 컨트롤러 부분==========================================================================	
+// 병원 컨트롤러 부분==========================================================================	
 
 	//하나의 병원 조회
 	@GetMapping("hospitalProfile")
@@ -292,10 +323,10 @@ public class MemberController extends CommonRestController{
 			System.out.println("hospital================== (1) : " + hospital);
 			
 			if(hospital != null && member.getM_id().equals(hospital.getM_id())) {
-				HospitalVO myhospital = hospitalService.getOne_H(vo.getM_id());
-				session.setAttribute("myhospital", myhospital);
+				//HospitalVO myhospital = hospitalService.getOne_H(vo.getM_id());
 				
-				System.out.println("myhospital================== (2) : " + myhospital);
+				session.setAttribute("hospital", hospital);
+				
 				
 				return "/member/hospitalProfile";		
 				
@@ -339,5 +370,9 @@ public class MemberController extends CommonRestController{
 	@GetMapping("css")
 	public String css(){
 		return "member/css";
+	}
+	@GetMapping("tabBar")
+	public String tabBar(){
+		return "member/tabBar";
 	}
 }
