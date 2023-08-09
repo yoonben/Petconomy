@@ -33,13 +33,12 @@
 
     <style>
       body{
-        margin: 0 auto; /* 바디 마진을 0으로 하고 가로 가운데 정렬 */
-    	background-color: #ffec90;
+        background-color: white;
       }
     
   	  div >.page-content{
-        background-color: white;
-        padding: 30px
+        background-color: rgb(255, 187, 0);
+        padding: 30px;
       }
     
       .top-streamers{
@@ -140,115 +139,47 @@
     }
   
 
-#dropZone {
-    border: 2px dashed #ccc;
-    padding: 20px;
-    text-align: center;
-    cursor: pointer;
-}
-
-#dropZone.dragover {
-    background-color: rgba(0, 0, 0, 0.1);
-}
-
-
 
   </style>
   
   <script>
 window.addEventListener('load', function() {
-	
-    const filesInput = document.getElementById('files');
-    filesInput.addEventListener('change', function(){
-    	
-      	
-		let formData = new FormData(editForm);
-		
-		//Formdata값 확인
-		//[0]배열은 이름
-		//[1]배열은 값
-		console.log("formData : ", formData);
-		for(var pair of formData.entries()){
-			if(typeof(pair[1]) ==  'object'){
-				let fileName = pair[1].name;
-				let fileSize = pair[1].size;
-				
-				//파일 확장자, 크기 체크
-				//업로드가능한 최대 용량을 초과하지않았는지 확인
-				//서버에 전송 가능한 형식인지 확인
-				if(!checkExtension(fileName,fileSize)){
-					return false
-				} 
-				
-				
-				console.log('fileName : ',fileName);				
-				console.log('fileSize : ',fileSize);
-			}
-		}
-	
-		
-		fetch('/peco/file/fileUploadActionFetch',{method:'post',body: formData})
-		.then(response => response.json())
-		.then(map => getFileList());
-    });
-    
-    
-    
- 	// dropZone에 dragover 이벤트 리스너 추가
-    const dropZone = document.getElementById('dropZone');
-    dropZone.addEventListener('dragover', handleDragOver);
 
-    // dropZone에 drop 이벤트 리스너 추가
-    dropZone.addEventListener('drop', handleFileDrop);
-
-    // 이벤트 핸들러 정의
-    function handleDragOver(event) {
-      event.preventDefault();
-      dropZone.classList.add('dragover');
-    }
-
-    function handleFileDrop(event) {
-      event.preventDefault();
-      dropZone.classList.remove('dragover');
-
-      const files = event.dataTransfer.files;
-   	  // 파일 유효성 검사 함수 호출
-      if (validateFiles(files)) {
-        handleUploadedFiles(files);
-      }
-    }
-
-    // 업로드된 파일을 처리하는 함수
-    function handleUploadedFiles(files) {
-      const formData = new FormData(editForm);
-
-      for (const file of files) {
-        formData.append('files', file);
-      }
-
-      // 파일 업로드 요청 보내기
-      fetch('/peco/file/fileUploadActionFetch', {
-        method: 'post',
-        body: formData,
-      })
-      .then(response => response.json())
-      .then(map => {
-        // 응답 처리, 파일 목록 업데이트 등
-        getFileList();
-      });
-    }
-
-    
-    
-    
 
 	
-
-	
-	// 글수정 버튼 클릭 시  파일유효성검사
+	// btnEdit 버튼 클릭 시 이벤트 리스너
 	document.getElementById('btnEdit').addEventListener('click', FileCheck);
 	
 
+	// 파일 유형과 크기 처리 함수
+	function FileCheck() {
+	  
+	  // 기본 이벤트 제거
+	  event.preventDefault(); 
+	  const filesInput = document.getElementById('files');
+	  const files = filesInput.files;
+
+	  // 파일 유형 확인
+	  const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+	  for (let i = 0; i < files.length; i++) {
+	    if (!allowedTypes.includes(files[i].type)) {
+	      alert('이미지 파일만 업로드할 수 있습니다.');
+	      return;
+	    }
+	  }
+
+	  // 파일 크기 확인
+	  const maxSize = 10 * 1024 * 1024; // 10MB
+	  for (let i = 0; i < files.length; i++) {
+	    if (files[i].size > maxSize) {
+	      alert('파일 크기가 10MB 이하여야 합니다.');
+	      return;
+	    }
+	  }
+
+	  // 파일 유형과 크기가 모두 유효한 경우, 추가로 처리할 로직을 작성합니다.
+	  editForm.submit();
+	}
 
 
 	//파일목록 조회 및 출력
@@ -256,88 +187,7 @@ window.addEventListener('load', function() {
 	
 	
 });
-
-//파일첨부버튼으로 업로드 할시에 실행될 유효성 검사 함수
-function checkExtension(fileName, fileSize){
-	let maxSize = 10 * 1024 * 1024; // 10MB
-	// .exe   .sh   .zip   .alz 로 끝나는 문자열
-	// 정규표현식 : 특정 규칙을 가진 문자열을 검색 하거나 치환할때 사용
-	let regex = new RegExp("(.*?)\.(jpg|png|gif|jpeg|bmp|tiff|tif)$");
 	
-	if(maxSize <= fileSize){
-		alert('파일 크기가 10MB 이하여야 합니다.');
-		return false;		
-	}
-	
-	//문자열에 정규식 패턴을 만족하는 값이 있으면 true, 없으면 false를 리턴한다
-	if(!regex.test(fileName)){
-		alert("해당 종류의 파일은 업로드 할 수 없습니다.")
-		return false;
-	}
-	
-	return true;
-}
-	
-	
-//드래그앤드랍으로 업로드 할시에 실행될 유효성 검사 함수
-function validateFiles(files) {
-  const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/bmp', 'image/tiff', 'image/tif'];
-  const maxSize = 10 * 1024 * 1024; // 10MB
-
-  for (const file of files) {
-    if (!allowedTypes.includes(file.type)) {
-    	alert("해당 종류의 파일은 업로드 할 수 없습니다.")
-      return false;
-    }
-
-    if (file.size > maxSize) {
-      alert('파일 크기가 10MB 이하여야 합니다.');
-      return false;
-    }
-  }
-
-  return true;
-}
-
-
-
-
-
-	
-	
-	
-	
-//글수정 버튼 누를때 최종적으로 파일 유효성검사 함수 
-//*업로드할때 이미 거르기때문에 의미없을수도있음
-function FileCheck() {
-  
-  // 기본 이벤트 제거
-  event.preventDefault(); 
-  
-  const filesInput = document.getElementById('files');
-  const files = filesInput.files;
-
-  // 파일 유형 확인
-  const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/bmp', 'image/tiff', 'image/tif'];
-  for (let i = 0; i < files.length; i++) {
-    if (!allowedTypes.includes(files[i].type)) {
-    	alert("해당 종류의 파일은 업로드 할 수 없습니다.")
-      return;
-    }
-  }
-
-  // 파일 크기 확인
-  const maxSize = 10 * 1024 * 1024; // 10MB
-  for (let i = 0; i < files.length; i++) {
-    if (files[i].size > maxSize) {
-      alert('파일 크기가 10MB 이하여야 합니다.');
-      return;
-    }
-  }
-
-  // 파일 유형과 크기가 모두 유효한 경우, 추가로 처리할 로직을 작성합니다.
-  editForm.submit();
-}
 
   function getFileList(){
   	///file/list/{bno}
@@ -361,47 +211,19 @@ function FileCheck() {
   			content +=''
   					+'<div class="mb-3">                                              '
   					+'  <label for="content" class="form-label">첨부파일 목록</label> 	  '
-  					+'  <div class="form-control" id="attachFile" style="width: 100%;  display: flex; flex-wrap: wrap;">                    '
+  					+'  <div class="form-control" id="attachFile">                    '
   		
   		map.list.forEach(function(item,index){
   			let savePath = encodeURIComponent(item.savePath);
 
   			console.log('세이브 패스 여기다 -=>',savePath)
-  			/* content +=''
-  					 +'<a href="/file/download?filename='+savePath+'">  '
-  					 +'<img src="/peco/display?fileName='+savePath+'" alt="" class="thumbnail-image" style="border-radius: 23px; margin-right: 10px; width: 100px; height: 100px;">'
-  					 +'<br>'
-  					 +'<dvi> '+item.filename+' </div>'
-  					 +'</a>'
-  					 +'<i class="fa-regular fa-trash-can" onclick="FileDelete(this)"		' 
-  					 +'data-bno="'+item.bno+'" data-uuid="'+item.uuid+'"></i>		'
-  					 +' <br>			';
-  					 +' </div>			'; */
-  			content +=''                                                                                                                                         
-				  		+'        <div class="files"  style="width: 150px; height: 130px; margin-right:10px;">                                                                                                                      '                                     
-				  		+'            <a href="/file/download?filename=' + savePath + '">                                                                                                                        '
-				  		+'                <img src="/peco/display?fileName=' + savePath + '" alt="" class="thumbnail-image" style="border-radius: 23px; margin-right: 10px; width: 100px; height: 100px;">       ' 
-				  		+'                <br>                                                                                                                                                                   '
-				  		+'                <div class="file-info">                                                                                                                                                '
-				  		+'                    <span class="file-name">' + (item.filename.length > 5 ? item.filename.substring(0, 5) + '' : item.filename) + '</span>                                        '
-				  		+'                    <span class="file-extension">.' + item.filename.split('.').pop() + '</span>                                                                                        '
-				  		+'            </a>                                                                                                                                                                   '
-				  		+'                	  <i class="fa-regular fa-trash-can" onclick="FileDelete(this)" data-bno="'+item.bno+'" data-uuid="'+item.uuid+'"></i>                                                                                                     '
-				  		+'                </div>                                                                                                                                                                 '
-				  		+'        </div>                                                                                                                                                                         ';
-
-  			
-  			
-  			
-  			
-  			
-  			
-  			
-  			
-  			
-  			
-  			
-  			
+  			content +=''
+  					+'<a href="/file/download?filename='+savePath+'">  '
+  					+ item.filename
+  					+'</a>'
+  					+'<i class="fa-regular fa-trash-can" onclick="FileDelete(this)"		' 
+  					+'data-bno="'+item.bno+'" data-uuid="'+item.uuid+'"></i>		'
+  					+' <br>			';
   		})
   		
   			content +='  </div>                                                        '
@@ -431,7 +253,7 @@ function FileCheck() {
 
   function fileuploadRes(map){
   	if(map.result == 'sucess'){
-  		divFileupload.innerHTML = map.msg;
+  		divFileuploadRes.innerHTML = map.msg;
   		getFileList()
   		
   	}else{
@@ -446,8 +268,6 @@ function FileCheck() {
   }
 
 
-  
-  
   </script>
   
   </head>
@@ -468,8 +288,42 @@ function FileCheck() {
     <!-- ***** Preloader End ***** -->
   
     <!-- ***** Header Area Start ***** -->
-		<%@include file = "../common/boardHeader.jsp" %>
-  	<!-- ***** Header Area End ***** -->
+    <header class="header-area header-sticky">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <nav class="main-nav">
+                      <!-- ***** Logo Start ***** -->
+                      <a href="index.html" class="logo">
+                          <img src="assets/images/logo.png" alt="">
+                      </a>
+                      <!-- ***** Logo End ***** -->
+                      <!-- ***** Search End ***** -->
+                      <div class="search-input">
+                        <form id="search" action="#">
+                          <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
+                          <i class="fa fa-search"></i>
+                        </form>
+                      </div>
+                      <!-- ***** Search End ***** -->
+                      <!-- ***** Menu Start ***** -->
+                      <ul class="nav">
+                          <li><a href="index.html">Home</a></li>
+                          <li><a href="browse.html" class="active">Browse</a></li>
+                          <li><a href="details.html">Details</a></li>
+                          <li><a href="streams.html">Streams</a></li>
+                          <li><a href="profile.html">Profile <img src="assets/images/profile-header.jpg" alt=""></a></li>
+                      </ul>   
+                      <a class='menu-trigger'>
+                          <span>Menu</span>
+                      </a>
+                      <!-- ***** Menu End ***** -->
+                  </nav>
+              </div>
+          </div>
+      </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
   
     <div class="container">
       <div class="row">
@@ -515,12 +369,6 @@ function FileCheck() {
 			<label for="files" class="form-label">첨부파일</label>
 		    <input name="files" type="file" class="form-control" id="files" accept="image/*" multiple>
 		</div>
-
-	
-		<div id="dropZone" style="border: 2px dashed #ccc; padding: 20px;">
-		    <p>파일을 여기로 드래그 앤 드롭하세요</p>
-		</div>
-		
 		
         <!-- 첨부파일 목록 표시 -->
 		<div id="divFileupload"></div>

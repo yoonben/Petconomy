@@ -4,7 +4,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
+
 <title>Insert title here</title>
+
+
+
+
+
 </head>
 <body>
 
@@ -12,9 +19,10 @@
 	
 	<input type="hidden" class="form-control" name="bno" id="bno" >
 	<input type="hidden" class="form-control" name="pageNo" id="pageNo" value="${pageDto.cri.pageNo }">
+	
 	<div class="row g-3 justify-content-center">
+	  <!-- 검색필드 -->
 	  <div class="col-auto">
-	  
 		<select name="searchField" class="form-select" aria-label="Default select example">
 		  <option value="title" ${pageDto.cri.searchField eq "title" ? "selected" : " " }>제목</option>
 		  <option value="content" ${pageDto.cri.searchField eq "content" ? "selected" : " " }>내용</option>
@@ -23,16 +31,22 @@
 	  </div>
 	  
 	  <!--검색바 사이즈 조절 -> col-sm-숫자  -->
+	  <!-- 검색키워드 -->
 	  <div class="col-sm-6">
 	    <label for="searchWord" class="visually-hidden"></label>
 	    <input  type="text" class="form-control" name="searchWord" id="searchWord" value="${pageDto.cri.searchWord }">
 	  </div>
 	  
+	  <!-- 검색버튼 -->
 	  <div class="col-auto">
 	    <button type="submit" class="btn btn-primary mb-3" onclick='go(1)'>검색</button>
 	  </div>
 	</div>
 	  
 	</form>
+	
+	
+	
+	
 </body>
 </html>

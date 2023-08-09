@@ -26,24 +26,21 @@
     <link rel="stylesheet" href="/resources/assets/css/animate.css">
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
 
-	<!--fetchGet Post JS -->
-  	<script src="/resources/js/reply.js"></script>
 
 
 
     <style>
       body{
-        margin: 0 auto; /* 바디 마진을 0으로 하고 가로 가운데 정렬 */
-    	background-color: #ffec90;
+        background-color: white;
       }
     
-  	  div >.page-content{
-        background-color: white;
-        padding: 30px
+      div >.page-content{
+        background-color: rgb(255, 187, 0);
+        padding: 30px;
       }
     
       .top-streamers{
-          margin-top: 50px;
+        margin-top: 50px;
       
         overflow: auto;
     
@@ -140,29 +137,17 @@
     }
   
 
-#dropZone {
-    border: 2px dashed #ccc;
-    padding: 20px;
-    text-align: center;
-    cursor: pointer;
-}
-
-#dropZone.dragover {
-    background-color: rgba(0, 0, 0, 0.1);
-}
-
-
 
   </style>
   
   <script>
 window.addEventListener('load', function() {
 	
-    const filesInput = document.getElementById('files');
+	const filesInput = document.getElementById('files');
     filesInput.addEventListener('change', function(){
     	
       	
-		let formData = new FormData(editForm);
+		let formData = new FormData(writeForm);
 		
 		//Formdata값 확인
 		//[0]배열은 이름
@@ -220,7 +205,7 @@ window.addEventListener('load', function() {
 
     // 업로드된 파일을 처리하는 함수
     function handleUploadedFiles(files) {
-      const formData = new FormData(editForm);
+      const formData = new FormData(writeForm);
 
       for (const file of files) {
         formData.append('files', file);
@@ -237,16 +222,7 @@ window.addEventListener('load', function() {
         getFileList();
       });
     }
-
-    
-    
-    
-
 	
-
-	
-	// 글수정 버튼 클릭 시  파일유효성검사
-	document.getElementById('btnEdit').addEventListener('click', FileCheck);
 	
 
 
@@ -256,7 +232,6 @@ window.addEventListener('load', function() {
 	
 	
 });
-
 //파일첨부버튼으로 업로드 할시에 실행될 유효성 검사 함수
 function checkExtension(fileName, fileSize){
 	let maxSize = 10 * 1024 * 1024; // 10MB
@@ -302,42 +277,7 @@ function validateFiles(files) {
 
 
 
-
 	
-	
-	
-	
-//글수정 버튼 누를때 최종적으로 파일 유효성검사 함수 
-//*업로드할때 이미 거르기때문에 의미없을수도있음
-function FileCheck() {
-  
-  // 기본 이벤트 제거
-  event.preventDefault(); 
-  
-  const filesInput = document.getElementById('files');
-  const files = filesInput.files;
-
-  // 파일 유형 확인
-  const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/bmp', 'image/tiff', 'image/tif'];
-  for (let i = 0; i < files.length; i++) {
-    if (!allowedTypes.includes(files[i].type)) {
-    	alert("해당 종류의 파일은 업로드 할 수 없습니다.")
-      return;
-    }
-  }
-
-  // 파일 크기 확인
-  const maxSize = 10 * 1024 * 1024; // 10MB
-  for (let i = 0; i < files.length; i++) {
-    if (files[i].size > maxSize) {
-      alert('파일 크기가 10MB 이하여야 합니다.');
-      return;
-    }
-  }
-
-  // 파일 유형과 크기가 모두 유효한 경우, 추가로 처리할 로직을 작성합니다.
-  editForm.submit();
-}
 
   function getFileList(){
   	///file/list/{bno}
@@ -346,7 +286,7 @@ function FileCheck() {
   	console.log(bno);
   	
   	if(bno){
-  	fetch('/peco/file/list/'+bno)
+  	fetch('/file/list/'+bno)
   		.then(response => response.json())
   		.then(map => viewFileList(map));
   	}
@@ -361,47 +301,19 @@ function FileCheck() {
   			content +=''
   					+'<div class="mb-3">                                              '
   					+'  <label for="content" class="form-label">첨부파일 목록</label> 	  '
-  					+'  <div class="form-control" id="attachFile" style="width: 100%;  display: flex; flex-wrap: wrap;">                    '
+  					+'  <div class="form-control" id="attachFile">                    '
   		
   		map.list.forEach(function(item,index){
   			let savePath = encodeURIComponent(item.savePath);
 
   			console.log('세이브 패스 여기다 -=>',savePath)
-  			/* content +=''
-  					 +'<a href="/file/download?filename='+savePath+'">  '
-  					 +'<img src="/peco/display?fileName='+savePath+'" alt="" class="thumbnail-image" style="border-radius: 23px; margin-right: 10px; width: 100px; height: 100px;">'
-  					 +'<br>'
-  					 +'<dvi> '+item.filename+' </div>'
-  					 +'</a>'
-  					 +'<i class="fa-regular fa-trash-can" onclick="FileDelete(this)"		' 
-  					 +'data-bno="'+item.bno+'" data-uuid="'+item.uuid+'"></i>		'
-  					 +' <br>			';
-  					 +' </div>			'; */
-  			content +=''                                                                                                                                         
-				  		+'        <div class="files"  style="width: 150px; height: 130px; margin-right:10px;">                                                                                                                      '                                     
-				  		+'            <a href="/file/download?filename=' + savePath + '">                                                                                                                        '
-				  		+'                <img src="/peco/display?fileName=' + savePath + '" alt="" class="thumbnail-image" style="border-radius: 23px; margin-right: 10px; width: 100px; height: 100px;">       ' 
-				  		+'                <br>                                                                                                                                                                   '
-				  		+'                <div class="file-info">                                                                                                                                                '
-				  		+'                    <span class="file-name">' + (item.filename.length > 5 ? item.filename.substring(0, 5) + '' : item.filename) + '</span>                                        '
-				  		+'                    <span class="file-extension">.' + item.filename.split('.').pop() + '</span>                                                                                        '
-				  		+'            </a>                                                                                                                                                                   '
-				  		+'                	  <i class="fa-regular fa-trash-can" onclick="FileDelete(this)" data-bno="'+item.bno+'" data-uuid="'+item.uuid+'"></i>                                                                                                     '
-				  		+'                </div>                                                                                                                                                                 '
-				  		+'        </div>                                                                                                                                                                         ';
-
-  			
-  			
-  			
-  			
-  			
-  			
-  			
-  			
-  			
-  			
-  			
-  			
+  			content +=''
+  					+'<a href="/file/download?filename='+savePath+'">  '
+  					+ item.filename
+  					+'</a>'
+  					+'<i class="fa-regular fa-trash-can" onclick="FileDelete(this)"		' 
+  					+'data-bno="'+item.bno+'" data-uuid="'+item.uuid+'"></i>		'
+  					+' <br>			';
   		})
   		
   			content +='  </div>                                                        '
@@ -424,14 +336,13 @@ function FileCheck() {
   	//jsp 자바스크립트에서 백틱쓰려면 변수앞에 \${} 역슬래쉬 붙여줘야함
   	//EL 표현식과 충돌나서 에러발생하는것
   	//*주석처리해도 변수 앞에 역슬래쉬 안붙이면 에러 뜸!!*
-  	 fetchGet(`/peco/file/delete/\${uuid}/\${bno}`, fileuploadRes); 
+  	 fetchGet(`/file/delete/\${uuid}/\${bno}`, fileuploadRes); 
   	//fetchGet('/file/delete/'+uuid+'/'+bno+'', fileuploadRes);
-  	
   }
 
   function fileuploadRes(map){
   	if(map.result == 'sucess'){
-  		divFileupload.innerHTML = map.msg;
+  		divFileuploadRes.innerHTML = map.msg;
   		getFileList()
   		
   	}else{
@@ -439,15 +350,8 @@ function FileCheck() {
   		getFileList()
   	}
   }
-  
-  //목록 뒤로가기 함수 
-  function goBack() {
-      window.history.back();
-  }
 
 
-  
-  
   </script>
   
   </head>
@@ -468,67 +372,100 @@ function FileCheck() {
     <!-- ***** Preloader End ***** -->
   
     <!-- ***** Header Area Start ***** -->
-		<%@include file = "../common/boardHeader.jsp" %>
-  	<!-- ***** Header Area End ***** -->
+    <header class="header-area header-sticky">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <nav class="main-nav">
+                      <!-- ***** Logo Start ***** -->
+                      <a href="index.html" class="logo">
+                          <img src="assets/images/logo.png" alt="">
+                      </a>
+                      <!-- ***** Logo End ***** -->
+                      <!-- ***** Search End ***** -->
+                      <div class="search-input">
+                        <form id="search" action="#">
+                          <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
+                          <i class="fa fa-search"></i>
+                        </form>
+                      </div>
+                      <!-- ***** Search End ***** -->
+                      <!-- ***** Menu Start ***** -->
+                      <ul class="nav">
+                          <li><a href="index.html">Home</a></li>
+                          <li><a href="browse.html" class="active">Browse</a></li>
+                          <li><a href="details.html">Details</a></li>
+                          <li><a href="streams.html">Streams</a></li>
+                          <li><a href="profile.html">Profile <img src="assets/images/profile-header.jpg" alt=""></a></li>
+                      </ul>   
+                      <a class='menu-trigger'>
+                          <span>Menu</span>
+                      </a>
+                      <!-- ***** Menu End ***** -->
+                  </nav>
+              </div>
+          </div>
+      </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
   
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
           <div class="page-content">
     
-    <form method="post" enctype="multipart/form-data" name="editForm" action="/peco/board/edit">
+    <form method="post" enctype="multipart/form-data" name="writeForm" action="/peco/board/write">
         
         <!-- 검색조건 유지하기 위해 갖고가야하는 값들 -->
         <input type="text" name="pageNo" value="${param.pageNo }">
         <input type="text" name="searchField" value="${param.searchField }">
         <input type="text" name="searchWord" value="${param.searchWord }">
-        <input type="text" name="writer" value="${board.nickname }">
-        <input type="text" name="bno" value="${board.bno}">
+        <input type="text" name="writer" value="${sessionScope.member.nickname}">
         
         <!-- 페이징 처리 하기 위해 있어야함 -->
-        <input type="text" name="m_id" value="${sessionScope.m_id }">
+        <input type="text" name="m_id" value="${sessionScope.member.m_id }">
         <input type="hidden" id="page" name="page" value="1">
+        
+  		<!-- 임시 bno 값 -->
+    	<input type="hidden" name="bno" value="${tempBno}">
         
         
         
         <h4 class="category">카테고리</h4>
 
         <!-- 일상게시판 박스 -->
-        <input type="radio" class="btn-check" name="category" id="free" autocomplete="off" value="free" checked >
+        <input type="radio" class="btn-check" name="category" id="free" autocomplete="off" value="free" ${param.category eq 'free' ? 'checked' : ''} >
         <label class="btn btn-secondary board-box" for="free">일상</label>
 
 
         <!-- 힐링게시판 박스 -->
-        <input type="radio" class="btn-check" name="category" id="healing" autocomplete="off" value="healing">
+        <input type="radio" class="btn-check" name="category" id="healing" autocomplete="off" value="healing" ${param.category eq 'healing' ? 'checked' : ''}>
         <label class="btn btn-secondary board-box" for="healing">힐링</label>
+        
 		<br>
         <br>
         <br>
         
         <h4 class="category">게시글 작성</h4>
-        <input type="text" class="title-bar" name="title" id="title" placeholder=" 제목을 입력하세요" onfocus="applySelectedStyle(this)" onblur="removeSelectedStyle(this)"  value="${board.title }" required>
+        <input type="text" class="title-bar" name="title" id="title" placeholder=" 제목을 입력하세요" onfocus="applySelectedStyle(this)" onblur="removeSelectedStyle(this)" required>
 
-        <textarea class="content-bar" name="content" id="content" placeholder=" 내용을 입력하세요" onfocus="applySelectedStyle(this)" onblur="removeSelectedStyle(this)" required>${board.content }</textarea>
+        <textarea class="content-bar" name="content" id="content" placeholder=" 내용을 입력하세요" onfocus="applySelectedStyle(this)" onblur="removeSelectedStyle(this)" required></textarea>
         
         
         <div class="mb-3">
 			<label for="files" class="form-label">첨부파일</label>
-		    <input name="files" type="file" class="form-control" id="files" accept="image/*" multiple>
+		    <input name="files" type="file" class="form-control" id="files" multiple>
 		</div>
-
-	
+		
 		<div id="dropZone" style="border: 2px dashed #ccc; padding: 20px;">
 		    <p>파일을 여기로 드래그 앤 드롭하세요</p>
 		</div>
 		
-		
-        <!-- 첨부파일 목록 표시 -->
+		<!-- 첨부파일 목록 표시 -->
 		<div id="divFileupload"></div>
         
-
         <div style="text-align: center;">
-            <button type="submit" id="btnEdit" class="btn btn-danger btn-lg">글 수정</button>
-            <button type="button" id="btnback" class="btn btn-danger btn-lg" onclick="goBack()">목록으로</button>
+            <button type="submit" class="btn btn-danger btn-lg">글 작성</button>
         </div>
 
 

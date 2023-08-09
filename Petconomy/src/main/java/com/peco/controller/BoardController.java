@@ -87,9 +87,9 @@ public class BoardController extends CommonRestController{
 	  @GetMapping("/board/free")
 	  public String free(Model model,Criteria cri) {
 	  
-	  List<BoardVO> list = service.getFree(cri,model); List<BoardVO> 
+	  List<BoardVO> list = service.getFree(cri,model); 
+	  List<BoardVO> Bestlist = service.getFreeBest();
 	  
-	  Bestlist = service.getBest(); 
 	  
 	  
 	  // 파일 경로를 슬래시(/)로 변경 
@@ -99,7 +99,8 @@ public class BoardController extends CommonRestController{
 	  Best.setSavePath(convertedPath); Best.setS_savePath(convertedThumPath); } }
 	 
 	  
-	  model.addAttribute("list",list); model.addAttribute("Best",Bestlist);
+	  model.addAttribute("list",list); 
+	  model.addAttribute("Best",Bestlist);
 	  
 	  return "board/free"; 
 	  }
@@ -110,7 +111,7 @@ public class BoardController extends CommonRestController{
 		
 	  List<BoardVO> list = service.getHealing(cri,model); 
 	  
-	  List<BoardVO> Bestlist = service.getBest(); 
+	  List<BoardVO> Bestlist = service.getHealingBest(); 
 	  
 	  
 	  // 파일 경로를 슬래시(/)로 변경 
@@ -123,10 +124,8 @@ public class BoardController extends CommonRestController{
 	  }
 	 
 	  
-	  model.addAttribute("Best",Bestlist);
-
-		
 	  model.addAttribute("list",list);
+	  model.addAttribute("Best",Bestlist);
 		
 		
 		
@@ -340,7 +339,7 @@ public class BoardController extends CommonRestController{
 	 @GetMapping("/like/{bno}")
 	 @ResponseBody
      public int updateLike(@PathVariable("bno") int bno, Model model) {
-       
+		 			//좋아요 + 1
 	 	int count = service.getLike(bno);
 
         
