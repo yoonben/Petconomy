@@ -41,7 +41,7 @@ public class LoginController extends CommonRestController {
 
 	@GetMapping("/main")
 	public String main() {
-		return "main";
+		return "/main/mainpage";
 	}
 
 	@PostMapping("/loginAction")

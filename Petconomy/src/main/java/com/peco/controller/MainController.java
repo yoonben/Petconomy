@@ -102,10 +102,15 @@ public class MainController {
 	public String kakaomap() {
 		return "/main/kakaomap";
 	}
-	//카카오맵
+	
 	@GetMapping("/main/searchForm")
 	public String searchForm() {
 		return "/main/searchForm";
+	}
+	
+	@GetMapping("/main/searchForm2")
+	public String searchForm2() {
+		return "/main/searchForm2";
 	}
 	
 

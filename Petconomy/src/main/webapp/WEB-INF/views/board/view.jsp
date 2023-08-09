@@ -29,11 +29,13 @@
 
   <style>
     body {
-      background-color: rgba(250, 149, 16, 0.979);
+      margin: 0 auto; /* 바디 마진을 0으로 하고 가로 가운데 정렬 */
+      background-color: #ffec90;
     }
 
     div > .page-content {
-      background-color: rgb(255, 187, 0);
+      background-color: white;
+      padding: 30px
     }
 
     .top-streamers {
@@ -119,8 +121,9 @@
     	  const likecntDiv = document.getElementById('likecntDiv');
     	  const currentCount = parseInt(likecntDiv.textContent);
     	  if (!isNaN(currentCount)) {
-    	    // 현재 숫자에 1을 더하고 화면에서 업데이트합니다.
-    	    viewLike(currentCount + 1);
+			
+    		//좋아요 +1 함수 호출
+    	    getLike()
     	  }
     	}
 
@@ -151,24 +154,24 @@
       console.log(bno);
 
       if (bno) {
-        fetch('/peco/like/' + bno)
+        fetch('/peco/like/'+bno)
           .then(response => response.json())
           .then(count  => viewLike(count ));
       }
     }
 
     function viewLike(count) {
+    		console.log("좋아요 숫자는",count)
     	  const likecntDiv = document.getElementById('likecntDiv');
+    		
     	  if (count > 0) {
     	    likecntDiv.textContent = count;
     	  } else {
     	    // 좋아요 숫자가 0보다 작을 때 처리하는 부분입니다.
+    	    console.log("좋아요 0일때 진입")
     	    likecntDiv.textContent = '0';
     	  }
     	}
-      
-      
-    
     /* -------------------좋아요 증가 끝--------------------------- */
     
     
@@ -191,19 +194,25 @@
         content += ''
           + '<div class="mb-3">                                              '
           + '  <label for="content" class="form-label">첨부파일 목록</label> 	  '
-          + '  <div class="form-control" id="attachFile">                    '
+          + '  <div class="form-control" id="attachFile" style="width: 100%;  display: flex; flex-wrap: wrap;">                    '
 
         map.list.forEach(function (item, index) {
           let savePath = encodeURIComponent(item.savePath);
           let s_savePath = encodeURIComponent(item.s_savePath);
 
           console.log('세이브 패스 여기다 -=>', savePath)
-          content += ''
-            + '<a href="/peco/file/download?filename=' + savePath + '">  '
-            + '<img src="/peco/display?fileName=' + s_savePath + '" style="border-radius: 23px; margin-bottom: 30px; width: 100px; height: 100px;"></a> <br>'
-            + item.filename
-            + '</a>'
-            + ' <br>			';
+          content +=''                                                                                                                                         
+				  		+'        <div class="files"  style="width: 150px; height: 130px; margin-right:10px;">                                                                                                                      '                                     
+				  		+'            <a href="/file/download?filename=' + savePath + '">                                                                                                                        '
+				  		+'                <img src="/peco/display?fileName=' + savePath + '" alt="" class="thumbnail-image" style="border-radius: 23px; margin-right: 10px; width: 100px; height: 100px;">       ' 
+				  		+'                <br>                                                                                                                                                                   '
+				  		+'                <div class="file-info">                                                                                                                                                '
+				  		+'                    <span class="file-name">' + (item.filename.length > 5 ? item.filename.substring(0, 5) + '' : item.filename) + '</span>                                        '
+				  		+'                    <span class="file-extension">.' + item.filename.split('.').pop() + '</span>                                                                                        '
+				  		+'            </a>                                                                                                                                                                   '
+				  		+'                </div>                                                                                                                                                                 '
+				  		+'        </div> '
+				  		+'        <br> '
         })
 
         content += '  </div>                                                        '
@@ -429,7 +438,7 @@
         <!-- ----------------댓글창 들어가는곳----------------- -->
         <div class="content">
           <div id="replyDiv">
-          dddddddddddd
+
           </div>
         </div>
       </div>

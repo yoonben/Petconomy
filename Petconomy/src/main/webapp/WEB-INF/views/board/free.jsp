@@ -132,6 +132,21 @@ https://templatemo.com/tm-579-cyborg-gaming
 .featured-games .avatar img {
   margin-right: 15px;
 }
+
+.main-banner {
+  background-image: url(https://hips.hearstapps.com/hmg-prod/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg?crop=1xw:0.74975xh;center,top&resize=1200:*);
+  background-position: center center;
+  background-size: cover;
+  min-height: 380px;
+  border-radius: 23px;
+  padding: 80px 60px;
+  margin-bottom: 50px; 
+}
+.main-button a {
+  font-size: 26px; /* 원하는 글씨 크기로 조정 */}  
+}
+
+
 </style>
 
 
@@ -189,7 +204,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                   <c:if test="${not empty sessionScope.member.nickname}">
                   <h6>Welcome To ${sessionScope.member.nickname}</h6>
                   </c:if>
-                  <h4><em>Browse</em> Our Popular Games Here</h4>
+                  <h4><em>일상</em> 게시판</h4>
                   <c:if test="${not empty sessionScope.member.nickname}">
                   <div class="main-button">
                     <a href="/peco/board/write?pageNo=${pageDto.cri.pageNo }&category=free">글 쓰기</a>
@@ -206,7 +221,7 @@ https://templatemo.com/tm-579-cyborg-gaming
             <div class="col-lg-12">
               <div class="featured-games header-text">
                 <div class="heading-section">
-                  <h4><em>베스트</em> 게시글</h4>
+                  <h4>일상<em style="color: #0079FF"> 인기게시글</em></h4>
                 </div>
                 <div class="owl-features owl-carousel">
                 

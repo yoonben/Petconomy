@@ -82,7 +82,7 @@ public class FileuploadController extends CommonRestController{
 		
 		int insertRes3 = service.PensionfileupRoomload(roonimg, p_id);
 		log.info("업로드 건수 : " + insertRes3);
-		return responseMap("success", "파일 업로드 성공");
+		return responseMap("success", "팬션 등록이 완료되었습니다");
 
 	}
 	

@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import com.peco.vo.BusinessFileuploadVO;
 import com.peco.vo.FileuploadVO;
 import com.peco.vo.PensionFiileuploadVO;
+import com.peco.vo.PensionRoomFiluploadVo;
 
 public interface FileuploadMapper {
 	
@@ -17,6 +18,8 @@ public interface FileuploadMapper {
 	public int insert(FileuploadVO vo);
 	
 	public int insertPensionfile(PensionFiileuploadVO vo);
+	
+	public int insertPensionRoomfile(PensionRoomFiluploadVo vo);
 	
 	public int insertBusinessfile(BusinessFileuploadVO vo);
 	

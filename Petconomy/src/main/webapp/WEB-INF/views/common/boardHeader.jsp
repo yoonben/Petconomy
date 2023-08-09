@@ -9,6 +9,7 @@
 div >.page-content{
     margin-top: 200px;
   }
+  
 </style>
 </head>
 <body>
@@ -18,9 +19,9 @@ div >.page-content{
             <div class="col-12">
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
-                    <a href="/peco/board/main" class="logo">
-                        <img src="/resources/assets/images/logo.png" alt="">
-                    </a>
+                    <a href="/peco/board/main" class="logo"> <img
+							src="" alt="">
+					</a>
                     <!-- ***** Logo End ***** -->
                     
                     <!-- ***** Menu Start ***** -->

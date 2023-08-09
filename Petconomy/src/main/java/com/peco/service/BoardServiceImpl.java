@@ -152,7 +152,7 @@ public class BoardServiceImpl implements BoardService {
 		
 		int res = mapper.edit(boardvo);
 		
-		service.fileupload(files, boardvo.getBno());
+		//service.fileupload(files, boardvo.getBno());
 		
 		return res;
 	
@@ -180,7 +180,7 @@ public class BoardServiceImpl implements BoardService {
 	public int getLike(int bno) {
 		
 		mapper.likeCnt(bno);
-		
+		System.out.println("좋아요 +1");
 		return mapper.getLike(bno);
 	}	
 

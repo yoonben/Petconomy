@@ -9,79 +9,40 @@
 <body>
 
 <script>
-
-function regionChange(e){
-	//var gangwondo = ["춘천시·인제군·철원군","평창군·정선군·영월군","속초시·양양군·고성군","강릉시","동해시·삼척시·태백시","홍천군·횡성읍·원주시"];
-	var gangwondo = ["","춘천시","인제군","철원군","평창군","정선군","영월군","속초시","양양군","고성군","강릉시","동해시","삼척시","태백시","홍천군","횡성읍","원주시"];
-	var gyeonggido = ["","가평·청평·양평","수원·화성","고양·파주·김포","의정부·포천·동두천","용인·동탄","오산·평택","남양주·구리·성남·분당","이천·광주·여주·하남","부천·광명·시흥·안산","안양·의왕·군포"];
-	var gyeongsangdo = ["","경주","거제·통영","포항·영덕·울진·청송","창원·마산·진해·김해·부곡","남해·사천·하동·진주","울산·양산","대구·구미·안동·문경"];
-	var busando = ["","해운대·마린시티","벡스코·센텀시티","송정·기장·정관","광안리·경성대","부산역","자갈치·남포동·영도","송도·다대포","서면·연산·범일","동래·온천·금정구","사상·강서·김해공항"];
-	var incheonsi = ["","인천국제공항·강화·을왕리","주안·간석·인천시청","송도·소래포구","영종도·월미도","청라·계양·부평"];
-	var jeollado = ["","광주·나주·함평","순천·광양·담양·보성·화순","군산·익산","전주·완주","여수","남원·부안·정읍·고창·무주·구례","목포·신안·영광·진도·고흥·영암·완도·강진"];
-	var chungcheongdo = ["","천안·아산·도고","보령·대천·부여·공주·금산","충주·제천·단양·괴산·증평","대전·세종","안면도·태안·서산·덕산","청주·음성·진천"];
-	var jejudo = ["","제주·국제공항","서귀포·모슬포","중문","함덕·김녕·세화","애월·한림·협재","표선·성산"];
-	 
-	var smallregion =document.querySelector("#smallregion");
-	 
-	if(e.value == "강원") var changeItem = gangwondo;
-	else if(e.value == "경기") var changeItem = gyeonggido;
-	else if(e.value == "경상") var changeItem = gyeongsangdo;
-	else if(e.value == "부산") var changeItem = busando;
-	else if(e.value == "인천") var changeItem = incheonsi;
-	else if(e.value == "전라") var changeItem = jeollado;
-	else if(e.value == "충청") var changeItem = chungcheongdo;
-	else if(e.value == "제주") var changeItem = jejudo;
-	
-
-	
-	for(item in changeItem){                
-		var option = $("<option ${'"+changeItem[item]+"' eq smallregion ? 'selected' : ' ' }>"+changeItem[item]+"</option>");
-	        $('#smallregion').append(option);
-		    }
-	$('#smallregion').val($('input[name=sRegion]').val());
-}	
-
-
-function go(page){
-	selectForm.pageNo.value=page;
-	selectForm.submit();
+function selectBOX (){   // 시/도/군/구 selectBOX 생성함수
+    let area0 = ["시/도 선택","서울특별시","인천광역시","대전광역시","광주광역시","대구광역시","울산광역시","부산광역시","경기도","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주특별자치도"];
+    let area1 = ["구/군 선택","강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구","노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구","송파구","양천구","영등포구","용산구","은평구","종로구","중구","중랑구"];
+    let area2 = ["구/군 선택","계양구","미추홀구","남동구","동구","부평구","서구","연수구","중구","강화군","옹진군"];
+    let area3 = ["구/군 선택","대덕구","동구","서구","유성구","중구"];
+    let area4 = ["구/군 선택","광산구","남구","동구","북구","서구"];
+    let area5 = ["구/군 선택","남구","달서구","동구","북구","서구","수성구","중구","달성군"];
+    let area6 = ["구/군 선택","남구","동구","북구","중구","울주군"];
+    let area7 = ["구/군 선택","강서구","금정구","남구","동구","동래구","부산진구","북구","사상구","사하구","서구","수영구","연제구","영도구","중구","해운대구","기장군"];
+    let area8 = ["구/군 선택","고양시","과천시","광명시","광주시","구리시","군포시","김포시","남양주시","동두천시","부천시","성남시","수원시","시흥시","안산시","안성시","안양시","양주시","오산시","용인시","의왕시","의정부시","이천시","파주시","평택시","포천시","하남시","화성시","가평군","양평군","여주군","연천군"];
+    let area9 = ["구/군 선택","강릉시","동해시","삼척시","속초시","원주시","춘천시","태백시","고성군","양구군","양양군","영월군","인제군","정선군","철원군","평창군","홍천군","화천군","횡성군"];
+    let area10 = ["구/군 선택","제천시","청주시","충주시","괴산군","단양군","보은군","영동군","옥천군","음성군","증평군","진천군","청원군"];
+    let area11 = ["구/군 선택","계룡시","공주시","논산시","보령시","서산시","아산시","천안시","금산군","당진군","부여군","서천군","연기군","예산군","청양군","태안군","홍성군"];
+    let area12 = ["구/군 선택","군산시","김제시","남원시","익산시","전주시","정읍시","고창군","무주군","부안군","순창군","완주군","임실군","장수군","진안군"];
+    let area13 = ["구/군 선택","광양시","나주시","목포시","순천시","여수시","강진군","고흥군","곡성군","구례군","담양군","무안군","보성군","신안군","영광군","영암군","완도군","장성군","장흥군","진도군","함평군","해남군","화순군"];
+    let area14 = ["구/군 선택","경산시","경주시","구미시","김천시","문경시","상주시","안동시","영주시","영천시","포항시","고령군","군위군","봉화군","성주군","영덕군","영양군","예천군","울릉군","울진군","의성군","청도군","청송군","칠곡군"];
+    let area15 = ["구/군 선택","거제시","김해시","마산시","밀양시","사천시","양산시","진주시","진해시","창원시","통영시","거창군","고성군","남해군","산청군","의령군","창녕군","하동군","함안군","함양군","합천군"];
+    let area16 = ["구/군 선택","서귀포시","제주시",];
 }
 
-$(function() {
-    $("select[name=road_x1]").val((("${searchVO.road_x1}" == '') ? "" : "${searchVO.road_x1}")).prop("selected", true);              //select문
-});
 
 </script>
 <form id="search" action="/peco/main/pension" method="get" name="selectForm">
 <div class="test-score1" data-max="5" data-rate="5"></div>
-<input type="hidden" name="pageNo" value="${pageDto.regioncri.pageNo}">
-<input type="text" name="sRegion" value="${pageDto.regioncri.smallregion}">
-<select class="form-select" id="megaregion" name="megaregion"  onchange="regionChange(this)" style="width:100px; display:inline-block;">
-  <option value='' selected>시·도</option>
-  <option value="강원" ${pageDto.regioncri.megaregion eq "강원" ? "selected" : " " }>강원도</option>
-  <option value="경기" ${pageDto.regioncri.megaregion eq "경기" ? "selected" : " " }>경기도</option>
-  <option value="경상" ${pageDto.regioncri.megaregion eq "경상" ? "selected" : " " }>경상도</option>
-  <option value="부산" ${pageDto.regioncri.megaregion eq "부산" ? "selected" : " " }>부산시</option>
-  <option value="인천" ${pageDto.regioncri.megaregion eq "인천" ? "selected" : " " }>인천시</option>
-  <option value="전라" ${pageDto.regioncri.megaregion eq "전라" ? "selected" : " " }>전라도</option>
-  <option value="충청" ${pageDto.regioncri.megaregion eq "충청" ? "selected" : " " }>충청도</option>
-  <option value="제주" ${pageDto.regioncri.megaregion eq "제주" ? "selected" : " " }>제주도</option>
+
+<select id="megaregion" name="megaregion" >
+
 </select>
-<select class="form-select form-select-inline" id="smallregion" name="smallregion" id="smallregion" style=" width:100px; display:inline-block;">
-<option value=''>군·구</option>
+<select id="smallregion" name="smallregion" >
+
 </select>
 
-<select class="form-select form-select-inline" id="sort" name="sort" id="smallregion" style=" width:150px; display:inline-block; ">
-<option value=''>정렬기준</option>
-<option value='review'>리뷰많은순</option>
-<option value='new'>최신순</option>
-<option value='high'>고가순</option>
-<option value='low'>저가순</option>
-</select>
 
-  <div class="col-sm-3">
-    <button type="submit" class="btn btn-primary mb-3 w-100" onclick="go(1)">검색</button>
-  </div>
+
 
 </form>
 

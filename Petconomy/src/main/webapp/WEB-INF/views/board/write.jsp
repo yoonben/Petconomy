@@ -31,28 +31,16 @@
 
     <style>
       body{
-        background-color: white;
+        margin: 0 auto; /* 바디 마진을 0으로 하고 가로 가운데 정렬 */
+    	background-color: #ffec90;
       }
     
       div >.page-content{
-        background-color: rgb(255, 187, 0);
-        padding: 30px;
-      }
-    
-      .top-streamers{
-        margin-top: 50px;
-      
-        overflow: auto;
-    
-        background-color: bisque;
-    
+        background-color: white;
+        padding: 30px
       }
     
       .featured-games{
-        background-color: bisque;
-      }
-    
-      .live-stream{
         background-color: bisque;
       }
       
@@ -145,84 +133,50 @@ window.addEventListener('load', function() {
 
 
 
-	//파일목록 조회 및 출력
-	getFileList();
+	// 글수정 버튼 클릭 시  파일유효성검사
+	document.getElementById('btnWrite').addEventListener('click', FileCheck);
 	
 	
 });
+
+	
+//글수정 버튼 누를때 최종적으로 파일 유효성검사 함수 
+//*업로드할때 이미 거르기때문에 의미없을수도있음
+function FileCheck() {
+
+// 기본 이벤트 제거
+event.preventDefault(); 
+
+const filesInput = document.getElementById('files');
+const files = filesInput.files;
+
+// 파일 유형 확인
+const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/bmp', 'image/tiff', 'image/tif'];
+for (let i = 0; i < files.length; i++) {
+  if (!allowedTypes.includes(files[i].type)) {
+  	alert("해당 종류의 파일은 업로드 할 수 없습니다.")
+    return;
+  }
+}
+
+// 파일 크기 확인
+const maxSize = 10 * 1024 * 1024; // 10MB
+for (let i = 0; i < files.length; i++) {
+  if (files[i].size > maxSize) {
+    alert('파일 크기가 10MB 이하여야 합니다.');
+    return;
+  }
+}
+
+// 파일 유형과 크기가 모두 유효한 경우, 추가로 처리할 로직을 작성합니다.
+writeForm.submit();
+}
+
+
+
 	
 
-  function getFileList(){
-  	///file/list/{bno}
-  	
-  	let bno = '${board.bno}';
-  	console.log(bno);
-  	
-  	if(bno){
-  	fetch('/file/list/'+bno)
-  		.then(response => response.json())
-  		.then(map => viewFileList(map));
-  	}
-  }
 
-
-  function viewFileList(map){
-  	console.log(map);
-  	
-  	let content = '';
-  	if(map.list.length > 0 ){
-  			content +=''
-  					+'<div class="mb-3">                                              '
-  					+'  <label for="content" class="form-label">첨부파일 목록</label> 	  '
-  					+'  <div class="form-control" id="attachFile">                    '
-  		
-  		map.list.forEach(function(item,index){
-  			let savePath = encodeURIComponent(item.savePath);
-
-  			console.log('세이브 패스 여기다 -=>',savePath)
-  			content +=''
-  					+'<a href="/file/download?filename='+savePath+'">  '
-  					+ item.filename
-  					+'</a>'
-  					+'<i class="fa-regular fa-trash-can" onclick="FileDelete(this)"		' 
-  					+'data-bno="'+item.bno+'" data-uuid="'+item.uuid+'"></i>		'
-  					+' <br>			';
-  		})
-  		
-  			content +='  </div>                                                        '
-  					+'</div>                                                          ';
-  	}else{
-  		content = '등록된 파일이 없습니다.';
-  	}
-  	
-  	divFileupload.innerHTML = content;
-  }
-
-  function FileDelete(e){
-  	//e.data 값 가져오는법
-  	console.log(e.dataset.bno,e.dataset.uuid,e.dataset.aaa)
-  	
-  	let bno = e.dataset.bno
-  	let uuid = e.dataset.uuid
-  	
-  	//fetch요청
-  	//jsp 자바스크립트에서 백틱쓰려면 변수앞에 \${} 역슬래쉬 붙여줘야함
-  	//EL 표현식과 충돌나서 에러발생하는것
-  	//*주석처리해도 변수 앞에 역슬래쉬 안붙이면 에러 뜸!!*
-  	 fetchGet(`/file/delete/\${uuid}/\${bno}`, fileuploadRes); 
-  	//fetchGet('/file/delete/'+uuid+'/'+bno+'', fileuploadRes);
-  }
-
-  function fileuploadRes(map){
-  	if(map.result == 'sucess'){
-  		divFileuploadRes.innerHTML = map.msg;
-  		getFileList()
-  		
-  	}else{
-  		alert(map.msg);
-  		getFileList()
-  	}
-  }
 
 
   </script>
@@ -244,48 +198,17 @@ window.addEventListener('load', function() {
     </div>
     <!-- ***** Preloader End ***** -->
   
-    <!-- ***** Header Area Start ***** -->
-    <header class="header-area header-sticky">
-      <div class="container">
-          <div class="row">
-              <div class="col-12">
-                  <nav class="main-nav">
-                      <!-- ***** Logo Start ***** -->
-                      <a href="index.html" class="logo">
-                          <img src="assets/images/logo.png" alt="">
-                      </a>
-                      <!-- ***** Logo End ***** -->
-                      <!-- ***** Search End ***** -->
-                      <div class="search-input">
-                        <form id="search" action="#">
-                          <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
-                          <i class="fa fa-search"></i>
-                        </form>
-                      </div>
-                      <!-- ***** Search End ***** -->
-                      <!-- ***** Menu Start ***** -->
-                      <ul class="nav">
-                          <li><a href="index.html">Home</a></li>
-                          <li><a href="browse.html" class="active">Browse</a></li>
-                          <li><a href="details.html">Details</a></li>
-                          <li><a href="streams.html">Streams</a></li>
-                          <li><a href="profile.html">Profile <img src="assets/images/profile-header.jpg" alt=""></a></li>
-                      </ul>   
-                      <a class='menu-trigger'>
-                          <span>Menu</span>
-                      </a>
-                      <!-- ***** Menu End ***** -->
-                  </nav>
-              </div>
-          </div>
-      </div>
-    </header>
-    <!-- ***** Header Area End ***** -->
+  	<!-- ***** Header Area Start ***** -->
+		<%@include file = "../common/boardHeader.jsp" %>
+  	<!-- ***** Header Area End ***** -->
   
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
           <div class="page-content">
+            <div class="row">
+            <div class="col-lg-12">
+              <div class="featured-games header-text">
     
     <form method="post" enctype="multipart/form-data" name="writeForm" action="/peco/board/write">
         
@@ -298,8 +221,8 @@ window.addEventListener('load', function() {
         <!-- 페이징 처리 하기 위해 있어야함 -->
         <input type="text" name="m_id" value="${sessionScope.member.m_id }">
         <input type="hidden" id="page" name="page" value="1">
-  
         
+
         
         
         <h4 class="category">카테고리</h4>
@@ -327,9 +250,14 @@ window.addEventListener('load', function() {
 			<label for="files" class="form-label">첨부파일</label>
 		    <input name="files" type="file" class="form-control" id="files" multiple>
 		</div>
+		
+	
+		
+		<!-- 첨부파일 목록 표시 -->
+		<div id="divFileupload"></div>
         
         <div style="text-align: center;">
-            <button type="submit" class="btn btn-danger btn-lg">글 작성</button>
+            <button type="submit" id="btnWrite" class="btn btn-danger btn-lg">글 작성</button>
         </div>
 
 
@@ -359,9 +287,9 @@ window.addEventListener('load', function() {
 
 
 
-
-
-
+			  </div>
+			</div>
+		  </div>
         </div>
       </div>
     </div>

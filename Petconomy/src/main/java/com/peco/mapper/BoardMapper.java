@@ -16,6 +16,10 @@ public interface BoardMapper {
 	
 	public List<BoardVO> getBest();
 	
+	public List<BoardVO> getFreeBest();
+	
+	public List<BoardVO> getHealingBest();
+	
 	public List<BoardVO> getFree(Criteria cri);
 	
 	public List<BoardVO> getHealing(Criteria cri);
