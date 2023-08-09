@@ -27,7 +27,7 @@
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                         <li><a href="../main/pension">펜션/병원</a></li>
-                        <li><a href="../board/main">커뮤니티</a></li>
+                        <li><a href="/peco/board/main">커뮤니티</a></li>
                         <li><a href="#">업소등록</a></li>
                         <li><a href="../login">로그인 <img src="assets/images/profile-header.jpg" alt=""></a></li>
                     </ul>   
