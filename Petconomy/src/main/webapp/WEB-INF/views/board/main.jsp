@@ -174,7 +174,7 @@ https://templatemo.com/tm-579-cyborg-gaming
 	                    </a>
 	                    <br>
 	                      <h4>${fn:substring(b.title, 0, 10)}${fn:length(b.title) > 10 ? '...' : ''}
-	                      <span>${b.nickname}</span></h4>
+	                      <span>${b.writer}</span></h4>
 	                      <ul>
 	                        <li><i id="animated-icon" class="fa-regular fa-thumbs-up fa-lg"></i> ${b.likecount}</li>
 	                        <li><i class="fa fa-eye"></i> ${b.visitcount}</li>
@@ -231,7 +231,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                     <div class="avatar">
                       <img src="/resources/images/default.png" alt="" style="max-width: 46px; border-radius: 50%; float: left;">
                     </div>
-                    <span><i class="fa fa-check"></i> ${f.nickname}</span>
+                    <span><i class="fa fa-check"></i> ${f.writer}</span>
                     <h4>${f.title} </h4>
               		</a>
                   </div> 
@@ -277,7 +277,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                     <div class="avatar">
                       <img src="/resources/images/default.png" alt="" style="max-width: 46px; border-radius: 50%; float: left;">
                     </div>
-                    <span><i class="fa fa-check"></i> ${h.nickname}</span>
+                    <span><i class="fa fa-check"></i> ${h.writer}</span>
                     <h4>${h.title}</h4>
                   </a>
                   </div> 

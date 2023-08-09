@@ -135,6 +135,7 @@ https://templatemo.com/tm-579-cyborg-gaming
 						      <div class="d-flex gap-2 w-100 justify-content-between">
 						        <div>
 						          <p class="mb-0 opacity-75">작성자 : ${board.nickname }</p>
+						          <p class="mb-0 opacity-75">카테고리:${board.category }</p>
 						          <h6 class="mb-0">${board.title }</h6>
 						        </div>
 						        <small class="opacity-50 text-nowrap">등록일 : ${board.regdate }</small>

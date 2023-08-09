@@ -58,6 +58,7 @@ public class HospitalServiceImpl implements HospitalService {
 		return hospitalMapper.hospitaltop();
 	}
 
+
 	@Override
 	public int update_H(HospitalVO vo) {
 		// TODO Auto-generated method stub

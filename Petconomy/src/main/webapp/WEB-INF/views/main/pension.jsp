@@ -192,15 +192,14 @@
 				<tbody>
 					<c:if test="${not res }">				   
 					<c:forEach items="${list }" var="list">
-						<tr height="50" style="font-size:1em;">
-						
-						<td >${list.p_id }</td>
-						<td>${list.pname }</td>
-						<td>${list.addr }</td>
-						<td>${list.openhour }</td>
-						<td>${list.parkyn }</td>
-						
-						</tr>
+
+				<td >${list.p_id }</td>
+				<td><a href="#">${list.pname }</a></td>
+				<td>${list.addr }</td>
+				<td>${list.openhour }</td>
+				<td>${list.parkyn }</td>
+				
+				</tr>
 				    </c:forEach>
 				    </c:if>
 				<tr style="text-align: center">

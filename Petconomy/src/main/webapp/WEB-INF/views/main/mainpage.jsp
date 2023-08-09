@@ -19,7 +19,6 @@
 	<script>
 	  var jq = jQuery.noConflict();
 	</script>
-	
     <title>펫코노미 홈페이지</title>
 
     <!-- Bootstrap core CSS -->
@@ -43,10 +42,20 @@ https://templatemo.com/tm-579-cyborg-gaming
 <style>
 .main-banner {
     background-image: url(/resources/img/puppy.jpg);
+    margin-bottom: 20px;
 }
 .gaming-library .item ul li h4 {
     font-size: 15px;
     /* margin-bottom: 5px; */
+}
+
+.gaming-library .main-button {
+    text-align: left;
+    margin-bottom: -53px;
+}
+
+.gaming-library{
+	margin : 10px;
 }
 .gaming-library {
     margin-top: 20px;
@@ -76,8 +85,6 @@ window.addEventListener('load',function(){
 jQuery(function ($) {
 	jq(".test-score1").score();
 })
-
-
 </script>
 <body>
 

@@ -15,9 +15,10 @@ public interface HospitalMapper {
 	
 	public List<HospitalVO> mapList();
 	
+	public List<HospitalVO> hospitaltop();
+	
 	public List<HospitalVO> hospitalList(RegionCri cri);
 	
-	public List<HospitalVO> hospitaltop();
 	
 	public int hospitalInsert(HospitalVO vo);
 	

@@ -28,4 +28,3 @@ public interface HospitalService {
 	
 	public HospitalVO getOne_H(String m_id);
 }
-

@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
+
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +45,7 @@ public class MainController {
 	@Autowired
 	BoardService boardService;
 	
+	//펜션 페이지
 	//펜션 페이지
 	@GetMapping("/main/pension")
 	public String plist(RegionCri cri, Model model, HttpServletRequest request) {

@@ -108,19 +108,22 @@ public class BoardController extends CommonRestController{
 	@GetMapping("/board/healing")
 	public String healing(Model model,Criteria cri) {
 		
-	  List<BoardVO> list = service.getFree(cri,model); List<BoardVO> 
+	  List<BoardVO> list = service.getHealing(cri,model); 
 	  
-	  Bestlist = service.getBest(); 
+	  List<BoardVO> Bestlist = service.getBest(); 
 	  
 	  
 	  // 파일 경로를 슬래시(/)로 변경 
-	  if (Bestlist != null) { for (BoardVO Best : Bestlist) {
-	  String convertedPath = Best.getSavePath().replace("\\", "/"); String
-	  convertedThumPath = Best.getS_savePath().replace("\\", "/");
-	  Best.setSavePath(convertedPath); Best.setS_savePath(convertedThumPath); } }
+	  if (Bestlist != null) { 
+		  for (BoardVO Best : Bestlist) {
+		  String convertedPath = Best.getSavePath().replace("\\", "/"); 
+		  String convertedThumPath = Best.getS_savePath().replace("\\", "/");
+		  Best.setSavePath(convertedPath); Best.setS_savePath(convertedThumPath); 
+		  } 
+	  }
 	 
 	  
-	  model.addAttribute("list",list); model.addAttribute("Best",Bestlist);
+	  model.addAttribute("Best",Bestlist);
 
 		
 	  model.addAttribute("list",list);
@@ -130,6 +133,17 @@ public class BoardController extends CommonRestController{
 	  return "board/healing";
 	}
 	
+	@GetMapping("/board/search")
+	public String search(Model model,Criteria cri) {
+		
+	  List<BoardVO> list = service.getSearch(cri, model); 
+
+
+		
+	  model.addAttribute("list",list);
+
+	  return "board/search";
+	}
 	/*
 	 * @GetMapping("/board") public String freeboard(@RequestParam("category")
 	 * String category, Model model) {
