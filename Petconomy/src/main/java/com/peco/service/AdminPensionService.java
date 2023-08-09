@@ -14,4 +14,6 @@ public interface AdminPensionService {
 	
 	int totalCnt();
 	
+	int update(String p_id);
+	
 }

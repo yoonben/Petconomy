@@ -80,6 +80,8 @@ function adminPensionView(map){
             +'<td>주소</td>     '
             +'<td>오픈시간</td>       '
             +'<td>주차여부</td>     '
+            +'<td>사업자 등록증 확인</td>     '
+            +'<td>등록 승인</td>     '
             +'</tr>';          
 
 		
@@ -92,7 +94,11 @@ function adminPensionView(map){
 	            +'<td>'+ pension.pname +'</td>       '
 	            +'<td>'+ pension.addr +'</td>     '
 	            +'<td>'+ pension.openhour +'</td>       '
-	            +'<td>'+ pension.parkyn +'</td>     '          
+	            +'<td>'+ pension.parkyn +'</td>     '
+	            +'<td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">사업자 등록증 확인</button></td>   '
+
+	            
+	            +'<td><button type="button" class="btn btn-danger" onclick=pensionUpdate("'+ pension.p_id +'")>등록 승인</button></td>   '
 	            +'</tr>';
 			
 		})
@@ -160,6 +166,13 @@ function pensionRes(map){
 		alert(map.message);
 	}
 		
+}
+
+function pensionUpdate(p_id){
+	
+	console.log('p_id', p_id );
+	fetchGet('/peco/adminPension/update/' + p_id, pensionRes);
+	location.reload();
 }
 
 
