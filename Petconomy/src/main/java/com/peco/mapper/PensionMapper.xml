@@ -86,7 +86,7 @@
 		select count(*) from pension
 		where 1=1
 	  	<include refid="mega"></include> 
-	  	<include refid="small"></include>  
+ 
 	</select>	
 	
   	<sql id="mega">

@@ -32,26 +32,31 @@ function regionChange(e){
 	else if(e.value == "충청") var changeItem = chungcheongdo;
 	else if(e.value == "제주") var changeItem = jejudo;
 	
-	if(megaregion==null){
-		smallregion.options.length=0;		
-	}
-	$('#smallregion').empty();
+
 	
 	for(item in changeItem){                
-		var option = $("<option>"+changeItem[item]+"</option>");
-        $('#smallregion').append(option);
-	    }
-	
+		var option = $("<option ${'"+changeItem[item]+"' eq smallregion ? 'selected' : ' ' }>"+changeItem[item]+"</option>");
+	        $('#smallregion').append(option);
+		    }
+	$('#smallregion').val($('input[name=sRegion]').val());
 }	
 
 
-	}
+function go(page){
+	selectForm.pageNo.value=page;
+	selectForm.submit();
+}
+
+$(function() {
+    $("select[name=road_x1]").val((("${searchVO.road_x1}" == '') ? "" : "${searchVO.road_x1}")).prop("selected", true);              //select문
+});
 
 </script>
 <form id="search" action="/peco/main/pension" method="get" name="selectForm">
 <div class="test-score1" data-max="5" data-rate="5"></div>
 <input type="hidden" name="pageNo" value="${pageDto.regioncri.pageNo}">
-<select class="form-select" id="megaregion" name="megaregion"  onchange="regionChange(this)" style="display:inline-block;">
+<input type="text" name="sRegion" value="${pageDto.regioncri.smallregion}">
+<select class="form-select" id="megaregion" name="megaregion"  onchange="regionChange(this)" style="width:100px; display:inline-block;">
   <option value='' selected>시·도</option>
   <option value="강원" ${pageDto.regioncri.megaregion eq "강원" ? "selected" : " " }>강원도</option>
   <option value="경기" ${pageDto.regioncri.megaregion eq "경기" ? "selected" : " " }>경기도</option>
@@ -62,9 +67,21 @@ function regionChange(e){
   <option value="충청" ${pageDto.regioncri.megaregion eq "충청" ? "selected" : " " }>충청도</option>
   <option value="제주" ${pageDto.regioncri.megaregion eq "제주" ? "selected" : " " }>제주도</option>
 </select>
-<select class="form-select form-select-inline" id="smallregion" name="smallregion" onchange="submit(this.value)" id="smallregion" style="display:inline-block;">
+<select class="form-select form-select-inline" id="smallregion" name="smallregion" id="smallregion" style=" width:100px; display:inline-block;">
 <option value=''>군·구</option>
 </select>
+
+<select class="form-select form-select-inline" id="sort" name="sort" id="smallregion" style=" width:150px; display:inline-block; ">
+<option value=''>정렬기준</option>
+<option value='review'>리뷰많은순</option>
+<option value='new'>최신순</option>
+<option value='high'>고가순</option>
+<option value='low'>저가순</option>
+</select>
+
+  <div class="col-sm-3">
+    <button type="submit" class="btn btn-primary mb-3 w-100" onclick="go(1)">검색</button>
+  </div>
 
 </form>
 
