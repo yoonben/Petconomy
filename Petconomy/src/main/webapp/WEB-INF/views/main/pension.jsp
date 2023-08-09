@@ -56,7 +56,6 @@
 	}
 
 
-
 </script>
 
 </head>
@@ -77,7 +76,6 @@
 	<%@include file="header.jsp" %>
   <!-- 헤더영역  끝-->
 	
-  
   <!-- ***** Header Area End ***** -->
  <div id="myModal" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -96,6 +94,8 @@
     </div>
   </div>
 </div>
+
+
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
@@ -122,6 +122,9 @@
           <!-- ***** Details Start ***** -->
           <div class="game-details">
           <br>
+            <input type="text" name="pageNo" id="pageNo" value="${param.pageNo }">  
+			<input type="text" name="megaregion" value="${param.megaregion }">  
+			<input type="text" name="smallregion" value="${param.smallregion }">  
               <div class="main-button" style="display:inline-block">
                 <a href="../main/pension" style="color:black; font-size:1.5em; background-color: #ffec90; font-weight: 900;">펜션</a>
               </div>
@@ -130,10 +133,6 @@
                 <a  href="../main/hospital" style="color:black; font-size:1.5em; background-color: #ffec90; font-weight: 900;">병원</a>
               </div>
             <div class="row">
-              <div class="col-lg-12">
-                <h2>펜션 리스트</h2>
-              </div>
-
               <div class="col-lg-12">
                 <div class="content">
                   <div class="row">
@@ -155,6 +154,7 @@
             <div class="row">
               <div class="col-lg-12">
                 <div class="heading-section">
+                ${pageDto }
                   <h4 style="color:white"><em style="color:#ffec90">펜션</em> 리스트</h4>
          <!--  <div class="main-button">
            <a href="#" onclick="regionSelect()">지역</a>
@@ -170,23 +170,29 @@
 					<col width="7%"/>
 					<col width="27%"/>
 					<col width="37%"/>
-					<col width="25%"/>
-					<col width="5%"/>
+					<col width="24%"/>
+					<col width="6%"/>
 				</colgroup>
 
-
+				<thead>
 				<tr height="50" style="font-size:1.4em;">
 				<th >번호</th>
 				<th>펜션명</th>
 				<th>펜션주소</th>
 				<th>운영시간</th>
 				<th>주차</th>
-
-
 				</tr>
-				    <c:forEach items="${list }" var="list">
-				<tr height="50" style="font-size:1em;">
+				</thead>
+				  	<c:if test="${empty list }" var="res">
+						<td colspan="5" class="center" style="text-align:center; font-size:1.5em">
+							등록된 게시물이 없습니다.
+						</td>
+					</c:if>
 				
+				<tbody>
+					<c:if test="${not res }">				   
+					<c:forEach items="${list }" var="list">
+
 				<td >${list.p_id }</td>
 				<td><a href="#">${list.pname }</a></td>
 				<td>${list.addr }</td>
@@ -195,9 +201,11 @@
 				
 				</tr>
 				    </c:forEach>
+				    </c:if>
 				<tr style="text-align: center">
 					<td colspan="6"><%@include file = "pageNavi.jsp" %></td>
 				</tr>
+				</tbody>
 				</table>
 
 

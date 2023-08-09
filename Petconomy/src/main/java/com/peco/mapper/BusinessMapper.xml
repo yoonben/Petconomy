@@ -5,12 +5,17 @@
 <mapper namespace="com.peco.mapper.BusinessMapper">
 
 	<insert id="pensionInsert">
-		insert into pension(m_id,p_id,pname,addr,openhour,parkyn,checkyn,latitude,longitude)
-    		values (#{m_id},'p_'||SEQ_PENSION_NUM.nextval,#{pname},#{addr},#{openhour},#{parkyn},'N',#{latitude},#{longitude})
+		insert into pension(m_id,p_id,pname,addr,openhour,parkyn,checkyn)
+    		values (#{m_id},'p_'||SEQ_PENSION_NUM.nextval,#{pname},#{addr},#{openhour},#{parkyn},'N')
 	</insert>
 	
 	<select id="pensionGetOne" resultType="com.peco.vo.PensionVO">
 		select * from pension where m_id = #{m_id} and addr = #{addr}
 	</select>
+	
+	<insert id="pensionRoomInsert">
+		insert into p_room (room_no,p_id,roomname,price)
+					values (#{room_no},#{p_id},#{roomname},#{price})
+	</insert>
 
 </mapper>

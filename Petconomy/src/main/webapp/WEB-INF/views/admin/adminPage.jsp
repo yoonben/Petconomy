@@ -58,6 +58,10 @@ window.addEventListener('load',function(){
 	
 	getPensionList();
 	
+	getPReviewList();
+	
+	getHReviewList();
+	
 });
 
 </script>
@@ -76,15 +80,16 @@ window.addEventListener('load',function(){
 	    <a href="#tab3">숙소 관리</a>
 	  </li>
 	  <li class="tab__item">
-	    <a href="#tab4">Tab 4</a>
+	    <a href="#tab4">리뷰 관리</a>
 	  </li>
 	</ul>
 	<div id="text">
 		<!-- 탭 내용 영역 -->
 		<div class="tab__content-wrapper">
 		  <div id="tab1" class="tab__content active">
-		  	<div>
+		  	<div style="text-align: center;">
 		  		<h3>회원 목록</h3>
+		  		
 			  	<div id="memberDiv"></div>
 			  	<div id="paginationDiv"></div>
 		  	</div>
@@ -93,18 +98,45 @@ window.addEventListener('load',function(){
 		  	두번째 탭 내용
 		  </div>
 		  <div id="tab3" class="tab__content">
-		  	<div>
+		  	<div style="text-align: center;">
 		  		<h3>승인대기 펜션 목록</h3>
 			  	<div id="pensionDiv"></div>
 			  	<div id="pensionpaginationDiv"></div>
 		  	</div>
 		  </div>
 		  <div id="tab4" class="tab__content">
-		  	네번째 탭 내용
+		  	<div style="text-align: center;">
+		  		<h3>펜션 리뷰 목록</h3>
+		  		
+			  	<div id="pReviewDiv"></div>
+			  	<div id="PReviewpaginationDiv"></div>
+		  	</div>
+		  	<div style="text-align: center;">
+		  		<h3>병원 리뷰 목록</h3>
+		  		
+			  	<div id="hReviewDiv"></div>
+			  	<div id="HReviewpaginationDiv"></div>
+		  	</div>
 		  </div>
 		</div>
 	</div>
 	
+	<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <img src="" alt="">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 	<script type="text/javascript">
 const tabItem = document.querySelectorAll(".tab__item");
@@ -141,6 +173,8 @@ tabItem.forEach((item, index) => {
 </script>
 <script src="/resources/js/AdminMember.js"></script>
 <script src="/resources/js/AdminPension.js"></script>
+<script src="/resources/js/AdminPReview.js"></script>
+<script src="/resources/js/AdminHReview.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
 </html>

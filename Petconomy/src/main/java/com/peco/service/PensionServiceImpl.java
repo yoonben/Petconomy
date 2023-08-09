@@ -28,9 +28,9 @@ public class PensionServiceImpl implements PensionService {
 	}
 	
 	@Override
-	public List<PensionVO> mapList() {
+	public List<PensionVO> mapList(RegionCri cri) {
 
-		return pensionMapper.mapList();
+		return pensionMapper.mapList(cri);
 	}
 	
 	@Override

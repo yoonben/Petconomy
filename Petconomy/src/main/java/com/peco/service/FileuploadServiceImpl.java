@@ -17,6 +17,7 @@ import com.peco.mapper.FileuploadMapper;
 import com.peco.vo.BusinessFileuploadVO;
 import com.peco.vo.FileuploadVO;
 import com.peco.vo.PensionFiileuploadVO;
+import com.peco.vo.PensionRoomFiluploadVo;
 
 import lombok.extern.log4j.Log4j;
 import net.coobird.thumbnailator.Thumbnails;
@@ -36,6 +37,11 @@ public class FileuploadServiceImpl implements FileuploadService{
 	@Override
 	public int insertPensionfile(PensionFiileuploadVO vo) {
 		return mapper.insertPensionfile(vo);
+	}
+	
+	@Override
+	public int insertPensionRoomfile(PensionRoomFiluploadVo vo) {
+		return mapper.insertPensionRoomfile(vo);
 	}
 	
 	
@@ -156,11 +162,9 @@ public class FileuploadServiceImpl implements FileuploadService{
 				 */
 				String saveFileName = p_id+file.getOriginalFilename();
 				String uploadPath = getPension();
-				String fileroom = "P_";
 				
 				File sFile = new File(FileuploadController.ATTACHES_DIR
 						+uploadPath
-						+fileroom 
 						+saveFileName);
 				
 				// file(원본파일)을 sFile(저장 대상 파일)에 저장
@@ -180,7 +184,6 @@ public class FileuploadServiceImpl implements FileuploadService{
 				vo.setP_id(p_id);
 				vo.setFilename(file.getOriginalFilename());
 				vo.setUploadpath(uploadPath);
-				vo.setFileroom(fileroom);
 				
 				int res = insertPensionfile(vo);
 				
@@ -203,6 +206,9 @@ public class FileuploadServiceImpl implements FileuploadService{
 
 	public int PensionfileupRoomload(List<MultipartFile> roonimg, String p_id) throws Exception {
 		int insertRes = 0;
+		
+		int i = 0;
+		
 		for(MultipartFile file : roonimg) {
 			if(file.isEmpty()) {
 				continue;
@@ -221,12 +227,11 @@ public class FileuploadServiceImpl implements FileuploadService{
 				 */
 				
 				String saveFileName = p_id+file.getOriginalFilename();
-				String uploadPath = getPension();
-				String fileroom = "R_";
+				String uploadPath = getPensionRoom();
 				
 				File sFile = new File(FileuploadController.ATTACHES_DIR
 						+uploadPath
-						+fileroom 
+						+i
 						+saveFileName);
 				
 				// file(원본파일)을 sFile(저장 대상 파일)에 저장
@@ -234,7 +239,7 @@ public class FileuploadServiceImpl implements FileuploadService{
 				
 				//주어진 파일의 Mine유형
 				String contentType = Files.probeContentType(sFile.toPath());
-				PensionFiileuploadVO vo = new PensionFiileuploadVO();
+				PensionRoomFiluploadVo vo = new PensionRoomFiluploadVo();
 				
 				// Mine타입을 확인하여 이미지인 경우 썸네일을 생성
 				if(contentType.startsWith("image")) {
@@ -247,10 +252,11 @@ public class FileuploadServiceImpl implements FileuploadService{
 				vo.setP_id(p_id);
 				vo.setFilename(file.getOriginalFilename());
 				vo.setUploadpath(uploadPath);
-				vo.setFileroom(fileroom);
+				vo.setRoom_no(String.valueOf(i));
 				
-				int res = insertPensionfile(vo);
+				int res = insertPensionRoomfile(vo);
 				
+				i++;
 				if(res>0) {
 					insertRes++;
 				}
@@ -351,6 +357,22 @@ public class FileuploadServiceImpl implements FileuploadService{
 	
 	public String getPension() {
 		String uploadPath = "pension" + File.separator;
+		log.info("경로 : " + uploadPath);
+		
+		File saveDir = new File(FileuploadController.ATTACHES_DIR + uploadPath);
+		if(!saveDir.exists()) {
+			if(saveDir.mkdirs()) {
+				log.info("폴더 생성!!");
+			}else {
+				log.info("폴더 생성 실패!!");
+			}
+		}
+		
+		return uploadPath;
+	}
+	
+	public String getPensionRoom() {
+		String uploadPath = "pensionroom" + File.separator;
 		log.info("경로 : " + uploadPath);
 		
 		File saveDir = new File(FileuploadController.ATTACHES_DIR + uploadPath);

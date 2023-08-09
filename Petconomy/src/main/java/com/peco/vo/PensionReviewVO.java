@@ -11,5 +11,6 @@ public class PensionReviewVO {
 	private String star;
 	private String p_id;
 	private String reviewer;
-
+	
+	private String pname;
 }

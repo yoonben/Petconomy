@@ -18,6 +18,41 @@
 
 <script type="text/javascript">
 window.addEventListener('load', function(){
+	
+	addRoomButton.addEventListener('click', function(e) {
+		// 기본 이벤트 제거
+		e.preventDefault();
+		
+        console.log('addRoomButton 클릭됨');
+	 const roomDiv = document.querySelector('#pesion-room');
+	 
+	 const newRoomInfo = document.createElement('div');
+     newRoomInfo.classList.add('room-info');
+     newRoomInfo.innerHTML = ' '
+            +'<div class="form-login">'
+            +'    <div class="text-line">'
+            +'        <input type="text" class="form-control pensionRoom" name="pensionRoom" placeholder="팬션 방 명"> '
+            +'    </div>'
+            +'</div>'
+            +'<div class="form-login">'
+            +'    <div class="text-line">'
+            +'        <input type="text" class="form-control pensionPrice" name="pensionPrice" placeholder="가격"> '
+            +'    </div>'
+            +'</div>'
+            +'<div class="form-login">'
+            +'  <div class="text-text">'
+            +'		<label for="signUpPwCheck">펜션 방 이미지</label>'
+            +'	</div>'
+            +'	<div class="text-btnline">'
+            +'		<input type="file" class="form-control" id="files" name="roonimg">'
+            +'	</div>'
+            +'    </div>'
+            +'</div>';
+            
+            
+     		roomDiv.appendChild(newRoomInfo);
+	})
+	
 	pensionSignup.addEventListener('click', function(e){
 		// 기본 이벤트 제거
 		e.preventDefault();
@@ -27,11 +62,24 @@ window.addEventListener('load', function(){
 		
 		let m_id = `${member.m_id}`;
 		let pname = pensionName.value;
-		let addr = sample6_address.value+sample6_extraAddress.value+" "+sample6_detailAddress.value;
+		let addr = sample6_address.value;
 		let openhour  = pensionHour.value;
 		let parkyn = selectedPensionPark; 
-		let latitude = pensionLatitude.value;
-		let longitude = pensionLongitude.value;
+
+		let roomnames = []; // 방 이름을 저장할 배열
+	    let prices = [];    // 가격을 저장할 배열
+	    
+	    // 모든 .pensionRoom 요소와 .pensionPrice 요소를 선택
+	    const roomNameElems = document.querySelectorAll('.pensionRoom');
+	    const priceElems = document.querySelectorAll('.pensionPrice');
+	    
+	    // 각 요소의 값을 배열에 추가
+	    roomNameElems.forEach(roomNameElem => {
+	        roomnames.push(roomNameElem.value);
+	    });
+	    priceElems.forEach(priceElem => {
+	        prices.push(priceElem.value);
+	    });
 		
 		obj = {
 				m_id : m_id
@@ -39,19 +87,17 @@ window.addEventListener('load', function(){
 				,addr : addr
 				,openhour : openhour
 				,parkyn  : parkyn
-				,latitude : latitude
-				,longitude : longitude
+				,romnames : roomnames
+				,prices : prices 
 		}
 
 		console.log('패션 가입 obj : ', obj);
-		
 		fetchPost('/peco/pensionInsert', obj, (map)=>{
 					if(map.result == 'success'){
-						document.querySelector('#p_id').value = map.p_id;
+						document.querySelector('#p_id').value = map['p_id'];
 						
 						let formData = new FormData(businessForm);
-			 			 
-						
+			 			
 						console.log("formData : ", formData);
 						
 						for(var pair of formData.entries()){
@@ -78,10 +124,16 @@ window.addEventListener('load', function(){
 									, body : formData
 						})
 						.then(response=>response.json())
-						.then(map => fileuploadRes(map));
+						.then(map => {
+							 fileuploadRes(map);
+				                // 페이지 리디렉션 실행
+				             window.location.href = '/peco/main'; // 원하는 페이지 URL로 변경
+						});
 					}else{
 						signupMsg.innerHTML = map.msg;
 					}
+				});
+						
 		});
 		
 	})
@@ -145,7 +197,7 @@ window.addEventListener('load', function(){
 		
 	}
 	
-})
+
 </script>
 
 <!-- Bootstrap core CSS -->
@@ -180,8 +232,8 @@ window.addEventListener('load', function(){
 						<input type="text" id="sample6_postcode" placeholder="우편번호">
 						<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
 						<input type="text" id="sample6_address" placeholder="도로명 주소"><br>
-						<input type="text" id="sample6_detailAddress" placeholder="상세주소">
-						<input type="text" id="sample6_extraAddress" placeholder="참고항목">
+						<input type="hidden" id="sample6_detailAddress" placeholder="상세주소">
+						<input type="hidden" id="sample6_extraAddress" placeholder="참고항목">
 						
 						<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 						<script>
@@ -246,8 +298,8 @@ window.addEventListener('load', function(){
 
 				<div class="form-login">
 				    <div class="text-line">
-				        <label><input type="radio" name="pensionPark" value="Y">추차 가능</label>
-				        <label><input type="radio" name="pensionPark" value="N" checked="checked">추차 불가능</label>
+				        <label><input type="radio" name="pensionPark" value="주차 가능">주차 가능</label>
+				        <label><input type="radio" name="pensionPark" value="주차 불가능" checked="checked">주차 불가능</label>
 				    </div>
 				</div>
 
@@ -264,17 +316,6 @@ window.addEventListener('load', function(){
 					</div>
 				</div>
 				
-				<div class="text-line">
-					<div class="form-tude">
-						<input type="text" class="form-control" id="pensionLatitude" placeholder="위도"> 
-					</div>
-					<div class="text-line">
-					<div class="form-tude">
-						<input type="text" class="form-control" id="pensionLongitude" placeholder="경도"> 
-					</div>
-				</div>
-				</div>
-				
 				<div class="form-login">
 					<label for="signUpPwCheck">사업자 등록 이미지</label>
 					<input type="file" class="form-control" id="files" name="files">
@@ -285,10 +326,29 @@ window.addEventListener('load', function(){
 					<input type="file" class="form-control" id="files" name="pensionimg">
 				</div>
 				
-				<div class="form-login">
-					<label for="signUpPwCheck">펜션 방 이미지</label>
-					<input type="file" class="form-control" id="files" name="roonimg">
+				<div id="pesion-room">
+					<div class="form-login">
+						<div class="text-line">
+							<input type="text" class="form-control pensionRoom" name="pensionRoom" placeholder="팬션 방 명"> 
+						</div>
+					</div>
+					
+					<div class="form-login">
+						<div class="text-line">
+							<input type="text" class="form-control pensionPrice" name="pensionPrice" placeholder="가격(원)"> 
+						</div>
+					</div>
+					
+					<div class="form-login">
+						<div class="text-text">
+							<label for="signUpPwCheck">펜션 방 이미지</label>
+						</div>
+						<div class="text-btnline">
+							<input type="file" class="form-control" id="files" name="roonimg">
+						</div>
+					</div>
 				</div>
+				<button class="btn btn-secondary" type="button" id="addRoomButton">방 정보 추가</button>
 				
 				<button class="w-100 btn btn-lg btn-primary" type="submit"  id="pensionSignup">업소 등록</button>
 			</form>

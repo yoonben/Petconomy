@@ -27,4 +27,10 @@ public class AdminPensionServiceImpl implements AdminPensionService {
 		return adminPensionMapper.totalCnt();	
 	}
 
+	@Override
+	public int update(String p_id) {
+		// TODO Auto-generated method stub
+		return adminPensionMapper.update(p_id);
+	}
+
 }

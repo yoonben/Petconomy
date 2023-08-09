@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.peco.mapper.AdminReviewMapper">
+
+	<select id="getPReviewList" resultType="com.peco.vo.PensionReviewVO">
+		select *  
+		from p_review pr, pension p
+		where pr.p_id = p.p_id
+	</select>
+
+	<select id="getHReviewList" resultType="com.peco.vo.HospitalReviewVO">
+		select *  
+		from h_review hr, hospital h
+		where hr.h_id = h.h_id
+	</select>
+	
+	<select id="ptotalCnt" resultType="int">
+		select count(*)  
+		from p_review pr, pension p
+		where pr.p_id = p.p_id
+	</select>
+	
+	<select id="htotalCnt" resultType="int">
+		select count(*)  
+		from h_review hr, hospital h
+		where hr.h_id = h.h_id
+	</select>
+	
+	<delete id="pdelete">
+		delete 
+		from	p_review
+		where 	pr_no =#{pr_no} 
+	</delete>
+	
+	<delete id="hdelete">
+		delete 
+		from	h_review
+		where 	hr_no =#{hr_no} 
+	</delete>
+
+</mapper>

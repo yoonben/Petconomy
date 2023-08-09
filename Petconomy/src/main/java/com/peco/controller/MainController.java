@@ -51,7 +51,7 @@ public class MainController {
 	public String plist(RegionCri cri, Model model, HttpServletRequest request) {
 		
 		List<PensionVO> list = pensionService.pensionList(cri);
-		List<PensionVO> lists = pensionService.mapList();
+		List<PensionVO> lists = pensionService.mapList(cri);
 		int totalCnt = pensionService.totalCnt(cri);
 		PageDto pageDto = new PageDto(cri, totalCnt);
 		
@@ -88,10 +88,10 @@ public class MainController {
 	public String main(Model model) {
 		List<PensionVO> plist = pensionService.pensiontop();
 		List<HospitalVO> hlist = hospitalService.hospitaltop();
-		List<BoardVO> blist = boardService.getBest();
+		//List<BoardVO> blist = boardService.getBest();
 		model.addAttribute("plist", plist);
 		model.addAttribute("hlist", hlist);
-		model.addAttribute("blist", blist);
+		//model.addAttribute("blist", blist);
 		return "/main/mainpage";
 	}
 	
@@ -101,6 +101,16 @@ public class MainController {
 	@GetMapping("/main/kakaomap")
 	public String kakaomap() {
 		return "/main/kakaomap";
+	}
+	
+	@GetMapping("/main/searchForm")
+	public String searchForm() {
+		return "/main/searchForm";
+	}
+	
+	@GetMapping("/main/searchForm2")
+	public String searchForm2() {
+		return "/main/searchForm2";
 	}
 	
 
