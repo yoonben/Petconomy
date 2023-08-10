@@ -7,7 +7,7 @@
   <head>
   	<meta charset="UTF-8">
 	<title>예약</title>
-	
+	<link rel="stylesheet" href="/resources/datepicker/css/jquery-ui.css">
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
@@ -30,9 +30,9 @@
 
 </head>
 <style>
-	body{
+	html, body{
 	   margin: 0 auto; /* 바디 마진을 0으로 하고 가로 가운데 정렬 */
-	   background-color: #ffec90;
+	   background-color: #fff;
 	  }
 	
 	  div >.page-content{
@@ -42,21 +42,45 @@
 	  align-items: center;
 	  }
 	  
-	  .resPage {
-	  width: 80%;
-	  margin: 0 auto;
-	  margin-top: 20px;
+	  .infoForm {
+	  	background-color: rgb(247, 218, 218);
+	  	border-radius: 23px;
+	  	padding-bottom: 50px;
+	  	position: relative;
+	  	z-index: 1;
+	  	width: 97%;
+	  	margin: 0 auto;
+	  	height: 270px;
+	  }
+	  
+	  .resInfo {
+        padding-bottom: 40px;
+	  	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	  	border-radius: 23px;
+	  	width: 100%;
+	  	height: 600px;
+      	margin: 0 auto;
+      	position: relative;
+        z-index: 2;
+    	bottom: 50px;
+    	background-color: #fff;
 	  }
 	  
 
     /*달력속성 변경*/
     .hasDatepicker {
         display: inline-block;
+        padding: .2em .2em 0;
     }
     
     /*readonly 백그라운드 색상 설정*/ 
     .memberInfo > input:read-only {
     background-color: #ededed;
+    }
+    
+    .memberInfo > h3, .fiex > h3{
+    margin-bottom: 10px;
+    margin-top: 10px;
     }
     
     .pensionInfo input {
@@ -65,10 +89,21 @@
     border : none;
     outline: none;
     display: inline-block;
+    background-color: transparent;
     }
     
     #pname {
     font-weight: bold;
+    }
+    
+    .pImg {
+    border: 1px solid black;
+    width:200px;
+    height:200px;
+    display:inline-block;
+    float:left;
+    margin: 10px;
+    border-radius: 23px;
     }
     
     .memberInfo {
@@ -76,37 +111,17 @@
     margin-left: 10px;
     font-size: 16px;
     padding-bottom: 10px;
+    position: relative;
+	top: 5px;
+    right: 155px;
     }
     
     .memberInfo > input {
-    margin-left: 10px;
-    margin-bottom: 3px;
-    border-radius: 10px;
-    padding: 3px;
-    font-size: 14px;
-    }
-    
-    .paycnt, .payinfo, #pay {
-    width: 250px;
-    display: inline-block;
-    padding: 10px;
-    position: relative;
-	left: -12px;
-    bottom: 20px;
-    }
-    
-    .paycnt > input,.payinfo > input, #date, #time{
+    margin: 3px;
     border: none;
-    outline: none;
-    }
-    
-    .payinfo > input, .payinfo > small {
-    color: grey;
-    }
-    
-    .paycnt > p, #pay {
-    font-size: 20px;
-    font-weight: bold;
+    border-bottom: 1px solid black;
+    padding: 3px;
+    font-size: 15px;
     }
     
     #Resbtn {
@@ -119,36 +134,27 @@
     display: inline-block;
     background-color: #fff; 
     padding: 5px;
-    border: 2px solid #ffec90;
+    border: 1px solid #ff7676;
     border-radius: 5px;
     width: 70px;
-    color: #ffdd3a;
     font-weight: bold;
     margin-left: 10px;
-    }
-    
-    #Resbtn:hover, #direct:hover {
-    background-color: #ffdd3a;
-    color:#fff;
     }
     
     .btn {
     float: right;
     display: inline-block;
     position: relative;
-    bottom: 50px;
+    bottom: 145px;
+    right: 125px;
+    z-index: 3;
     }
     
     .btn > #payment {
-    background-color: #ffdd3a;
+    background-color: #ff7676;
     color:#fff;
     width: 100px;
     height: 40px;
-    }
-    
-    .btn > #payment:hover {
-    border-color:  #ffdd3a;
-    background-color: #f7cd00;
     }
     
     .btn > #goback {
@@ -164,24 +170,27 @@
     }
 	
 	.resvation {
-	position: relative;
-	top: 5px;
-	padding: 5px;
 	height: 280px;
+	margin: 0;
+	padding: 0;
 	}
 	
 	.datepicker {
+	width: 300px;
 	position: relative;
-	rigth:100px;
+	left: 30px;
+	top: 30px;
+	float: left;
 	}
 	
-	
 	.timepicker {
-	width: 360px;
-    display: inline-block;
-    position: relative;
-    bottom: 207px;
-    left: 283px;
+	width: 450px;
+	margin: 5px;
+	position: relative;
+	top: 70px;
+	left: 15px;
+	float: left;
+	
 	}
 	
 	.timepicker > input {
@@ -189,7 +198,7 @@
     padding: 10px;
     background-color: #fff;
     margin: 5px;
-    border: 1px solid orange;
+    border: 1px solid #ff7676;
     border-radius: 5px;
 	}
 	
@@ -199,23 +208,43 @@
 	}
 	
 	.timepicker > input:focus, timepicker > input:hover  {
-	background-color: orange;
+	background-color: #ff7676;
 	color: #fff; 
 	}
 	
 	.fiex{
 	position: relative;
-	top: 15px;
-	left: 10px;
+	top: 35px;
+    left: 455px;
+    display: inline-block;
+	}
+	
+	
+	#date, #time {
+	border: none;
+    outline: none;
+    border-bottom: 1px solid #ff7676;
+	}
+	
+	.payInfo {
+	position: relative;
+    left: 40px;
+    top: 15px;
+	}
+	
+	.payInfo > p {
+	font-size: 20px;
+    font-weight: bold;
 	}
 	
 	#pay {
-	position: relative;
-	top: 15px;
-    left: auto;
-    font-size: 25px;
+	font-size: 35px;
+    font-weight: bold;
+    border: none;
+    outline: none;
 	}
 
+	
     
     
 </style>
@@ -265,66 +294,69 @@
       	<!-- 예약하기 -->
 		   <div class="pension" style="display:inline-block; width:800px;">
 			<div class="resPage">
-			<h2>예약하기</h2><br>
 			<!-- 서브밋 폼 -->
 			<form class="resForm" onsubmit="return false" action="resAction">
+				<div class="infoForm">
 				<!-- 숙소 정보 -->
 				<div class='pensionInfo'>
-   					<div class="pImg" style="border: 1px solid black; width:200px; height:200px; display:inline-block; float:left;">펜션이미지</div>
+   					<div class="pImg">펜션이미지</div>
 						<c:forEach var="h" items="${hList}">
 						  <input type="hidden" value="${h.h_id}" id="h_id"><br>
 						  <input type="text" value="${h.pname}" id="pname"><br>
-						  <input type="text" value="${h.addr}" id="addr"><br>
-						  <input type="text" value="${h.openhour}" id="openhour"><br>
-						  <input type="text" value="${h.parkyn}" id="parkyn"><br>
-						  <input type="text" value="${h.homepage}" id="homepage"><br>
-						  <input type="text" value="${h.phone}" id="phone"><br>
-				  </div><hr>
+						  <input type="hidden" value="${h.openhour}" id="openhour"><br>
+
+				  </div>
 				  <!-- 숙소 정보 끝 -->
-   		<!-- 예약자 정보 -->
-		   <div class="memberInfo">
-   			<h3>예약자 정보 </h3>
-		   	<c:forEach var="mem" items="${mList}">
-		   		<input type="hidden" value= "${mem.m_id}" id="m_id">
-			    이름<input type="text" value="${mem.mname }" id="user_id" readonly><br>
-		   	 이메일<input type="text" value="${mem.email }" id="user_email" readonly><br>
-		         전화번호<input type="text" value="${mem.mphone }" id="user_tel" readonly>
-		    <button id="direct">직접입력</button><br>  
-		   </div>
-		   <!-- 예약자 정보 끝 -->
-      <hr>
-      	<div class="resvation">
-         	
+	</div>
+      
+      <div class="resInfo">
+      
+   		<div class="resvation">
          	<!-- 폼 -->
          	<div class="datepicker" style="display: inline-block;"></div>
            	
            	<!-- timepicker -->
            	<div class="timepicker"></div>
-      	</div>
-         	
+   		</div>
+      	
          	<!-- 출력 -->
          	<div class="fiex">
-         	<div id="datepick">
-         		<b style="float: left;">날짜</b><br>
-         		<input type="text" id="date" readonly>
-         	</div>
-         	<div id="timepick">
-       		<b style="float: left;">시간</b><br>
-       		<input type="text" id="time" readonly>
-         	</div>
+         	<h3>예약정보</h3>
+	         	<div id="datepick">
+	         		<b style="float: left; font-size: 15px">날짜</b><br>
+	         		<input type="text" id="date" readonly>
+	         	</div>
+	         	<div id="timepick">
+	       		<b style="float: left; font-size: 15px">시간</b><br>
+	       		<input type="text" id="time" readonly>
+	         	</div>
 
          	<button id="Resbtn">선택</button><br>
+         	</div>
+         	
+         <!-- 예약자 정보 -->
+		   <div class="memberInfo">
+   			<h3>예약자 정보 </h3>
+		   	<c:forEach var="mem" items="${mList}">
+		   		<input type="hidden" value= "${mem.m_id}" id="m_id">
+		         이름      <input type="text" value="${mem.mname }" id="user_id" readonly><br>
+		         이메일   <input type="text" value="${mem.email }" id="user_email" readonly><br>
+		         전화번호<input type="text" value="${mem.mphone }" id="user_tel" readonly>
+		    <button id="direct">직접입력</button><br>  
+		   </div>
+		   <!-- 예약자 정보 끝 -->
 
       	
       	<!-- 결제금액 -->
-      	<div class="paycnt">
+      	<div class="payInfo">
 	      	<p>총 결제금액</p>
 	        <input type="text" id="pay" readonly>
-        </div>
+      		</div>
         <!-- 결제금액 끝 -->
-        </div>
+
       </c:forEach></c:forEach>
 		
+	</div>
 		<br>
 		<!-- 결제버튼 -->
 	   <div class="btn">
@@ -474,24 +506,57 @@ let checkDisable = function() {
 function openHour() {
 	
 	//전체시간 배열
-	let time = ['07:00','08:00','09:00','10:00','11:00'
-				,'12:00','13:00','14:00','15:00','16:00'
-				,'17:00','18:00','19:00','20:00','21:00','22:00','23:00']
+	let time = ['00:00','01:00','02:00','03:00','04:00'
+				,'05:00','06:00','07:00','08:00','09:00'
+				,'10:00','11:00','12:00','13:00','14:00'
+				,'15:00','16:00','17:00','18:00','19:00'
+				,'20:00','21:00','22:00','23:00','24:00']
 	
 	//console.log(time);
 	
 	let openhour = document.querySelector('#openhour').value;
-	let str = openhour.split('~');
-	let open =  str[0];
-	let close =  str[1];
 	
-	//console.log(time.indexOf(open));
-	//console.log(time.indexOf(close));
+	console.log(openhour);
+	
+	
+	var split = openhour.indexOf(':');
+	console.log(split);
+	
+	let open = openhour.substr((split)-2, 5);
+	console.log(open);
+	
+	let close = openhour.substr((split)+4, 5);
+	console.log(close);
+	
+	if(open.search("30")>0) {
+		split = open.indexOf(':');
+		var hh = parseInt(open.substr(0,2));
+		var mm = '00';
+
+		hh += 1;
+		
+		var H = hh.toString();
+		
+		open = H+':'+mm;
+		console.log(open);
+		
+	}
+
+	if(close.search("30")>0) {
+		split = close.indexOf(':');
+		var hh = close.substr(0,2);
+		var mm = '00';
+		
+		close = hh+':'+mm;
+		console.log(close);
+		
+	}
+
 	
 	//운영시간에 맞춰 배열 자름
 	time = time.slice(time.indexOf(open), time.indexOf(close)+1);
 	
-	//console.log(time);
+	console.log(time);
 	
 	return time;	
 }
@@ -673,7 +738,7 @@ function openHour() {
  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
  
- <link rel="stylesheet" href="/resources/datepicker/css/jquery-ui.css">
+
  </body>
 
 </html>
