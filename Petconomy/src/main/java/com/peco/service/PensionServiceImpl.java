@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.peco.mapper.PensionMapper;
+import com.peco.vo.PensionFiileuploadVO;
 import com.peco.vo.PensionReviewVO;
 import com.peco.vo.PensionRoomVO;
 import com.peco.vo.PensionVO;
@@ -83,6 +84,18 @@ public class PensionServiceImpl implements PensionService {
 	public List<PensionVO> pensiontop() {
 
 		return pensionMapper.pensiontop();
+	}
+
+	@Override
+	public PensionFiileuploadVO getPesionImg(String p_id) {
+
+		return pensionMapper.getPesionImg(p_id);
+	}
+
+	@Override
+	public List<PensionFiileuploadVO> getRoomImg(String p_id) {
+		
+		return pensionMapper.getRoomImg(p_id);
 	}
 
 

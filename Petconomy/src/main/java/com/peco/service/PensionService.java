@@ -2,8 +2,10 @@ package com.peco.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
+import com.peco.vo.PensionFiileuploadVO;
 import com.peco.vo.PensionReviewVO;
 import com.peco.vo.PensionRoomVO;
 import com.peco.vo.PensionVO;
@@ -35,4 +37,8 @@ public interface PensionService {
 	public List<PensionReviewVO> reviewList(String p_id);
 	
 	public int starAvg(String p_id);
+	
+	public PensionFiileuploadVO getPesionImg(@Param(value="p_id") String p_id);
+	
+	public List<PensionFiileuploadVO> getRoomImg(@Param(value="p_id") String p_id);
 }

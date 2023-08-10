@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.peco.vo.PensionFiileuploadVO;
 import com.peco.vo.PensionReviewVO;
 import com.peco.vo.PensionRoomVO;
 import com.peco.vo.PensionVO;
@@ -35,4 +36,8 @@ public interface PensionMapper {
 	public int totalCnt(RegionCri cri);
 	
 	public PensionVO selectPensionList();
+	
+	public PensionFiileuploadVO getPesionImg(@Param(value="p_id") String p_id);
+	
+	public List<PensionFiileuploadVO> getRoomImg(@Param(value="p_id") String p_id);
 }
