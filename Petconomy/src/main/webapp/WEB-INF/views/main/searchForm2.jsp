@@ -16,19 +16,19 @@
 		//sido option 추가
 		jQuery.each(hangjungdong.sido, function (idx, code) {
 			//append를 이용하여 option 하위에 붙여넣음
-			let sel_province = '${param.sel_province}';
-            sel_province=11;
-			let selected = code.sido==sel_province?'selected':'';
+			let megaregion = '${param.megaregion}';
+            megaregion='서울';
+			let selected = code.sido==megaregion?'selected':'';
 			jQuery('#sido').append(fn_option(code.sido, code.codeNm, selected));
-            if(sel_province){
+            if(megaregion){
                 fn_sido_change(); 
-                jQuery('#sigugun').val('470').prop('selected',true);   
+                jQuery('#sigugun').val('강동').prop('selected',true);   
                 
             }
 		});
 		
 
-		//sido 변경시 시군구 option 추가
+		//시도 변경시 시군구 option 추가
 		jQuery('#sido').change(function () {
 			fn_sido_change();
 		});
@@ -41,7 +41,6 @@
 
 			var sido = jQuery('#sido option:selected');
 			var sigugun = jQuery('#sigugun option:selected');
-			var dong = jQuery('#dong option:selected');
 
 				jQuery('#sido').change(function () {
 					
@@ -79,8 +78,11 @@
 	});
 
    function fn_sido_change(){
+	   // select박스 보여주기
         jQuery('#sigugun').show();
+	   // select박스 비우기
         jQuery('#sigugun').empty();
+	   // select박스 옵션 추가
         jQuery('#sigugun').append(fn_option('', '선택')); //
         jQuery.each(hangjungdong.sigugun, function (idx, code) {
             if (jQuery('#sido > option:selected').val() == code.sido)
@@ -124,7 +126,6 @@
 	function filterByLocation(){
 		// 지역 초기화 함수
 	    document.querySelector('#city').value = "";
-	    document.querySelector('#district').value = "";
 	}
 	
 
@@ -132,18 +133,17 @@
   
 </head>
 <body>
-
+<form id="search" action="/peco/main/pension" method="get" name="selectForm">
 	<input type="hidden" name="class_no" value="">
 	<input type="hidden" name="pageNo" value="${pageDto.cri.pageNo }">
 	<input type="hidden" name="total" value="${pageDto.total }">
 
 	<div>
-		<select name="sel_province" id="sido" onchange="filterByLocation()"><option value="" >시도 선택</option></select>
-		<select name="sel_city" id="sigugun"><option value="">시군구 선택</option></select>
-		<select name="district" id="dong"><option value="">읍면동 선택</option></select>
-
+		<select name="megaregion" id="sido" onchange="filterByLocation()"><option value="" >시도 선택</option></select>
+		<select name="smallregion" id="sigugun"><option value="">시군구 선택</option></select>
+    <button type="submit" class="btn btn-primary mb-3 w-100" onclick="go(1)">검색</button>
 	</div>
-
+</form>
 
 
 

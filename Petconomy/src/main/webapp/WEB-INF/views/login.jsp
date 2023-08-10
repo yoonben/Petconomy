@@ -26,7 +26,7 @@
 <body>
 
 	<!-- header -->
-	<%@include file="./commo/header.jsp"%>
+	<%@include file="./main/header.jsp"%>
 
 	<!-- 로그인 -->
 	<div class="container">

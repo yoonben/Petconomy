@@ -161,7 +161,7 @@
          </div> -->
    	           
    	           
-         <div><%@include file="searchForm.jsp"%></div>
+         <div><%@include file="searchForm2.jsp"%></div>
          <br>
          <h5>총 ${totalCnt } 건</h5>
              <table style="color:white;">
@@ -191,11 +191,11 @@
 				
 				<tbody>
 					<c:if test="${not res }">				   
-					<c:forEach items="${list }" var="list">
+					<c:forEach items="${list }" var="list" varStatus="status">
 
 						<tr height="50" style="font-size:1em;">
-						<td >${list.p_id }</td>
-						<td><a href="/peco/detail/detailPage?p_id=${list.p_id }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}">${list.pname }</a></td>
+						<td >${status.count}</td>
+						<td><a href="/peco/detail/detailPage?h_id=${list.p_id }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}">${list.pname }</a></td>
 						<td>${list.addr }</td>
 						<td>${list.openhour }</td>
 						<td>${list.parkyn }</td>
