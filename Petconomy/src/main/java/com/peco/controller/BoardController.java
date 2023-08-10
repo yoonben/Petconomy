@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.peco.controller.CommonRestController;
 import com.peco.service.BoardService;
 import com.peco.service.FileuploadService;
+import com.peco.service.ReplyService;
 import com.peco.vo.BoardVO;
 import com.peco.vo.Criteria;
 import com.peco.vo.FileuploadVO;
@@ -37,6 +38,9 @@ public class BoardController extends CommonRestController{
 	
 	@Autowired
 	FileuploadService fservice;
+	
+	@Autowired
+	ReplyService rservice;
 	
 	
 	@GetMapping("/board/main")
@@ -92,11 +96,26 @@ public class BoardController extends CommonRestController{
 	  
 	  
 	  
+	  
 	  // 파일 경로를 슬래시(/)로 변경 
-	  if (Bestlist != null) { for (BoardVO Best : Bestlist) {
-	  String convertedPath = Best.getSavePath().replace("\\", "/"); String
-	  convertedThumPath = Best.getS_savePath().replace("\\", "/");
-	  Best.setSavePath(convertedPath); Best.setS_savePath(convertedThumPath); } }
+	  if (Bestlist != null) { 
+		  for (BoardVO Best : Bestlist) {
+			  String convertedPath = Best.getSavePath().replace("\\", "/"); 
+			  String convertedThumPath = Best.getS_savePath().replace("\\", "/");
+			  Best.setSavePath(convertedPath); 
+			  Best.setS_savePath(convertedThumPath); 
+		  } 
+	  }
+	  
+	  // 파일 경로를 슬래시(/)로 변경 
+	  if (list != null) { 
+		  for (BoardVO Free : list) {
+			  String convertedPath = Free.getSavePath().replace("\\", "/"); 
+			  String convertedThumPath = Free.getS_savePath().replace("\\", "/");
+			  Free.setSavePath(convertedPath); 
+			  Free.setS_savePath(convertedThumPath); 
+		  } 
+	  }
 	 
 	  
 	  model.addAttribute("list",list); 
@@ -106,36 +125,55 @@ public class BoardController extends CommonRestController{
 	  }
 	 
 	
-	@GetMapping("/board/healing")
-	public String healing(Model model,Criteria cri) {
-		
-	  List<BoardVO> list = service.getHealing(cri,model); 
+	  @GetMapping("/board/healing")
+	  public String healing(Model model,Criteria cri) {
 	  
-	  List<BoardVO> Bestlist = service.getHealingBest(); 
+	  List<BoardVO> list = service.getHealing(cri, model);
+	  List<BoardVO> Bestlist = service.getHealingBest();
+	  
+	  
 	  
 	  
 	  // 파일 경로를 슬래시(/)로 변경 
 	  if (Bestlist != null) { 
 		  for (BoardVO Best : Bestlist) {
-		  String convertedPath = Best.getSavePath().replace("\\", "/"); 
-		  String convertedThumPath = Best.getS_savePath().replace("\\", "/");
-		  Best.setSavePath(convertedPath); Best.setS_savePath(convertedThumPath); 
+			  String convertedPath = Best.getSavePath().replace("\\", "/"); 
+			  String convertedThumPath = Best.getS_savePath().replace("\\", "/");
+			  Best.setSavePath(convertedPath); 
+			  Best.setS_savePath(convertedThumPath); 
+		  } 
+	  }
+	  
+	  // 파일 경로를 슬래시(/)로 변경 
+	  if (list != null) { 
+		  for (BoardVO Healing : list) {
+			  String convertedPath = Healing.getSavePath().replace("\\", "/"); 
+			  String convertedThumPath = Healing.getS_savePath().replace("\\", "/");
+			  Healing.setSavePath(convertedPath); 
+			  Healing.setS_savePath(convertedThumPath); 
 		  } 
 	  }
 	 
 	  
-	  model.addAttribute("list",list);
+	  model.addAttribute("list",list); 
 	  model.addAttribute("Best",Bestlist);
-		
-		
-		
-	  return "board/healing";
-	}
+	  
+	  return "board/healing"; 
+	  }
 	
 	@GetMapping("/board/search")
 	public String search(Model model,Criteria cri) {
 		
-	  List<BoardVO> list = service.getSearch(cri, model); 
+	  List<BoardVO> list = service.getSearch(cri, model);
+	  
+  	  // 파일 경로를 슬래시(/)로 변경 
+	  if (list != null) { 
+		  for (BoardVO Search : list) {
+			  String convertedPath = Search.getSavePath().replace("\\", "/"); 
+			  String convertedThumPath = Search.getS_savePath().replace("\\", "/");
+			  Search.setSavePath(convertedPath); Search.setS_savePath(convertedThumPath); 
+		  } 
+	  }
 
 
 		
@@ -143,21 +181,7 @@ public class BoardController extends CommonRestController{
 
 	  return "board/search";
 	}
-	/*
-	 * @GetMapping("/board") public String freeboard(@RequestParam("category")
-	 * String category, Model model) {
-	 * 
-	 * List<BoardVO> list = service.getList(category);
-	 * 
-	 * model.addAttribute("list",list);
-	 * 
-	 * 
-	 * // category에 따라서 다른 뷰로 매핑되도록 합니다. if ("free".equals(category)) { return
-	 * "board/free"; // WEB-INF/views/board/free.jsp } else if
-	 * ("healing".equals(category)) { return "board/healing"; //
-	 * WEB-INF/views/board/healing.jsp } else { // 기타 경우, 예외처리 또는 기본 뷰를 반환할 수 있습니다.
-	 * return "board/boardmain"; // 예를 들어, 에러 페이지로 이동하거나 기본 뷰로 이동할 수 있습니다. } }
-	 */
+
 	
 	@GetMapping("/board/write")
 	public String write() {

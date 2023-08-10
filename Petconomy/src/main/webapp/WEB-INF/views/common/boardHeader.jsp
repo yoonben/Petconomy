@@ -6,9 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-div >.page-content{
-    margin-top: 200px;
-  }
+
   
 </style>
 </head>
@@ -38,16 +36,7 @@ div >.page-content{
                     <!-- ***** Menu End ***** -->
                 </nav>
             </div>
-            <div class="col-lg-12">
-              <nav class="main-nav">
-                    <ul class="nav">
-                        <li><a href="/peco/board/free">일상게시판</a></li>
-						<li><a href="/peco/board/healing">힐링게시판</a></li>
-                        <li><a href="browse.html">어쩌구게시판</a></li>
-                        <li><a href="browse.html"></a></li>
-                	</ul>
-              </nav>
-            </div>
+            
         </div>
     </div>
   </header>

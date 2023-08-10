@@ -9,18 +9,30 @@
 <title>Insert title here</title>
 
 
+<style>
+.searchbox{
+height:50px;
 
+}
+
+/* 추가한 스타일 */
+.col-auto .form-select,
+.col-sm-6 .form-control {
+  border-radius: 15px; /* 모서리 둥글게 설정 */
+  border: 2px solid rgb(255, 189, 8);; /* 테두리 노란색으로 설정 */
+}
+</style>
 
 
 </head>
 <body>
 
-	<form class="row g-3" action="/peco/board/search" name="searchForm">
+	<form class="row g-2" action="/peco/board/search" name="searchForm">
 	
 	<input type="hidden" class="form-control" name="bno" id="bno" >
 	<input type="hidden" class="form-control" name="pageNo" id="pageNo" value="${pageDto.cri.pageNo }">
 	
-	<div class="row g-3 justify-content-center">
+ 	<div class="row g-2 justify-content-center searchbox" >
 	  <!-- 검색필드 -->
 	  <div class="col-auto">
 		<select name="searchField" class="form-select" aria-label="Default select example">
@@ -39,9 +51,15 @@
 	  
 	  <!-- 검색버튼 -->
 	  <div class="col-auto">
-	    <button type="submit" class="btn btn-primary mb-3" onclick='go(1)'>검색</button>
-	  </div>
+	    <button type="submit" class="btn btn-transparent  mb-3" onclick='go(1)' style="height:37px"><i class="fa fa-search"></i></button>
+	  </div> 
 	</div>
+	
+	
+	
+	
+	
+	
 	  
 	</form>
 	

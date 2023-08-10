@@ -15,6 +15,7 @@ public class BoardVO {
 	private String m_id       ;
 	private String nickname   ;
 	private String writer ;
+	private String replycount ;
 	
 	private String savePath;	//저장된 파일경로
 	private String s_savePath;	//저장된 썸네일파일경로

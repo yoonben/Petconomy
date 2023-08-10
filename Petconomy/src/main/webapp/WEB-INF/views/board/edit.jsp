@@ -32,13 +32,29 @@
 
 
     <style>
+    .header-area .main-nav {
+	height: 80px;
+
+}
+.header-area .container {
+    height: 80px;
+}
+
+.header-area .row {
+    height: 80px;
+}
+.header-area .col-12 {
+    height: 80px;
+}
+    
+    
       body{
         margin: 0 auto; /* 바디 마진을 0으로 하고 가로 가운데 정렬 */
-    	background-color: #ffec90;
+    	background-color: white;
       }
     
   	  div >.page-content{
-        background-color: white;
+        background-color: rgb(251, 235, 215);
         padding: 30px
       }
     
@@ -150,6 +166,23 @@
 #dropZone.dragover {
     background-color: rgba(0, 0, 0, 0.1);
 }
+
+
+.board-menu {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    margin-bottom:0;
+}
+.main-button{
+    height: 100%;
+    margin: 0;
+}
+.main-button > a{
+    margin: 0;
+}
+
+
 
 
 
@@ -468,16 +501,9 @@ function FileCheck() {
     <!-- ***** Preloader End ***** -->
   
     <!-- ***** Header Area Start ***** -->
-		<%@include file = "../common/boardHeader.jsp" %>
+		<%@include file="../main/header.jsp"%>
   	<!-- ***** Header Area End ***** -->
   
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="page-content">
-    
-    <form method="post" enctype="multipart/form-data" name="editForm" action="/peco/board/edit">
-        
         <!-- 검색조건 유지하기 위해 갖고가야하는 값들 -->
         <input type="text" name="pageNo" value="${param.pageNo }">
         <input type="text" name="searchField" value="${param.searchField }">
@@ -491,6 +517,31 @@ function FileCheck() {
         
         
         
+        
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="page-content">
+          
+          
+          <!-- ***** 게시판 메뉴 버튼 시작 ***** -->
+		    <div class="board-menu" style="text-align: left;">
+              <div class="main-button">
+                  <a href="/peco/board/free">일상 게시판</a>
+              </div>
+              <div class="main-button">
+                  <a href="/peco/board/healing">힐링 게시판</a>
+              </div>
+		    </div>
+		    <!-- ***** 게시판 메뉴 버튼 끝 ***** -->
+          
+          
+          
+          
+          
+          
+    
+    <form method="post" enctype="multipart/form-data" name="editForm" action="/peco/board/edit">
         <h4 class="category">카테고리</h4>
 
         <!-- 일상게시판 박스 -->

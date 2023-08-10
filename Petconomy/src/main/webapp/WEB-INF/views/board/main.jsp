@@ -33,14 +33,30 @@ https://templatemo.com/tm-579-cyborg-gaming
 
 
 <style>
+
+.header-area .main-nav {
+	height: 80px;
+
+}
+.header-area .container {
+    height: 80px;
+}
+
+.header-area .row {
+    height: 80px;
+}
+.header-area .col-12 {
+    height: 80px;
+}
+
   body{
    margin: 0 auto; /* 바디 마진을 0으로 하고 가로 가운데 정렬 */
-    background-color: #ffec90;
+    background-color: white;
   }
 
       
   div >.page-content{
-    background-color: white;
+    background-color: rgb(251, 235, 215);
     padding: 30px;
   }
 
@@ -63,6 +79,8 @@ https://templatemo.com/tm-579-cyborg-gaming
   
   .most-popular{
     background-color: bisque;
+    margin-top:10px;
+    height: 880px;
   }
   
   
@@ -77,6 +95,7 @@ https://templatemo.com/tm-579-cyborg-gaming
  .bestbox .thumbnail-image {
     width: 100%; 
     height: 180px; 
+    margin: 0;
   }
   .item h4 {
   color : white;
@@ -87,6 +106,11 @@ https://templatemo.com/tm-579-cyborg-gaming
 
 .item ul {
   margin-right: 5px;
+  height: 20px;
+}
+
+.item ul li {
+  height: 100%;
 }
 
 
@@ -97,7 +121,7 @@ https://templatemo.com/tm-579-cyborg-gaming
 
 .boardbox .item{
 	width:90%;
-	heigth:90%;
+	height:90%;
 
 }
 
@@ -107,7 +131,24 @@ https://templatemo.com/tm-579-cyborg-gaming
 	object-fit: cover;
 
 }
-  
+
+
+.board-menu {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    margin-bottom:0;
+}
+.board-menu .main-button{
+    height: 100%;
+    margin: 0;
+    margin-right:5px;
+    display: inline-block; 
+}
+.board-menu .main-button > a{
+    margin: 0;
+}
+
 
 </style>
 
@@ -143,18 +184,30 @@ https://templatemo.com/tm-579-cyborg-gaming
   <!-- ***** Preloader End ***** -->
 
   <!-- ***** Header Area Start ***** -->
-  <%@include file = "../common/boardHeader.jsp" %>
+  <%@include file="../main/header.jsp"%>
   <!-- ***** Header Area End ***** -->
 
   <div class="container">
-  					
     <div class="row">
-    				  
       <div class="col-lg-12">
         <div class="page-content">
+        
 
 
+		 	<!-- ***** 게시판 메뉴 버튼 시작 ***** -->
+		    <div class="board-menu" style="text-align: left;">
+              <div class="main-button">
+                  <a href="/peco/board/free">일상 게시판</a>
+              </div>
+              <div class="main-button">
+                  <a href="/peco/board/healing">힐링 게시판</a>
+              </div>
+		    </div>
+		    <!-- ***** 게시판 메뉴 버튼 끝 ***** -->
+			
+			
 			<%@include file = "../common/searchForm.jsp" %>
+			
 		
 		<!-- ***** Most Popular Start ***** -->
           <div class="most-popular">
@@ -183,11 +236,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                   </div>
                 </c:if>
                 </c:forEach>
-                  <div class="col-lg-12">
-                    <div class="main-button">
-                      <a href="browse.html">Discover Popular</a>
-                    </div>
-                  </div>
+             
                 </div>
                 
               </div>
@@ -218,7 +267,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                     <div class="hover-effect">
                       <div class="content">
                         <div class="live">
-                          <a href="#">Live</a>
+                          <a href="#">일상</a>
                         </div>
                         <ul>
                           <li><i class="fa fa-eye"></i>${f.visitcount} </a></li>
@@ -264,7 +313,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                     <div class="hover-effect">
                       <div class="content">
                         <div class="live">
-                          <a href="#">Live</a>
+                          <a href="#">힐링</a>
                         </div>
                         <ul>
                           <li><a href="#"><i class="fa fa-eye"></i>${h.visitcount}</a></li>
@@ -289,6 +338,7 @@ https://templatemo.com/tm-579-cyborg-gaming
             </div>
           </div>
           <!-- ***** Live Stream End ***** -->
+          
           
           
 

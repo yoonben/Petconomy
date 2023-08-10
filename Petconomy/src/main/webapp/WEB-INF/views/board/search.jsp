@@ -33,31 +33,239 @@ https://templatemo.com/tm-579-cyborg-gaming
 
 
 <style>
-  body{
-    background-color: rgba(250, 149, 16, 0.979);
-  }
+.header-area .main-nav {
+	height: 80px;
 
-  div >.page-content{
-    background-color: rgb(255, 187, 0);
-  }
+}
+.header-area .container {
+    height: 80px;
+}
 
-  .top-streamers{
-  	margin-top: 50px;
-  
-    overflow: auto;
+.header-area .row {
+    height: 80px;
+}
+.header-area .col-12 {
+    height: 80px;
+}
+body{
+   margin: 0 auto; /* 바디 마진을 0으로 하고 가로 가운데 정렬 */
+  background-color: white;
+}
 
-    background-color: bisque;
+div >.page-content{
+      background-color: rgb(251, 235, 215);
+      padding: 30px;
+    }
 
-  }
+.top-streamers{
+	margin-top: 50px;
 
-  .featured-games{
-    background-color: bisque;
-  }
+  overflow: auto;
 
-  .live-stream{
-    background-color: bisque;
-  }
+  background-color: bisque;
 
+}
+
+.featured-games{
+  background-color: bisque;
+}
+
+.live-stream{
+  background-color: bisque;
+}
+
+
+.thumbnail-image {
+   width: 100%; /* 이미지의 가로 크기를 부모 요소의 100%로 조정 */
+   height: 100%; /* 이미지의 세로 크기를 부모 요소의 100%로 조정 */
+   object-fit: cover;
+   border-radius: 23px;
+   margin-bottom: 30px;
+}
+
+
+.besttitle {
+  margin-left: 10px; /* 탑 마진을 0으로 설정 */
+  margin-top: 0; /* 탑 마진을 0으로 설정 */
+}
+.bestthumb{
+	width: 292px;
+	height: 292px;
+ }
+ 
+ 
+.featured-games .hover-effect ul {
+	 position: absolute;
+	 bottom: 20px;
+	 text-align: center;
+	 width: 100%;
+}
+
+.featured-games .hover-effect ul li {
+  display: inline-block;
+  margin: 0px 5px;
+}
+
+.featured-games .hover-effect ul li a {
+  background-color: rgba(236, 96, 144, 0.9);
+  padding: 5px 10px;
+  border-radius: 23px;
+  color: #fff;
+  font-size: 14px;
+}
+
+.featured-games .item ul li:first-child i {
+  color: white;
+}
+
+.featured-games span i {
+  color: #fff;
+  background-color: #ec6090;
+  border-radius: 50%;
+  font-size: 12px;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  text-align: center;
+  line-height: 20px;
+  margin-right: 3px;
+}
+
+.featured-games span {
+  font-size: 14px;
+  color: #ec6090;
+}
+
+.featured-games .down-content h4 {
+  margin-top: 8px;
+  font-size: 20px;
+  font-weight: 700;
+  margin-left: 61px;
+}
+
+.featured-games .avatar img {
+  margin-right: 15px;
+}
+
+.main-banner {
+  background-image: url(https://hips.hearstapps.com/hmg-prod/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg?crop=1xw:0.74975xh;center,top&resize=1200:*);
+  background-position: center center;
+  background-size: cover;
+  min-height: 380px;
+  border-radius: 23px;
+  padding: 80px 60px;
+  margin-bottom: 50px; 
+}
+.header-text > .main-button a {
+  font-size: 26px; /* 원하는 글씨 크기로 조정 */
+}
+
+
+
+.board-menu {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    margin-bottom:0;
+}
+.main-button{
+    height: 100%;
+    margin: 0;
+    display: inline-block; 
+}
+.main-button > a{
+    margin: 0;
+    
+}
+
+
+/*-------------게시글 리스트------------ */
+.post_box{
+	margin: 0;
+}
+.post{
+	padding-right: 27px;
+	display: flex;
+	justify-content: space-between;
+	grid-gap: 10px;
+	gap: 10px;
+	margin: 0 ;
+	height: 120px;
+}
+
+.post_main{
+	margin: 0 ;
+}
+
+.post_title {
+	font-style: normal;
+	font-weight: 700;
+	margin-top: 18px;
+	font-size: 16px;
+	line-height: 19px;
+}
+.post_text {
+    font-style: normal;
+    font-weight: 700;
+    margin-top: 7px;
+    margin-bottom: 6px;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    font-weight: 400;
+    color: #868688;
+    font-size: 13px;
+    line-height: 160%;
+}
+.post_img {
+    position: relative;
+    min-width: 120px;
+    max-width: 120px;
+    height: 120px;
+    border-radius: 15px;
+    overflow: hidden;
+    -webkit-box-shadow: 0 2px 4px rgba(0,0,0,.15);
+    box-shadow: 0 2px 4px rgba(0,0,0,.15);
+}
+.post_img > img {
+  position: absolute;
+    inset: 0px;
+    box-sizing: border-box;
+    padding: 0px;
+    border: none;
+    margin: auto;
+    display: block;
+    width: 0px;
+    height: 0px;
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    filter: none;
+    background-size: cover;
+    background-image: none;
+    background-position: center center;
+}
+.postreplywriter{
+  display: flex;
+    align-items: center;
+    margin: 10px 0;
+    grid-gap: 40px;
+    gap: 40px;
+    font-size: 13px;
+    color: #868688;
+    height: 30px;
+
+}
+
+.postreplywriter div {
+  margin: 0;
+}
 </style>
 
 
@@ -99,13 +307,25 @@ https://templatemo.com/tm-579-cyborg-gaming
   <!-- ***** Preloader End ***** -->
 
   <!-- ***** Header Area Start ***** -->
-	<%@include file = "../common/boardHeader.jsp" %>
+	<%@include file="../main/header.jsp"%>
   <!-- ***** Header Area End ***** -->
 
 <div class="container">				
     <div class="row">		  
       <div class="col-lg-12">
         <div class="page-content">
+        
+        <!-- ***** 게시판 메뉴 버튼 시작 ***** -->
+	    <div class="board-menu" style="text-align: left;">
+             <div class="main-button">
+                 <a href="/peco/board/free">일상 게시판</a>
+             </div>
+             <div class="main-button">
+                 <a href="/peco/board/healing">힐링 게시판</a>
+             </div>
+	    </div>
+	    <!-- ***** 게시판 메뉴 버튼 끝 ***** -->
+        
         
         
         
@@ -123,28 +343,38 @@ https://templatemo.com/tm-579-cyborg-gaming
 				    	<h1>조회결과</h1>
 					  <c:if test="${not empty sessionScope.member.nickname}">
 					    <p class="lead"><b>${sessionScope.member.nickname}</b>님 환영합니다👋👋 </p>
-					    <a class="btn btn-lg btn-primary" href="/peco/board/write?pageNo=${pageDto.cri.pageNo }" role="button">글쓰기 &raquo;</a>
 					  </c:if>
 				  	</div>
 				</div>
 	
-				<%@include file = "../common/searchForm.jsp" %>
-				<c:forEach var="board" items="${list}">
-						  <div class="list-group w-auto">
-						    <a onclick="requestAction('/peco/board/view', ${board.bno })" href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-						      <div class="d-flex gap-2 w-100 justify-content-between">
-						        <div>
-						          <p class="mb-0 opacity-75">작성자 : ${board.nickname }</p>
-						          <p class="mb-0 opacity-75">카테고리:${board.category }</p>
-						          <h6 class="mb-0">${board.title }</h6>
-						        </div>
-						        <small class="opacity-50 text-nowrap">등록일 : ${board.regdate }</small>
-						      </div>
-						    </a>
-						  </div>
-				</c:forEach>
-				<!-- 페이지 불러오기 -->
+							<%@include file = "../common/searchForm.jsp" %>
+			<div class="live-stream post_list">
+                <c:forEach var="board" items="${list}">
+                  <div class="post_box">
+                     <div class="post">
+                        <div class="post_main">
+                          <div class="post_title">${board.title }</div>
+                          <div class="post_text">${board.content }</div>
+                        </div>
+                        <div class="post_img">
+                          <img src="/peco/display?fileName=${board.savePath}" alt="">
+                        </div>
+                     </div>
+
+                     <div class="postreplywriter">
+                        <div class="post_reply">댓글: ${board.replycount }</div>
+                        <div>${board.writer }</div>
+                        <div>${board.regdate }</div>
+                     </div>
+
+                     <div class="postendline">
+                      <hr>
+                     </div>
+                  </div>
+                </c:forEach>
+                <!-- 페이지 불러오기 -->
 				<%@include file = "../common/pageNavi.jsp" %>
+              </div>
 			
 			</div>
 			

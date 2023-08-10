@@ -33,6 +33,7 @@ https://templatemo.com/tm-579-cyborg-gaming
 
 
 <style>
+
 .header-area .main-nav {
 	height: 80px;
 
@@ -47,58 +48,58 @@ https://templatemo.com/tm-579-cyborg-gaming
 .header-area .col-12 {
     height: 80px;
 }
-body{
-   margin: 0 auto; /* 바디 마진을 0으로 하고 가로 가운데 정렬 */
-  background-color: white;
-}
 
-div >.page-content{
-      background-color: rgb(251, 235, 215);
-      padding: 30px;
-    }
+  body{
+     margin: 0 auto; /* 바디 마진을 0으로 하고 가로 가운데 정렬 */
+    background-color: white;
+  }
 
-.top-streamers{
-	margin-top: 50px;
+  div >.page-content{
+        background-color: rgb(251, 235, 215);
+        padding: 30px;
+      }
 
-  overflow: auto;
+  .top-streamers{
+  	margin-top: 50px;
+  
+    overflow: auto;
 
-  background-color: bisque;
+    background-color: bisque;
 
-}
+  }
 
-.featured-games{
-  background-color: bisque;
-}
+  .featured-games{
+    background-color: bisque;
+  }
 
-.live-stream{
-  background-color: bisque;
-}
-
+  .live-stream{
+    background-color: bisque;
+  }
 
 .thumbnail-image {
-   width: 100%; /* 이미지의 가로 크기를 부모 요소의 100%로 조정 */
-   height: 100%; /* 이미지의 세로 크기를 부모 요소의 100%로 조정 */
-   object-fit: cover;
-   border-radius: 23px;
-   margin-bottom: 30px;
+    width: 100%; /* 이미지의 가로 크기를 부모 요소의 100%로 조정 */
+    height: 100%; /* 이미지의 세로 크기를 부모 요소의 100%로 조정 */
+    object-fit: cover;
+    border-radius: 23px;
+    margin-bottom: 30px;
 }
 
 
-.besttitle {
-  margin-left: 10px; /* 탑 마진을 0으로 설정 */
-  margin-top: 0; /* 탑 마진을 0으로 설정 */
+  .besttitle {
+  	margin-left: 10px; /* 탑 마진을 0으로 설정 */
+    margin-top: 0; /* 탑 마진을 0으로 설정 */
 }
-.bestthumb{
-	width: 292px;
-	height: 292px;
+ .bestthumb{
+ 	width: 292px;
+ 	height: 292px;
  }
  
  
-.featured-games .hover-effect ul {
-	 position: absolute;
-	 bottom: 20px;
-	 text-align: center;
-	 width: 100%;
+ .featured-games .hover-effect ul {
+  position: absolute;
+  bottom: 20px;
+  text-align: center;
+  width: 100%;
 }
 
 .featured-games .hover-effect ul li {
@@ -156,10 +157,10 @@ div >.page-content{
   padding: 80px 60px;
   margin-bottom: 50px; 
 }
-.header-text > .main-button a {
-  font-size: 26px; /* 원하는 글씨 크기로 조정 */
-}
 
+.header-text > .main-button a {
+  font-size: 26px; /* 원하는 글씨 크기로 조정 */}  
+}
 
 
 .board-menu {
@@ -307,7 +308,7 @@ div >.page-content{
   <!-- ***** Preloader End ***** -->
 
   <!-- ***** Header Area Start ***** -->
-	<%@include file="../main/header.jsp"%>
+		<%@include file="../main/header.jsp"%>
   <!-- ***** Header Area End ***** -->
 
 <div class="container">				
@@ -326,6 +327,7 @@ div >.page-content{
               </div>
 		    </div>
 		    <!-- ***** 게시판 메뉴 버튼 끝 ***** -->
+        
         
         
         
@@ -371,7 +373,7 @@ div >.page-content{
 				      <div class="hover-effect">
 				      <div class="content">
 				       <ul>
-				        <li><a><i class="fa fa-eye"></i>${b.visitcount} </a></li>
+				        <li><a href="#"><i class="fa fa-eye"></i>${b.visitcount} </a></li>
 				        <li><i id="animated-icon" class="fa-regular fa-thumbs-up fa-lg" style="color: #ffa200;">${b.likecount }</i></li>
 				       </ul>
 				      </div>
@@ -397,8 +399,9 @@ div >.page-content{
             </div>
           </div>
           <!-- ***** Featured Games End ***** -->
-			
-			<%@include file = "../common/searchForm.jsp" %>
+        
+        
+	        <%@include file = "../common/searchForm.jsp" %>
 			<div class="live-stream post_list">
                 <c:forEach var="board" items="${list}">
                   <div class="post_box">
@@ -426,6 +429,7 @@ div >.page-content{
                 <!-- 페이지 불러오기 -->
 				<%@include file = "../common/pageNavi.jsp" %>
               </div>
+			
            
 
 	
