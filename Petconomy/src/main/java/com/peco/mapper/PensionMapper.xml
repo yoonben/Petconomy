@@ -16,23 +16,28 @@
 		<if test="smallregion!=null">		 
 			and addr like  '%'||#{smallregion}||'%' 
 		</if>
-		<include refid="mega"/>
   	</select>
 
-  	<select id="pensionList" resultType="com.peco.vo.PensionVO">
-			select * from
-			(select t.*, rownum rn from
-			(select p_Id, pname, Addr, openHour, substr(parkyn,-2) ParkYN 
-			from pension where 1=1
-		<if test="megaregion!=null">
-			and addr like  '%'||#{megaregion}||'%'
-		</if>
+  	<select id="pensionList" resultType="com.peco.vo.PensionVO">              
+             select * from
+             (select t.*, rownum rn from(select p.p_id, pname, addr, openhour, substr(parkyn,-2) ParkYN , star, cnt  
+             from pension p 
+             LEFT JOIN
+			 (select p_id, round(avg(star)) star, count(review) cnt from p_review group by p_id) r
+             ON p.p_id = r.p_id 
+             LEFT JOIN
+             (select p_id, min(price) min, max(price) max from p_room group by p_id) q
+              ON p.p_id = q.p_id  WHERE 1=1
+			<if test="megaregion!=null">
+				and addr like  '%'||#{megaregion}||'%'
+			</if>
+			
+			<if test="smallregion!=null">		 
+				and addr like  '%'||#{smallregion}||'%' 
+			</if>
+			<include refid="sort"/>
+             ) t ) where rn between #{startNo} and #{endNo}
 		
-		<if test="smallregion!=null">		 
-			and addr like  '%'||#{smallregion}||'%' 
-		</if>
-		
-			order by p_id desc) t) where rn between #{startNo} and #{endNo}
   	</select>
   	
   	<select id="pensiontop" resultType="com.peco.vo.PensionVO">
@@ -97,7 +102,16 @@
 		<when test="megaregion == 'chungcheong'"> and ADDR like '충청%' </when>
 		<when test="megaregion == 'jeju'"> and ADDR like '제주%' </when>
 		</choose>
-		</sql>
+	</sql>
+  	<sql id="sort">
+		<choose>
+		<when test="sort == 'review'"> and cnt IS NOT NULL order by cnt desc</when>
+		<when test="sort == 'star'">and star IS NOT NULL order by star desc</when>
+	    <when test="sort == 'highprice'">and max IS NOT NULL order by max asc</when>
+	    <when test="sort == 'lowprice'">and min IS NOT NULL order by min asc</when>
+	    <otherwise>and 1=1</otherwise>
+		</choose>
+	</sql>
 		
 		<!-- 		<include refid="mega"/> -->
 
