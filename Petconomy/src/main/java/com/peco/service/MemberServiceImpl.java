@@ -39,8 +39,11 @@ public class MemberServiceImpl implements MemberService {
 			// 사용자가 입력한 비밀번호가 일치하는지 확인
 			// 사용자가 입력한 비밀번호, 데이터베이스에 암호돠되어 저장된 비밀번호
 			boolean res = encoder.matches(paramMember.getPw(), member.getPw());
-
-			return member;
+			if(res) {
+				return member;				
+			}else {
+				return null;
+			}
 		}
 
 		return null;
