@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.peco.mapper.AdminPensionMapper;
 import com.peco.vo.Criteria;
+import com.peco.vo.PensionFiileuploadVO;
 import com.peco.vo.PensionVO;
 
 @Service
@@ -31,6 +32,18 @@ public class AdminPensionServiceImpl implements AdminPensionService {
 	public int update(String p_id) {
 		// TODO Auto-generated method stub
 		return adminPensionMapper.update(p_id);
+	}
+
+	@Override
+	public List<PensionFiileuploadVO> getPensionBList(String p_id) {
+		// TODO Auto-generated method stub
+		return adminPensionMapper.getPensionBList(p_id);
+	}
+
+	@Override
+	public int imgOn(String p_id) {
+		
+		return adminPensionMapper.imgOn(p_id);
 	}
 
 }
