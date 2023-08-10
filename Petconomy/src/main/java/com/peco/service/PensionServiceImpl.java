@@ -98,6 +98,12 @@ public class PensionServiceImpl implements PensionService {
 		return pensionMapper.getRoomImg(p_id);
 	}
 
+	@Override
+	public int totalCount(RegionCri cri) {
+		// TODO Auto-generated method stub
+		return pensionMapper.totalCount(cri);
+	}
+
 
 
 }

@@ -107,9 +107,29 @@
 		
 		
 	<select id="totalCnt" resultType="int">
-	select count(*) from pension <!-- where p_id=#{p_id} -->
+	select count(*) from pension  where p_id=#{p_id} 
 	</select>	
 	
+	
+	<select id="totalCount" resultType="int">
+             select count(*) from
+             (select t.*, rownum rn from(select p.p_id, pname, addr, openhour, substr(parkyn,-2) ParkYN , star, cnt  
+             from pension p 
+             LEFT JOIN
+			 (select p_id, round(avg(star)) star, count(review) cnt from p_review group by p_id) r
+             ON p.p_id = r.p_id 
+             LEFT JOIN
+             (select p_id, min(price) min, max(price) max from p_room group by p_id) q
+              ON p.p_id = q.p_id) t) where 1=1
+			<if test="megaregion!=null">
+				and addr like  '%'||#{megaregion}||'%'
+			</if>
+			
+			<if test="smallregion!=null">		 
+				and addr like  '%'||#{smallregion}||'%' 
+			</if>
+			<include refid="sort"/>
+	</select>
   	<sql id="mega">
 		<choose>
 		<when test="megaregion == 'gangwon'"> and ADDR like '강원%' </when>

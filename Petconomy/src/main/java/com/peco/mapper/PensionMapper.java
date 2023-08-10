@@ -40,4 +40,6 @@ public interface PensionMapper {
 	public PensionFiileuploadVO getPesionImg(@Param(value="p_id") String p_id);
 	
 	public List<PensionFiileuploadVO> getRoomImg(@Param(value="p_id") String p_id);
+	
+	public int totalCount(RegionCri cri);
 }

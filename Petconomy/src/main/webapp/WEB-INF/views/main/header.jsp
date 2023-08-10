@@ -13,7 +13,7 @@
             <div class="col-12">
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
-					<a href="./main/mainpage" class="logo"> <img src="/resources/assets/images/logo.png" alt="">
+					<a href="/peco/main/mainpage" class="logo"> <img src="/resources/assets/images/logo.png" alt="">
 					</a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Search End ***** -->

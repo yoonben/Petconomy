@@ -139,7 +139,7 @@
 
                     
                     <div class="col-lg-12">
-                      <div><%--@include file="kakaomap.jsp"--%></div>
+                      <div><%@include file="kakaomap.jsp"%></div>
                     </div>
 
                   </div>
@@ -161,7 +161,7 @@
          </div> -->
    	           
    	           
-         <div><%@include file="searchForm2.jsp"%></div>
+         <div><%@include file="searchForm.jsp"%></div>
          <br>
          <h5>총 ${totalCnt } 건</h5>
              <table style="color:white;">
