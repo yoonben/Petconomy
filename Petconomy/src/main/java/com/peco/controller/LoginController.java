@@ -51,7 +51,7 @@ public class LoginController extends CommonRestController {
 		member = memberService.login(member);
 		if (member != null) {
 			session.setAttribute("member", member);
-
+			
 			Map<String, Object> map = responseMap(REST_SUCCESS, "로그인 되엇습니다.");
 			map.put("url", "/peco/main");
 
@@ -69,13 +69,17 @@ public class LoginController extends CommonRestController {
 		try {
 
 			int res = memberService.insert(member);
+			
+			System.out.println("member1=========================="+member);
+			
+			member = memberService.apiLogin(member);
 
-			member = memberService.login(member);
-
+			System.out.println("member2=========================="+member);
+			
 			Map<String, Object> map = responseWriteMap(res);
-
+			
 			map.put("m_id", member.getM_id());
-
+			
 			return map;
 
 		} catch (Exception e) {
