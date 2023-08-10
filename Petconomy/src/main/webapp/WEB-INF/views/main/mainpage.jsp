@@ -128,24 +128,24 @@ jQuery(function ($) {
 					  <div class="carousel-inner" style="border-radius: 23px">
 					  <!-- http://img.einet.kr/P201809005/home/slider/22.jpg -->
 					    <div class="carousel-item active" data-bs-interval="3000" style="background-image: url(http://img.einet.kr/P201809005/home/slider/22.jpg); height:500px; background-size : cover; border-radius: 23px">
-					      <h1 style="color:white; padding-left: 40px; padding-top: 50px; font-size:5em;" ><em style="color:#ffec90">WELCOME TO </em> PETCONOMY</h1>
+					      <h1 style="color:white; padding-left: 40px; padding-top: 50px; font-size:5em;" ><em style="color:#FFC48C">WELCOME TO </em> PETCONOMY</h1>
 					      <h4 style="color:white; padding-left: 60px; font-size:2.5em;">사랑하는 이들, 애완동물과 행복한 추억을 담아가세요</h4>
 					      <div class="main-button" style="margin-left: 1000px; margin-top:100px; height:200px">
-			                <a href="../main/pension" style="font-size:1.5em; background-color: #ffec90; font-weight: 900; color:black">펜션 예약 바로가기</a>
+			                <a href="../main/pension" style="font-size:1.5em; background-color: #fa8e29; font-weight: 900; color:black">펜션 예약 바로가기</a>
 			              </div>
 					    </div>
 					    <div class="carousel-item" data-bs-interval="3000" style="background-image: url(http://www.conslove.co.kr/news/photo/202211/76099_214784_1832.jpg); height:500px; background-size : cover; border-radius: 23px">
-					      <h1 style="color:white; padding-left: 40px; padding-top: 50px; font-size:5em;" ><em style="color:#ffec90">WELCOME TO </em> PETCONOMY</h1>
+					      <h1 style="color:white; padding-left: 40px; padding-top: 50px; font-size:5em;" ><em style="color:#FFC48C">WELCOME TO </em> PETCONOMY</h1>
 					      <h4 style="color:white; padding-left: 60px; font-size:2.5em;">제일 가까운 동물병원이 어디야? </h4>
 					      <div class="main-button" style="margin-left: 1000px; margin-top:100px; height:200px">
-			                <a href="../main/pension" style="font-size:1.5em; background-color: #ffec90; font-weight: 900; color:black">병원 예약하기</a>
+			                <a href="../main/pension" style="font-size:1.5em; background-color: #fa8e29; font-weight: 900; color:black">병원 예약하기</a>
 			              </div>
 					    </div>
 					    <div class="carousel-item" data-bs-interval="3000" style="background-image: url(/resources/img/puppy.jpg); height:500px; background-size : cover; border-radius: 23px">
-					      <h1 style="color:white; padding-left: 40px; padding-top: 50px; font-size:5em;" ><em style="color:#ffec90">WELCOME TO </em> PETCONOMY</h1>
+					      <h1 style="color:white; padding-left: 40px; padding-top: 50px; font-size:5em;" ><em style="color:#FFC48C">WELCOME TO </em> PETCONOMY</h1>
 					      <h4 style="color:white; padding-left: 60px; font-size:2.5em;">어서오시개, 반려생활은 처음이지?</h4>
 					      <div class="main-button" style="margin-left: 1000px; margin-top:100px; height:200px">
-			                <a href="../main/pension" style="font-size:1.5em; background-color: #ffec90; font-weight: 900; color:black">커뮤니티 둘러보기</a>
+			                <a href="../main/pension" style="font-size:1.5em; background-color: #fa8e29; font-weight: 900; color:black">커뮤니티 둘러보기</a>
 			              </div>
 					    </div>
 
@@ -176,7 +176,7 @@ jQuery(function ($) {
 		   <div class="gaming-library">
             <div class="col-lg-12" >
               <div class="heading-section">
-                <h4 style="color:#FFC48C;"><em style="color:black">Top10</em> 펜션</h4>
+                <h4 style="color:#fa8e29;"><em style="color:black">Top10</em> 펜션</h4>
                
               </div>
              <c:forEach items="${plist }" var="pvo">
@@ -201,7 +201,7 @@ jQuery(function ($) {
 		    <div class="gaming-library">
             <div class="col-lg-12">
               <div class="heading-section">
-                <h4 style="color:#FFC48C;"><em>Top10</em> 병원</h4>
+                <h4 style="color:#fa8e29;"><em>Top10</em> 병원</h4>
               </div>
 	             <c:forEach items="${hlist }" var="hvo">
 	              <div class="item">
@@ -223,7 +223,7 @@ jQuery(function ($) {
             <div class="row">
               <div class="col-lg-12">
                 <div class="heading-section">
-                  <h4 style="color:#FFC48C">인기 <em style="color:black">BEST</em> 펫 짤</h4>
+                  <h4 style="color:#fa8e29">인기 <em style="color:black">BEST</em> 펫 짤</h4>
                 </div>
                 <div class="owl-features owl-carousel">
 		            <c:forEach items="${blist}" var="bvo" >

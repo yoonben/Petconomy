@@ -128,17 +128,17 @@ body{
 
           <!-- ***** Details Start ***** -->
           <div class="game-details">
-          ${pageDto }
+
           <br>
             <input type="hidden" name="pageNo" id="pageNo" value="${param.pageNo }">  
 			<input type="hidden" name="megaregion" value="${param.megaregion }">  
 			<input type="hidden" name="smallregion" value="${param.smallregion }">  
               <div class="main-button" style="display:inline-block">
-                <a href="../main/pension" style="color:black; font-size:1.5em; background-color: #FFC48C; font-weight: 900;">펜션</a>
+                <a href="../main/pension" style="font-size:1.5em; background-color: #FFF1E0 ; font-weight: 900;">펜션</a>
               </div>
               
               <div class="main-button" style="display:inline-block">
-                <a  href="../main/hospital" style="color:black; font-size:1.5em; background-color: #FFC48C; font-weight: 900;">병원</a>
+                <a href="../main/hospital" style="font-size:1.5em; background-color: #FFF1E0 ; font-weight: 900;">병원</a>
               </div>
             <div class="row">
               <div class="col-lg-12">
@@ -169,10 +169,10 @@ body{
          <br>
              <div style="height: 200px; display: flex; flex-wrap: wrap;">
             <c:forEach items="${list }" var="list" varStatus="status"> 
-            <div class="card" style="max-width: 25%; display: block; border:solid 0px" >
-			  <img src="..." class="card-img-top" alt="...">
+            <div class="card" style="width:265px; max-width: 25%; display: block; border:solid 0px" >
+			  <img src="/peco/display?fileName=${list.registerimg}" class="card-img-top" alt="..." >
 			  <div class="card-body" style="margin-bottom: 20px">
-			    <h5 class="card-title"> <a style="font-size:1.2em; color:black"href="/peco/detail/detailPage?p_id=${list.p_id }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}">${list.pname}</a></h5>
+			    <h5 class="card-title"> <a style="font-size:1.2em; color:black"href="/peco/detail/detailPage?p_id=${list.p_id }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}">${list.p_id}${list.pname}</a></h5>
 			    <p class="card-text">${list.addr }</p>
 			    <p class="card-text">1박당 요금 시작가 <br> <a style="color:red; font-weight:900;">KRW : ${list.min }</a></p>
 			   
