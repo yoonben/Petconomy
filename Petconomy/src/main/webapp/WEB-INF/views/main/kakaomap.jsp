@@ -13,7 +13,7 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b4793f7e09cabda709895d2261a8c2af&libraries=services"></script>
-<div id="map" style="width:100%;height:350px;backgroundColor:yellow;"></div>
+<div id="map" style="width:100%;height:400px;backgroundColor:yellow;"></div>
 <script>
 window.addEventListener('load', function(){
 	

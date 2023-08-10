@@ -12,7 +12,7 @@
 <form id="search" action="/peco/main/pension" method="get" name="selectForm">
 <div class="test-score1" data-max="5" data-rate="5"></div>
 <input type="hidden" name="pageNo" value="${pageDto.regioncri.pageNo}">
-<input type="text" name="sRegion" value="${pageDto.regioncri.smallregion}">
+<input type="hidden" name="sRegion" value="${pageDto.regioncri.smallregion}">
 <select class="form-select" id="megaregion" name="megaregion"  onclick="regionChange(this)"  style=" width:100px; display:inline-block;">
   <option value='' selected>시·도</option>
   <option value="강원" ${pageDto.regioncri.megaregion eq "강원" ? "selected" : " " }>강원도</option>

@@ -72,7 +72,7 @@
   </div>
   
   <!-- 헤더영역 시작-->
-	<%@include file="header.jsp" %>
+	<%--@include file="header.jsp" --%>
   <!-- 헤더영역  끝-->
 	
 	
@@ -160,22 +160,22 @@
          <h5>총 ${totalCnt } 건</h5>
          <table style="color:white;">
 
-			<colgroup>
-				<col width="7%"/>
-				<col width="27%"/>
-				<col width="35%"/>
-				<col width="25%"/>
-				<col width="5%"/>
-			</colgroup>
+				<colgroup>
+					<col width="30%"/>
+					<col width="30%"/>
+					<col width="15%"/>
+					<col width="15%"/>
+					<col width="6%"/>
+				</colgroup>
 
-			<thead>
-			<tr height="50" style="font-size:1.4em;">
-			<th >번호</th>
-			<th>병원명</th>
-			<th>병원주소</th>
-			<th>운영시간</th>
-			<th>주차</th>
-			</tr>
+				<thead>
+				<tr height="50" style="font-size:1.4em;">
+				<th>병원명</th>
+				<th>병원주소</th>
+				<th>가격</th>
+				<th>운영시간</th>
+				<th>주차</th>
+				</tr>
 				</thead>
 				  	<c:if test="${empty list }" var="res">
 						<td colspan="5" class="center" style="text-align:center; font-size:1.5em">
@@ -187,9 +187,9 @@
 			<c:if test="${not res }">
 			<c:forEach items="${list }" var="list">
 					<tr height="50" style="font-size:1em;">
-					<td >${list.h_id }</td>
 					<td><a href="/peco/detail/hospitalDetailPage?h_id=${list.h_id }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}">${list.pname }</a></td>
 					<td>${list.addr }</td>
+					<td>${list.min }원~${list.max }원</td>
 					<td>${list.openhour }</td>
 					<td>${list.parkyn }</td>
 					</tr>

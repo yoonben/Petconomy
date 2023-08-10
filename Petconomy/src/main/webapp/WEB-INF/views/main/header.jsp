@@ -13,13 +13,13 @@
             <div class="col-12">
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
-					<a href="../main/mainpage" class="logo"> <img src="/resources/assets/images/logo.png" alt="">
+					<a href="/peco/main/mainpage" class="logo"> <img src="/resources/img/petconomy.png" alt="">
 					</a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Search End ***** -->
-                    <div class="search-input">
+                    <div class="search-input" >
                       <form id="search" action="#">
-                        <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
+                        <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" style="background-color: #FFF1E0" />
                         <i class="fa fa-search"></i>
                       </form>
                     </div>

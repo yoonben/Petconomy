@@ -24,7 +24,14 @@
     <link rel="stylesheet" href="/resources/assets/css/owl.css">
     <link rel="stylesheet" href="/resources/assets/css/animate.css">
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
-
+<style>
+.other-games {
+    background-color: white;
+}
+body{
+	height : 1800px;
+}
+</style>
 <script>
 	
 	function regionSelect(){
@@ -96,10 +103,10 @@
 </div>
 
 
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="page-content">
+  <div class="container" style="height:1800px;">
+    <div class="row" style="height:1800px;">
+      <div class="col-lg-12" style="height:1800px;">
+        <div class="page-content" style="height:1800px;">
 
           <!-- ***** Featured Start ***** -->
           <div class="row">
@@ -121,21 +128,22 @@
 
           <!-- ***** Details Start ***** -->
           <div class="game-details">
+          ${pageDto }
           <br>
-            <input type="text" name="pageNo" id="pageNo" value="${param.pageNo }">  
-			<input type="text" name="megaregion" value="${param.megaregion }">  
-			<input type="text" name="smallregion" value="${param.smallregion }">  
+            <input type="hidden" name="pageNo" id="pageNo" value="${param.pageNo }">  
+			<input type="hidden" name="megaregion" value="${param.megaregion }">  
+			<input type="hidden" name="smallregion" value="${param.smallregion }">  
               <div class="main-button" style="display:inline-block">
-                <a href="../main/pension" style="color:black; font-size:1.5em; background-color: #ffec90; font-weight: 900;">펜션</a>
+                <a href="../main/pension" style="color:black; font-size:1.5em; background-color: #FFC48C; font-weight: 900;">펜션</a>
               </div>
               
               <div class="main-button" style="display:inline-block">
-                <a  href="../main/hospital" style="color:black; font-size:1.5em; background-color: #ffec90; font-weight: 900;">병원</a>
+                <a  href="../main/hospital" style="color:black; font-size:1.5em; background-color: #FFC48C; font-weight: 900;">병원</a>
               </div>
             <div class="row">
               <div class="col-lg-12">
-                <div class="content">
-                  <div class="row">
+                <div class="content" style="background-color: white; margin-bottom: 0px;">
+                  <div class="row" style="margin-bottom: 0px;">
 
                     
                     <div class="col-lg-12">
@@ -150,72 +158,35 @@
           <!-- ***** Details End ***** -->
 
           <!-- ***** Other Start ***** -->
-          <div class="other-games">
+          <div class="other-games" style="height:850px">
             <div class="row">
               <div class="col-lg-12">
                 <div class="heading-section">
-                ${pageDto }
-                  <h4 style="color:white"><em style="color:#ffec90">펜션</em> 리스트</h4>
-         <!--  <div class="main-button">
-           <a href="#" onclick="regionSelect()">지역</a>
-         </div> -->
+
    	           
    	           
          <div><%@include file="searchForm.jsp"%></div>
          <br>
-         <h5>총 ${totalCnt } 건</h5>
-             <table style="color:white;">
-
-				<colgroup>
-					<col width="7%"/>
-					<col width="27%"/>
-					<col width="37%"/>
-					<col width="24%"/>
-					<col width="6%"/>
-				</colgroup>
-
-				<thead>
-				<tr height="50" style="font-size:1.4em;">
-				<th >번호</th>
-				<th>펜션명</th>
-				<th>펜션주소</th>
-				<th>운영시간</th>
-				<th>주차</th>
-				</tr>
-				</thead>
-				  	<c:if test="${empty list }" var="res">
-						<td colspan="5" class="center" style="text-align:center; font-size:1.5em">
-							등록된 게시물이 없습니다.
-						</td>
-					</c:if>
-				
-				<tbody>
-					<c:if test="${not res }">				   
-					<c:forEach items="${list }" var="list" varStatus="status">
-
-						<tr height="50" style="font-size:1em;">
-						<td >${status.count}</td>
-						<td><a href="/peco/detail/detailPage?h_id=${list.p_id }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}">${list.pname }</a></td>
-						<td>${list.addr }</td>
-						<td>${list.openhour }</td>
-						<td>${list.parkyn }</td>
-						
-						</tr>
-				    </c:forEach>
-				    </c:if>
-				<tr style="text-align: center">
-					<td colspan="6"><%@include file = "pageNavi.jsp" %></td>
-				</tr>
-				</tbody>
-				</table>
-
-
+             <div style="height: 200px; display: flex; flex-wrap: wrap;">
+            <c:forEach items="${list }" var="list" varStatus="status"> 
+            <div class="card" style="max-width: 25%; display: block; border:solid 0px" >
+			  <img src="..." class="card-img-top" alt="...">
+			  <div class="card-body" style="margin-bottom: 20px">
+			    <h5 class="card-title"> <a style="font-size:1.2em; color:black"href="/peco/detail/detailPage?p_id=${list.p_id }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}">${list.pname}</a></h5>
+			    <p class="card-text">${list.addr }</p>
+			    <p class="card-text">1박당 요금 시작가 <br> <a style="color:red; font-weight:900;">KRW : ${list.min }</a></p>
+			   
+			  </div>
+			</div>
+			</c:forEach>
+             </div>
                 </div>
               </div>
 
             </div>
 
           </div>
+					<div style="text-align:center"><%@include file = "pageNavi.jsp" %></div>
           <!-- ***** Other End ***** -->
 		        </div>
 		      </div>

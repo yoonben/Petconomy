@@ -29,5 +29,7 @@ public class PensionVO {
 	
 	private String savePath;
 
+	private int min;
+	private int max;
 }
 

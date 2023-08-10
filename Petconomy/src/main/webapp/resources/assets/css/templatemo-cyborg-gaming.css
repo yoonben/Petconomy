@@ -36,7 +36,7 @@ pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, k
 s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li,
 figure, header, nav, section, article, aside, footer, figcaption {
   margin: 0;
-  margin-bottom:40px;
+  margin-bottom:0px;
   padding: 0;
   border: 0;
   outline: 0;
@@ -174,7 +174,7 @@ p {
 
 .main-button a:hover {
   background-color: #fff5ca;
-  color: #ff0080;
+  color: #ffc48c;
 }
 
 .main-border-button a {
@@ -812,7 +812,7 @@ Most Popular Style
 .most-popular {
   margin-top: 60px;
   padding: 30px;
-  background-color: #1f2122;
+  background-color: #fbebd7;
   border-radius: 23px;
 }
 
@@ -1315,7 +1315,7 @@ Game Details Style
 .game-details .content {
   border-radius: 23px;
   padding: 30px;
-  background-color: #1f2122;
+  background-color: #fbebd7;
 }
 
 .game-details .content .left-info {
@@ -1405,7 +1405,7 @@ Other Related Style
 .other-games {
   border-radius: 23px;
   padding: 30px 30px 0px 30px;
-  background-color: #1f2122;
+  background-color: #fbebd7;
   margin-top: 60px;
 }
 

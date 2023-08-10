@@ -52,6 +52,7 @@ public class MainController {
 		
 		List<PensionVO> list = pensionService.pensionList(cri);
 		List<PensionVO> lists = pensionService.mapList(cri);
+		
 		int totalCnt = pensionService.totalCount(cri);
 		PageDto pageDto = new PageDto(cri, totalCnt);
 		

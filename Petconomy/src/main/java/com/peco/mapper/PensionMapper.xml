@@ -20,7 +20,7 @@
 
   	<select id="pensionList" resultType="com.peco.vo.PensionVO">              
              select * from
-             (select t.*, rownum rn from(select p.p_id, pname, addr, openhour, substr(parkyn,-2) ParkYN , star, cnt  
+             (select t.*, rownum rn from(select p.p_id, pname, addr, openhour, substr(parkyn,-2) ParkYN , star, cnt, min, max
              from pension p 
              LEFT JOIN
 			 (select p_id, round(avg(star)) star, count(review) cnt from p_review group by p_id) r

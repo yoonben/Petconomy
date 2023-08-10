@@ -40,7 +40,7 @@ https://templatemo.com/tm-579-cyborg-gaming
 -->
   </head>
 <style>
-.main-banner {
+.main-Banner {
     margin-bottom: 20px;
 }
 .gaming-library .item ul li h4 {
@@ -55,6 +55,7 @@ https://templatemo.com/tm-579-cyborg-gaming
 
 .gaming-library{
 	margin : 10px;
+	background-color: white;
 }
 .gaming-library {
     margin-top: 20px;
@@ -62,6 +63,12 @@ https://templatemo.com/tm-579-cyborg-gaming
 .main-button a {
     margin-top: 20px;
 }
+.most-popular{
+background-color: white;
+}
+
+
+
 </style>
 <script>
 window.addEventListener('load',function(){
@@ -110,28 +117,38 @@ jQuery(function ($) {
         <div class="page-content">
 
           <!-- ***** Banner Start ***** -->
-          <div class="main-banner">
+          <div class="main-Banner">
             <div class="row">
-              <div class="col-lg-7">
+              <div class="col-lg-7" style="width:100%">
                 <div class="header-text">
 
 
                   
                   <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-					  <div class="carousel-inner">
-					    <div class="carousel-item active" data-bs-interval="1000">
-					      <h4 style="color:white;"><em style="color:#ffec90">펫코노미</em>에 오신걸 환영합니다</h4>
-					      <img src="/resources/img/puppy.jpg" class="d-block w-100" alt="...">
-					      <a href="../main/pension" style="background-color: #ffec90; color:black; font-weight: 900">펜션 예약 바로가기</a>
+					  <div class="carousel-inner" style="border-radius: 23px">
+					  <!-- http://img.einet.kr/P201809005/home/slider/22.jpg -->
+					    <div class="carousel-item active" data-bs-interval="3000" style="background-image: url(http://img.einet.kr/P201809005/home/slider/22.jpg); height:500px; background-size : cover; border-radius: 23px">
+					      <h1 style="color:white; padding-left: 40px; padding-top: 50px; font-size:5em;" ><em style="color:#ffec90">WELCOME TO </em> PETCONOMY</h1>
+					      <h4 style="color:white; padding-left: 60px; font-size:2.5em;">사랑하는 이들, 애완동물과 행복한 추억을 담아가세요</h4>
+					      <div class="main-button" style="margin-left: 1000px; margin-top:100px; height:200px">
+			                <a href="../main/pension" style="font-size:1.5em; background-color: #ffec90; font-weight: 900; color:black">펜션 예약 바로가기</a>
+			              </div>
+					    </div>
+					    <div class="carousel-item" data-bs-interval="3000" style="background-image: url(http://www.conslove.co.kr/news/photo/202211/76099_214784_1832.jpg); height:500px; background-size : cover; border-radius: 23px">
+					      <h1 style="color:white; padding-left: 40px; padding-top: 50px; font-size:5em;" ><em style="color:#ffec90">WELCOME TO </em> PETCONOMY</h1>
+					      <h4 style="color:white; padding-left: 60px; font-size:2.5em;">제일 가까운 동물병원이 어디야? </h4>
+					      <div class="main-button" style="margin-left: 1000px; margin-top:100px; height:200px">
+			                <a href="../main/pension" style="font-size:1.5em; background-color: #ffec90; font-weight: 900; color:black">병원 예약하기</a>
+			              </div>
+					    </div>
+					    <div class="carousel-item" data-bs-interval="3000" style="background-image: url(/resources/img/puppy.jpg); height:500px; background-size : cover; border-radius: 23px">
+					      <h1 style="color:white; padding-left: 40px; padding-top: 50px; font-size:5em;" ><em style="color:#ffec90">WELCOME TO </em> PETCONOMY</h1>
+					      <h4 style="color:white; padding-left: 60px; font-size:2.5em;">어서오시개, 반려생활은 처음이지?</h4>
+					      <div class="main-button" style="margin-left: 1000px; margin-top:100px; height:200px">
+			                <a href="../main/pension" style="font-size:1.5em; background-color: #ffec90; font-weight: 900; color:black">커뮤니티 둘러보기</a>
+			              </div>
 					    </div>
 
-					    
-					    <div class="carousel-item" data-bs-interval="2000">
-					      <img src="..." class="d-block w-100" alt="...">
-					    </div>
-					    <div class="carousel-item">
-					      <img src="..." class="d-block w-100" alt="...">
-					    </div>
 					  </div>
 
 				 </div>
@@ -145,11 +162,11 @@ jQuery(function ($) {
           <!-- ***** Banner End ***** -->
 
               <div class="main-button" style="display:inline-block">
-                <a id="btn1" style="font-size:1.5em; background-color: #ffec90; font-weight: 900;">펜션</a>
+                <a id="btn1" style="font-size:1.5em; background-color: #FFF1E0 ; font-weight: 900;">펜션</a>
               </div>
               
               <div class="main-button" style="display:inline-block">
-                <a id="btn2" style="font-size:1.5em; background-color: #ffec90; font-weight: 900;">병원</a>
+                <a id="btn2" style="font-size:1.5em; background-color: #FFF1E0 ; font-weight: 900;">병원</a>
               </div>
               
 
@@ -159,16 +176,16 @@ jQuery(function ($) {
 		   <div class="gaming-library">
             <div class="col-lg-12" >
               <div class="heading-section">
-                <h4 style="color:#ffec90"><em>Top10</em> 펜션</h4>
+                <h4 style="color:#FFC48C;"><em style="color:black">Top10</em> 펜션</h4>
                
               </div>
              <c:forEach items="${plist }" var="pvo">
-              <div class="item" >
+              <div class="item" style="color:black">
                 <ul>
-                  <li style="width: 3%;"><h3 style="color:white;">${pvo.rn }</h3></li>
-                  <li style="width: 27%;"><h3 style="color:white;">${pvo.pname }</h3></li>
-                  <li style="width: 53%;"><h3 style="color:white; font-size : 1.5em; font-bold:100">${pvo.addr }</h3></li>
-                  <li style="width: 15%; font-size:1.5em; color:white;"><div class="test-score1" data-max="5" data-rate="${pvo.star }"></div>
+                  <li style="width: 3%;"><h3 style="color:black;">${pvo.rn }</h3></li>
+                  <li style="width: 27%;"><h3 style="color:black;">${pvo.pname }</h3></li>
+                  <li style="width: 53%;"><h3 style="color:black; font-size : 1.5em; font-bold:100">${pvo.addr }</h3></li>
+                  <li style="width: 15%; font-size:1.5em; color:black;"><div class="test-score1" data-max="5" data-rate="${pvo.star }"></div>
                   (${pvo.cnt })</li>
                 </ul>
               </div>
@@ -184,7 +201,7 @@ jQuery(function ($) {
 		    <div class="gaming-library">
             <div class="col-lg-12">
               <div class="heading-section">
-                <h4 style="color:#ffec90"><em>Top10</em> 병원</h4>
+                <h4 style="color:#FFC48C;"><em>Top10</em> 병원</h4>
               </div>
 	             <c:forEach items="${hlist }" var="hvo">
 	              <div class="item">
@@ -206,7 +223,7 @@ jQuery(function ($) {
             <div class="row">
               <div class="col-lg-12">
                 <div class="heading-section">
-                  <h4 style="color:#ffec90">금일 <em>BEST</em> 짤</h4>
+                  <h4 style="color:#FFC48C">인기 <em style="color:black">BEST</em> 펫 짤</h4>
                 </div>
                 <div class="owl-features owl-carousel">
 		            <c:forEach items="${blist}" var="bvo" >
@@ -274,7 +291,7 @@ jQuery(function ($) {
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <p>Copyright © 2036 <a href="#">Cyborg Gaming</a> Company. All rights reserved. 
+          <p>Copyright © 2036 <a href="#">Petconomy</a> Company. All rights reserved. 
           
           <br>Design: <a href="https://templatemo.com" target="_blank" title="free CSS templates">TemplateMo</a>  Distributed By <a href="https://themewagon.com" target="_blank" >ThemeWagon</a></p>
         </div>
