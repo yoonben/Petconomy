@@ -71,6 +71,14 @@ public class CommonRestController {
 	return map;
 	}
 	
+	public Map<String, Object> responsePensionBListMap(List<?> list){
+		
+		int res = list != null ? 1 : 0 ;
+		Map<String, Object> map = responseMap(res, REST_SELECT);
+		map.put("list",list);
+		return map;
+		}
+	
 	public Map<String, Object> responseReviewListMap(List<?> list
 			, PageDto pageDto, List<?> reviewerList){
 
@@ -90,6 +98,17 @@ public class CommonRestController {
 	map.put("list", list);
 	map.put("pageDto", pageDto);
 	return map;
+	}
+	
+	public Map<String, Object> responsePensionBListMap(List<?> list
+			, PageDto pageDto, List<?> list2){
+			
+			int res = list != null ? 1 : 0;
+			Map<String, Object> map = responseMap(res, REST_SELECT);
+			map.put("list", list);
+			map.put("list", list2);
+			map.put("pageDto", pageDto);
+			return map;
 	}
 	
 	

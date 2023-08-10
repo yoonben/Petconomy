@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.peco.service.AdminPensionService;
 import com.peco.vo.Criteria;
 import com.peco.vo.PageDto;
+import com.peco.vo.PensionFiileuploadVO;
 import com.peco.vo.PensionVO;
 
 import lombok.extern.log4j.Log4j;
@@ -42,6 +43,16 @@ public class AdminPensionController extends CommonRestController {
 	public Map<String, Object> update(@PathVariable("p_id") String p_id){
 		
 		return responseDeleteMap(adminPensionService.update(p_id));
+	}
+	
+	@GetMapping("/adminPension/imgOn/{p_id}")
+	public Map<String, Object> imgOn(@PathVariable("p_id") String p_id){
+		
+		List<PensionFiileuploadVO> blist = adminPensionService.getPensionBList(p_id);
+		
+		System.out.println(blist.toString()+"============================================");
+		
+		return responsePensionBListMap(blist);
 	}
 	
 }

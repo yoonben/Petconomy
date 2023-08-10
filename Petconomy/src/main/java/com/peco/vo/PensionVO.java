@@ -26,6 +26,8 @@ public class PensionVO {
 	
 	private String megaregion;
 	private String smallregion;
+	
+	private String savePath;
 
 }
 
