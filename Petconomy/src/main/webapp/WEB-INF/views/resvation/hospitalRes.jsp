@@ -89,11 +89,13 @@
     .paycnt, .payinfo, #pay {
     width: 250px;
     display: inline-block;
-    float: left;
     padding: 10px;
+    position: relative;
+	left: -12px;
+    bottom: 20px;
     }
     
-    .paycnt > input,.payinfo > input{
+    .paycnt > input,.payinfo > input, #date, #time{
     border: none;
     outline: none;
     }
@@ -109,8 +111,8 @@
     
     #Resbtn {
     position: relative;
-    top: 30px;
-    right: 40px;
+    bottom: 30px;
+    left: 190px;
     }
     
     button {
@@ -160,30 +162,58 @@
     background-color: #cbcbcb;
     color: #fff;
     }
-    
-    .xdsoft_datetimepicker.xdsoft_inline{
-	border: none;
-	}
-	
-	.xdsoft_datetimepicker .xdsoft_timepicker {
-	width: 100px !important;
-	}
-	
-	.xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box>div>div {
-    height: 35px !important;
-    line-height: 35px !important;
-	}
 	
 	.resvation {
 	position: relative;
 	top: 5px;
-	left: 10px;
 	padding: 5px;
-	border: 1px solid #c5c5c5;
+	height: 280px;
 	}
 	
-	.ui-widget.ui-widget-content {
-    border: 1px solid #ffffff !important;
+	.datepicker {
+	position: relative;
+	rigth:100px;
+	}
+	
+	
+	.timepicker {
+	width: 360px;
+    display: inline-block;
+    position: relative;
+    bottom: 207px;
+    left: 283px;
+	}
+	
+	.timepicker > input {
+    width: 80px;
+    padding: 10px;
+    background-color: #fff;
+    margin: 5px;
+    border: 1px solid orange;
+    border-radius: 5px;
+	}
+	
+	.timepicker > input:disabled {
+	border-color: lightgray;
+    background-color: #ededed;
+	}
+	
+	.timepicker > input:focus, timepicker > input:hover  {
+	background-color: orange;
+	color: #fff; 
+	}
+	
+	.fiex{
+	position: relative;
+	top: 15px;
+	left: 10px;
+	}
+	
+	#pay {
+	position: relative;
+	top: 15px;
+    left: auto;
+    font-size: 25px;
 	}
 
     
@@ -263,16 +293,17 @@
 		   </div>
 		   <!-- 예약자 정보 끝 -->
       <hr>
-      	<!-- 날짜정보 -->
       	<div class="resvation">
          	
          	<!-- 폼 -->
          	<div class="datepicker" style="display: inline-block;"></div>
            	
            	<!-- timepicker -->
-           	<div class="timepicker" style="display: inline-block;"></div>
+           	<div class="timepicker"></div>
+      	</div>
          	
          	<!-- 출력 -->
+         	<div class="fiex">
          	<div id="datepick">
          		<b style="float: left;">날짜</b><br>
          		<input type="text" id="date" readonly>
@@ -284,8 +315,6 @@
 
          	<button id="Resbtn">선택</button><br>
 
-      	</div>
-         <!-- 날짜정보 끝 -->
       	
       	<!-- 결제금액 -->
       	<div class="paycnt">
@@ -303,6 +332,7 @@
 		   <button id="goback" onclick="goback()">뒤로가기</button>
 	   </div>
 	   <!-- 결제버튼 끝 -->
+	   </div>
 	</form>
 	<!-- 폼 끝 -->
 	</div>
@@ -415,7 +445,7 @@ let checkDisable = function() {
 		    for (let i = 0; i < dis.length; i++) {
 		        if (dis[i] === time[j]) {
 		            isDuplicate = true;
-		            break; // No need to continue checking
+		            break;
 		        }
 		    }
 
@@ -446,7 +476,7 @@ function openHour() {
 	//전체시간 배열
 	let time = ['07:00','08:00','09:00','10:00','11:00'
 				,'12:00','13:00','14:00','15:00','16:00'
-				,'17:00','19:00','20:00','21:00','22:00','23:00']
+				,'17:00','18:00','19:00','20:00','21:00','22:00','23:00']
 	
 	//console.log(time);
 	
@@ -544,7 +574,7 @@ function openHour() {
                        //DOM객체들에서 사용할 데이터 뽑기
                        var h_id = $('#h_id').val();
                        var m_id = $('#m_id').val();
-                       var pname = $('#pname').val();
+                       var hname = $('#pname').val();
                        var user_id = $('#user_id').val();
                        var user_email = $('#user_email').val();
                        var user_tel =  $('#user_tel').val();
@@ -553,7 +583,7 @@ function openHour() {
                             //카카오페이 결제시 사용할 정보 입력
                            pg: 'kakaopay',
                            pay_method: "card",
-                           name: pname,
+                           name: hname,
                            amount: pay,
                            buyer_email: user_email,
                            buyer_name: user_id,
@@ -587,7 +617,7 @@ function openHour() {
                                 msg += '\n카드 승인번호 : ' + rsp.apply_num;                                    	
 
                                 $.ajax({
-                                    url: "/peco/insertHospital",
+                                    url: "/peco/createHospital",
                                     type: 'post',
                                     data: {
                                        h_id: h_id,//펜션아이디         
@@ -599,7 +629,7 @@ function openHour() {
                                        hr_id: rsp.merchant_uid, //주문고유번호=펜션예약번호
 								 	   hr_pay: rsp.apply_num, //카드승인번호
 								 	   m_id : m_id,//회원번호 -예약자명 직접입력 경우 다를 경우
-								 	   pname : pname, //펜션명
+								 	  	hname : hname, //펜션명
 								 	  	hr_time : time,
 								 	 	hr_date : date,
                                     }                               

@@ -193,13 +193,14 @@
 					<c:if test="${not res }">				   
 					<c:forEach items="${list }" var="list">
 
-				<td >${list.p_id }</td>
-				<td><a href="#">${list.pname }</a></td>
-				<td>${list.addr }</td>
-				<td>${list.openhour }</td>
-				<td>${list.parkyn }</td>
-				
-				</tr>
+						<tr height="50" style="font-size:1em;">
+						<td >${list.p_id }</td>
+						<td><a href="/peco/detail/detailPage?p_id=${list.p_id }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}">${list.pname }</a></td>
+						<td>${list.addr }</td>
+						<td>${list.openhour }</td>
+						<td>${list.parkyn }</td>
+						
+						</tr>
 				    </c:forEach>
 				    </c:if>
 				<tr style="text-align: center">

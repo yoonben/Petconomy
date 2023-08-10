@@ -53,7 +53,7 @@ public class LoginController extends CommonRestController {
 			session.setAttribute("member", member);
 			
 			Map<String, Object> map = responseMap(REST_SUCCESS, "로그인 되엇습니다.");
-			map.put("url", "/peco/main");
+			map.put("url", "/peco/main/mainpage");
 
 			return map;
 		} else {
@@ -123,6 +123,25 @@ public class LoginController extends CommonRestController {
 			return responseMap(REST_SUCCESS, findid.getId());
 		} else {
 			return responseMap(REST_FAIL, "아이디를 찾을 수 없습니다.이름을 확인해주세요");
+		}
+
+	}
+	
+	@PostMapping("/findpw")
+	public @ResponseBody Map<String, Object> findpw(@RequestBody MemberVO member) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		int res = memberService.idCheck(member);
+		
+		if (res > 0) {
+			MemberVO vo = memberService.apiLogin(member);
+			System.out.println("email===================="+vo.getEmail());
+			map.put("email", vo.getEmail());
+			
+			
+			return map;
+		} else {
+			return responseMap(REST_FAIL, "아이디를 찾을 수 없습니다.");
 		}
 
 	}
@@ -224,4 +243,12 @@ public class LoginController extends CommonRestController {
 			System.out.println("이메일 인증 이메일 : " + email);
 			return mailService.joinEmail(email);
 		}
+	
+	@GetMapping("/mailCheck2")
+	@ResponseBody
+	public String mailCheck2(String email) {
+		System.out.println("이메일 인증 요청이 들어옴!");
+		System.out.println("이메일 인증 이메일 : " + email);
+		return mailService.joinEmail2(email);
+	}
 }

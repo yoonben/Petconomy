@@ -8,13 +8,11 @@ public class PensionVO {
 	private String p_id;       
 	private String pname;      
 	private String addr;       
-	private String price;      
-	private String category;   
+	private int price;      
 	private String openhour;   
 	private String parkyn;     
 	private String checkyn;   
-	private String latitude;
-	private String longitude;
+
 	
 
 	private String registerimg;
@@ -24,8 +22,7 @@ public class PensionVO {
 	
 	private String rn; 
 	private int cnt; 
-	private int star;
-
+	private int star;	
 	
 	private String megaregion;
 	private String smallregion;

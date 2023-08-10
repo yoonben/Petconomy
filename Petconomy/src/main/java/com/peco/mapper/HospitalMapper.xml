@@ -19,7 +19,7 @@
 		
 		<insert id="hospitalInsert"> 
 		insert into hospital(h_id, M_ID, PNAME, ADDR, OPENHOUR, PARKYN) 
-		values(hospital_seq.nextval, 'M0002', #{pname}, #{addr}, #{openhour}, #{parkyn}) 
+		values(hospital_seq.nextval, 'm_2', #{pname}, #{addr}, #{openhour}, #{parkyn}) 
 		</insert>
 		
 

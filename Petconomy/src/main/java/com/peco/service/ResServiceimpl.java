@@ -19,13 +19,13 @@ public class ResServiceimpl implements ResService{
 	private ResMapper mapper;
 
 	@Override
-	public List<MemberVO> getMemberList() {
-		return mapper.getMemberList();
+	public List<MemberVO> getMemberList(String m_id) {
+		return mapper.getMemberList(m_id);
 	}
 
 	@Override
-	public List<PensionVO> getPensionList() {
-		return mapper.getPensionList();
+	public List<PensionVO> getPensionList(String p_id, String room_no) {
+		return mapper.getPensionList(p_id, room_no);
 	}
 
 	@Override
@@ -34,13 +34,13 @@ public class ResServiceimpl implements ResService{
 	}
 
 	@Override
-	public List<P_RESVO> getPensionDisableDate() {
-		return mapper.getPensionDisableDate();
+	public List<P_RESVO> getPensionDisableDate(String p_id, String room_no) {
+		return mapper.getPensionDisableDate(p_id, room_no);		
 	}
 
 	@Override
-	public List<P_RESVO> getResPensionList() {
-		return mapper.getResPensionList();
+	public List<P_RESVO> getResPensionList(String m_id) {
+		return mapper.getResPensionList(m_id);
 	}
 
 	@Override
@@ -49,18 +49,18 @@ public class ResServiceimpl implements ResService{
 	}
 
 	@Override
-	public List<HospitalVO> getHospitalList() {
-		return mapper.getHospitalList();
+	public List<HospitalVO> getHospitalList(String h_id) {
+		return mapper.getHospitalList(h_id);
 	}
 
 	@Override
-	public List<H_RESVO> getHospitalDisableDate() {
-		return mapper.getHospitalDisableDate();
+	public List<H_RESVO> getHospitalDisableDate(String h_id) {
+		return mapper.getHospitalDisableDate(h_id);
 	}
 
 	@Override
-	public List<H_RESVO> getResHospitalList() {
-		return mapper.getResHospitalList();
+	public List<H_RESVO> getResHospitalList(String m_id) {
+		return mapper.getResHospitalList(m_id);
 	}
 
 	@Override

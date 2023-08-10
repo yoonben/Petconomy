@@ -12,26 +12,29 @@ import com.peco.vo.PensionVO;
 
 @Service
 public interface ResService {
-	public List<MemberVO> getMemberList();
+	public List<MemberVO> getMemberList(String m_id);
 	
-	public List<PensionVO> getPensionList();
 	
-	public List<P_RESVO> getPensionDisableDate();
+	public List<PensionVO> getPensionList(String p_id, String room_no);
 	
-	public List<P_RESVO> getResPensionList();
+	public List<P_RESVO> getPensionDisableDate(String p_id, String room_no);
+	
+	public List<P_RESVO> getResPensionList(String m_id);
 	
 	public int insertResvationPension(P_RESVO p_resVO);
 	
 	public int deleteResPension(String imp_uid);
 	
-	public List<HospitalVO> getHospitalList();
 	
-	public List<H_RESVO> getHospitalDisableDate();
+	public List<HospitalVO> getHospitalList(String h_id);
 	
-	public List<H_RESVO> getResHospitalList();
+	public List<H_RESVO> getHospitalDisableDate(String h_id);
+	
+	public List<H_RESVO> getResHospitalList(String m_id);
 	
 	public int insertResvationHospital(H_RESVO h_resVO);
 	
 	public int deleteResHospital(String imp_uid);
+
 
 }
