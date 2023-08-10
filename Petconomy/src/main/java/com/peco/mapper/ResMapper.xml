@@ -8,24 +8,27 @@
 
    <select id="getMemberList" resultType="com.peco.vo.MemberVO">
    select mname, email, mphone, m_id from member
-	where m_id = 'm0000001'
+	where m_id = #{m_id}
    </select>
    
    <select id="getPensionList" resultType="com.peco.vo.PensionVO">
    select pname, roomname, price, pension.p_id
-	from pension left outer join room
-	on pension.p_id = room.p_id
-	where pension.p_id = 'p00001' and roomno = 'r01' 
+	from pension left outer join p_room
+	on pension.p_id = p_room.p_id
+	where pension.p_id = #{p_id} and room_no = #{room_no}
    </select>
    
    <select id="getPensionDisableDate" resultType="com.peco.vo.P_RESVO">
-   	select STARTDATE, ENDDATE from p_res
+	select STARTDATE, ENDDATE
+   	from p_res left join p_room
+    on p_res.p_id = p_room.p_id
+	where p_res.p_id = #{p_id} and room_no = #{room_no}
    </select>
    
    <select id="getResPensionList" resultType="com.peco.vo.P_RESVO">
    	select imp_uid, startdate, enddate, pr_name, pr_email, pr_tel, roomname, pname, pricecnt, p_id 
 	from p_res
-	where m_id = 'm0000001'
+	where m_id = #{m_id}
    </select>
    
    <insert id="insertResvationPension">
@@ -42,24 +45,25 @@
    
    <select id="getHospitalList" resultType="com.peco.vo.HospitalVO">
    		select pname, h_id, addr, openhour, parkyn, homepage, phone from hospital
-   		where h_id = 'h00001'
+   		where h_id = #{h_id}
    </select>
    
    <select id="getHospitalDisableDate" resultType="com.peco.vo.H_RESVO">
    		select hr_date, hr_time from h_res
+   		where h_id = #{h_id}
    </select>
    
    <select id="getResHospitalList" resultType="com.peco.vo.H_RESVO">
-	   	select imp_uid, hr_date, hr_time, hr_name, hr_email, hr_tel, pname, pricecnt, h_id
+	   	select imp_uid, hr_date, hr_time, hr_name, hr_email, hr_tel, hname, pricecnt, h_id
 		from h_res
-		where m_id = 'm0000001'
+		where m_id = #{m_id}
    </select>
    
    <insert id="insertResvationHospital">
-	   insert into H_RES (HR_ID, HR_DATE, HR_TIME, HR_PAY, H_ID, PNAME
+	   insert into H_RES (HR_ID, HR_DATE, HR_TIME, HR_PAY, H_ID, HNAME
 	                  , PRICECNT, HR_NAME, HR_EMAIL, HR_TEL, IMP_UID, M_ID)
 	             values (#{hr_id}, #{hr_date}, #{hr_time}, #{hr_pay}, #{h_id}
-	             , #{pname}, #{pricecnt}, #{hr_name}, #{hr_email}, #{hr_tel}
+	             , #{hname}, #{pricecnt}, #{hr_name}, #{hr_email}, #{hr_tel}
 	             , #{imp_uid}, #{m_id})
    </insert>
    

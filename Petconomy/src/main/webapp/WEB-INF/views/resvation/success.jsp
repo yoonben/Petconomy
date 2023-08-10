@@ -32,8 +32,8 @@
 </style>
 <body>
 
-<h2>예약내역</h2>
-<form name='myresForm' onsubmit="return false">
+<h2>펜션예약내역</h2>
+<form name='mypResForm' onsubmit="return false">
 <table>
 <tr>
 	<th>예약번호</th>
@@ -43,82 +43,153 @@
 	<th>퇴실날짜</th>
 	<th>결제금액</th>
 	<th>예약자명</th>
-	<th>이메일</th>
-	<th>전화번호</th>
 </tr>
-<c:if test="${fn:length(getRList )==0}">
+<c:if test="${fn:length(getPrList )==0}">
 <tr>
 <td  colspan="9">예약내역이 없습니다</td>
 </tr>
 </c:if>
-<c:forEach var="r" items="${getRList }" varStatus="status">
+<c:forEach var="pr" items="${getPrList }" varStatus="status">
 <tr>
-<input type="hidden" value="${status.index}" style="width:20px; border:none;" id="index">
+<input type="hidden" value="${status.index}" id="index">
 <c:choose>
-	<c:when test="${fn:length(r.imp_uid) > 1}">
-		<td><input type="text" class="index" id="imp_uid" data-uid="${status.index}" value="${fn:substring(r.imp_uid,4,16)}" readonly></td>
+	<c:when test="${fn:length(pr.imp_uid) > 1}">
+		<td><input type="text" class="index" id="imp_uid" data-puid="${status.index}" value="${fn:substring(pr.imp_uid,4,16)}" readonly></td>
 	</c:when>
 </c:choose>
-<td>${r.pname }</td> 
-<td>${r.roomname }</td> 
-<td>${r.startdate }</td> 
-<td>${r.enddate }</td>
-<td><input type="text" class="index" id="pcnt" data-pcnt="${status.index}" value="${r.pricecnt }"readonly></td>
-<td>${r.pr_name }</td>
-<td>${r.pr_email }</td>
-<td>${r.pr_tel }</td>
-<td style="border: none;"><button onclick="del(${status.index})">예약취소</button></td>
+<td>${pr.pname }</td> 
+<td>${pr.roomname }</td> 
+<td>${pr.startdate }</td> 
+<td>${pr.enddate }</td>
+<td><input type="text" class="index" id="pcnt" data-pcnt="${status.index}" value="${pr.pricecnt }"readonly></td>
+<td>${pr.pr_name }</td>
+<td style="border: none;"><button onclick="delPension(${status.index})">예약취소</button></td>
 </tr>
 </c:forEach>
-
-
-
 </table>
+</form>
 
+
+<h2>병원예약내역</h2>
+<form name='myhResForm' onsubmit="return false">
+<table>
+<tr>
+	<th>예약번호</th>
+	<th>병원명</th>
+	<th>예약날짜</th>
+	<th>예약시간</th>
+	<th>결제금액</th>
+	<th>예약자명</th>
+</tr>
+<c:if test="${fn:length(getHrList )==0}">
+<tr>
+<td  colspan="9">예약내역이 없습니다</td>
+</tr>
+</c:if>
+<c:forEach var="hr" items="${getHrList }" varStatus="status">
+<tr>
+<input type="hidden" value="${status.index}" id="index">
+<c:choose>
+	<c:when test="${fn:length(hr.imp_uid) > 1}">
+		<td><input type="text" class="index" id="imp_uid" data-huid="${status.index}" value="${fn:substring(hr.imp_uid,4,16)}" readonly></td>
+	</c:when>
+</c:choose>
+<td>${hr.hname }</td> 
+<td>${hr.hr_date }</td> 
+<td>${hr.hr_time }</td>
+<td><input type="text" class="index" id="pcnt" data-hcnt="${status.index}" value="${hr.pricecnt }"readonly></td>
+<td>${hr.hr_name }</td>
+<td style="border: none;"><button onclick="delHospital(${status.index})">예약취소</button></td>
+</tr>
+</c:forEach>
+</table>
 </form>
 
 <script>
-		function del(index) {
-			var i = index;
-			console.log(i);
-		
-			var imp_uid = 'imp_'+$('input[data-uid="'+index+'"]').val();
-			var pay = $('input[data-pcnt="'+index+'"]').val();
-		
-			console.log(imp_uid);
-			console.log(pay);
-			console.log('삭제실행');
-			
-			$.ajax({
+//펜션 예약 취소
+function delPension(index) {
+	var i = index;
+	console.log(i);
 
-			      url: "payment/cancel", 
-			      type: "Post",
-			      data: ({
-			        imp_uid: imp_uid, //주문번호
-			        amount: pay, //결제금액
-			        
-		      })
-		    }).done(function(result) { // 환불 성공시 로직 
-		        alert("환불 성공");
-		    
-			        $.ajax({
+	var imp_uid = 'imp_'+$('input[data-puid="'+index+'"]').val();
+	var pay = $('input[data-pcnt="'+index+'"]').val();
+
+	console.log(imp_uid);
+	console.log(pay);
+	console.log('삭제실행');
 	
-			            url: "delete", 
-			            type: "Post",
-			            data: ({
-			                  imp_uid: imp_uid, //주문번호
-			                  
-			            })
-			        })
-		    
-		        alert("삭제완료");
-			    location.reload();
-		    
-		    }).fail(function(error) { // 환불 실패시 로직
-		      	alert("환불 실패");
-		    });
-			
-		}
+	$.ajax({
+
+	      url: "payment/cancel", 
+	      type: "Post",
+	      data: ({
+	        imp_uid: imp_uid, //주문번호
+	        amount: pay, //결제금액
+	        
+      })
+    }).done(function(result) { // 환불 성공시 로직 
+        alert("환불 성공");
+    
+	        $.ajax({
+
+	            url: "delete", 
+	            type: "Post",
+	            data: ({
+	                  imp_uid: imp_uid, //주문번호    
+	            })
+	        })
+    
+        alert("삭제완료");
+	    location.reload();
+    
+    }).fail(function(error) { // 환불 실패시 로직
+      	alert("환불 실패");
+    });
+	
+}
+
+
+//병원 예약 취소
+function delHospital(index) {
+	var i = index;
+	console.log(i);
+
+	var imp_uid = 'imp_'+$('input[data-huid="'+index+'"]').val();
+	var pay = $('input[data-hcnt="'+index+'"]').val();
+
+	console.log(imp_uid);
+	console.log(pay);
+	console.log('삭제실행');
+	
+	$.ajax({
+
+	      url: "payment/cancel", 
+	      type: "Post",
+	      data: ({
+	        imp_uid: imp_uid, //주문번호
+	        amount: pay, //결제금액
+	        
+      })
+    }).done(function(result) { // 환불 성공시 로직 
+        alert("환불 성공");
+    
+	        $.ajax({
+
+	            url: "hospitalDel", 
+	            type: "Post",
+	            data: ({
+	                  imp_uid: imp_uid, //주문번호           
+	            })
+	        })
+    
+        alert("삭제완료");
+	    location.reload();
+    
+    }).fail(function(error) { // 환불 실패시 로직
+      	alert("환불 실패");
+    });
+	
+}
 		   
 
 </script>

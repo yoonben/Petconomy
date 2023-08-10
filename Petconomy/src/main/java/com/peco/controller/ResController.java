@@ -2,6 +2,7 @@ package com.peco.controller;
 
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.peco.service.MemberService;
 import com.peco.service.ResService;
 import com.peco.vo.H_RESVO;
+import com.peco.vo.MemberVO;
 import com.peco.vo.P_RESVO;
 
 @Controller
@@ -22,23 +25,35 @@ public class ResController {
 	
    @Autowired 
    ResService service;
+   MemberService memberService;
    
    @GetMapping("/pensionRes")
-   public String getPensionList(Model model) {   
+   public String getPensionList(Model model,  HttpSession session) {   
       
-      model.addAttribute("mList", service.getMemberList());
-      model.addAttribute("pList", service.getPensionList());
-      model.addAttribute("disabledate", service.getPensionDisableDate());
-      
+	  //MemberVO member = (MemberVO) session.getAttribute("member");
+	  //String m_id = member.getM_id();
+	  String m_id = "m_2";//getM_id()로 세션에서 받아올 값
+	  String p_id = "p_01";//상세페이지에서 요청받을때 파라메터로 같이 가져올 값
+	  String room_no = "r_01"; //room_no hidden으로 같이 넘겨받아야함
+	  
+      model.addAttribute("mList", service.getMemberList(m_id));
+      model.addAttribute("pList", service.getPensionList(p_id, room_no));
+      model.addAttribute("disabledate", service.getPensionDisableDate(p_id, room_no));
+
 	   return "resvation/pensionRes";
    }
    
    @GetMapping("/hospitalRes")
    public String getHospitalList(Model model) {
 	   
-	   model.addAttribute("mList", service.getMemberList());
-	   model.addAttribute("hList", service.getHospitalList());
-	   model.addAttribute("disabledate", service.getHospitalDisableDate());
+		  //MemberVO member = (MemberVO) session.getAttribute("member");
+		  //String m_id = member.getM_id();
+		  String m_id = "m_2"; //getM_id()로 세션에서 받아올 값
+		  String h_id = "h_01";//상세페이지에서 요청받을때 파라메터로 같이 가져올 값
+	   
+	   model.addAttribute("mList", service.getMemberList(m_id));
+	   model.addAttribute("hList", service.getHospitalList(h_id));
+	   model.addAttribute("disabledate", service.getHospitalDisableDate(h_id));
 	   
 	   return "resvation/hospitalRes";
    }
@@ -65,7 +80,7 @@ public class ResController {
            System.out.println("성공");
 	}
    
-   @RequestMapping(value="/peco/insertHospital", method=RequestMethod.POST)
+   @RequestMapping(value="/peco/createHospital", method=RequestMethod.POST)
    public void insertActionHospital(H_RESVO h_resVO, HttpServletRequest request) {
 	   
 	   System.out.println("aaaaaa");
@@ -81,22 +96,8 @@ public class ResController {
 	   String hr_tel = request.getParameter("hr_tel");
 	   String imp_uid = request.getParameter("imp_uid");
 	   String m_id = request.getParameter("m_id");
-	   String pname = request.getParameter("pname");
-	   
-//	   System.out.println(hr_id);
-//	   System.out.println(hr_pay);
-//	   System.out.println(hr_date);
-//	   System.out.println(hr_time);
-//	   System.out.println(h_id);
-//	   System.out.println(pricecnt);
-//	   System.out.println(hr_name);
-//	   System.out.println(hr_email);
-//	   System.out.println(hr_tel);
-//	   System.out.println(imp_uid);
-//	   System.out.println(m_id);
-//	   System.out.println(pname);
-
-	   
+	   String hname = request.getParameter("hname");
+   
 	   service.insertResvationHospital(h_resVO);
 	   System.out.println("성공");
    }
@@ -104,7 +105,13 @@ public class ResController {
    @GetMapping("/redirect")
    public String redirect(Model model){
 	   
-	   model.addAttribute("getRList",service.getResPensionList());
+		  //MemberVO member = (MemberVO) session.getAttribute("member");
+		  //String m_id = member.getM_id();
+		  String m_id = "m_2";
+		  System.out.println("m_id : "+m_id);
+	   
+	   model.addAttribute("getPrList",service.getResPensionList(m_id));
+	   model.addAttribute("getHrList",service.getResHospitalList(m_id));
 	   
 	   return "resvation/success";
    }
@@ -114,7 +121,7 @@ public class ResController {
    public void deleteRes(HttpServletRequest request) {
 	   
 	   String imp_uid = request.getParameter("imp_uid");
-	   
+
 	   System.out.println("del : "+imp_uid);
 	   int res = service.deleteResPension(imp_uid);
 	   
@@ -126,4 +133,21 @@ public class ResController {
 	   
    }
    
+   @ResponseBody
+   @RequestMapping(value="/peco/hospitalDel", method=RequestMethod.POST)
+   public void deleteHospitalRes(HttpServletRequest request) {
+	   
+	   String imp_uid = request.getParameter("imp_uid");
+	   
+	   System.out.println("del : "+imp_uid);
+	   int res = service.deleteResHospital(imp_uid);
+	   System.out.println(res);
+	   
+	   if(res>0) {
+		   System.out.println("정상삭제");
+	   } else {
+		   System.out.println("삭제중 오류");
+	   }
+	   
+   }
 }
