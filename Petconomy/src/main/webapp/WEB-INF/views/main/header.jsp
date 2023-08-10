@@ -29,6 +29,19 @@
                         <li><a href="../main/pension">펜션/병원</a></li>
                         <li><a href="/peco/board/main">커뮤니티</a></li>
                         <li><a href="#">업소등록</a></li>
+                        
+                        <!-- 마이페이지 네비게이션, 탭 -->
+                         <li class="nav-item dropdown">
+						    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">마이페이지</a>
+						    <ul class="dropdown-menu">
+						      <li><a class="dropdown-item" href="/peco/profile?m_id=${member.m_id}">나의 정보</a></li>
+						      <li><a class="dropdown-item" href="/peco/pensionProfile?m_id=${member.m_id}">나의 펜션 관리</a></li>
+						      <li><a class="dropdown-item" href="/peco/hospitalProfile?m_id=${member.m_id}">나의 병원 관리</a></li>
+						      <li><a class="dropdown-item" href="/peco/myBoard?m_id=${member.m_id}">나의 글 목록</a></li>
+						      <li><a class="dropdown-item" href="#">회원탈퇴</a></li>
+						    </ul>
+						  </li>
+                        
                         <li><a href="../login">로그인 <img src="assets/images/profile-header.jpg" alt=""></a></li>
                     </ul>   
                     <a class='menu-trigger'>

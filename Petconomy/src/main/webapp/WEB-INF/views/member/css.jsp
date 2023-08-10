@@ -11,14 +11,14 @@
     <title>Cyborg - Awesome HTML5 Template</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/resources/vendor/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/js/bootstrap.min.js"></script>
 
     <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="/resources/asserts/css/fontawesome.css">
-    <link rel="stylesheet" href="/resources/asserts/css/templatemo-cyborg-gaming.css">
-    <link rel="stylesheet" href="/resources/asserts/css/owl.css">
-    <link rel="stylesheet" href="/resources/asserts/css/animate.css">
+    <link rel="stylesheet" href="/resources/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="/resources/assets/css/templatemo-cyborg-gaming.css">
+    <link rel="stylesheet" href="/resources/assets/css/owl.css">
+    <link rel="stylesheet" href="/resources/assets/css/animate.css">
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
 <!--
 
@@ -52,7 +52,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
                     <a href="index.html" class="logo">
-                        <img src="/resources/asserts/images/logo.png" alt="">
+                        <img src="/resources/assets/images/logo.png" alt="">
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Search End ***** -->
@@ -69,7 +69,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                         <li><a href="browse.html" class="active">Browse</a></li>
                         <li><a href="details.html">Details</a></li>
                         <li><a href="streams.html">Streams</a></li>
-                        <li><a href="profile.html">Profile <img src="/resources/asserts/images/profile-header.jpg" alt=""></a></li>
+                        <li><a href="profile.html">Profile <img src="/resources/assets/images/profile-header.jpg" alt=""></a></li>
                     </ul>   
                     <a class='menu-trigger'>
                         <span>Menu</span>
@@ -97,7 +97,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                 <div class="owl-features owl-carousel">
                   <div class="item">
                     <div class="thumb">
-                      <img src="/resources/asserts/images/featured-01.jpg" alt="">
+                      <img src="/resources/assets/images/featured-01.jpg" alt="">
                       <div class="hover-effect">
                         <h6>2.4K Streaming</h6>
                       </div>
@@ -110,7 +110,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                   </div>
                   <div class="item">
                     <div class="thumb">
-                      <img src="/resources/asserts/images/featured-02.jpg" alt="">
+                      <img src="/resources/assets/images/featured-02.jpg" alt="">
                       <div class="hover-effect">
                         <h6>2.4K Streaming</h6>
                       </div>
@@ -123,7 +123,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                   </div>
                   <div class="item">
                     <div class="thumb">
-                      <img src="/resources/asserts/images/featured-03.jpg" alt="">
+                      <img src="/resources/assets/images/featured-03.jpg" alt="">
                       <div class="hover-effect">
                         <h6>2.4K Streaming</h6>
                       </div>
@@ -136,7 +136,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                   </div>
                   <div class="item">
                     <div class="thumb">
-                      <img src="/resources/asserts/images/featured-01.jpg" alt="">
+                      <img src="/resources/assets/images/featured-01.jpg" alt="">
                       <div class="hover-effect">
                         <h6>2.4K Streaming</h6>
                       </div>
@@ -149,7 +149,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                   </div>
                   <div class="item">
                     <div class="thumb">
-                      <img src="/resources/asserts/images/featured-02.jpg" alt="">
+                      <img src="/resources/assets/images/featured-02.jpg" alt="">
                       <div class="hover-effect">
                         <h6>2.4K Streaming</h6>
                       </div>
@@ -162,7 +162,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                   </div>
                   <div class="item">
                     <div class="thumb">
-                      <img src="/resources/asserts/images/featured-03.jpg" alt="">
+                      <img src="/resources/assets/images/featured-03.jpg" alt="">
                       <div class="hover-effect">
                         <h6>2.4K Streaming</h6>
                       </div>
@@ -183,7 +183,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                 </div>
                 <ul>
                   <li>
-                    <img src="/resources/asserts/images/game-01.jpg" alt="" class="templatemo-item">
+                    <img src="/resources/assets/images/game-01.jpg" alt="" class="templatemo-item">
                     <h4>Fortnite</h4>
                     <h6>Sandbox</h6>
                     <span><i class="fa fa-star" style="color: yellow;"></i> 4.9</span>
@@ -193,7 +193,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                     </div>
                   </li>
                   <li>
-                    <img src="/resources/asserts/images/game-02.jpg" alt="" class="templatemo-item">
+                    <img src="/resources/assets/images/game-02.jpg" alt="" class="templatemo-item">
                     <h4>CS-GO</h4>
                     <h6>Legendary</h6>
                     <span><i class="fa fa-star" style="color: yellow;"></i> 4.9</span>
@@ -203,7 +203,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                     </div>
                   </li>
                   <li>
-                    <img src="/resources/asserts/images/game-03.jpg" alt="" class="templatemo-item">
+                    <img src="/resources/assets/images/game-03.jpg" alt="" class="templatemo-item">
                     <h4>PugG</h4>
                     <h6>Battle Royale</h6>
                     <span><i class="fa fa-star" style="color: yellow;"></i> 4.9</span>
@@ -231,7 +231,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                 <div class="col-lg-4">
                   <div class="item">
                     <div class="icon">
-                      <img src="/resources/asserts/images/service-01.jpg" alt="" style="max-width: 60px; border-radius: 50%;">
+                      <img src="/resources/assets/images/service-01.jpg" alt="" style="max-width: 60px; border-radius: 50%;">
                     </div>
                     <h4>Go To Your Profile</h4>
                     <p>Cyborg Gaming is free HTML CSS website template provided by TemplateMo. This is Bootstrap v5.2.0 layout.</p>
@@ -240,7 +240,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                 <div class="col-lg-4">
                   <div class="item">
                     <div class="icon">
-                      <img src="/resources/asserts/images/service-02.jpg" alt="" style="max-width: 60px; border-radius: 50%;">
+                      <img src="/resources/assets/images/service-02.jpg" alt="" style="max-width: 60px; border-radius: 50%;">
                     </div>
                     <h4>Live Stream Button</h4>
                     <p>If you wish to support us, you can make a <a href="https://paypal.me/templatemo" target="_blank">small contribution via PayPal</a> to info [at] templatemo.com</p>
@@ -249,7 +249,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                 <div class="col-lg-4">
                   <div class="item">
                     <div class="icon">
-                      <img src="/resources/asserts/images/service-03.jpg" alt="" style="max-width: 60px; border-radius: 50%;">
+                      <img src="/resources/assets/images/service-03.jpg" alt="" style="max-width: 60px; border-radius: 50%;">
                     </div>
                     <h4>You Are Live</h4>
                     <p>You are not allowed to redistribute this template's downloadable ZIP file on any other template collection website.</p>
@@ -276,7 +276,7 @@ https://templatemo.com/tm-579-cyborg-gaming
               <div class="col-lg-3 col-sm-6">
                 <div class="item">
                   <div class="thumb">
-                    <img src="/resources/asserts/images/stream-01.jpg" alt="">
+                    <img src="/resources/assets/images/stream-01.jpg" alt="">
                     <div class="hover-effect">
                       <div class="content">
                         <div class="live">
@@ -291,7 +291,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                   </div>
                   <div class="down-content">
                     <div class="avatar">
-                      <img src="/resources/asserts/images/avatar-01.jpg" alt="" style="max-width: 46px; border-radius: 50%; float: left;">
+                      <img src="/resources/assets/images/avatar-01.jpg" alt="" style="max-width: 46px; border-radius: 50%; float: left;">
                     </div>
                     <span><i class="fa fa-check"></i> KenganC</span>
                     <h4>Just Talking With Fans</h4>
@@ -301,7 +301,7 @@ https://templatemo.com/tm-579-cyborg-gaming
               <div class="col-lg-3 col-sm-6">
                 <div class="item">
                   <div class="thumb">
-                    <img src="/resources/asserts/images/stream-02.jpg" alt="">
+                    <img src="/resources/assets/images/stream-02.jpg" alt="">
                     <div class="hover-effect">
                       <div class="content">
                         <div class="live">
@@ -316,7 +316,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                   </div>
                   <div class="down-content">
                     <div class="avatar">
-                      <img src="/resources/asserts/images/avatar-02.jpg" alt="" style="max-width: 46px; border-radius: 50%; float: left;">
+                      <img src="/resources/assets/images/avatar-02.jpg" alt="" style="max-width: 46px; border-radius: 50%; float: left;">
                     </div>
                     <span><i class="fa fa-check"></i> LunaMa</span>
                     <h4>CS-GO 36 Hours Live Stream</h4>
@@ -326,7 +326,7 @@ https://templatemo.com/tm-579-cyborg-gaming
               <div class="col-lg-3 col-sm-6">
                 <div class="item">
                   <div class="thumb">
-                    <img src="/resources/asserts/images/stream-03.jpg" alt="">
+                    <img src="/resources/assets/images/stream-03.jpg" alt="">
                     <div class="hover-effect">
                       <div class="content">
                         <div class="live">
@@ -341,7 +341,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                   </div>
                   <div class="down-content">
                     <div class="avatar">
-                      <img src="/resources/asserts/images/avatar-03.jpg" alt="" style="max-width: 46px; border-radius: 50%; float: left;">
+                      <img src="/resources/assets/images/avatar-03.jpg" alt="" style="max-width: 46px; border-radius: 50%; float: left;">
                     </div>
                     <span><i class="fa fa-check"></i> Areluwa</span>
                     <h4>Maybe Nathej Allnight Chillin'</h4>
@@ -351,7 +351,7 @@ https://templatemo.com/tm-579-cyborg-gaming
               <div class="col-lg-3 col-sm-6">
                 <div class="item">
                   <div class="thumb">
-                    <img src="/resources/asserts/images/stream-04.jpg" alt="">
+                    <img src="/resources/assets/images/stream-04.jpg" alt="">
                     <div class="hover-effect">
                       <div class="content">
                         <div class="live">
@@ -366,7 +366,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                   </div>
                   <div class="down-content">
                     <div class="avatar">
-                      <img src="/resources/asserts/images/avatar-04.jpg" alt="" style="max-width: 46px; border-radius: 50%; float: left;">
+                      <img src="/resources/assets/images/avatar-04.jpg" alt="" style="max-width: 46px; border-radius: 50%; float: left;">
                     </div>
                     <span><i class="fa fa-check"></i> GangTm</span>
                     <h4>Live Streaming Till Morning</h4>
@@ -402,14 +402,14 @@ https://templatemo.com/tm-579-cyborg-gaming
 
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->
-  <script src="/resources/vendor/js/jquery.min.js"></script>
-  <script src="/resources/vendor/js/bootstrap.min.js"></script>
+  <script src="/resources/vendor/jquery/jquery.min.js"></script>
+  <script src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 
-  <script src="/resources/asserts/js/isotope.min.js"></script>
-  <script src="/resources/asserts/js/owl-carousel.js"></script>
-  <script src="/resources/asserts/js/tabs.js"></script>
-  <script src="/resources/asserts/js/popup.js"></script>
-  <script src="/resources/asserts/js/custom.js"></script>
+  <script src="/resources/assets/js/isotope.min.js"></script>
+  <script src="/resources/assets/js/owl-carousel.js"></script>
+  <script src="/resources/assets/js/tabs.js"></script>
+  <script src="/resources/assets/js/popup.js"></script>
+  <script src="/resources/assets/js/custom.js"></script>
 
 
   </body>
