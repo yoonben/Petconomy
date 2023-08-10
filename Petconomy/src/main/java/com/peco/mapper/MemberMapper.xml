@@ -46,7 +46,6 @@
 
 	<update id="update">
 		update member set 
-			pw = #{pw},
 			mname = #{mname},
 			mphone = #{mphone},
 			email = #{email},

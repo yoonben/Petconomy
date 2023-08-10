@@ -253,7 +253,6 @@ https://templatemo.com/tm-579-cyborg-gaming
 	<!-- 헤더 시작 -->
 	<%@ include file="../common/header.jsp" %>
 	<!-- 헤더 끝 -->
-	
   <div class="container">
   <input type="hidden" name="p_id" id="p_id" value="${pension.p_id }">
   <input type="hidden" id="reviewer" value="${sessionScope.member.nickname }">
@@ -269,7 +268,7 @@ https://templatemo.com/tm-579-cyborg-gaming
               <div class="feature-banner header-text">
                 <div class="row">
                   <div class="col-lg-4">
-                    <img src="/resources/assets/images/펜션이미지.jpg" alt="" style="border-radius: 23px;">
+                    <img  src="/peco/display?fileName=${pensionImg}" alt="" style="border-radius: 23px;">
                   </div>
                   <div class="col-lg-8">
                     <div class="item">
@@ -302,14 +301,21 @@ https://templatemo.com/tm-579-cyborg-gaming
                 <div class="tab_content" id="all_content">
                 
                   <!-- 객실 안내 시작 -->
-                  <c:forEach items="${room}" var="roomList">
+                  <c:forEach items="${room}" var="roomList">                  
                    <div class='room'>
                     <div class="col-lg-12">
                       <div class="content" style='background-color: white; margin-bottom: 15px;'>
                         <div class="row">
                           <div class="col-lg-4">
-                            <img src="/resources/assets/images/details-01.jpg" alt=""
-                              style="border-radius: 23px; margin-bottom: 30px;">
+                          
+                          <c:forEach items="${roomImg }" var="roomI">
+                          
+                          	<c:if test="${roomList.room_no eq roomI.room_no }">
+	                            <img src="/peco/display?fileName=${roomI.savePath}" alt=""
+	                              style="border-radius: 23px; margin-bottom: 30px;">
+                            </c:if>
+                           </c:forEach>
+                           
                           </div>                          
                           <div class="col-lg-8">
                             <p>
@@ -328,6 +334,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                     </div>
                   </div>
                   </c:forEach>
+
                   <!-- 객실 안내 끝 -->
                   
                 </div>

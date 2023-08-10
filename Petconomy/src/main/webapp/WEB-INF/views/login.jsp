@@ -26,7 +26,7 @@
 <body>
 
 	<!-- header -->
-	<%@include file="./commo/header.jsp"%>
+	<%@include file="./main/header.jsp"%>
 
 	<!-- 로그인 -->
 	<div class="container">
@@ -58,6 +58,13 @@
 						<a class="mt-5 mb-3 text-muted" id='btnSignupView'>회원가입</a>
 					</div>
 					
+					<div class="login-menu_right">
+						<a class="mt-5 mb-3 text-muted" id='btnPasswordResetView'>비밀번호 찾기</a>
+					</div>
+					
+					<div class="login-menu_right">
+						<a class="mt-5 mb-3 text-muted">/</a>
+					</div>
 					<div class="login-menu_right">
 						<a class="mt-5 mb-3 text-muted" id='openModalButton'>아이디 찾기</a>
 					</div>
@@ -125,7 +132,35 @@
 				    	<div id="findIdText"></div>
 				  </div>
 				</div>
-			
+				
+				<div id="passwordResetModal" class="modal">
+				    <div class="modal-content">
+				        <span class="close">&times;</span>
+				        <h1 class="h3 mb-3 fw-normal text-dark">비밀번호 찾기</h1>
+				
+				        <form>
+				        	<input type="text" id="emailpwCheckRes">
+				            <input type="text" name="findid" id="findid" placeholder="아이디">
+				            <input type="submit" value="아이디 인증" id="findPasswordbtn">
+				            <div class="form-group email-form">
+								 <div class="input-group">
+									<input type="text" class="form-control" name="userEmail1" id="userEmail1" placeholder="이메일" >
+								</div>
+							<div class="form-login">
+								<div class="input-group-addon">
+									<button type="button" class="btn btn-primary" id="mail-Check-Btn2">본인인증</button>
+								</div>
+								<div class="mail-check-box2">
+									<input class="form-control mail-check-input2" placeholder="인증번호 6자리를 입력해주세요!" disabled="disabled" maxlength="6">
+								</div>
+							</div>   
+								<span id="mail-check-warn"></span>
+							</div>
+				        </form>
+				        <div id="findPasswordText"></div>
+				    </div>
+				</div>
+			<!-- 모달 끝 -->
 			<!-- ***** 회원 가입 ***** -->
 			<form name='signupForm' id='signupForm'
 				<c:if test="${empty showSignupForm}"> style='display: none;' </c:if>>

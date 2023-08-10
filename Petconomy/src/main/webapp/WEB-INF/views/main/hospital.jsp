@@ -168,6 +168,7 @@
 				<col width="5%"/>
 			</colgroup>
 
+			<thead>
 			<tr height="50" style="font-size:1.4em;">
 			<th >번호</th>
 			<th>병원명</th>
@@ -175,18 +176,27 @@
 			<th>운영시간</th>
 			<th>주차</th>
 			</tr>
-			
+				</thead>
+				  	<c:if test="${empty list }" var="res">
+						<td colspan="5" class="center" style="text-align:center; font-size:1.5em">
+							등록된 게시물이 없습니다.
+						</td>
+					</c:if>
+				
+				<tbody>
+			<c:if test="${not res }">
 			<c:forEach items="${list }" var="list">
-				<tr height="50" style="font-size:1em;">
-				<td >${list.h_id }</td>
-				<td><a href="/peco/detail/hospitalDetailPage?h_id=${list.h_id }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}">${list.pname }</a></td>
-				<td>${list.addr }</td>
-				<td>${list.openhour }</td>
-				<td>${list.parkyn }</td>
-				</tr>
-			    </c:forEach>
+					<tr height="50" style="font-size:1em;">
+					<td >${list.h_id }</td>
+					<td><a href="/peco/detail/hospitalDetailPage?h_id=${list.h_id }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}">${list.pname }</a></td>
+					<td>${list.addr }</td>
+					<td>${list.openhour }</td>
+					<td>${list.parkyn }</td>
+					</tr>
+		    </c:forEach>
+		    </c:if>
 			    
-			    				<tr style="text-align: center">
+			    <tr style="text-align: center">
 					<td colspan="6"><%@include file = "pageNavi.jsp" %></td>
 				</tr>
 			</table>

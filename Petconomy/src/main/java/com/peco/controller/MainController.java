@@ -52,7 +52,7 @@ public class MainController {
 		
 		List<PensionVO> list = pensionService.pensionList(cri);
 		List<PensionVO> lists = pensionService.mapList(cri);
-		int totalCnt = pensionService.totalCnt(cri);
+		int totalCnt = pensionService.totalCount(cri);
 		PageDto pageDto = new PageDto(cri, totalCnt);
 		
 //		String megaregion = request.getParameter("megaregion");
@@ -122,8 +122,8 @@ public class MainController {
 	// json 데이터 파싱 후 db 저장(펜션)
 	@RequestMapping(path = "/insertPension")
 	@ResponseBody
-	public Map<String, Object> insertPensionInfo(@RequestParam String data, PensionVO vo){
-
+	public Map<String, Object> insertPensionInfo(@RequestParam String data){
+		PensionVO vo = new PensionVO();
 	  Map<String, Object> result = new HashMap<>();
 
 	  try {
@@ -155,8 +155,8 @@ public class MainController {
 	// json 데이터 파싱 후 db 저장(병원)
  	@RequestMapping(path = "/insertHospital")
     @ResponseBody
-    public Map<String, Object> insertHospitalInfo(@RequestParam String data, HospitalVO vo){
-    	
+    public Map<String, Object> insertHospitalInfo(@RequestParam String data){
+ 		HospitalVO vo = new HospitalVO();
     	Map<String, Object> result = new HashMap<>();
     	
     	try {

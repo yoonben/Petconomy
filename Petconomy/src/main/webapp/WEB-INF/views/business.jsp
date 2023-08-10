@@ -207,7 +207,7 @@ window.addEventListener('load', function(){
 <body>
 
 	<!-- header -->
-	<%@include file="./commo/header.jsp"%>
+	<%@include file="./main/header.jsp"%>
 	
 	
 	<div class="container">

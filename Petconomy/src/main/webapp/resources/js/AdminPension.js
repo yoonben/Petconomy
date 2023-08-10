@@ -95,7 +95,7 @@ function adminPensionView(map){
 	            +'<td>'+ pension.addr +'</td>     '
 	            +'<td>'+ pension.openhour +'</td>       '
 	            +'<td>'+ pension.parkyn +'</td>     '
-	            +'<td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">사업자 등록증 확인</button></td>   '
+	            +'<td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick=pensionBImg("'+ pension.p_id +'")>사업자 등록증 확인</button></td>   '
 
 	            
 	            +'<td><button type="button" class="btn btn-danger" onclick=pensionUpdate("'+ pension.p_id +'")>등록 승인</button></td>   '
@@ -168,11 +168,40 @@ function pensionRes(map){
 		
 }
 
+function pensionbRes(map){
+	console.log(map);
+	if(map.result == 'success'){
+		// 성공 : 리스트 조회및 출력
+		let blist = map.list;		
+		
+		blist.forEach(b => {
+			var savePath = b.savePath.replace('\\', '/');
+			console.log(savePath,'그냥주소');
+			var savePathR= encodeURIComponent(savePath);
+
+			bImgDiv.innerHTML = ' <img src="/peco/display?fileName=' + savePathR+'" style="width: 100%">' ;
+
+		})
+		
+		
+	} else {
+		// 실패 : 메세지 출력
+		alert(map.message);
+	}
+		
+}
+
 function pensionUpdate(p_id){
 	
 	console.log('p_id', p_id );
 	fetchGet('/peco/adminPension/update/' + p_id, pensionRes);
 	location.reload();
+}
+
+function pensionBImg(p_id) {
+	
+	fetchGet('/peco/adminPension/imgOn/' + p_id, pensionbRes);
+	
 }
 
 

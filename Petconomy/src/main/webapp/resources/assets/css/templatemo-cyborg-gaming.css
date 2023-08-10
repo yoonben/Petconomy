@@ -36,6 +36,7 @@ pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, k
 s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li,
 figure, header, nav, section, article, aside, footer, figcaption {
   margin: 0;
+  margin-bottom:40px;
   padding: 0;
   border: 0;
   outline: 0;
@@ -79,7 +80,7 @@ header, nav, section, article, aside, footer, hgroup {
 html, body {
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
-  background-color: #1e1e1e;
+  background-color: white;
   font-size: 16px;
   -ms-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
@@ -123,7 +124,7 @@ Global Styles
 */
 html,
 body {
-  background: #ffec90;
+  background: white;
   font-family: 'Poppins', sans-serif;
 }
 
@@ -158,8 +159,8 @@ p {
 
 .main-button a {
   font-size: 14px;
-  color: #fff;
-  background-color: #e75e8d;
+  color: #eeb41a;
+  background-color: #fcfbcb;
   padding: 12px 30px;
   display: inline-block;
   border-radius: 25px;
@@ -172,8 +173,8 @@ p {
 }
 
 .main-button a:hover {
-  background-color: #fff;
-  color: #e75e8d;
+  background-color: #fff5ca;
+  color: #ff0080;
 }
 
 .main-border-button a {
@@ -194,8 +195,8 @@ p {
 
 .main-border-button a:hover {
   border-color: #fff;
-  background-color: #fff;
-  color: #e75e8d;
+  background-color: #fff5ca;
+  color: #efeb32;
 }
 
 .border-no-active a {
@@ -456,12 +457,11 @@ Header Style
   transition: all 0.3s ease 0s;
   border: transparent;
   padding: 13px 10px;
-  border-radius: 18px;
+  border-radius: 25px;
   letter-spacing: .3px;
 }
 
 .header-area .main-nav .nav li:last-child a {
-  background-color: #27292a;
   padding: 8px 10px 8px 20px;
   border-radius: 23px;
 }
@@ -484,8 +484,8 @@ Header Style
 
 .header-area .main-nav .nav li:last-child:hover a,
 .header-area .main-nav .nav li:last-child a.active {
-  color: #fff !important;
-  background-color: #e75e8d !important;
+ color: #e75e8d !important;
+  background-color: #e5e5e5!important;
 }
 
 .background-header .main-nav .nav li:hover a,
@@ -881,7 +881,7 @@ Gaming Library Style
 .gaming-library {
   margin-top: 60px;
   padding: 30px;
-  background-color: #1f2122;
+  background-color: #fbebd7;
   border-radius: 23px;
 }
 
@@ -929,7 +929,7 @@ Gaming Library Style
 }
 
 .gaming-library .item ul li span {
-  color: #666;
+  color: #ff80c0;
   font-size: 14px;
 }
 
@@ -1528,7 +1528,7 @@ Profile Style
 .main-profile {
   border-radius: 23px;
   padding: 30px;
-  background-color: #1f2122;
+  background-color: #fde1c4;
 }
 
 .main-profile .main-info span {

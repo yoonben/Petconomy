@@ -41,7 +41,6 @@ https://templatemo.com/tm-579-cyborg-gaming
   </head>
 <style>
 .main-banner {
-    background-image: url(/resources/img/puppy.jpg);
     margin-bottom: 20px;
 }
 .gaming-library .item ul li h4 {
@@ -116,10 +115,29 @@ jQuery(function ($) {
               <div class="col-lg-7">
                 <div class="header-text">
 
-                  <h4 style="color:white;"><em style="color:#ffec90">펫코노미</em>에 오신걸 환영합니다</h4>
-                  <div class="main-button">
-                    <a href="../main/pension" style="background-color: #ffec90; color:black; font-weight: 900">펜션 예약 바로가기</a>
-                  </div>
+
+                  
+                  <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+					  <div class="carousel-inner">
+					    <div class="carousel-item active" data-bs-interval="1000">
+					      <h4 style="color:white;"><em style="color:#ffec90">펫코노미</em>에 오신걸 환영합니다</h4>
+					      <img src="/resources/img/puppy.jpg" class="d-block w-100" alt="...">
+					      <a href="../main/pension" style="background-color: #ffec90; color:black; font-weight: 900">펜션 예약 바로가기</a>
+					    </div>
+
+					    
+					    <div class="carousel-item" data-bs-interval="2000">
+					      <img src="..." class="d-block w-100" alt="...">
+					    </div>
+					    <div class="carousel-item">
+					      <img src="..." class="d-block w-100" alt="...">
+					    </div>
+					  </div>
+
+				 </div>
+                  
+                  
+                  
                 </div>
               </div>
             </div>
@@ -220,7 +238,32 @@ jQuery(function ($) {
             </div>
           </div>
           <!-- ***** Most Popular End ***** -->
-
+           <div class="owl-features owl-carousel">
+            <c:forEach items="${blist}" var="bvo" >
+				  <div class="item">
+				    <div class="thumb bestthumb">
+				    
+            		<a onclick="requestAction('/peco/board/view', ${bvo.bno })">
+				      <img src="/peco/display?fileName=${bvo.s_savePath}" alt="" class="thumbnail-image">
+				    </a>
+				    
+				      <div class="hover-effect">
+				        <i id="animated-icon" class="fa-regular fa-thumbs-up fa-lg" style="color: #ffa200;"> <h4> ${bvo.likecount }</h4></i>
+				      </div>
+				      
+				    </div>
+					    <div class="down-content">
+		                    <div class="avatar">
+		                      <img src="/resources/images/default.png" alt="" style="max-width: 46px; border-radius: 50%; float: left;">
+		                    </div>
+		                    <span style="color:white;"><i class="fa fa-check"></i> ${bvo.nickname}
+		                    <h4 class="besttitle">${bvo.title } </h4></span>
+		                    <a onclick="requestAction('/peco/board/view', ${bvo.bno })">
+		                    </a>
+		                </div> 
+				  </div>
+			</c:forEach>
+            </div>
 
         </div>
       </div>

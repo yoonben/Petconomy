@@ -166,7 +166,7 @@ window.addEventListener('load', function(){
 			e.preventDefault();
 			
 			if(!findname.value){
-				findIdText.innerHTML = '아이디를 입력해주세요';
+				findIdText.innerHTML = '이름을 입력해주세요';
 				return
 			}
 			
@@ -176,6 +176,25 @@ window.addEventListener('load', function(){
 			
 			fetchPost('/peco/findId', obj, (map)=>{
 				findIdText.innerHTML = map.msg;
+			});
+			
+		})
+		
+		findPasswordbtn.addEventListener('click', function(e){
+			// 기본 이벤트 제거
+			e.preventDefault();
+			
+			if(!findid.value){
+				findPasswordText.innerHTML = '아이디를 입력해주세요';
+				return
+			}
+			
+			let obj={id : findid.value};
+			
+			console.log("아이디 찾기 체크", obj);
+			
+			fetchPost('/peco/findpw', obj, (map)=>{
+				document.querySelector('#userEmail1').value = map.email;
 			});
 			
 		})
@@ -273,6 +292,49 @@ window.addEventListener('load', function(){
 		});
 		
 		
+		$(document).ready(function() {
+		    // 이메일 본인인증 버튼 클릭 시
+		    $('#mail-Check-Btn2').click(function() {
+		        const email = $('#userEmail1').val();
+		        console.log('완성된 이메일 : ' + email);
+
+		        const checkInput = $('.mail-check-input2'); // 인증번호 입력란
+
+		        $.ajax({
+		            type: 'get',
+		            url: '/peco/mailCheck2?email=' + email,
+		            success: function(data) {
+		                console.log("data : " +  data);
+		                checkInput.attr('disabled', false);
+		                code = data;
+		                alert('인증번호가 전송되었습니다.');
+		            }
+		        });
+		    });
+
+		    // 인증번호 비교
+		    $('.mail-check-input2').blur(function () {
+		        const email = $('#userEmail1').val();
+		        const inputCode = $(this).val();
+		        const $resultMsg = $('#mail-check-warn');
+
+		        if (inputCode === code) {
+		            $resultMsg.html('인증번호가 일치합니다.');
+		            $resultMsg.css('color', 'green');
+		            $('#mail-Check-Btn2').attr('disabled', true);
+		            $('#userEmail1').attr('readonly', true);
+		            console.log('인증 성공 이메일 : ' + email);
+		            $('#email').val(email);
+		            $('#emailpwCheckRes').val('1');
+		        } else {
+		            $resultMsg.html('인증번호가 불일치합니다. 다시 확인해주세요!');
+		            $resultMsg.css('color', 'red');
+		        }
+		    });
+
+		    
+		});
+		
 	})
 	
 	function fileuploadRes(map){
@@ -350,20 +412,51 @@ window.addEventListener('load', function(){
 	}
 	
 	$(document).ready(function() {
-		  // "아이디 찾기" 버튼을 클릭하면 모달이 나타납니다.
-		  $("#openModalButton").click(function() {
-		    $("#myModal").css("display", "block");
-		  });
+	    // "아이디 찾기" 버튼을 클릭하면 모달이 나타납니다.
+	    $("#openModalButton").click(function() {
+	        $("#myModal").css("display", "block");
+	    });
 
-		  // 모달 내부의 닫기 버튼 (×)을 클릭하면 모달이 숨겨집니다.
-		  $(".close").click(function() {
-		    $("#myModal").css("display", "none");
-		  });
+	    // 모달 내부의 닫기 버튼 (×)을 클릭하면 모달이 숨겨집니다.
+	    $(".close").click(function() {
+	        $("#myModal").css("display", "none");
+	    });
 
-		  // 또한, 사용자가 모달 영역 밖을 클릭하면 모달이 숨겨집니다.
-		  $(window).click(function(event) {
-		    if (event.target == $("#myModal")[0]) {
-		      $("#myModal").css("display", "none");
-		    }
-		  });
-		});
+	    // 모달 내부 클릭 이벤트 전파 중지
+	    $("#myModal").click(function(event) {
+	        event.stopPropagation(); // 이벤트 전파 중지
+	    });
+
+	    // 또한, 사용자가 모달 영역 밖을 클릭하면 모달이 숨겨지지 않도록 합니다.
+	    $(window).click(function(event) {
+	        if (event.target == $("#myModal")[0]) {
+	            $("#myModal").css("display", "none");
+	        }
+	    });
+	});
+	
+	$(document).ready(function() {
+	    // "비밀번호 찾기" 버튼을 클릭하면 모달이 나타납니다.
+	    $("#btnPasswordResetView").click(function() {
+	        $("#passwordResetModal").css("display", "block");
+	    });
+
+	    // 모달 내부의 닫기 버튼 (×)을 클릭하면 모달이 숨겨집니다.
+	    $(".close").click(function() {
+	        $("#passwordResetModal").css("display", "none");
+	    });
+
+	    // 모달 내부 클릭 이벤트 전파 중지
+	    $("#passwordResetModal").click(function(event) {
+	        event.stopPropagation(); // 이벤트 전파 중지
+	    });
+
+	    // 또한, 사용자가 모달 영역 밖을 클릭하면 모달이 숨겨지지 않도록 합니다.
+	    $(window).click(function(event) {
+	        if (event.target == $("#passwordResetModal")[0]) {
+	            $("#passwordResetModal").css("display", "none");
+	        }
+	    });
+	});
+	
+	

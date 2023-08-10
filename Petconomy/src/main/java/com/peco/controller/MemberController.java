@@ -238,16 +238,23 @@ public class MemberController extends CommonRestController{
 	    return "/member/profile";
 	}
 	
-	
-	
+
+
 	// 게시글 조회
-	@GetMapping("myBoard")
-	public String myBoard(Model model, BoardVO vo) {
+	@GetMapping("/myBoard")
+	public String myBoard(Model model, BoardVO vo, MemberVO membervo) {
+		MemberVO member = service.getOne(membervo.getM_id());
 		List<BoardVO> board = boardService.selectMyBoard(vo.getM_id());
-		System.out.println("board ================== : " + board);
-		model.addAttribute("board", board);
 		
-		return "/member/myBoard";
+		System.out.println("member ================== : " + member);
+		System.out.println("board ================== : " + board);
+		
+		if(board!=null && vo.getM_id().equals(member.getM_id())) {
+			//int bno = Integer.parseInt(vo.getBno()());
+			model.addAttribute("board", board);
+			return "/member/myBoard";
+		}
+		return "";
 	}
 
 
@@ -259,10 +266,12 @@ public class MemberController extends CommonRestController{
 	@GetMapping("pensionProfile")
 	public String getOne_P(Model model, PensionVO vo, MemberVO memberVo) {
 		try {
-			MemberVO member = service.getOne(vo.getM_id());
+			MemberVO member = service.getOne(memberVo.getM_id());
 			PensionVO pension = pensionService.getOne_P(vo.getM_id());
-			
-			System.out.println("pension================== (1) : " + pension);	
+			System.out.println("PensionVO================== (1) : " + vo.getM_id());	
+
+			System.out.println("member================== (1) : " + member);	
+	
 			
 			if(pension != null && member.getM_id().equals(pension.getM_id())) {
 					//PensionVO mypension = pensionService.getOne_P(vo.getM_id()); 다시 안담고 바로 조회후 담아주면된다!!
@@ -314,10 +323,10 @@ public class MemberController extends CommonRestController{
 
 	//하나의 병원 조회
 	@GetMapping("hospitalProfile")
-	public String getOne_H(HttpSession session, HospitalVO vo, MemberVO memeberVo) {
+	public String getOne_H(HttpSession session, HospitalVO vo, MemberVO memberVo) {
 		
 		try {
-			MemberVO member = service.getOne(vo.getM_id());
+			MemberVO member = service.getOne(memberVo.getM_id());
 			HospitalVO hospital = hospitalService.getOne_H(vo.getM_id());
 		
 			System.out.println("hospital================== (1) : " + hospital);
@@ -371,8 +380,8 @@ public class MemberController extends CommonRestController{
 	public String css(){
 		return "member/css";
 	}
-	@GetMapping("tabBar")
-	public String tabBar(){
-		return "member/tabBar";
+	@GetMapping("mainProfile")
+	public String mainProfile(){
+		return "member/mainProfile";
 	}
 }

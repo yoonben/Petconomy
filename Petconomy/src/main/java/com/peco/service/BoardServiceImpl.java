@@ -38,6 +38,16 @@ public class BoardServiceImpl implements BoardService {
 		
 		return mapper.getBest();
 	}
+	
+	@Override
+	public List<BoardVO> getFreeBest() {
+		return mapper.getFreeBest();
+	}
+
+	@Override
+	public List<BoardVO> getHealingBest() {
+		return mapper.getHealingBest();
+	}
 
 
 	@Override
@@ -202,6 +212,8 @@ public class BoardServiceImpl implements BoardService {
 	public List<BoardVO> selectMyBoard(String m_id) {
 		return mapper.selectMyBoard(m_id);
 	}
+
+
 
 
 
