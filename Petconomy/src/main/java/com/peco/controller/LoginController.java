@@ -127,6 +127,25 @@ public class LoginController extends CommonRestController {
 
 	}
 	
+	@PostMapping("/findpw")
+	public @ResponseBody Map<String, Object> findpw(@RequestBody MemberVO member) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		int res = memberService.idCheck(member);
+		
+		if (res > 0) {
+			MemberVO vo = memberService.apiLogin(member);
+			System.out.println("email===================="+vo.getEmail());
+			map.put("email", vo.getEmail());
+			
+			
+			return map;
+		} else {
+			return responseMap(REST_FAIL, "아이디를 찾을 수 없습니다.");
+		}
+
+	}
+	
 	@GetMapping("/naver_callback")
 	public String naverLogin_callback(HttpServletRequest request, HttpSession session, Model model) {
 		Map<String, String> naverData = memberService.naverLogin(request, model);
@@ -224,4 +243,12 @@ public class LoginController extends CommonRestController {
 			System.out.println("이메일 인증 이메일 : " + email);
 			return mailService.joinEmail(email);
 		}
+	
+	@GetMapping("/mailCheck2")
+	@ResponseBody
+	public String mailCheck2(String email) {
+		System.out.println("이메일 인증 요청이 들어옴!");
+		System.out.println("이메일 인증 이메일 : " + email);
+		return mailService.joinEmail2(email);
+	}
 }
