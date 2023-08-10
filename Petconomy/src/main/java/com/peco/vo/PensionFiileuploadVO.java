@@ -12,4 +12,7 @@ public class PensionFiileuploadVO {
 	private String filetype;
 	
 	private String savePath;
+	private String s_savePath;
+	
+	private String room_no;
 }

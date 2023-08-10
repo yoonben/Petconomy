@@ -79,6 +79,25 @@
 		select nvl(round(avg(star)),0) from p_review where p_id = #{p_id}
 	</select>	
 	
+	<select id="getPesionImg" resultType="com.peco.vo.PensionFiileuploadVO">
+			select t.*
+		        , uploadpath||p_id||filename savePath
+        		, decode(filetype, 'I'
+                			,uploadpath||'s_'||p_id||'_'||filename
+                			,'') s_savePath 
+		  from p_img t
+          where p_id = #{p_id}
+	</select>
+	
+	<select id="getRoomImg" resultType="com.peco.vo.PensionFiileuploadVO">
+			select t.*
+		        , uploadpath||room_no||p_id||filename savePath
+        		, decode(filetype, 'I'
+                			,uploadpath||'s_'||p_id||'_'||filename
+                			,'') s_savePath 
+		  from pr_img t
+          where p_id = #{p_id}
+	</select>
 	
   	<insert id="pensionInsert">
   	insert into pension(p_id, M_ID, PNAME, ADDR, OPENHOUR, PARKYN) 
