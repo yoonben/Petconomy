@@ -49,7 +49,7 @@
 	
 	<insert id="insert">
 		insert into reply (rno, bno,m_id, reply, replyer,regdate)
-    	values (seq_reply.NEXTVAL, #{bno},#{m_id}, #{reply}, #{replyer},sysdate)
+    	values (reply_seq.NEXTVAL, #{bno},#{m_id}, #{reply}, #{replyer},sysdate)
 	</insert>
  
  	<delete id ="delete">
