@@ -60,7 +60,7 @@ $(document).ready(function () {
    // 공공 api 주소 24000건 받아오기
      var baseURL = "https://api.odcloud.kr/api/15111389/v1/uddi:41944402-8249-4e45-9e9d-a52d0a7db1cc?serviceKey=JWFQQ8%2Fl2mzSIciMFp6OsEWf0FY%2FjZtaVBpKpNb2ga1UmCMhSzskajf3HKN%2Beu3E959Qv6UYx6vq0jKX3tB0hA%3D%3D&perPage=1000&returnType=Json";
 
-     for (var pageNo = 1; pageNo <= 5; pageNo++) {
+     for (var pageNo = 1; pageNo <= 2; pageNo++) {
 
        
        var url = baseURL + "&page=" + pageNo;

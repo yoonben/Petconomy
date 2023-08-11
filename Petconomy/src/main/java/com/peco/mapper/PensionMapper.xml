@@ -104,7 +104,7 @@
 	
   	<insert id="pensionInsert">
   	insert into pension(p_id, M_ID, PNAME, ADDR, OPENHOUR, PARKYN) 
-  	values('p'||pension_seq.nextval, 'm_2', #{pname}, #{addr}, #{openhour}, #{parkyn})
+  	values('p'||'_'||pension_seq.nextval, 'm_1', #{pname}, #{addr}, #{openhour}, #{parkyn})
   	</insert>
 
 		
@@ -145,6 +145,18 @@
 		<when test="megaregion == 'jeju'"> and ADDR like '제주%' </when>
 		</choose>
 	</sql>
+	
+	<sql id="small">
+		<choose>
+		<when test="megaregion == '춘천·인제·철원'"> and (ADDR like '%춘천%' or ADDR like '%인제%' or ADDR like '%철원%')</when>
+		<when test="megaregion == '평창·정선·영월'"> and (ADDR like '%평창%' or ADDR like '%정선%' or ADDR like '%영월%')</when>
+		<when test="megaregion == '속초·양양·고성'"> and (ADDR like '%속초%' or ADDR like '%양양%' or ADDR like '%고성%')</when>
+		<when test="megaregion == '강릉'"> and (ADDR like '%강릉%')</when>
+		<when test="megaregion == '동해·삼척·태백'"> and (ADDR like '%해%' or ADDR like '%삼척%' or ADDR like '%태백%')</when>
+		<when test="megaregion == '홍천·횡성·원주'"> and (ADDR like '%홍천%' or ADDR like '%횡성%' or ADDR like '%원주%')</when>
+		</choose>
+	</sql>
+	
   	<sql id="sort">
 		<choose>
 		<when test="sort == ''"> order by p_id desc</when>		

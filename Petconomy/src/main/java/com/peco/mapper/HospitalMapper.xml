@@ -19,16 +19,18 @@
 		
 		<insert id="hospitalInsert"> 
 		insert into hospital(h_id, M_ID, PNAME, ADDR, OPENHOUR, PARKYN) 
-		values(hospital_seq.nextval, 'm_2', #{pname}, #{addr}, #{openhour}, #{parkyn}) 
+		values('p'||'_'||hospital_seq.nextval, 'm_1', #{pname}, #{addr}, #{openhour}, #{parkyn}) 
 		</insert>
 		
 
 		<select id="hospitalList" resultType="com.peco.vo.HospitalVO">
-		select * from(select t.*, rownum rn from
-		(select h_id, pname, Addr, openHour, substr(ParkYN,3,2) ParkYN from hospital where 1=1
-		<include refid="mega"/>
-		<include refid="small"/>
-		order by h_id desc) t) where rn between 1 and 10
+              select * from
+             (select t.*, rownum rn from(select h.h_id, pname, addr, openhour, substr(parkyn,-2) ParkYN , star, cnt
+             from hospital h 
+             LEFT JOIN
+			 (select h_id, round(avg(star)) star, count(review) cnt from h_review group by h_id) r
+             ON h.h_id = r.h_id where 1=1
+             ) t ) where rn between #{startNo} and #{endNo}
 		</select>
 		
 		<select id="totalCnt" resultType="int">

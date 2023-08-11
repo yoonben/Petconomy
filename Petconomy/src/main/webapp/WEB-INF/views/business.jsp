@@ -211,7 +211,7 @@ window.addEventListener('load', function(){
 	
 	
 	<div class="container">
-		<div class="page-content" style="background-color: bisque;">
+		<div class="page-content">
 			<div class="page-business">
 			<!-- ***** 업소 가입 ***** -->
 			<form name='businessForm' id='businessForm'>

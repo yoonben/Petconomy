@@ -18,4 +18,6 @@ public class HospitalVO {
 	private String rn; 
 	private int star;
 	private int cnt;
+	private int min;
+	private int max;
 }
