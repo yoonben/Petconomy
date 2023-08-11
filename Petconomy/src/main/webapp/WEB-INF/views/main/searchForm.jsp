@@ -37,7 +37,7 @@ function regionChange(e){
 
 	for(item in changeItem){                
 		//var isSelected = (changeItem[item] === ) ? 'selected' : '';
-		var option = $("<option id='"+changeItem[item]+"' value='"+changeItem[item]+"' selected>"+changeItem[item]+"</option>");
+		var option = $("<option id='"+changeItem[item]+"' value='"+changeItem[item]+"'>"+changeItem[item]+"</option>");
 		
         $('#smallregion').append(option);
 		    }
@@ -71,11 +71,11 @@ function go(page){
 </select>
 
 <select class="form-select form-select-inline" id="sort" name="sort" id="smallregion" onchange="this.form.submit(this.value)" style=" width:150px; display:inline-block; ">
-<option value=''>정렬기준</option>
-<option value='review'>리뷰많은순</option>
-<option value='new'>최신순</option>
-<option value='high'>고가순</option>
-<option value='low'>저가순</option>
+<option value='' ${pageDto.regioncri.sort eq "" ? "selected" : " " }>정렬기준</option>
+<option value='review' ${pageDto.regioncri.sort eq "review" ? "selected" : " " }>리뷰많은순</option>
+<option value='new' ${pageDto.regioncri.sort eq "new" ? "selected" : " " }>최신순</option>
+<option value='high' ${pageDto.regioncri.sort eq "high" ? "selected" : " " }>고가순</option>
+<option value='low' ${pageDto.regioncri.sort eq "low" ? "selected" : " " }>저가순</option>
 </select>
 
 
