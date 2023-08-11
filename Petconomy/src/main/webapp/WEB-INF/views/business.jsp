@@ -41,7 +41,7 @@ window.addEventListener('load', function(){
             +'</div>'
             +'<div class="form-login">'
             +'  <div class="text-text">'
-            +'		<label for="signUpPwCheck">펜션 방 이미지</label>'
+            +'		<label for="signUpPwCheck" style="color: #ec6090">펜션 방 이미지</label>'
             +'	</div>'
             +'	<div class="text-btnline">'
             +'		<input type="file" class="form-control" id="files" name="roonimg">'
@@ -217,9 +217,13 @@ window.addEventListener('load', function(){
 			<form name='businessForm' id='businessForm'>
 
 				<!-- 업소 등록 체크 인풋 -->
-				<input type="text" name="p_id" id="p_id" value="">
+				<input type="hidden" name="p_id" id="p_id" value="">
 				
-				<h1 class="h3 mb-3 fw-normal">팬션 업소 등록</h1>
+				<div class="login-img">
+					<!-- 이미지 -->
+				</div>
+				
+				<h1 class="h3 mb-3 fw-normal" style="color: #ec6090">팬션 업소 등록</h1>
 				<div id="signupMsg"></div>
 				<div class="form-login">
 					<div class="text-line">
@@ -230,7 +234,7 @@ window.addEventListener('load', function(){
 
 					<div class="form-login">
 						<input type="text" class="form-control" id="sample6_postcode" placeholder="우편번호">
-						<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+						<input type="button" class="btn btn-lg btn-warning" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
 						<input type="text" class="form-control" id="sample6_address" placeholder="도로명 주소"><br>
 						<input type="hidden" id="sample6_detailAddress" placeholder="상세주소">
 						<input type="hidden" id="sample6_extraAddress" placeholder="참고항목">
@@ -317,12 +321,12 @@ window.addEventListener('load', function(){
 				</div>
 				
 				<div class="form-login">
-					<label for="signUpPwCheck">사업자 등록 이미지</label>
+					<label for="signUpPwCheck" style="color: #ec6090">사업자 등록 이미지</label>
 					<input type="file" class="form-control" id="files" name="files">
 				</div>
 				
 				<div class="form-login">
-					<label for="signUpPwCheck">펜션 이미지</label>
+					<label for="signUpPwCheck" style="color: #ec6090">펜션 이미지</label>
 					<input type="file" class="form-control" id="files" name="pensionimg">
 				</div>
 				
@@ -341,16 +345,16 @@ window.addEventListener('load', function(){
 					
 					<div class="form-login">
 						<div class="text-text">
-							<label for="signUpPwCheck">펜션 방 이미지</label>
+							<label for="signUpPwCheck" style="color: #ec6090">펜션 방 이미지</label>
 						</div>
 						<div class="text-btnline">
 							<input type="file" class="form-control" id="files" name="roonimg">
 						</div>
 					</div>
 				</div>
-				<button class="btn btn-secondary" type="button" id="addRoomButton">방 정보 추가</button>
+				<button class="btn btn-lg btn-warning" class="btn btn-secondary" type="button" id="addRoomButton">방 정보 추가</button>
 				
-				<button class="w-100 btn btn-lg btn-primary" type="submit"  id="pensionSignup">업소 등록</button>
+				<button class="w-100 btn btn-lg btn-warning" type="submit"  id="pensionSignup">업소 등록</button>
 			</form>
 			</div>
 			<!-- ***** 회원가입 End ***** -->
