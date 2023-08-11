@@ -103,10 +103,10 @@ body{
 </div>
 
 
-  <div class="container" style="height:1800px;">
-    <div class="row" style="height:1800px;">
-      <div class="col-lg-12" style="height:1800px;">
-        <div class="page-content" style="height:1800px;">
+  <div class="container" style="height:2400px;">
+    <div class="row" style="height:2400px;">
+      <div class="col-lg-12" style="height:2400px;">
+        <div class="page-content" style="height:2400px;">
 
           <!-- ***** Featured Start ***** -->
           <div class="row">
@@ -158,7 +158,7 @@ body{
           <!-- ***** Details End ***** -->
 
           <!-- ***** Other Start ***** -->
-          <div class="other-games" style="height:850px">
+          <div class="other-games" style="height:1550px">
             <div class="row">
               <div class="col-lg-12">
                 <div class="heading-section">
@@ -172,10 +172,10 @@ body{
             
             <div class="card" style="width:265px; max-width: 25%; display: block; border:solid 0px" >
             
-			  <img src="/peco/display?fileName=${list.savePath}" class="card-img-top" alt="..." >
+			  <img src="/peco/display?fileName=${list.savePath}" class="card-img-top" alt="..." style="height:300px; padding:10px">
          	   
 			  <div class="card-body" style="margin-bottom: 20px">
-			    <h5 class="card-title"> <a style="font-size:1.2em; color:black"href="/peco/detail/detailPage?p_id=${list.p_id }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}">${list.p_id}${list.pname}</a></h5>
+			    <h5 class="card-title"> <a style="font-size:1.2em; color:black"href="/peco/detail/detailPage?p_id=${list.p_id }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}">${list.pname}</a></h5>
 			    <p class="card-text">${list.addr }</p>
 			    <p class="card-text">1박당 요금 시작가 <br> <a style="color:red; font-weight:900;">KRW : ${list.min }</a></p>
 			   
@@ -200,9 +200,9 @@ body{
 		    <div class="container">
 		      <div class="row">
 		        <div class="col-lg-12">
-		          <p>Copyright © 2036 <a href="#">Cyborg Gaming</a> Company. All rights reserved. 
+		          <p style="color:black">Copyright © 2036 <a href="#" style="color:black">Cyborg Gaming</a> Company. All rights reserved. 
 		          
-		          <br>Design: <a href="https://templatemo.com" target="_blank" title="free CSS templates">TemplateMo</a>  Distributed By <a href="https://themewagon.com" target="_blank" >ThemeWagon</a></p>
+		          <br>Design: <a href="https://templatemo.com" target="_blank" title="free CSS templates" style="color:black">TemplateMo</a>  Distributed By <a href="https://themewagon.com" target="_blank" >ThemeWagon</a></p>
 		        </div>
 		      </div>
 		    </div>
