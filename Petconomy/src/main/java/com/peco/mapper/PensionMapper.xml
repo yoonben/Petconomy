@@ -101,7 +101,7 @@
 	
   	<insert id="pensionInsert">
   	insert into pension(p_id, M_ID, PNAME, ADDR, OPENHOUR, PARKYN, checkYN) 
-  	values('p'||'_'||pension_seq.nextval, 'm_1', #{pname}, #{addr}, #{openhour}, #{parkyn}, 'Y')
+  	values('p'||'_'||pension_seq.nextval, 'm_2', #{pname}, #{addr}, #{openhour}, #{parkyn}, 'Y')
   	</insert>
 
 		
