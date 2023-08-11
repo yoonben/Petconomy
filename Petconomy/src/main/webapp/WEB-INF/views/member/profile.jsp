@@ -132,8 +132,10 @@
           	 </div>
           </div>
          
+
 		  <!-- 나의 정보 끝 -->
 		<br><br><br><br>
+ 	
  		
 		<!-- 펜션예약 시작 -->
           <div class="gaming-library profile-library">
@@ -144,13 +146,13 @@
              <form name='mypResForm' onsubmit="return false">
               <table width='100%' >
 				<tr>
-					<th><h5>펜션프로필</h5><span>Pension Image</span></th>
+					<th><h5>펜션프로필</h5><span>Pension</span></th>
 					<th><h5>펜션명</h5><span>Pension Name</span></th>
 					<th><h5>예약번호</h5><span>Reservation Number</span></th>
 					<th><h5>이용날짜</h5><span>Date</span></th>
 					<th><h5>결제금액</h5><span>Payment Amount</span></th>
 					<th><h5>예약자명</h5><span>Reservation Name</span></th>
-					<th><h5>예약취소</h5><span>Reservation Cancellation</span></th>
+					<th><h5>예약취소</h5><span>Cancellation</span></th>
 				</tr>
 				
 				<c:if test="${fn:length(getPrList )==0}">
@@ -196,13 +198,13 @@
  			<table width='100%' >
 
                 <tr>
-                  <th><h5>병원프로필</h5><span>Hospital Image</span></th>
+                  <th><h5>병원프로필</h5><span>Hospital</span></th>
                   <th><h5>병원명</h5><span>Hospital Name</span></th>
                   <th><h5>예약날짜</h5><span>Date</span></th>
                   <th><h5>예약시간</h5><span>Time</span></th>
                   <th><h5>결제금액</h5><span>Payment amount</span></th>
                   <th><h5>예약자명</h5><span>Reservation Name</span></th>
-                  <th><h5>예약취소</h5><span>Reservation Cancellation</span></th>
+                  <th><h5>예약취소</h5><span>Cancellation</span></th>
                 </tr>
 				
 				<c:if test="${fn:length(getHrList )==0}">
@@ -230,24 +232,8 @@
 				</c:forEach>
 			</table>
 		</form>		
-					
-					
-					
-					
-              <table width='100%' >
 
-              </table>
-              
-              <div class="item">
-                <ul>
-                  <li><img src="/resources/assets/images/game-01.jpg" alt="" class="templatemo-item"></li>
-                  <li><h4>Dota 2</h4><span>Sandbox</span></li>
-                  <li><h4>Date Added</h4><span>24/08/2036</span></li>
-                  <li><h4>Hours Played</h4><span>634 H 22 Mins</span></li>
-                  <li><h4>Currently</h4><span>Downloaded</span></li>
-                  <li><div class="main-border-button border-no-active"><a href="#">예약취소</a></div></li>
-                </ul>
-              </div>
+         		<br><br>
               <div class="col-lg-12">
                 <div class="main-button">
                   <a href="#" id="arrow-up"><i class="fa-solid fa-arrow-up-wide-short fa-2xl" style="color: #ffa238;"></i></a>
