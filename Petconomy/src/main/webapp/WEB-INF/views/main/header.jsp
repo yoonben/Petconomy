@@ -28,7 +28,7 @@
                     <ul class="nav">
                         <li><a href="/peco/main/pension">펜션/병원</a></li>
                         <li><a href="/peco/board/main">커뮤니티</a></li>
-                        <li><a href="#">업소등록</a></li>
+                        <li><a href="/peco/business">업소등록</a></li>
                         
                         <!-- 마이페이지 네비게이션, 탭 -->
                          <li class="nav-item dropdown">
@@ -42,7 +42,7 @@
 						    </ul>
 						  </li>
                         
-                        <li><a href="../login">로그인 <img src="assets/images/profile-header.jpg" alt=""></a></li>
+                        <li><a href="/peco/login">로그인 <img src="assets/images/profile-header.jpg" alt=""></a></li>
                     </ul>   
                     <a class='menu-trigger'>
                         <span>Menu</span>
