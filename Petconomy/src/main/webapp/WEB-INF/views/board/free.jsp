@@ -416,6 +416,7 @@ div >.page-content{
 			<div class="live-stream post_list">
                 <c:forEach var="board" items="${list}">
                   <div class="post_box">
+                  <a onclick="requestAction('/peco/board/view', ${board.bno })">
                      <div class="post">
                         <div class="post_main">
                           <div class="post_title">${board.title }</div>
@@ -425,6 +426,7 @@ div >.page-content{
                           <img src="/peco/display?fileName=${board.savePath}" alt="">
                         </div>
                      </div>
+                  </a>
 
                      <div class="postreplywriter">
                         <div class="post_reply">댓글: ${board.replycount }</div>
