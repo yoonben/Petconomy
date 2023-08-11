@@ -236,9 +236,10 @@
 					</c:if>
 
 					<c:if test="${not empty showSignupForm}">
-						<div class="form-login">
+						<div class="form-login" style="padding: 0;">
 							<input type="hidden" class="form-control" id="signUpId"
-								value="${apiId }">
+								value="${apiId }" >
+							<input type="hidden" class="btn btn-warning" type="hidden" id="btnid" style="padding: 0;">
 						</div>
 					</c:if>
 
@@ -260,11 +261,11 @@
 
 					<c:if test="${not empty showSignupForm}">
 						<div class="form-login"><input type="hidden"
-								class="form-control" id="signUpPw" value="null">
+								class="form-control" id="signUpPw" value="null" style="padding: 0;">
 						</div>
 
 						<div class="form-login"><input
-								type="hidden" class="form-control" id="pwCheck" value="null">
+								type="hidden" class="form-control" id="pwCheck" value="null" style="padding: 0;">
 						</div>
 					</c:if>
 
