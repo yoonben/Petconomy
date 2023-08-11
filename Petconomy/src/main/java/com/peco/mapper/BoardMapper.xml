@@ -385,7 +385,7 @@
 	 -->
 	<insert id="insertSelectKey">
 		<selectKey keyProperty="bno" order="BEFORE" resultType="int">
-		select seq_board.nextval from dual
+		select board_seq.nextval from dual
 		</selectKey>
 		
 		insert into board (bno,title,content,writer,m_id,category)
