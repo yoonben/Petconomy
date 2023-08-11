@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,7 +43,14 @@
 						    </ul>
 						  </li>
                         
-                        <li><a href="/peco/login">로그인 <img src="assets/images/profile-header.jpg" alt=""></a></li>
+                        <c:choose>
+						    <c:when test="${empty sessionScope.member}">
+						        <li><a href="/peco/login">로그인 <img src="assets/images/profile-header.jpg" alt=""></a></li>
+						    </c:when>
+						    <c:otherwise>
+						        <li><a href="/peco/logout">로그아웃</a></li>
+						    </c:otherwise>
+						</c:choose>
                     </ul>   
                     <a class='menu-trigger'>
                         <span>Menu</span>

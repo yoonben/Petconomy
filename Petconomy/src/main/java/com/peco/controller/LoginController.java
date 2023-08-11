@@ -40,6 +40,13 @@ public class LoginController extends CommonRestController {
 		return "login";
 	}
 	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		
+		session.removeAttribute("member");
+		
+		return "login";
+	}
 	
 	@GetMapping("/main")
 	public String main() {
