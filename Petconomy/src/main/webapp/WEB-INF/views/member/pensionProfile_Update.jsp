@@ -57,14 +57,6 @@ System.out.println("m_id : " + m_id);
 			<th>승인여부</th>
 			<td><input type='text' name='checkyn' value='${pension.checkyn}' style="height:100%; width:99%"></td>
 		</tr>
-		<tr>
-			<th>위도</th>
-			<td><input type='text' name='latitude' readonly value='${pension.latitude}' style="height:100%; width:99%"></td>
-		</tr>
-		<tr>
-			<th>경도</th>
-			<td><input type='text' name='longitude' readonly value='${pension.longitude}' style="height:100%; width:99%"></td>
-		</tr>
 	</table>
 	
 	<input type="submit" value="확인" class="btn">

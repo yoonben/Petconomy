@@ -113,9 +113,23 @@ p {
 }
 
 img {
-  width: 100%;
+  width: 300px;
   overflow: hidden;
 }
+
+img_profile{
+	width: 300px; 
+	height: 300px;
+	object-fit: cover;
+	margin-left:30px;
+	
+	image-rendering:-webkit-optimize-contrast;
+  	transform:translateZ(0);
+  	backface-visibility:hidden;
+
+}
+
+
 
 /* 
 ---------------------------------------------
@@ -159,8 +173,8 @@ p {
 
 .main-button a {
   font-size: 14px;
-  color: #eeb41a;
-  background-color: #fcfbcb;
+  color: #FFC48C;
+  background-color: #FFF1E0;
   padding: 12px 30px;
   display: inline-block;
   border-radius: 25px;
@@ -874,6 +888,41 @@ Most Popular Style
 
 /* 
 ---------------------------------------------
+회원정보 테이블 style
+--------------------------------------------- 
+*/
+
+#profileTable.th,td,th{
+	background-color: #FFF1E0;
+	text-align:center;
+    padding: 15px;
+	border-spacing:10px;
+	border-bottom: 2px solid #ffa64d;
+	
+}
+
+#profileTable.th,th{
+	background-color: #ffc562;
+	border-radius: 10px;
+	
+}
+
+#profileForm{
+	background-color: #FCE5CD;
+	border-radius: 23px;
+	padding: 20px;
+}
+
+#profileTable{
+	 width:90%; 
+     margin:10px; 
+     border-top: 2px solid #ffa64d;
+ 	 border-collapse: collapse;
+}
+
+
+/* 
+---------------------------------------------
 Gaming Library Style
 --------------------------------------------- 
 */
@@ -881,7 +930,7 @@ Gaming Library Style
 .gaming-library {
   margin-top: 60px;
   padding: 30px;
-  background-color: #fbebd7;
+  background-color: #FFF1E0;
   border-radius: 23px;
 }
 
@@ -1528,7 +1577,7 @@ Profile Style
 .main-profile {
   border-radius: 23px;
   padding: 30px;
-  background-color: #fde1c4;
+  background-color: #FFF1E0;
 }
 
 .main-profile .main-info span {
@@ -1544,8 +1593,10 @@ Profile Style
   margin-bottom: 15px;
 }
 
-.main-profile .main-info h4 {
+.main-profile .main-info h1 {
+  margin-top: 20px;
   margin-bottom: 20px;
+  font-weight: 900;
 }
 
 .main-profile .main-info .main-border-button {

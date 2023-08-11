@@ -46,14 +46,6 @@
 			<th>승인여부</th>
 			<td>${PensionVO.checkyn}</td>
 		</tr>
-		<tr>
-			<th>위도</th>
-			<td>${PensionVO.latitude}</td>
-		</tr>
-		<tr>
-			<th>경도</th>
-			<td>${PensionVO.longitude}</td>
-		</tr>
 	</table>
 							
 	<input type="submit" value="수정하기" class="btn" >

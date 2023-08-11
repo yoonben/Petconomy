@@ -66,7 +66,7 @@
               <div class="main-profile ">
                 <div class="row">
                     <div class="main-info header-text">
-                      <h4>나의 정보</h4>
+                      <h1>나의 정보</h1>
                     </div>
                 <!-- 프로필 사진 시작-->
                   <div class="col-lg-3">
@@ -79,8 +79,8 @@
                   <div class="col-lg-6 align-self-center">
                     <form id='profileForm' name='profile' action='/peco/profile_Update' method='post'>
 						<c:set var="memberVO" value="${member}"/>
-						<input type="text" name="m_id" value="${member.m_id}">
-							<table border='1px' width='90%' height='450px'>
+						<input type="hidden" name="m_id" value="${member.m_id}">
+							<table id="profileTable" width='100%' height='100%'>
 								<tr>
 									<th>회원번호</th>
 									<td>${member.m_id }</td>
@@ -91,8 +91,8 @@
 								</tr>
 								<tr>
 									<th>비밀번호</th>
-									<td><input type="text" id="maskedPassword" 
-												value="${member.pw }" readonly style="height:100%; width:99%"></td>
+									<td><input type="hidden" id="maskedPassword" 
+												value="${member.pw }" readonly style="height:100%; width:99%">**********</td>
 								</tr>
 								<tr>
 									<th>이름</th>
@@ -117,11 +117,11 @@
 							</table>			
 						      <div class="main-button">
 								  <a><input type="submit" value="수정하기" class="btn"></a><br><br>
+				              </div>
+					</form>
 									<button id="pension" name="pension" onclick="location.href='/peco/pensionProfile?m_id=${member.m_id}'">나의 펜션 관리</button>
 									<button id="hospital" name="hospital" onclick="location.href='/peco/hospitalProfile?m_id=${member.m_id}'">나의 병원 관리</button>
 									<button id="myBoard" name="myBoard" onclick="location.href='/peco/myBoard?m_id=${member.m_id}'">나의 글 목록</button>
-				              </div>
-					</form>
                   </div>
                   <!-- 나의 세부정보 끝 -->
                 </div>
@@ -138,34 +138,15 @@
                 <h4>펜션 예약내역</h4>
               </div>
              
-				<table border='1px' width='90%' height='250px'>
-					<tr height='50px'>
-						<th>펜션명</th>
-						<th>예약객실</th>
-						<th>예약번호</th>
-						<th>예약날짜</th>
-						<th>예약자명</th>
-						<th>결제총액</th>
-					</tr>
-					<tr height='30px'>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-				</table><br>
-				<!-- 페이징처리-->
-              
-              <table>
+              <table width='100%' >
                 <tr>
-                  <th><h5>번호</h5><span>Sandbox</span></th>
-                  <th><h5>이미지</h5><span>Sandbox</span></th>
-                  <th><h5>업체명</h5><span>Sandbox</span></th>
-                  <th><h5>예약일</h5><span>Sandbox</span></th>
-                  <th><h5>예약자명</h5><span>Sandbox</span></th>
+                  <th><h5>펜션명</h5><span>Sandbox</span></th>
+                  <th><h5>예약객실</h5><span>Sandbox</span></th>
                   <th><h5>예약번호</h5><span>Sandbox</span></th>
+                  <th><h5>예약날짜</h5><span>Sandbox</span></th>
+                  <th><h5>예약자명</h5><span>Sandbox</span></th>
+                  <th><h5>결제총액</h5><span>Sandbox</span></th>
+                  <th><h5>예약취소</h5><span>Sandbox</span></th>
                 </tr>
               </table>
               
@@ -181,6 +162,7 @@
               </div>
            </div>
          </div>
+         		<!-- 페이징처리-->
           <!-- 펜션예약 끝 -->
           
           <!-- 병원예약 시작-->
@@ -189,35 +171,16 @@
               <div class="heading-section">
                 <h4>병원 예약내역</h4>
               </div>
-	              <table border='1px' width='90%' height='250px'>
-						<tr height='50px'>
-							<th colspan=6 >병원 예약정보</th>
-						</tr>
-						<tr height='50px'>
-							<th>병원명</th>
-							<th>예약번호</th>
-							<th  colspan=2 >예약날짜 및 시간</th>
-							<th>예약자명</th>
-							<th>결제총액</th>
-						</tr>
-						<tr height='30px'>
-							<td></td>
-							<td></td>
-							<td   colspan=2 ></td>
-							<td></td>
-							<td></td>
-						</tr>
-					</table>
-					<!-- 페이징처리-->
 					
-              <table>
+					
+              <table width='100%' >
                 <tr>
-                  <th><h5>번호</h5><span>Sandbox</span></th>
-                  <th><h5>이미지</h5><span>Sandbox</span></th>
-                  <th><h5>업체명</h5><span>Sandbox</span></th>
-                  <th><h5>예약일</h5><span>Sandbox</span></th>
-                  <th><h5>예약자명</h5><span>Sandbox</span></th>
+                  <th><h5>병원명</h5><span>Sandbox</span></th>
                   <th><h5>예약번호</h5><span>Sandbox</span></th>
+                  <th><h5>예약날짜 및 시간</h5><span>Sandbox</span></th>
+                  <th><h5>예약자명</h5><span>Sandbox</span></th>
+                  <th><h5>결제총액</h5><span>Sandbox</span></th>
+                  <th><h5>예약취소</h5><span>Sandbox</span></th>
                 </tr>
               </table>
               
@@ -233,11 +196,12 @@
               </div>
               <div class="col-lg-12">
                 <div class="main-button">
-                  <a href="#"><i class="fa-solid fa-arrow-up-wide-short fa-2xl" style="color: #ffa238;"></i></a>
+                  <a href="#" id="arrow-up"><i class="fa-solid fa-arrow-up-wide-short fa-2xl" style="color: #ffa238;"></i></a>
                 </div>
               </div>
             </div>
           </div>
+          <!-- 페이징처리-->
            <!-- 병원예약 끝-->
           
         </div>
