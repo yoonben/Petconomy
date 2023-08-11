@@ -21,7 +21,7 @@
 	
 	<insert id="insert">
 		insert into P_review (pr_no, p_id, review, reviewer, regitdate, star)
-    	values (seq_pr_no.nextval, #{p_id}, #{review}, #{reviewer}, sysdate, #{star})
+    	values (p_review_seq.nextval, #{p_id}, #{review}, #{reviewer}, sysdate, #{star})
 	</insert>
 	
 	<delete id="delete">

@@ -402,31 +402,30 @@ https://templatemo.com/tm-579-cyborg-gaming
                         <br>
                         <!-- 페이징 끝 -->
                         
-                        <!-- 리뷰 보내기 시작 -->
-                        <div id="reviewDiv">
-                        <div class="col-lg-17" id="reviewPossible">
-                          <div class="left-info" style='background-color: bisque;'>
-                            <div class="left">
-                              <h4 style='text-align: left; color: black;'><b><input type="hidden" id="reviewer" value="${sessionScope.member.nickname }" readonly></b></h4>
-                              <br>
-                            </div>
-                            <div class="col-lg-13"> <textarea name="review" id="review" rows="5" style='width: 100%; border-radius: 15px;'></textarea>
-                            </div>
-                            <ul>
-                              <li><b style='color: black;'>별점 선택</b>
-                                <div class="scoreSleect" id="starinsert" data-max="5" data-rate="4" style='font-size: 1.4em;'></div>                                
-                              </li>
-                              <li>
-                                <div class="main-border-button">
-                                  <a href="#" id="btnReplyWrite" style="border: 1px solid #FFC48C; background-color: #FFF1E0; color: #FFC48C">리뷰 작성</a>
-                                </div>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                        </div>
-                        <!-- 리뷰 보내기 끝 -->  
-                        
+						 <!-- 리뷰 보내기 시작 -->
+	                        <div id="reviewDiv">
+	                        <div class="col-lg-17" id="reviewPossible">
+	                          <div class="left-info" style='background-color: bisque;'>
+	                            <div class="left">
+	                              <h4 style='text-align: left; color: black;'><b><input type="hidden" id="reviewer" value="${sessionScope.member.nickname }" readonly></b></h4>
+	                              <br>
+	                            </div>
+	                            <div class="col-lg-13"> <textarea name="review" id="review" rows="5" style='width: 100%; border-radius: 15px;'></textarea>
+	                            </div>
+	                            <ul>
+	                              <li><b style='color: black;'>별점 선택</b>
+	                                <div class="scoreSleect" id="starinsert" data-max="5" data-rate="4" style='font-size: 1.4em;'></div>                                
+	                              </li>
+	                              <li>
+	                                <div class="main-border-button">
+	                                  <a href="#" id="btnReplyWrite" style="border: 1px solid #FFC48C; background-color: #FFF1E0; color: #FFC48C">리뷰 작성</a>
+	                                </div>
+	                              </li>
+	                            </ul>
+	                          </div>
+	                        </div>
+	                        </div>
+	                        <!-- 리뷰 보내기 끝 -->   
                         <!-- 리뷰 중복 시작 -->                                               
                         <!-- 리뷰 중복 끝 -->    
                   

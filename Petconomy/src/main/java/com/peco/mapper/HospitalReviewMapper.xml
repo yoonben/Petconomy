@@ -21,7 +21,7 @@
 	
 	<insert id="insert">
 		insert into H_review (hr_no, h_id, review, reviewer, regitdate, star)
-    	values (seq_hr_no.nextval, #{h_id}, #{review}, #{reviewer}, sysdate, #{star})
+    	values (h_review_seq.nextval, #{h_id}, #{review}, #{reviewer}, sysdate, #{star})
 	</insert>
 	
 	<delete id="delete">

@@ -90,6 +90,7 @@ function replyView(map){
 		    +'        </div>'
 		    +'   </div>'
 		}
+		
 	})
 	
 	
@@ -134,10 +135,10 @@ function replyView(map){
 			 '	  <div style="width: 100%; text-align: right;">                       '
 		    +'        <div class="edit-delete-buttons">                               '
 		    +'          <div class="main-border-button" style="margin-top: 5px;">     '
-		    +'            <a href="#" onclick="replyDelete('+ reply.pr_no +')">삭제하기</a>  '
+		    +'            <a href="#" onclick="replyDelete('+ reply.pr_no +')" style="border: 1px solid #FFC48C; background-color: #FFF1E0; color: #FFC48C">삭제하기</a>  '
 		    +'          </div>                                                        '
 		    +'          <div class="main-border-button" style="margin-top: 5px;">     '
-		    +'            <a href="#" onclick="replyEdit('+ reply.pr_no +')">수정하기</a>'
+		    +'            <a href="#" onclick="replyEdit('+ reply.pr_no +')" style="border: 1px solid #FFC48C; background-color: #FFF1E0; color: #FFC48C">수정하기</a>'
 		    +'          </div>                                                        '
 		    +'        </div>                                                          '
 		    +'      </div>                                                            '
