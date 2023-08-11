@@ -247,8 +247,8 @@ public class LoginController extends CommonRestController {
 	@GetMapping("/mailCheck2")
 	@ResponseBody
 	public String mailCheck2(String email) {
-		System.out.println("이메일 인증 요청이 들어옴!");
-		System.out.println("이메일 인증 이메일 : " + email);
+		System.out.println("이메일 인증 요청이 들어옴2!");
+		System.out.println("이메일 인증 이메일2 : " + email);
 		return mailService.joinEmail2(email);
 	}
 }

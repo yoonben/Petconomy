@@ -144,7 +144,7 @@
 				            <input type="submit" value="아이디 인증" id="findPasswordbtn">
 				            <div class="form-group email-form">
 								 <div class="input-group">
-									<input type="text" class="form-control" name="userEmail1" id="userEmail1" placeholder="이메일" >
+									<input type="text" class="form-control" name="userEmail123" id="userEmail123" placeholder="이메일" >
 								</div>
 							<div class="form-login">
 								<div class="input-group-addon">
@@ -154,7 +154,7 @@
 									<input class="form-control mail-check-input2" placeholder="인증번호 6자리를 입력해주세요!" disabled="disabled" maxlength="6">
 								</div>
 							</div>   
-								<span id="mail-check-warn"></span>
+								<span id="#mail-check-warn2"></span>
 							</div>
 				        </form>
 				        <div id="findPasswordText"></div>
@@ -288,7 +288,7 @@
 				</div>
 
 				<div class="form-login">
-					<label for="signUpPwCheck">프로필첨부</label>
+					<label for="signUpPwCheck" style="color: #ec6090;">프로필첨부</label>
 					<input type="file" class="form-control" id="files" name="files">
 				</div>
 

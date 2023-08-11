@@ -211,7 +211,7 @@ window.addEventListener('load', function(){
 	
 	
 	<div class="container">
-		<div class="page-content">
+		<div class="page-content" style="background-color: bisque;">
 			<div class="page-business">
 			<!-- ***** 업소 가입 ***** -->
 			<form name='businessForm' id='businessForm'>
@@ -229,9 +229,9 @@ window.addEventListener('load', function(){
 				</div>
 
 					<div class="form-login">
-						<input type="text" id="sample6_postcode" placeholder="우편번호">
+						<input type="text" class="form-control" id="sample6_postcode" placeholder="우편번호">
 						<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-						<input type="text" id="sample6_address" placeholder="도로명 주소"><br>
+						<input type="text" class="form-control" id="sample6_address" placeholder="도로명 주소"><br>
 						<input type="hidden" id="sample6_detailAddress" placeholder="상세주소">
 						<input type="hidden" id="sample6_extraAddress" placeholder="참고항목">
 						
@@ -304,8 +304,8 @@ window.addEventListener('load', function(){
 				</div>
 
 
-				<div class="form-login">
-					<div class="text-btnline">
+				<div class="text-line">
+					<div class="form-login">
 						<input type="text" class="form-control" id="pensionHomePage" placeholder="홈페이지 주소"> 
 					</div>
 				</div>

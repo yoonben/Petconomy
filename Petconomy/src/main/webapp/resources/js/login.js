@@ -295,7 +295,7 @@ window.addEventListener('load', function(){
 		$(document).ready(function() {
 		    // 이메일 본인인증 버튼 클릭 시
 		    $('#mail-Check-Btn2').click(function() {
-		        const email = $('#userEmail1').val();
+		        const email = $('#userEmail123').val();
 		        console.log('완성된 이메일 : ' + email);
 
 		        const checkInput = $('.mail-check-input2'); // 인증번호 입력란
@@ -314,9 +314,9 @@ window.addEventListener('load', function(){
 
 		    // 인증번호 비교
 		    $('.mail-check-input2').blur(function () {
-		        const email = $('#userEmail1').val();
+		        const email = $('#userEmail123').val();
 		        const inputCode = $(this).val();
-		        const $resultMsg = $('#mail-check-warn');
+		        const $resultMsg = $('#mail-check-warn2');
 
 		        if (inputCode === code) {
 		            $resultMsg.html('인증번호가 일치합니다.');
