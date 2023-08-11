@@ -130,11 +130,6 @@
     font-weight: bold;
 }
 
-.close-button {
-    padding: 5px 10px;
-    color: #555;
-    cursor: pointer;
-}
 
 .reply-textarea {
     width: 93%;
@@ -162,7 +157,7 @@
 .board-menu {
    display: flex;
    align-items: center;
-   height: 60px;
+   height: 45px;
    margin-bottom:0;
 }
 .main-button{
@@ -173,11 +168,151 @@
     margin: 0;
 }
 	
+	
+/* 댓글 목록 */
+.replyDiv {
+    border-bottom: 1px solid #e0e0e0;
+    padding: 20px 0;
+}
+
+
+.replylist{
+  margin-top:20px;
+  background-color: rgb(251, 235, 215);
+  padding: 30px;
+  border-radius: 23px;
+}
+  
+
+.reply-insert {
+    margin-top: 10px;
+    padding: 15px;
+    border: 2px solid #e4e4e6;
+    border-radius: 23px;
+    background-color: white;
+}
+
+.reply-insert textarea {
+    font-family: inherit;
+    margin-top: 10px;
+    width: 100%;
+    height: 25px;
+    resize: none;
+    border: none;
+    font-size: 14px;
+}
+
+.reply-insert .reply-end {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.reply-insert .reply-end2 {
+    display: flex;
+    grid-gap: 7px;
+    gap: 7px;
+}
+
+.reply-insert .reply-end .reply-button {
+    position: relative;
+    width: 81px;
+    height: 26px;
+    font-size: 12px;
+    border-radius: 21px;
+    border: none;
+    color: #fff;
+    margin-left: 10px;
+    background-color: #fcd11e;
+    color: #000;
+}
+
+.reply-in {
+    border-bottom: 1px solid #e0e0e0;
+    padding: 20px 0;
+}
+
+.reply-in .replyerdate {
+    margin-bottom: 21px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #868688;
+}
+
+.replynone {
+    display: none;
+}
+
+.reply-content {
+    white-space: pre-wrap;
+    margin-bottom: 26px;
+    word-wrap: break-word;
+    line-height: 140%;
+}
+
+.r-reply{
+    display: flex;
+    justify-content: space-between;
+}	
+
+.r-reply-button {
+    height: 26px;
+    font-size: 12px;
+    text-align: center;
+    background-color: #f6f6f9;
+    color: #868688;
+    border: none;
+    border-radius: 21px;
+    display: inline-block;
+    padding: 4px 20px;
+    margin-right: 6px;
+}
+
+
+.no-reply {
+    margin: 20px 0;
+    padding: 0 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f6f6f9;
+    color: #868688;
+}
+
+.no-reply-text{
+    line-height: 150%;
+}
+
+.no-reply-imgbox{
+    position: relative;
+    width: 280px;
+    height: 160px;
+}
+
+.no-reply-img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    bottom: 0;
+}
+	
     
   </style>
   <script>
   
 window.addEventListener('load', () => {
+	
+	
+	// 텍스트 영역에 input 이벤트 리스너 추가
+	document.addEventListener('input', function (e) {
+	    if (e.target && e.target.nodeName === 'TEXTAREA') {
+	        autoExpand(e.target); // autoExpand 함수 호출
+	    }
+	});
+
 
 	
       /* --------------좋아요버튼-------------- */
@@ -227,6 +362,17 @@ window.addEventListener('load', () => {
     
 });
 
+
+
+
+//텍스트 영역을 자동으로 늘리는 함수
+function autoExpand(textarea) {
+    // 텍스트 영역의 높이를 기본 스크롤 높이로 재설정
+    textarea.style.height = 'auto';
+    
+    // 텍스트 영역의 높이를 스크롤 높이로 설정
+    textarea.style.height = (textarea.scrollHeight) + 'px';
+}
    
     var nickname = "${sessionScope.member.nickname}"; // 닉네임 전역변수 선언
     
@@ -379,12 +525,7 @@ window.addEventListener('load', () => {
     	  });
     }
 	
-    /* 댓글창 닫기 */
-    function closeReply() {
-    	
-    	document.querySelector('.reply-form-container').style.display = 'none';
-    	
-    }
+
 
 
     
@@ -425,7 +566,7 @@ window.addEventListener('load', () => {
                   <a href="/peco/board/healing">힐링 게시판</a>
               </div>
 		    </div>
-		    <!-- ***** 게시판 메뉴 버튼 끝 ***** -->
+	 <!-- ***** 게시판 메뉴 버튼 끝 ***** -->
       
       
       
@@ -532,28 +673,36 @@ window.addEventListener('load', () => {
         
         <!-- 비동기로 js에서 작성한 파일 목록 태그 들어갈 자리 -->
         <div id="divFileupload"></div>
+      </div>
+      
+      
+      <div class="replylist">
+      
+	        <!-- 총댓글수 들어오는곳 -->
+	        <div id="totalCnt"></div>
+	        
+	        <!-- TODO 닉네임을 변경했을때 세션에 바로 갱신을 해주어야 작성자에 새로운 닉네임이 반영됨
+	                그렇지않으면 세션 만료 전까지 이적 닉네임으로 저장됨 -->
+	        <c:if test="${not empty sessionScope.member.m_id}">
+					<div>
+						<div class="reply-insert">
+							<textarea id="reply" placeholder="답변을 입력해주세요"></textarea>
+							<div class="reply-end">
+								<div class="reply-end2"></div>
+							    <div><button class="reply-button" id="btnReplyWrite">등록</button></div>
+							</div>
+						</div>
+					</div>
+			                                          
+	        </c:if>
+	
+	        <!-- ----------------댓글창 들어가는곳----------------- -->
+	        <div id="replyDiv">  </div>
+	        <!-- ----------------댓글창 들어가는곳 끝----------------- -->
+	        
+	        
         
-        <!-- 총댓글수 들어오는곳 -->
-        <div id="totalCnt"></div>
-        
-        <!-- TODO 닉네임을 변경했을때 세션에 바로 갱신을 해주어야 작성자에 새로운 닉네임이 반영됨
-                그렇지않으면 세션 만료 전까지 이적 닉네임으로 저장됨 -->
-        <c:if test="${not empty sessionScope.member.m_id}">
-	        <div class="reply-form-container">
-			    <div class="header-and-buttons">
-			        <div class="reply-form-header">댓글쓰기</div>
-			    </div>
-			    <textarea class="reply-textarea"  id="reply"></textarea>
-			    <button class="submit-button" id="btnReplyWrite">등록</button>
-			</div>                                           
-        </c:if>
-
-        <!-- ----------------댓글창 들어가는곳----------------- -->
-        <div class="content">
-          <div id="replyDiv">
-
-          </div>
-        </div>
+   
       </div>
     </div>
   </div>

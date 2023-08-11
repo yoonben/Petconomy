@@ -85,7 +85,48 @@ function replyView(map){
 	console.log("totalCnt 받고있니? -> ",totalCnt);
 	
 	
+	
 	if(list.length > 0 ){
+		let replyDivStr = '' 								
+		list.forEach((reply, index)=>{
+		
+		replyDivStr 	+=''
+						+ '<div class="reply-box" id="reply-box'+reply.rno+'" data-value="'+reply.reply+'" data-rno="'+reply.rno+'" data-nickname="'+reply.nickname+'">                                                                    '
+						+ '	<div class="reply-in">                                                                    '
+						+ '		<div class="replyerdate">                                                             '
+						+ '			<div>'+reply.nickname+'</div>                                                                 '
+						+ '			<div>'+reply.regdate+'</div>                                                                 '
+						+ '		</div>                                                                                '
+						+ '		<div class="replynone"></div>                                                         '
+						+ '		<div class="reply-content">'+reply.reply+'</div>                                            '
+						+ '		<div class="r-reply">                                                                 '
+						+ '			<div>                                                                             '
+						+ '			<button name="r_reply" value="답글" class="r-reply-button"><a onclick="r_replyWrite('+reply.rno+')">답글</a></button>          '
+						+ '			</div>                                                                            '
+						+ '			                                                                                  ';
+if(nickname == reply.nickname){
+		replyDivStr		+='			<div>                                                                             '
+						+ '			<button name="r_reply" value="수정" class="r-reply-button" onclick="replyEdit('+reply.rno+')">수정</button>          '
+						+ '			<button name="r_reply" value="삭제" class="r-reply-button" onclick="replyDelete('+reply.rno+')">삭제</button>          '
+						+ '			</div>                                                                            ';
+};
+		replyDivStr		+=''
+						+ '		</div>                                                                                '
+						+ '	</div>                                                                                    '
+						+ '</div>                                                                                     ';
+		
+		});
+
+		replyDiv.innerHTML = replyDivStr;
+		
+		
+
+	
+	
+	
+	
+/*	
+   if(list.length > 0 ){
 		let replyDivStr = '' 
 						+  '<table class="table text-break text-center">                       '
 						+ '  <thead>                                   '
@@ -128,6 +169,7 @@ function replyView(map){
 						+ '</table>                                    ';
 		
 		replyDiv.innerHTML = replyDivStr;
+*/
 							
 	//페이지 블록 붙이기
 	let pageBlock 		=``						
@@ -157,8 +199,14 @@ function replyView(map){
 							replyDiv.innerHTML += pageBlock;
 	
 	}else{
-		replyDiv.innerHTML='댓글이 없어용';
-	}
+		replyDiv.innerHTML+=''
+							+'<div class="no-reply">                                                      '
+						    +'	<div class="no-reply-text">첫 댓글을 남겨주세요!</div>                    	  '
+						    +'	<div class="no-reply-imgbox">                                             '
+						    +'		<img src="/resources/images/no_answer.png" class="no-reply-img">      '
+						    +'	</div>                                                                    '
+						    +'</div>                                                                      '	
+	};
 						
 	
 }
@@ -198,9 +246,9 @@ function replyRes(map){
 	console.log(map);
 	//성공 : 리스트 조회 및 출력
 	//실패 : 메세지 출력
-	
 	if(map.result =='success'){
 		//등록성공
+		console.log("삭제완료");
 		getReplyList();
 		
 	}else{
@@ -222,7 +270,6 @@ function r_replyWrite(rno){
 					        +'<div class="reply-form-container">                                   '
 							+'    <div class="header-and-buttons">                                 '
 							+'        <div class="reply-form-header">댓글쓰기</div>                '
-							+'        <div class="close-button" onclick="closeReply()">닫기</div>                         '
 							+'    </div>                                                           '
 							+'    <textarea class="reply-textarea"  id="reply"></textarea>         '
 							+'    <button class="submit-button" id="btnReplyWrite">등록</button>   '
@@ -233,28 +280,33 @@ function r_replyWrite(rno){
 function replyEdit(rno){
 										//rno매개변수를 줄때는 function replyEdit(rno)의 rno를 그대로 줘야함. 
 										//reply.rno 아님
-	let tr = document.querySelector('#tr'+rno);
-	let replyTxt = tr.dataset.value; //답글 수정 눌렀을때 기존 답글내용 유지 접근하기
-	tr.innerHTML = ''
-/*		+'<th colspan="3">                                '
-		+'<div class="input-group">																								'
-		+'  <span class="input-group-text">답글 수정</span>                                                                       	'
-		+'  <input type="text" aria-label="First name" class="form-control" id="editReply'+rno+'" value="'+replyTxt+'">                                         '
-		+'  <input type="text" aria-label="Last name" class="input-group-text" id="btnReplyWrite" onclick="replyEditAction('+rno+')" value="수정하기">               '
-	  	+'</div>                                                                                                                '
-        +'</th>'  */
-        
-        
+	let rbox = document.querySelector('#reply-box'+rno);
+	let replyTxt = rbox.dataset.value; //답글 수정 눌렀을때 기존 답글내용 유지 접근하기
+	let replyNickname= rbox.dataset.nickname; //답글 수정 눌렀을때 기존 답글내용 유지 접근하기
+	rbox.innerHTML = ''
+		/*
 		+'<th colspan="3" class="Show_reply">'   
         +'<div class="reply-form-container">                                   '
 		+'    <div class="header-and-buttons">                                 '
 		+'        <div class="reply-form-header">댓글 수정</div>                '
-		+'        <div class="close-button" onclick="closeReply()">닫기</div>                         '
 		+'    </div>                                                           '
 		+'    <textarea class="reply-textarea"  id="editReply'+rno+'" >'+replyTxt+'</textarea>         '
 		+'    <button class="submit-button" id="btnReplyWrite" onclick="replyEditAction('+rno+')">수정하기</button>   '
 		+'</div>                                                               '
-		+'</th>' 
+		+'</th>'
+		*/
+		+'<div>                                                                                 '
+		+'	<div class="reply-insert">                                                          '
+		+'	<div class="reply-nickname">'+replyNickname+'</div>                                                  '
+		+'		<textarea id="reply" placeholder="수정할 내용을 입력하세요" id="editReply'+rno+'" ></textarea>              		'
+		+'		<div class="reply-end">                                                         '
+		+'			<div class="reply-end2"></div>                                              '
+		+'		    <div><button class="reply-button" id="btnReplyWrite" onclick="replyEditAction('+rno+')">수정</button></div>     '
+		+'		</div>                                                                          '
+		+'	</div>                                                                              '
+		+'</div>                                                                                '
+		+'<hr>                                                                                '
+		
 }
 
 function replyEditAction(rno){

@@ -147,6 +147,7 @@ div >.page-content{
   margin-right: 15px;
 }
 
+/* 배너 */
 .main-banner {
   background-image: url(https://cdn.wallpapersafari.com/29/66/utH8jY.jpg);
   background-position: center center;
@@ -155,17 +156,20 @@ div >.page-content{
   border-radius: 23px;
   padding: 80px 60px;
   margin-bottom: 50px; 
+  margin-top: 8px;
 }
+
 .header-text > .main-button a {
   font-size: 26px; /* 원하는 글씨 크기로 조정 */
 }
 
 
 
+/* 게시판 카테고리 버튼 */
 .board-menu {
     display: flex;
     align-items: center;
-    height: 60px;
+    height: 45px;
     margin-bottom:0;
 }
 .main-button{
@@ -177,6 +181,8 @@ div >.page-content{
     margin: 0;
     
 }
+
+
 
 
 /*-------------게시글 리스트------------ */

@@ -144,7 +144,7 @@
 .board-menu {
     display: flex;
     align-items: center;
-    height: 60px;
+    height: 45px;
     margin-bottom:0;
 }
 .main-button{
