@@ -105,6 +105,8 @@
 </table>
 </form>
 
+<button type="button" onclick="location.href='/peco/restest'">예약하러가기</button>
+
 <script>
 //펜션 예약 취소
 function delPension(index) {
@@ -190,8 +192,7 @@ function delHospital(index) {
     });
 	
 }
-		   
-
+		  
 </script>
 
 </body>

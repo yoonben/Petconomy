@@ -7,7 +7,6 @@
   <head>
   	<meta charset="UTF-8">
 	<title>병원예약</title>
-	<link rel="stylesheet" href="/resources/datepicker/css/jquery-ui.css">
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
@@ -22,12 +21,13 @@
 
 
     <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="/resources/assets/css/fontawesome.css">
     <link rel="stylesheet" href="/resources/assets/css/templatemo-cyborg-gaming.css">
+    <link rel="stylesheet" href="/resources/assets/css/fontawesome.css">
     <link rel="stylesheet" href="/resources/assets/css/owl.css">
     <link rel="stylesheet" href="/resources/assets/css/animate.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
 
+	<link rel="stylesheet" href="/resources/datepicker/css/jquery-ui.css">
 </head>
 <style>
 	html, body{
@@ -42,6 +42,19 @@
 	  align-items: center;
 	  }
 	  
+		#profileTable.th, th {
+		    background-color: transparent;
+		    border-radius: 0;
+		}
+		
+		#profileTable.th, td, th {
+		    background-color: #fff;
+		    text-align: center;
+		    padding: 15px;
+		    border-spacing: 10px;
+		    border-bottom: 2px solid #fff;
+		}
+		  
 	  .infoForm {
 	  	background-color: #FFF1E0;
 	  	border-radius: 23px;
@@ -312,105 +325,104 @@
       <div class="col-lg-12">
       	<div class="page-content">
       	<!-- 예약하기 -->
-		   <div class="pension" style="display:inline-block; width:800px;">
+			<div class="pension" style="display:inline-block; width:800px;">
 			<div class="resPage">
 			<!-- 서브밋 폼 -->
-			<form class="resForm" onsubmit="return false" action="resAction">
+			<form class="resForm" onsubmit="return false">
 				<div class="infoForm">
-				<!-- 숙소 정보 -->
-				<div class='pensionInfo'>
-   					<div class="pImg">펜션이미지</div>
-						<c:forEach var="h" items="${hList}">
-						  <input type="hidden" value="${h.h_id}" id="h_id"><br>
-						  <input type="text" value="${h.pname}" id="pname"><br>
-						  <input type="hidden" value="${h.openhour}" id="openhour"><br>
+					<!-- 숙소 정보 -->
+					<div class='pensionInfo'>
+   						<div class="pImg">펜션이미지</div>
+							<c:forEach var="h" items="${hList}">
+							  <input type="hidden" value="${h.h_id}" id="h_id"><br>
+							  <input type="text" value="${h.pname}" id="pname"><br>
+							  <input type="text" value="${h.openhour}" id="openhour"><br>
 
-				  </div>
-				  <!-- 숙소 정보 끝 -->
-	</div>
+				  	</div>
+				  	<!-- 숙소 정보 끝 -->
+				</div>
       
-      <div class="resInfo">
-      
-   		<div class="resvation">
-         	<!-- 폼 -->
-         	<div class="datepicker" style="display: inline-block;"></div>
+      			<div class="resInfo">
+      				<!-- 예약정보 -->
+      				<!-- 입력 -->
+   					<div class="resvation">
+			         	<!-- 날짜선택폼 -->
+			         	<div class="datepicker" style="display: inline-block;"></div>
            	
-           	<!-- timepicker -->
-           	<div class="timepicker"></div>
-   		</div>
+			           	<!-- 시간선택폼 *동적button생성 -->
+			           	<div class="timepicker"></div>
+   					</div>
       	
-         	<!-- 출력 -->
-         	<div class="fiex">
-         	<h3>예약정보</h3>
-	         	<div id="datepick">
-	         		<b style="float: left; font-size: 15px">날짜</b><br>
-	         		<input type="text" id="date" readonly>
-	         	</div>
-	         	<div id="timepick">
-	       		<b style="float: left; font-size: 15px">시간</b><br>
-	       		<input type="text" id="time" readonly>
-	         	</div>
-
-         	<button id="Resbtn">선택</button><br>
-         	</div>
+		         	<!-- 출력 -->
+		         	<div class="fiex">
+		         	<h3>예약정보</h3>
+			         	<div id="datepick">
+			         		<b style="float: left; font-size: 15px">날짜</b><br>
+			         		<input type="text" id="date" readonly>
+			         	</div>
+			         	<div id="timepick">
+			       			<b style="float: left; font-size: 15px">시간</b><br>
+			       			<input type="text" id="time" readonly>
+			         	</div>
+         				<button id="Resbtn">선택</button><br>
+         			</div>
          	
-         <!-- 예약자 정보 -->
-		   <div class="memberInfo">
-   			<h3>예약자 정보 </h3>
-   			
-   			<%-- 세션에서 생성
-		   		<input type="hidden" value="${sessionScope.member.m_id }" id="m_id">
-		         이름      <input type="text" value="${sessionScope.member.mname }" id="user_id" readonly><br>
-		         이메일   <input type="text" value="${sessionScope.member.email }" id="user_email" readonly><br>
-		         전화번호<input type="text" value="${sessionScope.member.mphone }" id="user_tel" readonly>
-		    <button id="direct">직접입력</button><br>   --%>
+			         <!-- 예약자 정보 -->
+					 <div class="memberInfo">
+			   		 <h3>예약자 정보 </h3>
+   				
+			   			<%-- 세션에서 생성
+					   		<input type="hidden" value="${sessionScope.member.m_id }" id="m_id">
+					         이름      <input type="text" value="${sessionScope.member.mname }" id="user_id" readonly><br>
+					         이메일   <input type="text" value="${sessionScope.member.email }" id="user_email" readonly><br>
+					         전화번호<input type="text" value="${sessionScope.member.mphone }" id="user_tel" readonly>
+					    <button id="direct">직접입력</button><br>   --%>
+			    
+					    <c:forEach var="mem" items="${mList}">
+					   		<input type="hidden" value= "${mem.m_id}" id="m_id">
+					         이름      <input type="text" value="${mem.mname }" id="user_id" readonly><br>
+					         이메일   <input type="text" value="${mem.email }" id="user_email" readonly><br>
+					         전화번호<input type="text" value="${mem.mphone }" id="user_tel" readonly>
+					    <button id="direct">직접입력</button><br>  
 		    
-		    <c:forEach var="mem" items="${mList}">
-		   		<input type="hidden" value= "${mem.m_id}" id="m_id">
-		         이름      <input type="text" value="${mem.mname }" id="user_id" readonly><br>
-		         이메일   <input type="text" value="${mem.email }" id="user_email" readonly><br>
-		         전화번호<input type="text" value="${mem.mphone }" id="user_tel" readonly>
-		    <button id="direct">직접입력</button><br>  
-		    
-		   </div>
-		   <!-- 예약자 정보 끝 -->
+		  			 </div>
+		   			<!-- 예약자 정보 끝 -->
 
       	
-      	<!-- 결제금액 -->
-      	<div class="payInfo">
-	      	<p>총 결제금액</p>
-	        <input type="text" id="pay" readonly>
-      		</div>
-        <!-- 결제금액 끝 -->
-
-      </c:forEach></c:forEach>
+			      	<!-- 결제금액 -->
+			      	<div class="payInfo">
+				      	<p>총 결제금액</p>
+				        <input type="text" id="pay" readonly>
+			      	</div>
+			        <!-- 결제금액 끝 -->
+     				</c:forEach></c:forEach>
 		
-	</div>
-		<br>
-		<!-- 결제버튼 -->
-	   <div class="btn">
-		   <button id="payment">결제</button>
-		   <button id="goback" onclick="history.back()">뒤로가기</button>
-	   </div>
-	   <!-- 결제버튼 끝 -->
-	   </div>
-	</form>
-	<!-- 폼 끝 -->
-	</div>
-	<!-- 예약 끝 -->
+				</div>
+				<br>
+				<!-- 결제버튼 -->
+			   <div class="btn">
+				   <button id="payment">결제</button>
+				   <button id="goback" onclick="history.back()">뒤로가기</button>
+			   </div>
+	   		   <!-- 결제버튼 끝 -->
+			</form>
+			<!-- 폼 끝 -->
+	  		</div>
+			</div>
+			<!-- 예약 끝 -->
 	
-	<!-- 비활성화 날짜 계산 -->
-  <c:forEach var="dis" items="${disabledate}">
-   <input type="hidden" value="${dis.hr_date}" name="hrDate">
-   <input type="hidden" value="${dis.hr_time}" name="hrTime">
-  </c:forEach>
+			<!-- 비활성화 날짜 계산 -->
+			 <c:forEach var="dis" items="${disabledate}">
+			 	<input type="hidden" value="${dis.hr_date}" name="hrDate">
+			 	<input type="hidden" value="${dis.hr_time}" name="hrTime">
+			 </c:forEach>
 			
 			</div>
         </div>
-      </div>
-    </div>
+	</div>
+</div>
 		  
-  <script>
+<script>
 
   let create2dArr = function() { //선택불가날짜 배열 만들기
 	  
@@ -455,143 +467,148 @@
 	 return dtArr;
   }
   
-//날짜마다의 선택불가 시간 가져오기
-let getdisDate = function() {
-	let disable = create2dArr();
-	let date = document.querySelector('#date').value; //화면에서 선택된 값
-
-	let distime = []; //비활성화할 시간
+	//날짜마다의 선택불가 시간 가져오기
+	let getdisDate = function() {
+		let disable = create2dArr();
+		let date = document.querySelector('#date').value; //화면에서 선택된 값
 	
-	//선택된 날짜에 예약된 시간이 있는지 체크
-	for(var i=0; i<disable.length; i++) {
-		//console.log(disable[i][0]);
-		//console.log('d'+date);
+		let distime = []; //비활성화할 시간
 		
-		if(disable[i][0] === date) {
-			distime.push(disable[i][1]);
+		//선택된 날짜에 예약된 시간이 있는지 체크
+		for(var i=0; i<disable.length; i++) {
+			//console.log(disable[i][0]);
+			//console.log('d'+date);
+			
+			if(disable[i][0] === date) {
+				distime.push(disable[i][1]);
+			}
 		}
-	}
-	console.log(distime);
-	
-	return distime;
-	
-}
-
-//선택불가 시간
-let checkDisable = function() {
-	
-	$(".timepicker").empty();
-	
-	let time = openHour();  
-	let dis = getdisDate();
-
-	console.log(dis.length);
-	console.log(time.length);
-	var myClass = "time";
-	
-	if(dis.length === 0) {
+		//console.log(distime);
 		
-		for(let i=0; i<time.length; i++) {
-			var div = $("<input type='button' value='" + time[i] + "'></input>").addClass(myClass);
-            $(".timepicker").append(div);
+		return distime;
+		
+	}
+
+	//선택불가 시간
+	let checkDisable = function() {
+		
+		$(".timepicker").empty();//동적으로 만들어진 button 초기화
+		
+		let time = openHour();  
+		let dis = getdisDate();
+	
+		//console.log(dis.length);
+		//console.log(time.length);
+		var myClass = "time";
+		
+		if(dis.length === 0) { //예약불가시간이 없을 경우 운영시간만큼의 button 생성
+			
+			for(let i=0; i<time.length; i++) {
+				var div = $("<input type='button' value='" + time[i] + "'></input>").addClass(myClass);
+	            $(".timepicker").append(div);
+			}
+			
+		} else {
+			
+			
+			for (let j = 0; j < time.length; j++) {
+			    let isDuplicate = false;
+			    
+			    for (let i = 0; i < dis.length; i++) { //운영시간에 예약불가시간이 있을 경우  true 반환
+			        if (dis[i] === time[j]) {
+			            isDuplicate = true;
+			            break;
+			        }
+			    }
+	
+			    if (isDuplicate) { //isDuplicate이 ture이면
+			    	
+			        //console.log('dis[i]' + time[j]);
+			        //console.log('time[j]' + time[j]);
+	
+			        if (!$(".timepicker").find("input[value='" + time[j] + "']").length) { //비활성화 버튼 생성
+			            var div = $("<input type='button' disabled='disabled' value='" + time[j] + "'></input>").addClass(myClass);
+			            $(".timepicker").append(div);
+			        }
+			    } else {
+			        if (!$(".timepicker").find("input[value='" + time[j] + "']").length) { //isDuplicate가 false이면 버튼 생성
+			            var div = $("<input type='button' value='" + time[j] + "'></input>").addClass(myClass);
+			            $(".timepicker").append(div);
+			        }
+			    }
+			}
+			
 		}
-		
-	} else {
-		
-		
-		for (let j = 0; j < time.length; j++) {
-		    let isDuplicate = false;
-		    
-		    for (let i = 0; i < dis.length; i++) {
-		        if (dis[i] === time[j]) {
-		            isDuplicate = true;
-		            break;
-		        }
-		    }
+					
+	}
 
-		    if (isDuplicate) {
-		        console.log('dis[i]' + time[j]);
-		        console.log('time[j]' + time[j]);
 
-		        if (!$(".timepicker").find("input[value='" + time[j] + "']").length) {
-		            var div = $("<input type='button' disabled='disabled' value='" + time[j] + "'></input>").addClass(myClass);
-		            $(".timepicker").append(div);
-		        }
-		    } else {
-		        if (!$(".timepicker").find("input[value='" + time[j] + "']").length) {
-		            var div = $("<input type='button' value='" + time[j] + "'></input>").addClass(myClass);
-		            $(".timepicker").append(div);
-		        }
-		    }
+	//운영시간 가져오기
+	function openHour() {
+		
+		//전체시간 배열
+		let time = ['00:00','01:00','02:00','03:00','04:00'
+					,'05:00','06:00','07:00','08:00','09:00'
+					,'10:00','11:00','12:00','13:00','14:00'
+					,'15:00','16:00','17:00','18:00','19:00'
+					,'20:00','21:00','22:00','23:00','24:00']
+		
+		//console.log(time);
+		
+		let openhour = document.querySelector('#openhour').value;
+		
+		//console.log(openhour);
+		
+		//인덱스를 이용해 운영시간 구하기
+		var split = openhour.indexOf(':');
+		//console.log(split);
+		
+		let open = openhour.substr((split)-2, 5);
+		//console.log(open);
+		
+		let close = openhour.substr((split)+4, 5);
+		//console.log(close);
+		
+		//오픈시간이 30분단위일 경우 반올림
+		if(open.search("30")>0) {
+			split = open.indexOf(':');
+			var hh = parseInt(open.substr(0,2));
+			var mm = '00';
+	
+			hh += 1;
+			
+			var H = hh.toString();
+			
+			open = H+':'+mm;
+			//console.log(open);
+			
 		}
+	
+		//마감시간이 30분단위일 경우 반내림
+		if(close.search("30")>0) {
+			split = close.indexOf(':');
+			var hh = close.substr(0,2);
+			var mm = '00';
+			
+			close = hh+':'+mm;
+			//console.log(close);
+			
+		}
+	
 		
+		//운영시간에 맞춰 배열 자름
+		time = time.slice(time.indexOf(open), time.indexOf(close)+1);
+		
+		//console.log(time);
+		
+		return time;	
 	}
-				
-}
-
-
-//운영시간 가져오기
-function openHour() {
 	
-	//전체시간 배열
-	let time = ['00:00','01:00','02:00','03:00','04:00'
-				,'05:00','06:00','07:00','08:00','09:00'
-				,'10:00','11:00','12:00','13:00','14:00'
-				,'15:00','16:00','17:00','18:00','19:00'
-				,'20:00','21:00','22:00','23:00','24:00']
-	
-	//console.log(time);
-	
-	let openhour = document.querySelector('#openhour').value;
-	
-	console.log(openhour);
-	
-	
-	var split = openhour.indexOf(':');
-	console.log(split);
-	
-	let open = openhour.substr((split)-2, 5);
-	console.log(open);
-	
-	let close = openhour.substr((split)+4, 5);
-	console.log(close);
-	
-	if(open.search("30")>0) {
-		split = open.indexOf(':');
-		var hh = parseInt(open.substr(0,2));
-		var mm = '00';
-
-		hh += 1;
-		
-		var H = hh.toString();
-		
-		open = H+':'+mm;
-		console.log(open);
-		
-	}
-
-	if(close.search("30")>0) {
-		split = close.indexOf(':');
-		var hh = close.substr(0,2);
-		var mm = '00';
-		
-		close = hh+':'+mm;
-		console.log(close);
-		
-	}
-
-	
-	//운영시간에 맞춰 배열 자름
-	time = time.slice(time.indexOf(open), time.indexOf(close)+1);
-	
-	console.log(time);
-	
-	return time;	
-}
 	$(function() {
-		checkDisable();
 		
-		$(".datepicker").datepicker({ //달력1
+		checkDisable(); //시간버튼 출력
+		
+		$(".datepicker").datepicker({ //달력 출력
             showOtherMonths: true
             ,showMonthAfterYear:true
             ,selectOtherMonths: true 
@@ -606,7 +623,7 @@ function openHour() {
             ,dateFormat: 'yy-mm-dd'
             ,onSelect: function(date) {
              $('#date').val(date);
-             checkDisable();
+             checkDisable();  //예약불가시간 처리
              }
         }); 
 		
@@ -629,124 +646,122 @@ function openHour() {
         		$('#pay').val(10000);
         	}
            
-           
-           
         }) //resbtn event
         
-        //선택 버튼 값 가져와서 박스에 출력
         
-	        $(document).on("click",".time",function(){
-	        	var idx = $('.time').index(this);
-	        	var idxVal = $('.time').eq(idx).val();
-	            console.log(idxVal);
-	            $('#time').val(idxVal);
-	        })
+       //선택 버튼 값 가져와서 박스에 출력
+        $(document).on("click",".time",function(){
+        	var idx = $('.time').index(this);
+        	var idxVal = $('.time').eq(idx).val();
+            console.log(idxVal);
+            $('#time').val(idxVal);
+        })
 
 
-               //예약자정보 직접입력 전환 기본값:readonly(disable로 설정 시 서브밋할때 안넘어감)
-               direct.addEventListener('click', function() {
-                  $('#user_id').attr('readonly',false);
-                  $('#user_email').attr('readonly',false);
-                  $('#user_tel').attr('readonly',false);
-               })
+        //예약자정보 직접입력 전환 기본값:readonly(disable로 설정 시 서브밋할때 안넘어감)
+        direct.addEventListener('click', function() {
+           $('#user_id').attr('readonly',false);
+           $('#user_email').attr('readonly',false);
+           $('#user_tel').attr('readonly',false);
+        })
                
     
-               $('#payment').click(function () { //결제버튼
-               	   var date = document.querySelector('#date').value;
-                   var time = document.querySelector('#time').value;
-                   var pay = document.querySelector('#pay').value;
+        $('#payment').click(function () { //결제버튼
+        	var date = document.querySelector('#date').value;
+            var time = document.querySelector('#time').value;
+            var pay = document.querySelector('#pay').value;
+        	
+         	if(!date.length || !time.length) { //체크인 체크아웃 날짜가 비어있지 않은 경우
+         		alert('날짜를 선택해주세요');
+         	} else if(!pay) {
+         		alert('선택버튼을 눌러주세요');	
+         	} else {
+          	   var IMP = window.IMP;
+               IMP.init('imp07586387');
+               
+                //DOM객체들에서 사용할 데이터 뽑기
+                var h_id = $('#h_id').val();
+                var m_id = $('#m_id').val();
+                var hname = $('#pname').val();
+                var user_id = $('#user_id').val();
+                var user_email = $('#user_email').val();
+                var user_tel =  $('#user_tel').val();
                	
-                	if(!date.length || !time.length) { //체크인 체크아웃 날짜가 비어있지 않은 경우
-                		alert('날짜를 선택해주세요');
-                	} else if(!pay) {
-                		alert('선택버튼을 눌러주세요');	
-                	} else {
-                 	   var IMP = window.IMP;
-                       IMP.init('imp07586387');
-                      
-                       //DOM객체들에서 사용할 데이터 뽑기
-                       var h_id = $('#h_id').val();
-                       var m_id = $('#m_id').val();
-                       var hname = $('#pname').val();
-                       var user_id = $('#user_id').val();
-                       var user_email = $('#user_email').val();
-                       var user_tel =  $('#user_tel').val();
-                      	
-                       IMP.request_pay({
-                            //카카오페이 결제시 사용할 정보 입력
-                           pg: 'kakaopay',
-                           pay_method: "card",
-                           name: hname,
-                           amount: pay,
-                           buyer_email: user_email,
-                           buyer_name: user_id,
-                           buyer_tel: user_tel,
-                       }, function (rsp) {
-                            
-                    	   console.log(rsp);
-               			// 결제검증
-               			$.ajax({
-               	        	type : "POST",
-               	        	url : "/payment/verifyIamport/" + rsp.imp_uid 
-               	        }).done(function(data) {
-               	        	
-               	        	console.log(data);
-               	        	
-               	        	console.log(rsp.paid_amount);
-               	        	console.log(data.response.amount);
-               	        	// 결제 유효성 검증
-               	        	// 위의 rsp.paid_amount 와 data.response.amount를 비교한후 로직 실행 (import 서버검증)
-               	        	if(rsp.paid_amount == data.response.amount){
-               	        		
-               	        		console.log('aaaa');
-               	        		var msg = "결제 및 결제검증완료";
-               		        	msg += '\n고유ID : ' + rsp.imp_uid;
-                                msg += '\n상점 거래ID : ' + rsp.merchant_uid;
-                                msg += '\n결제 금액 : ' + rsp.paid_amount+'원';
-                                
-                                if(rsp.apply_num === null || rsp.apply_num === undefined || rsp.apply_num === '') {
-                                	rsp.apply_num = '카카오페이머니';
-                                }
-                                msg += '\n카드 승인번호 : ' + rsp.apply_num;                                    	
+                IMP.request_pay({
+                     //카카오페이 결제시 사용할 정보 입력
+                    pg: 'kakaopay',
+                    pay_method: "card",
+                    name: hname,
+                    amount: pay,
+                    buyer_email: user_email,
+                    buyer_name: user_id,
+                    buyer_tel: user_tel,
+                }, function (rsp) {
+                     
+             	   console.log(rsp);
+        			// 결제검증
+        			$.ajax({
+        	        	type : "POST",
+        	        	url : "/payment/verifyIamport/" + rsp.imp_uid 
+        	        }).done(function(data) {
+        	        	
+        	        	console.log(data);
+        	        	
+        	        	console.log(rsp.paid_amount);
+        	        	console.log(data.response.amount);
+        	        	// 결제 유효성 검증
+        	        	// 위의 rsp.paid_amount 와 data.response.amount를 비교한후 로직 실행 (import 서버검증)
+        	        	if(rsp.paid_amount == data.response.amount){
+        	        		
+	       	        		console.log('aaaa');
+	       	        		var msg = "결제 및 결제검증완료";
+	       		        	msg += '\n고유ID : ' + rsp.imp_uid;
+	                        msg += '\n상점 거래ID : ' + rsp.merchant_uid;
+	                        msg += '\n결제 금액 : ' + rsp.paid_amount+'원';
+                         
+                         if(rsp.apply_num === null || rsp.apply_num === undefined || rsp.apply_num === '') {
+                         	rsp.apply_num = '카카오페이머니';
+                         }
+                         	msg += '\n카드 승인번호 : ' + rsp.apply_num;                                    	
 
-                                $.ajax({
-                                    url: "/peco/createHospital",
-                                    type: 'post',
-                                    data: {
-                                       h_id: h_id,//펜션아이디         
-                                       pricecnt: pay,//결제할 가격
-                                       hr_name: user_id,//예약자명
-                                       hr_email: user_email,//예약자 이메일
-                                       hr_tel: user_tel,//예약자 전화번호
-                                       imp_uid: rsp.imp_uid, //거래고유번호
-                                       hr_id: rsp.merchant_uid, //주문고유번호=펜션예약번호
-								 	   hr_pay: rsp.apply_num, //카드승인번호
-								 	   m_id : m_id,//회원번호 -예약자명 직접입력 경우 다를 경우
-								 	  	hname : hname, //펜션명
-								 	  	hr_time : time,
-								 	 	hr_date : date,
-                                    }                               
-                                  });
-	                                console.log('토큰생성');
-	                                $.ajax({
-	                                	type : "POST",
-	                       	        	url : "/payment/complete"
-	                                })
-	                                console.log('토큰생성완료');
-	                                
-	                                $('#resForm').submit(); 
-	                       			alert(msg);
-	                       			window.location.replace("./redirect");
-               	        	} else {
-               	        		var msg = '결제에 실패하였습니다.';
-                                msg += '에러내용 : ' + rsp.error_msg;
-                       			alert(msg);
-               	        	}     		
-               	        });
-                       });  
-                	} 
-               	
-               	}); //payment function
+                         $.ajax({
+                             url: "/peco/createHospital",
+                             type: 'post',
+                             data: {
+                                h_id: h_id,//병원아이디         
+                                pricecnt: pay,//결제할 가격
+                                hr_name: user_id,//예약자명
+                                hr_email: user_email,//예약자 이메일
+                                hr_tel: user_tel,//예약자 전화번호
+                                imp_uid: rsp.imp_uid, //거래고유번호
+                                hr_id: rsp.merchant_uid, //주문고유번호=펜션예약번호
+						 	    hr_pay: rsp.apply_num, //카드승인번호
+						 	    m_id : m_id,//회원번호 -예약자명 직접입력 경우 다를 경우
+						 	  	hname : hname, //병원명
+						 	  	hr_time : time, //예약시간
+						 	 	hr_date : date, //예약날짜
+                             }                               
+                           });
+                          console.log('토큰생성');
+                          $.ajax({
+                          	type : "POST",
+                 	        	url : "/payment/complete"
+                          })
+                          console.log('토큰생성완료');
+                          
+                          $('#resForm').submit(); 
+                 			alert(msg);
+                 			window.location.replace("./redirect?m_id="+m_id);
+        	        	} else {
+        	        		var msg = '결제에 실패하였습니다.';
+                         msg += '에러내용 : ' + rsp.error_msg;
+                			alert(msg);
+        	        	}     		
+        	        });
+                });  
+         	} 
+        	
+        	}); //payment function
           
      </script>
   

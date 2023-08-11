@@ -6,7 +6,6 @@
   <head>
   	<meta charset="UTF-8">
 	<title>펜션예약</title>
-	<link rel="stylesheet" href="/resources/datepicker/css/jquery-ui.css">
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
@@ -25,6 +24,7 @@
     <link rel="stylesheet" href="/resources/assets/css/animate.css">
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
 
+	<link rel="stylesheet" href="/resources/datepicker/css/jquery-ui.css">
 </head>
 <style>
 	body{
@@ -38,6 +38,19 @@
 	  margin: 110px auto;
 	  align-items: center;
 	  }
+	  
+	#profileTable.th, th {
+	    background-color: transparent;
+	    border-radius: 0;
+	}
+	
+	#profileTable.th, td, th {
+	    background-color: #fff;
+	    text-align: center;
+	    padding: 15px;
+	    border-spacing: 10px;
+	    border-bottom: 2px solid #fff;
+	}
 	  
 	  .resPage {
 	  width: 80%;
@@ -640,7 +653,8 @@
 	                                    
 	                                    $('#resForm').submit(); 
 	                           			alert(msg);
-	                           			window.location.replace("./redirect");
+	                       				console.log(m_id);
+	                           			window.location.replace("./redirect?m_id="+m_id);
 	                   	        	} else {
 	                   	        		var msg = '결제에 실패하였습니다.';
 	                                    msg += '에러내용 : ' + rsp.error_msg;

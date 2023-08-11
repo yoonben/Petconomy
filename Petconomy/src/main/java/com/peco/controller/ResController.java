@@ -33,76 +33,45 @@ public class ResController {
    PensionService pensionService;
    HospitalService hospitalService;
    
-   @GetMapping("/restest")
+   @GetMapping("/restest") //연결 테스트
 	public String getOne(Model model) {
 		
-	    String h_id = "h_01";
-	    String a = "";
-		
-	    HospitalVO hospital = hospitalService.getOne(h_id);
-	    if(hospital != null) {
-	    	a = "not null";
-	    } else {
-	    	a = "null";    	
-	    }
-		
-		model.addAttribute("hospital", a);
+	    String h_id = "99";
+	    String p_id = "111";
+	    String room_no = "r_02";
+	    
+	    model.addAttribute("h_id",h_id);
+	    model.addAttribute("p_id",p_id);
+	    model.addAttribute("room_no",room_no);
 		
 		return "/resvation/resTest";
 	}
-
-   @GetMapping("/pensionRes") //url연결 전 임시
-   public String getPensionList(Model model) {     
+   
+   @RequestMapping(value="/peco/PensionRes",method = RequestMethod.GET)
+   public String getPension(Model model, String p_id, String room_no) {
 	   
-	   	  String m_id = "m_2";
-		  String p_id = "p_01";
-		  String room_no = "r_01";
-
-		  model.addAttribute("mList", service.getMemberList(m_id));
+	   String m_id = "m_3";
+	   
+	   System.out.println(p_id);
+	   System.out.println(room_no);
+	   
+	   model.addAttribute("mList", service.getMemberList(m_id));
 	      model.addAttribute("pList", service.getPensionList(p_id, room_no));
 	      model.addAttribute("disabledate", service.getPensionDisableDate(p_id, room_no));
-
-
-	   return "resvation/pensionRes";
-   }
-   
-   @GetMapping("/pensionRes/{p_id}/{room_no}")
-   public String pathPension(Model model, PensionVO pensionVO
-		   , @PathVariable("p_id") String p_id
-		   , @PathVariable("room_no") String room_no) {     
 	   
-	   PensionVO pension = pensionService.getOne(pensionVO.getP_id()); //p_id로 펜션 정보 가져오기
-	   room_no = pension.getRn();
-	   
-	   model.addAttribute("pList", pension);
-	   model.addAttribute("disabledate", service.getPensionDisableDate(p_id, room_no));
 	   
 	   return "resvation/pensionRes";
    }
    
-   @GetMapping("/hospitalRes")//url연결 전 임시
-   public String getHospitalList(Model model) {
+   @RequestMapping(value="/peco/hospitalRes",method = RequestMethod.GET)
+   public String getHospital(Model model, String h_id) {
 
-	   String m_id = "m_2"; //getM_id()로 세션에서 받아올 값
-	   String h_id = "h_01";//상세페이지에서 요청받을때 파라메터로 같이 가져올 값
-	   
-	   HospitalVO hospital = hospitalService.getOne(h_id);
+	   String m_id = "m_3";
 	   
 	   model.addAttribute("mList", service.getMemberList(m_id));
 	   model.addAttribute("hList", service.getHospitalList(h_id));
 	   model.addAttribute("disabledate", service.getHospitalDisableDate(h_id));
-	   model.addAttribute("hospital", hospital);
 	   
-	   return "resvation/hospitalRes";
-   }
-   
-   @GetMapping("/hospitalRes/{h_id}")
-   public String ajaxHospital(Model model, HospitalVO hospitalVO, String h_id) {
-	   
-	   HospitalVO hospital = hospitalService.getOne(hospitalVO.getH_id()); //h_id로 병원 정보 가져오기
-	   
-	   model.addAttribute("hList", hospital);
-	   model.addAttribute("disabledate", service.getHospitalDisableDate(h_id));
 	   
 	   return "resvation/hospitalRes";
    }
@@ -149,11 +118,10 @@ public class ResController {
 	   System.out.println("성공");
    }
    
-   @GetMapping("/redirect")
-   public String redirect(Model model){
-	   
-		  String m_id = "m_2";
-		  System.out.println("m_id : "+m_id);
+   @RequestMapping(value="/peco/redirect",method = RequestMethod.GET)
+   public String redirect(Model model, String m_id){
+
+	   System.out.println("m_id : "+m_id);
 	   
 	   model.addAttribute("getPrList",service.getResPensionList(m_id));
 	   model.addAttribute("getHrList",service.getResHospitalList(m_id));

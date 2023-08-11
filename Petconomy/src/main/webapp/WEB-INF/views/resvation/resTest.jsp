@@ -10,8 +10,25 @@ pageEncoding="UTF-8"%>
 </head>
 <body>
 
+<form class="goHospital" onsubmit="return false">
+<input type="text" value="${h_id }">
+<button type="button" onclick="location.href='/peco/hospitalRes?h_id=${h_id}'">병원예약</button>
+</form>
 
-<h2>${hospital }</h2>
+<form class="goPension" onsubmit="return false">
+<input type="text" value="${p_id }">
+<input type="text" value="${room_no }">
+<button type="button" onclick="location.href='/peco/PensionRes?p_id=${p_id}&room_no=${room_no}'">펜션예약</button>
+</form>
+
+
+
+
+
+<script>
+
+
+</script>
 
 
 </body>
