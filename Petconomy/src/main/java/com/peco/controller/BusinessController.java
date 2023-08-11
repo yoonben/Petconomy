@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.peco.service.BusinessService;
+import com.peco.vo.MemberVO;
 import com.peco.vo.PensionRoomVO;
 import com.peco.vo.PensionVO;
 
@@ -31,18 +32,21 @@ public class BusinessController extends CommonRestController{
 	@GetMapping("/business")
 	public String business(HttpSession session, Model model) {
 		
-		 String m_id = (String) session.getAttribute("m_id");
-
+		 	MemberVO member = (MemberVO) session.getAttribute("member");;
+		 	
 	        // m_id가 없는 경우 로그인 페이지로 리다이렉션
-	        if (m_id == null) {
+	        if (member == null || member.getM_id() == null) {
 	        	
 	        	model.addAttribute("message", "로그인 후 이용해주시기 바랍니다.");
 	        	
-	            return "redirect:/peco/login";
+	        	return "redirect:/peco/login";
+	        }else {
+	        	
+	        	return "business";
+	        	
 	        }
 
 	        // m_id가 있는 경우 "business" 페이지로 이동
-	        return "business";
 	}
 	
 	@PostMapping("/pensionInsert")

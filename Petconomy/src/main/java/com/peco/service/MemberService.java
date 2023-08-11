@@ -16,6 +16,7 @@ public interface MemberService {
 	public int idCheck(MemberVO member);
 	public int nicknameCheck(MemberVO member);
 	public MemberVO getOne(String m_id);
+	public int updatePw(MemberVO member);
 	
 	public int update(MemberVO vo);
 	

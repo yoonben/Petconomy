@@ -13,4 +13,5 @@ public interface MemberMapper {
 	public int update(MemberVO vo);
 	public int nameCheck(MemberVO member);
 	public MemberVO findId(MemberVO member);
+	public int updatePw(MemberVO member);
 }

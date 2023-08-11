@@ -40,8 +40,7 @@
 						<!-- 이미지 -->
 					</div>
 					<h1 class="h3 mb-3 fw-normal" style="color: #ec6090">로그인</h1>
-					<div id="msg">
-					</div>
+					<div id="msg"></div>
 
 					<c:if test="${not empty map.message}">
 						<div class="alert alert-danger">
@@ -147,8 +146,9 @@
 						<h1 class="h3 mb-3 fw-normal text-dark">비밀번호 찾기</h1>
 
 						<form>
-							<input type="text" id="emailpwCheckRes"> <input
-								type="text" name="findid" id="findid" placeholder="아이디">
+							<input type="text" id="m_idemail">
+							<input type="hidden" id="emailpwCheckRes"> 
+							<input type="text" name="findid" id="findid" placeholder="아이디">
 							<input type="submit" value="아이디 인증" id="findPasswordbtn">
 							<div class="form-group email-form">
 								<div class="input-group">
@@ -166,7 +166,12 @@
 											maxlength="6">
 									</div>
 								</div>
-								<span id="#mail-check-warn2"></span>
+								<div id="passwordResetForm" style="display: none;">
+									<input type="password" id="newPassword" placeholder="새 비밀번호">
+									<input type="password" id="confirmPassword"
+										placeholder="비밀번호 확인">
+									<button type="button" id="resetPasswordButton">비밀번호 재설정</button>
+								</div>
 							</div>
 						</form>
 						<div id="findPasswordText"></div>

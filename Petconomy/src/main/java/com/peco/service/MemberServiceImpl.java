@@ -73,7 +73,16 @@ public class MemberServiceImpl implements MemberService {
 
 		return memberMapper.insert(member);
 	}
+	
+	@Override
+	public int updatePw(MemberVO member) {
 
+		member.setPw(encoder.encode(member.getPw()));
+
+		return memberMapper.updatePw(member);
+	}
+
+	
 	@Override
 	public int idCheck(MemberVO member) {
 

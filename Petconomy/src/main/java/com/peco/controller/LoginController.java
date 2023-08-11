@@ -25,6 +25,7 @@ import com.peco.service.MemberService;
 import com.peco.vo.MemberVO;
 
 import lombok.extern.log4j.Log4j;
+import oracle.jdbc.proxy.annotation.Post;
 
 @Controller
 @RequestMapping("/peco/*")
@@ -38,7 +39,8 @@ public class LoginController extends CommonRestController {
 	public String login() {
 		return "login";
 	}
-
+	
+	
 	@GetMapping("/main")
 	public String main() {
 		return "/main/mainpage";
@@ -59,6 +61,20 @@ public class LoginController extends CommonRestController {
 		} else {
 
 			return responseMap(REST_FAIL, "아이디와 비밀번호를 확인해주세요");
+		}
+
+	}
+	
+	@PostMapping("/updatepw")
+	public @ResponseBody Map<String, Object> updatepw(@RequestBody MemberVO member, Model model,
+			HttpSession session) {
+
+		int res = memberService.updatePw(member);
+		if (res > 0) {
+			return responseMap(REST_SUCCESS, "비밀 번호가 변경되었습니다.");
+		} else {
+
+			return responseMap(REST_FAIL, "비밀 번호 변경중 오류가 발생하였습니다.");
 		}
 
 	}
@@ -136,8 +152,9 @@ public class LoginController extends CommonRestController {
 		if (res > 0) {
 			MemberVO vo = memberService.apiLogin(member);
 			System.out.println("email===================="+vo.getEmail());
+			System.out.println("m_id===================="+vo.getM_id());
 			map.put("email", vo.getEmail());
-			
+			map.put("m_id", vo.getM_id());
 			
 			return map;
 		} else {

@@ -17,6 +17,12 @@
 		VALUES ('m_'||MEMBER_SEQ.nextval,#{id},#{pw},#{mname},#{age},#{mphone},#{email},#{nickname}, 'N')
 	</insert>
 	
+	<update id="updatePw">
+		UPDATE member
+			SET pw = #{pw}
+			WHERE m_id = #{m_id}
+	</update>
+	
 	<select id="idCheck" resultType="int">
   		select count(*) from member where id = #{id}
   	</select>

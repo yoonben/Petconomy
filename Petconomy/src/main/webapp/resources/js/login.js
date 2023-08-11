@@ -194,7 +194,8 @@ window.addEventListener('load', function(){
 			console.log("아이디 찾기 체크", obj);
 			
 			fetchPost('/peco/findpw', obj, (map)=>{
-				document.querySelector('#userEmail1').value = map.email;
+				document.querySelector('#userEmail123').value = map.email;
+				document.querySelector('#m_idemail').value = map.m_id;
 			});
 			
 		})
@@ -322,16 +323,49 @@ window.addEventListener('load', function(){
 		            $resultMsg.html('인증번호가 일치합니다.');
 		            $resultMsg.css('color', 'green');
 		            $('#mail-Check-Btn2').attr('disabled', true);
-		            $('#userEmail1').attr('readonly', true);
+		            $('#userEmail123').attr('readonly', true);
 		            console.log('인증 성공 이메일 : ' + email);
 		            $('#email').val(email);
 		            $('#emailpwCheckRes').val('1');
+		            $('#passwordResetForm').show();
 		        } else {
 		            $resultMsg.html('인증번호가 불일치합니다. 다시 확인해주세요!');
 		            $resultMsg.css('color', 'red');
 		        }
 		    });
-
+		    
+		    $('#resetPasswordButton').click(function () {
+		    	let newPassword = $('#newPassword').val();
+		        let confirmPassword = $('#confirmPassword').val();
+		    	
+		        let m_id = $('#m_idemail').val();
+		        let pw = $('#newPassword').val();
+		        
+		        if (newPassword === confirmPassword) {
+		        	
+		        	obj = {
+		        			m_id : m_id
+							,pw : pw
+					}
+		        	
+		        	console.log(obj);
+		        	
+		        	fetchPost('/peco/updatepw', obj, (map)=>{
+		        		if(map.result == 'success'){
+		        			
+		        		alert(map.msg);
+		        		$('#passwordResetModal').hide();
+		        		
+		        		}else{
+		        			alert(map.msg);
+		        		}
+					});
+		        	
+		        } else {
+		            // 비밀번호가 일치하지 않을 때 처리
+		            $('#findPasswordText').text('비밀번호가 일치하지 않습니다.');
+		        }
+		    });
 		    
 		});
 		
