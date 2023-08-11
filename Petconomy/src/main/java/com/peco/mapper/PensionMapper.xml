@@ -30,14 +30,9 @@
               ON p.p_id = q.p_id  
               left join              
               (select p_id, uploadpath||p_id||filename savePath from p_img) s
-              ON p.p_id = s.p_id where 1=1 and savePath is not null
-			<if test="megaregion!=null">
-				and addr like  '%'||#{megaregion}||'%'
-			</if>
-			
-			<if test="smallregion!=null">		 
-				and addr like  '%'||#{smallregion}||'%' 
-			</if>
+              ON p.p_id = s.p_id where 1=1
+			<include refid="mega"/>
+			<include refid="small"/>
 			<include refid="sort"/>
              ) t ) where rn between #{startNo} and #{endNo}
 		
@@ -103,8 +98,8 @@
 	</select>
 	
   	<insert id="pensionInsert">
-  	insert into pension(p_id, M_ID, PNAME, ADDR, OPENHOUR, PARKYN) 
-  	values('p'||'_'||pension_seq.nextval, 'm_1', #{pname}, #{addr}, #{openhour}, #{parkyn})
+  	insert into pension(p_id, M_ID, PNAME, ADDR, OPENHOUR, PARKYN, checkYN) 
+  	values('p'||'_'||pension_seq.nextval, 'm_1', #{pname}, #{addr}, #{openhour}, #{parkyn}, 'Y')
   	</insert>
 
 		

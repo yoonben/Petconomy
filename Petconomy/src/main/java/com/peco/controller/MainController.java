@@ -60,7 +60,7 @@ public class MainController {
 		for (PensionVO pImg : list) {
 	        String convertedPath = pImg.getSavePath().replace("\\", "/");
 	        	pImg.setSavePath(convertedPath);
-	    	}
+	    }
 		
 //		String megaregion = request.getParameter("megaregion");
 //		String smallregion = request.getParameter("smallregion");

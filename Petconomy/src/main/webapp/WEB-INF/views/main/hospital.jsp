@@ -149,7 +149,7 @@
           <!-- ***** Details End ***** -->
 
           <!-- ***** Other Start ***** -->
-          <div class="other-games" style="height:1550px">
+          <div class="other-games" style="height:1550px; background-color:white">
             <div class="row">
               <div class="col-lg-12">
                 <div class="heading-section">
