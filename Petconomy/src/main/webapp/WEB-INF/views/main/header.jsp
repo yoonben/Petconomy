@@ -35,6 +35,7 @@
 						    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">마이페이지</a>
 						    <ul class="dropdown-menu">
 						      <li><a class="dropdown-item" href="/peco/profile?m_id=${member.m_id}">나의 정보</a></li>
+						      <li><a class="dropdown-item" href="/peco/success?m_id=${member.m_id}">나의 예약내역</a></li>
 						      <li><a class="dropdown-item" href="/peco/pensionProfile?m_id=${member.m_id}">나의 펜션 관리</a></li>
 						      <li><a class="dropdown-item" href="/peco/hospitalProfile?m_id=${member.m_id}">나의 병원 관리</a></li>
 						      <li><a class="dropdown-item" href="/peco/myBoard?m_id=${member.m_id}">나의 글 목록</a></li>

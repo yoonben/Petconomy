@@ -236,7 +236,7 @@
 	<%@include file="../main/header.jsp" %>
   <!-- 헤더영역  끝-->
   
-<h2>나의 정보 수정</h2>
+
 
 <%
 String id = request.getParameter("id");
@@ -251,61 +251,90 @@ System.out.println("id : " + id);
 System.out.println("pw : " + pw);
 
 %>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+       <div class="page-content">
+		 <div class="row">
 
 
-
-
-<input type="text" id="updateMsg" name="updateMsg">
-<form id='profileUpdateForm' name='profileUpdateForm' action='/peco/profile' method="post">
-	<c:set var="memberVO" value="${member }"/>
-		<table border='1px' width='400px' height='450px'>
-		<tr>
-			<th>프로필사진</th>
-			<td style="height:150px">
-				<img id='img_profile' src="/peco/display?fileName=${profile}">
-				<div class="custom-file-input">
-				  <input type="file" id="files" style="display: none;">
-				  <label for="files" id="customFileLabel" style="display: inline-block; padding: 8px 20px; background-color: #007bff; color: #fff; cursor: pointer; border-radius: 5px;">사진 변경</label>
-				</div>
-			</td>
-		</tr>
-		<tr>
-			<th>회원번호</th>
-			<td><input type='text' name='m_id' id="m_id" readonly value='${member.m_id }' style="height:100%; width:99%"></td>
-		</tr>
-		<tr>
-			<th>아이디</th>
-			<td><input type='text' name='id' id="id" readonly value='${member.id }'  style="height:100%; width:99%"></td>
-		</tr>
-		<tr>
-			<th>비밀번호</th>
-			<td><input type='text' name='pw' id="maskedPassword" readonly value='${member.pw }' style="height:100%; width:99%"></td>
-		</tr>
-		<tr>
-			<th>이름</th>
-			<td><input type='text' name='mname' id="mname" value='${member.mname }' style="height:100%; width:99%"></td>
-		</tr>
-		<tr>
-			<th>전화번호</th>
-			<td><input type='text' name='mphone' id="mphone" value='${member.mphone }' style="height:100%; width:99%"></td>
-		</tr>
-		<tr>
-			<th>이메일</th>
-			<td><input type='text' name='email' id="email" value='${member.email }'  style="height:100%; width:99%"></td>
-		</tr>
-		<tr>
-			<th>닉네임</th>
-			<td><input type='text' name='nickname' id="nickname" value='${member.nickname }' style="height:100%; width:99%"></td>
-		</tr>
-		<tr>
-			<th>나이</th>
-			<td><input type='text' name='age' id="age" value='${member.age }'  style="height:100%; width:99%" ></td>
-		</tr>
-	</table>
-	
+			<!-- 나의 정보 시작  -->
+            <div class="col-lg-12">
+              <div class="main-profile ">
+                <div class="row">
+                    <div class="main-info header-text">
+                      <h1>나의 정보</h1>
+                    </div>
+                <!-- 프로필 사진 시작-->
+                  <div class="col-lg-3">
+                    <img id='img_profile' src="/peco/display?fileName=${profile}" alt="" style="border-radius: 23px;">
+                  </div>
+                 <!-- 프로필 사진 끝--> 
+                  <div class="col-lg-2 align-self-center">
+                  </div>
+                  <!-- 나의 세부정보 시작 -->
+                  <div class="col-lg-6 align-self-center">
+					<input type="hidden" id="updateMsg" name="updateMsg">
+					<input type="hidden" name="m_id" value="${member.m_id}">
+					<form id='profileUpdateForm' name='profileUpdateForm' action='/peco/profile' method="post">
+						<c:set var="memberVO" value="${member }"/>
+							<table id="profileTable" width='100%' height='100%'>
+							<tr>
+								<th>프로필사진</th>
+								<td>
+									<div class="custom-file-input">
+									  <input type="file" id="files" style="display: none;">
+									  <label for="files" id="customFileLabel" style="display: inline-block; padding: 8px 20px; background-color: #007bff; color: #fff; cursor: pointer; border-radius: 5px;">사진 변경</label>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th>회원번호</th>
+								<td><input type='text' name='m_id' id="m_id" readonly value='${member.m_id }' style="height:100%; width:99%"></td>
+							</tr>
+							<tr>
+								<th>아이디</th>
+								<td><input type='text' name='id' id="id" readonly value='${member.id }'  style="height:100%; width:99%"></td>
+							</tr>
+							<tr>
+								<th>비밀번호</th>
+								<td><input type='text' name='pw' id="maskedPassword" readonly value='${member.pw }' style="height:100%; width:99%"></td>
+							</tr>
+							<tr>
+								<th>이름</th>
+								<td><input type='text' name='mname' id="mname" value='${member.mname }' style="height:100%; width:99%"></td>
+							</tr>
+							<tr>
+								<th>전화번호</th>
+								<td><input type='text' name='mphone' id="mphone" value='${member.mphone }' style="height:100%; width:99%"></td>
+							</tr>
+							<tr>
+								<th>이메일</th>
+								<td><input type='text' name='email' id="email" value='${member.email }'  style="height:100%; width:99%"></td>
+							</tr>
+							<tr>
+								<th>닉네임</th>
+								<td><input type='text' name='nickname' id="nickname" value='${member.nickname }' style="height:100%; width:99%"></td>
+							</tr>
+							<tr>
+								<th>나이</th>
+								<td><input type='text' name='age' id="age" value='${member.age }'  style="height:100%; width:99%" ></td>
+							</tr>
+						</table>
+						
 	<input type="submit" id = "btnUdate" value="확인" class="btn">
 	<input type="reset" value="초기화">
 </form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
 
 </body>
 </html>
