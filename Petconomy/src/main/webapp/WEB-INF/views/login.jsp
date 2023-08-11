@@ -30,7 +30,7 @@
 
 	<!-- 로그인 -->
 	<div class="container">
-		<div class="page-content">
+		<div class="page-content" style="background-color: bisque;">
 			<!-- ***** login Start *****-->
 			<div class="page-login">
 			
@@ -40,7 +40,7 @@
 					<!-- 이미지 -->
 				</div>
 				<div id="msg">
-					<h1 class="h3 mb-3 fw-normal">로그인</h1>
+					<h1 class="h3 mb-3 fw-normal" style="color: #ec6090">로그인</h1>
 				</div>
 
 				<div class="form-login">
@@ -197,7 +197,7 @@
 				 
 				<input type="hidden" name="m_id" id="m_id" value="">
 				
-				<h1 class="h3 mb-3 fw-normal">회원가입</h1>
+				<h1 class="h3 mb-3 fw-normal" style="color: #ec6090">회원가입</h1>
 				<div id="signupMsg"></div>
 				<div class="form-login">
 					<div class="text-line">
@@ -213,7 +213,7 @@
 							value="${apiId }" placeholder="아이디"> 
 						</div>
 						<div class="text-btn">
-							<button class="btn btn-primary" type="button" id="btnid" >중복 확인</button>
+							<button class="btn btn-warning" type="button" id="btnid" >중복 확인</button>
 						</div>
 					</div>
 				</c:if>
@@ -257,7 +257,7 @@
 						<input type="text" class="form-control" id="nickName" placeholder="닉네임"> 
 					</div>
 					<div class="text-btn">
-						<button class="btn btn-primary" type="button" id="btnNickName">중복 확인</button>
+						<button class="btn btn-warning" type="button" id="btnNickName">중복 확인</button>
 					</div>
 				</div>
 				
@@ -293,7 +293,7 @@
 				</div>
 
 
-				<button class="w-100 btn btn-lg btn-primary" type="submit"  id="btnSignup">회원가입</button>
+				<button class="w-100 btn btn-lg btn-warning" type="submit"  id="btnSignup">회원가입</button>
 				<a class="mt-5 mb-3 text-muted" id='btnSigninView'>로그인</a>
 			</form>
 			</div>

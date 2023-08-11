@@ -46,7 +46,10 @@
 		float: right;
 		margin-bottom: 10px;
 	}
-	
+	.btn-warning{
+		background-color: #FFF1E0;
+    	color: #FFC48C;
+	}
 	.text-text{
 		width: 95px;
 		font-size: 14px;
