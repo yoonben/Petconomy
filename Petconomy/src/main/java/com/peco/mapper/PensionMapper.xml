@@ -19,15 +19,18 @@
   	</select>
 
   	<select id="pensionList" resultType="com.peco.vo.PensionVO">              
-             select * from
-             (select t.*, rownum rn from(select p.p_id, pname, addr, openhour, substr(parkyn,-2) ParkYN , star, cnt, min, max
+                          select * from
+             (select t.*, rownum rn from(select p.p_id, pname, addr, openhour, substr(parkyn,-2) ParkYN , star, cnt, min, max, savePath
              from pension p 
              LEFT JOIN
 			 (select p_id, round(avg(star)) star, count(review) cnt from p_review group by p_id) r
              ON p.p_id = r.p_id 
              LEFT JOIN
              (select p_id, min(price) min, max(price) max from p_room group by p_id) q
-              ON p.p_id = q.p_id  WHERE 1=1
+              ON p.p_id = q.p_id  
+              left join              
+              (select p_id, uploadpath||filename savePath from p_img) s
+              ON p.p_id = s.p_id where 1=1 and savePath is not null
 			<if test="megaregion!=null">
 				and addr like  '%'||#{megaregion}||'%'
 			</if>

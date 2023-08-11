@@ -24,6 +24,7 @@ import com.peco.service.PensionService;
 import com.peco.vo.BoardVO;
 import com.peco.vo.HospitalVO;
 import com.peco.vo.PageDto;
+import com.peco.vo.PensionFiileuploadVO;
 import com.peco.vo.PensionVO;
 import com.peco.vo.RegionCri;
 
@@ -52,9 +53,14 @@ public class MainController {
 		
 		List<PensionVO> list = pensionService.pensionList(cri);
 		List<PensionVO> lists = pensionService.mapList(cri);
-		
+
 		int totalCnt = pensionService.totalCount(cri);
 		PageDto pageDto = new PageDto(cri, totalCnt);
+		
+		for (PensionVO pImg : list) {
+	        String convertedPath = pImg.getSavePath().replace("\\", "/");
+	        	pImg.setSavePath(convertedPath);
+	    	}
 		
 //		String megaregion = request.getParameter("megaregion");
 //		String smallregion = request.getParameter("smallregion");
@@ -66,6 +72,7 @@ public class MainController {
 		model.addAttribute("pageDto", pageDto);
 		model.addAttribute("list", list);
 		model.addAttribute("lists", lists);
+
 		return "/main/pension";
 	}
 

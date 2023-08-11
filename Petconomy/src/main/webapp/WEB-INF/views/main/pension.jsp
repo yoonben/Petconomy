@@ -169,8 +169,11 @@ body{
          <br>
              <div style="height: 200px; display: flex; flex-wrap: wrap;">
             <c:forEach items="${list }" var="list" varStatus="status"> 
+            
             <div class="card" style="width:265px; max-width: 25%; display: block; border:solid 0px" >
-			  <img src="/peco/display?fileName=${list.registerimg}" class="card-img-top" alt="..." >
+            
+			  <img src="/peco/display?fileName=${list.savePath}" class="card-img-top" alt="..." >
+         	   
 			  <div class="card-body" style="margin-bottom: 20px">
 			    <h5 class="card-title"> <a style="font-size:1.2em; color:black"href="/peco/detail/detailPage?p_id=${list.p_id }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}">${list.p_id}${list.pname}</a></h5>
 			    <p class="card-text">${list.addr }</p>
