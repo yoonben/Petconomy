@@ -504,16 +504,7 @@ function FileCheck() {
 		<%@include file="../main/header.jsp"%>
   	<!-- ***** Header Area End ***** -->
   
-        <!-- 검색조건 유지하기 위해 갖고가야하는 값들 -->
-        <input type="text" name="pageNo" value="${param.pageNo }">
-        <input type="text" name="searchField" value="${param.searchField }">
-        <input type="text" name="searchWord" value="${param.searchWord }">
-        <input type="text" name="writer" value="${board.nickname }">
-        <input type="text" name="bno" value="${board.bno}">
         
-        <!-- 페이징 처리 하기 위해 있어야함 -->
-        <input type="text" name="m_id" value="${sessionScope.m_id }">
-        <input type="hidden" id="page" name="page" value="1">
         
         
         
@@ -542,6 +533,18 @@ function FileCheck() {
           
     
     <form method="post" enctype="multipart/form-data" name="editForm" action="/peco/board/edit">
+    
+    	<!-- 검색조건 유지하기 위해 갖고가야하는 값들 -->
+        <input type="text" name="pageNo" value="${param.pageNo }">
+        <input type="text" name="searchField" value="${param.searchField }">
+        <input type="text" name="searchWord" value="${param.searchWord }">
+        <input type="text" name="writer" value="${board.nickname }">
+        
+        <!-- 페이징 처리 하기 위해 있어야함 -->
+        <input type="text" name="m_id" value="${sessionScope.m_id }">
+        <input type="hidden" id="page" name="page" value="1">
+        <input type="text" name="bno" value="${board.bno}">
+        
         <h4 class="category">카테고리</h4>
 
         <!-- 일상게시판 박스 -->

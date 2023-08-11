@@ -63,6 +63,9 @@
 		height: 50px;
 		float: left;
 	}
+	.apiimg{
+		width: 250px;
+	}
 	.login-menu{
 		height: 30px;
 	}
