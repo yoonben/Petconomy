@@ -3,6 +3,8 @@ package com.peco.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,8 +29,20 @@ public class BusinessController extends CommonRestController{
 	BusinessService service;
 	
 	@GetMapping("/business")
-	public String login() {
-		return "business";
+	public String business(HttpSession session, Model model) {
+		
+		 String m_id = (String) session.getAttribute("m_id");
+
+	        // m_id가 없는 경우 로그인 페이지로 리다이렉션
+	        if (m_id == null) {
+	        	
+	        	model.addAttribute("message", "로그인 후 이용해주시기 바랍니다.");
+	        	
+	            return "redirect:/peco/login";
+	        }
+
+	        // m_id가 있는 경우 "business" 페이지로 이동
+	        return "business";
 	}
 	
 	@PostMapping("/pensionInsert")

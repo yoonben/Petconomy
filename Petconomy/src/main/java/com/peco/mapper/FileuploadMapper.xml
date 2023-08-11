@@ -11,17 +11,17 @@
 	
 	<insert id="insertPensionfile">
 		insert into P_img (pi_id, p_id, uploadpath, filename, filetype)
-				values ('pi_'||SEQ_PI_ID_NUM.nextval,#{p_id},#{uploadpath},#{filename},#{filetype})
+				values ('pi_'||P_IMG_SEQ.nextval,#{p_id},#{uploadpath},#{filename},#{filetype})
 	</insert>
 	
 	<insert id="insertPensionRoomfile">
 		insert into PR_img (pr_id, uploadpath, filename, filetype, room_no, p_id)
-				values ('pr_'||SEQ_PR_ID_NUM.nextval,#{uploadpath},#{filename},#{filetype},#{room_no},#{p_id})
+				values ('pr_'||PR_IMG_SEQ.nextval,#{uploadpath},#{filename},#{filetype},#{room_no},#{p_id})
 	</insert>
 	
 	<insert id="insertBusinessfile">
 		insert into R_img (ri_id, p_id, uploadpath, filename, filetype)
-				values ('ri_'||SEQ_RI_ID_NUM.nextval,#{p_id},#{uploadpath},#{filename},#{filetype})
+				values ('ri_'||R_IMG_SEQ.nextval,#{p_id},#{uploadpath},#{filename},#{filetype})
 	</insert>
 	
 	<select id="getList" resultType="com.peco.vo.FileuploadVO">

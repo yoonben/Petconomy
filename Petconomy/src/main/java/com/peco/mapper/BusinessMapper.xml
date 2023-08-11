@@ -6,7 +6,7 @@
 
 	<insert id="pensionInsert">
 		insert into pension(m_id,p_id,pname,addr,openhour,parkyn,checkyn)
-    		values (#{m_id},'p_'||SEQ_PENSION_NUM.nextval,#{pname},#{addr},#{openhour},#{parkyn},'N')
+    		values (#{m_id},'p_'||PENSION_SEQ.nextval,#{pname},#{addr},#{openhour},#{parkyn},'N')
 	</insert>
 	
 	<select id="pensionGetOne" resultType="com.peco.vo.PensionVO">
