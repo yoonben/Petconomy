@@ -23,11 +23,11 @@
 		padding-top: 10px;
 	}
 	.login-img{
-	  background-image: url(/resources/img/cat.PNG);
+	  background-image: url(/resources/img/petco.png);
 	  background-position: center center;
 	  background-size: cover;
 	  min-height: 100px;
-	  width: 70px;
+	  width: 200px;
 	  border-radius: 23px;
 	  padding: 80px 60px;
 	  margin-bottom: 10px;
