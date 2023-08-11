@@ -83,7 +83,7 @@ function replyView(map){
 		if(reviewer == reply.reviewer){
 			reviewDiv.innerHTML = 
 			'	<div class="col-lg-17">'
-		    +'        <div class="left-info" style="background-color: rgb(247, 218, 218);">'
+		    +'        <div class="left-info" style="background-color: bisque;">'
 		    +'                                      '
 		    +'            <span style="text-align: left; color: black;"><b>이미 리뷰를 작성 하셨습니다.</b></span>'
 		    +'                                                                 '
@@ -98,7 +98,7 @@ function replyView(map){
 	if(list.length == 0){
 		replyDiv.innerHTML = 
 			'	<div class="col-lg-17">'
-		    +'        <div class="left-info" style="background-color: rgb(247, 218, 218);">'
+		    +'        <div class="left-info" style="background-color: bisque;">'
 		    +'                                      '
 		    +'            <span style="text-align: left; color: black;"><b>등록된 리뷰가 없습니다.</b></span>'
 		    +'                                                                 '
@@ -113,7 +113,7 @@ function replyView(map){
 		list.forEach(reply => {
 			replyDivStr +=
 			 '	  <div id="tr'+reply.pr_no+'" data-value="'+reply.review+'" class="col-lg-17">																			'
-			+'	    <div class="left-info" style="background-color: rgb(247, 218, 218);">											'
+			+'	    <div class="left-info" style="background-color: bisque;">											'
 			+'	      <div class="left">																						'
 			+'	        <h4 style="text-align: left; color: black;"><b>'+reply.reviewer +'</b></h4>                        '
 			+'	        <span style="text-align: left; color: black;"><b>'+reply.review +'</b></span>                      '
@@ -264,7 +264,7 @@ function replyEdit(pr_no){
 	tr.innerHTML = ''                                                                                                               
 		                                                                                                                            
 		+'	<div class="col-lg-17">                                                                                                 '
-		+'	    <div class="left-info" style="background-color: rgb(247, 218, 218);">                                               '
+		+'	    <div class="left-info" style="background-color: bisque;">                                               '
 		+'	      <div class="col-lg-13"> <textarea name="review'+pr_no+'" id="review'+pr_no+'" rows="5" style="width: 100%; border-radius: 15px;">'+replyTxt+'</textarea>    '
 		+'	      </div>                                                                                                            '
 		+'	      <ul>		'
