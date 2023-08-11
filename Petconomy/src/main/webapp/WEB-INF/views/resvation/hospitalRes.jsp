@@ -6,7 +6,7 @@
 <html>
   <head>
   	<meta charset="UTF-8">
-	<title>예약</title>
+	<title>병원예약</title>
 	<link rel="stylesheet" href="/resources/datepicker/css/jquery-ui.css">
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -43,7 +43,7 @@
 	  }
 	  
 	  .infoForm {
-	  	background-color: rgb(247, 218, 218);
+	  	background-color: #FFF1E0;
 	  	border-radius: 23px;
 	  	padding-bottom: 50px;
 	  	position: relative;
@@ -113,28 +113,44 @@
     padding-bottom: 10px;
     position: relative;
 	top: 5px;
-    right: 155px;
+	left: 165px;
+
     }
     
     .memberInfo > input {
     margin: 3px;
-    border: none;
-    border-bottom: 1px solid black;
-    padding: 3px;
+    border: 1px solid #ffc48c;
+    border-radius: 15px;
+    padding: 6px;
     font-size: 15px;
+    }
+    
+    #user_id {
+    position: relative;
+    left: 42px;
+    }
+    
+    #user_email {
+    position: relative;
+    left: 26px;
+    }
+    
+    #user_tel {
+    position: relative;
+    left: 14px;
     }
     
     #Resbtn {
     position: relative;
     bottom: 30px;
-    left: 190px;
+    left: 156px;
     }
     
     button {
     display: inline-block;
     background-color: #fff; 
     padding: 5px;
-    border: 1px solid #ff7676;
+    border: 1px solid #FFC48C;
     border-radius: 5px;
     width: 70px;
     font-weight: bold;
@@ -145,13 +161,13 @@
     float: right;
     display: inline-block;
     position: relative;
-    bottom: 145px;
-    right: 125px;
+	bottom: 160px;
+    right: 157px;
     z-index: 3;
     }
     
     .btn > #payment {
-    background-color: #ff7676;
+    background-color: #FFC48C;
     color:#fff;
     width: 100px;
     height: 40px;
@@ -198,7 +214,7 @@
     padding: 10px;
     background-color: #fff;
     margin: 5px;
-    border: 1px solid #ff7676;
+    border: 1px solid #FFC48C;
     border-radius: 5px;
 	}
 	
@@ -208,14 +224,14 @@
 	}
 	
 	.timepicker > input:focus, timepicker > input:hover  {
-	background-color: #ff7676;
+	background-color: #FFC48C;
 	color: #fff; 
 	}
 	
 	.fiex{
 	position: relative;
-	top: 35px;
-    left: 455px;
+    top: 28px;
+    left: 65px;
     display: inline-block;
 	}
 	
@@ -223,7 +239,7 @@
 	#date, #time {
 	border: none;
     outline: none;
-    border-bottom: 1px solid #ff7676;
+    border-bottom: 1px solid #FFC48C;
 	}
 	
 	.payInfo {
@@ -235,6 +251,8 @@
 	.payInfo > p {
 	font-size: 20px;
     font-weight: bold;
+    position: relative;
+    left: 30px;
 	}
 	
 	#pay {
@@ -242,6 +260,8 @@
     font-weight: bold;
     border: none;
     outline: none;
+    position: relative;
+    left: 30px;
 	}
 
 	
@@ -257,7 +277,7 @@
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
                     <a href="index.html" class="logo">
-                        <img src="/resources/images/logo.png" alt="">
+                        <img src="/resources/img/petconomy.png" alt="">
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Search End ***** -->
@@ -337,12 +357,21 @@
          <!-- 예약자 정보 -->
 		   <div class="memberInfo">
    			<h3>예약자 정보 </h3>
-		   	<c:forEach var="mem" items="${mList}">
+   			
+   			<%-- 세션에서 생성
+		   		<input type="hidden" value="${sessionScope.member.m_id }" id="m_id">
+		         이름      <input type="text" value="${sessionScope.member.mname }" id="user_id" readonly><br>
+		         이메일   <input type="text" value="${sessionScope.member.email }" id="user_email" readonly><br>
+		         전화번호<input type="text" value="${sessionScope.member.mphone }" id="user_tel" readonly>
+		    <button id="direct">직접입력</button><br>   --%>
+		    
+		    <c:forEach var="mem" items="${mList}">
 		   		<input type="hidden" value= "${mem.m_id}" id="m_id">
 		         이름      <input type="text" value="${mem.mname }" id="user_id" readonly><br>
 		         이메일   <input type="text" value="${mem.email }" id="user_email" readonly><br>
 		         전화번호<input type="text" value="${mem.mphone }" id="user_tel" readonly>
 		    <button id="direct">직접입력</button><br>  
+		    
 		   </div>
 		   <!-- 예약자 정보 끝 -->
 
@@ -361,7 +390,7 @@
 		<!-- 결제버튼 -->
 	   <div class="btn">
 		   <button id="payment">결제</button>
-		   <button id="goback" onclick="goback()">뒤로가기</button>
+		   <button id="goback" onclick="history.back()">뒤로가기</button>
 	   </div>
 	   <!-- 결제버튼 끝 -->
 	   </div>
@@ -380,7 +409,6 @@
         </div>
       </div>
     </div>
-
 		  
   <script>
 
@@ -561,7 +589,7 @@ function openHour() {
 	return time;	
 }
 	$(function() {
-		
+		checkDisable();
 		
 		$(".datepicker").datepicker({ //달력1
             showOtherMonths: true

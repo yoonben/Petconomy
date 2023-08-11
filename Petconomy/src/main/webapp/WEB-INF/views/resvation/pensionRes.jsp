@@ -29,10 +29,10 @@
 <style>
 	body{
 	   margin: 0 auto; /* 바디 마진을 0으로 하고 가로 가운데 정렬 */
-	   background-color: #ffec90;
+	   background-color: #fff;
 	  }
 	
-	  div >.page-content{
+	div >.page-content{
 	  width: 800px;
 	  background-color: #fff;
 	  margin: 110px auto;
@@ -46,15 +46,44 @@
 	  }
 	  
 
-    /*달력속성 변경*/
+   /*달력속성 변경*/
     .hasDatepicker {
         display: inline-block;
+        padding: .2em .2em 0;
     }
     
-    /*readonly 백그라운드 색상 설정*/
-    
+    /*readonly 백그라운드 색상 설정*/ 
     .memberInfo > input:read-only {
     background-color: #ededed;
+    }
+    
+ 	.infoForm {
+  	background-color: #FFF1E0;
+  	border-radius: 23px;
+  	padding-bottom: 50px;
+  	position: relative;
+  	z-index: 1;
+  	width: 97%;
+  	margin: 0 auto;
+  	height: 270px;
+  }
+  
+  .resInfo {
+       padding-bottom: 40px;
+  	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  	border-radius: 23px;
+  	width: 100%;
+  	height: 600px;
+     	margin: 0 auto;
+     	position: relative;
+       z-index: 2;
+   	bottom: 50px;
+   	background-color: #fff;
+  }
+    
+   .memberInfo > h3, .fiex > h3{
+    margin-bottom: 10px;
+    margin-top: 10px;
     }
     
     .pensionInfo input {
@@ -63,10 +92,23 @@
     border : none;
     outline: none;
     display: inline-block;
+    background-color: transparent;
+    position: relative;
+    top: 18px;
     }
     
     #pname {
     font-weight: bold;
+    }
+    
+    .pImg {
+    border: 1px solid black;
+    width:200px;
+    height:200px;
+    display:inline-block;
+    float:left;
+    margin: 10px;
+    border-radius: 23px;
     }
     
     .memberInfo {
@@ -74,14 +116,43 @@
     margin-left: 10px;
     font-size: 16px;
     padding-bottom: 10px;
+    position: relative;
+    right: 65px;
     }
     
     .memberInfo > input {
-    margin-left: 10px;
-    margin-bottom: 3px;
-    border-radius: 10px;
-    padding: 3px;
-    font-size: 14px;
+    margin: 3px;
+    border: 1px solid #ffc48c;
+    border-radius: 15px;
+    padding: 6px;
+    font-size: 15px;
+    }
+    
+    #user_id {
+    position: relative;
+    left: 42px;
+    }
+    
+    #user_email {
+    position: relative;
+    left: 26px;
+    }
+    
+    #user_tel {
+    position: relative;
+    left: 14px;
+    }
+    
+    #Resbtn {
+    position: relative;
+    top: 376px;
+    left: -15px;
+    }
+    
+    .resvation {
+    position: relative;
+    bottom: 60px;
+    left: 9px;
     }
     
     .resvation > input {
@@ -91,28 +162,46 @@
     
     .checkIn, .checkOut{
     display: inline-block;
+    position: relative;
+    top: 340px;
     }
+    
+    .checkOut {
+    position: relative;
+    left: 50px;
+    }
+    
 
     #date1, #date2 {
     border: none;
     outline: none;
     padding-top: 20px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #FFC48C;;
     width: 200px;
     float: left;
     margin-bottom: 20px;
     }
     
-    .paycnt, .payinfo, #pay {
+    .paycnt, #pay {
     width: 250px;
     display: inline-block;
-    float: left;
+    position: relative;
     padding: 10px;
+    bottom: 115px;
+    left: 335px;
+    }
+    
+    .payinfo {
+	display: inline-block;
+    bottom: 128px;
+    position: relative;
+    left: 260px;
     }
     
     .paycnt > input,.payinfo > input{
     border: none;
     outline: none;
+     background-color: transparent;
     }
     
     .payinfo > input, .payinfo > small {
@@ -124,63 +213,71 @@
     font-weight: bold;
     }
     
-    #Resbtn {
-    position: relative;
-    top: 30px;
-    right: 40px;
-    }
-    
     button {
     display: inline-block;
     background-color: #fff; 
     padding: 5px;
-    border: 2px solid #ffec90;
+    border: 1px solid #FFC48C;
     border-radius: 5px;
     width: 70px;
-    color: #ffdd3a;
     font-weight: bold;
     margin-left: 10px;
-    }
-    
-    #Resbtn:hover, #direct:hover {
-    background-color: #ffdd3a;
-    color:#fff;
     }
     
     .btn {
     float: right;
     display: inline-block;
     position: relative;
-    bottom: 50px;
+    bottom: 145px;
+    right: 27px;
+
+    z-index: 3;
     }
     
     .btn > #payment {
-    background-color: #ffdd3a;
+    background-color: #FFC48C;
     color:#fff;
     width: 100px;
     height: 40px;
     }
     
-    .btn > #payment:hover {
-    border-color:  #ffdd3a;
-    background-color: #f7cd00;
-    }
-    
-    .btn > #goback {
+	.btn > #goback {
     width: 100px;
     height: 40px;
     border-color: #cbcbcb;
     color: #cbcbcb;
     }
     
-    .btn > #goback:hover {
-    background-color: #cbcbcb;
-    color: #fff;
+    #direct {
+    float: left;
+    position: relative;
+	top: 10px;
+    left: 120px;
+}
+    
     }
+    	
+	.payInfo > p {
+	font-size: 20px;
+    font-weight: bold;
+	}
+	
+	#pay {
+	font-size: 35px;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    position: relative;
+    top: -10px;
+    left: -5px;
+    background-color: transparent;
+	}
+	
+	
     
 </style>
 <body>
-  <!-- ***** Header Area Start ***** -->
+ <!-- ***** Header Area Start ***** -->
   <header class="header-area header-sticky">
     <div class="container">
         <div class="row">
@@ -188,7 +285,7 @@
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
                     <a href="index.html" class="logo">
-                        <img src="/resources/images/logo.png" alt="">
+                        <img src="/resources/img/petconomy.png" alt="">
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Search End ***** -->
@@ -226,9 +323,9 @@
       	<!-- 예약하기 -->
 		   <div class="pension" style="display:inline-block; width:800px;">
 			<div class="resPage">
-			<h2>예약하기</h2><br>
 			<!-- 서브밋 폼 -->
 			<form class="resForm" onsubmit="return false" action="resAction">
+				<div class="infoForm">
 				<!-- 숙소 정보 -->
 				<div class='pensionInfo'>
    					<div class="pImg" style="border: 1px solid black; width:200px; height:200px; display:inline-block; float:left;">펜션이미지</div>
@@ -236,21 +333,14 @@
 						   <input type="text" value="${p.pname}" id="pname"><br>
 						   <input type="hidden" value="${p.p_id}" id="p_id">
 						   <input type="text" value= "${p.roomname}" id="roomname">
-				  </div><hr>
+				  </div>
 				  <!-- 숙소 정보 끝 -->
-   		<!-- 예약자 정보 -->
-		   <div class="memberInfo">
-   			<h3>예약자 정보 </h3>
-		   	<c:forEach var="mem" items="${mList}">
-		   		<input type="hidden" value= "${mem.m_id}" id="m_id">
-			    이름<input type="text" value="${mem.mname }" id="user_id" readonly><br>
-		   	 이메일<input type="text" value="${mem.email }" id="user_email" readonly><br>
-		         전화번호<input type="text" value="${mem.mphone }" id="user_tel" readonly>
-		    <button id="direct">직접입력</button><br>  
-		   </div>
-		   <!-- 예약자 정보 끝 -->
-      <hr>
+	</div>
       	<!-- 날짜정보 -->
+      	
+      	 <div class="resInfo">
+      	
+      	
       	<div class="resvation" style="text-align: center;">
       		<!-- 입퇴실날짜 -->
          	<div class="checkIn" style="width: 250px;">
@@ -269,6 +359,25 @@
          <!-- 날짜정보 끝 -->
       	</div>
       	
+   		
+		   <div class="memberInfo">
+	<%-- 세션에서 생성
+   		<!-- 예약자 정보 -->
+		   		<input type="hidden" value="${sessionScope.member.m_id }" id="m_id">
+		         이름      <input type="text" value="${sessionScope.member.mname }" id="user_id" readonly><br>
+		         이메일   <input type="text" value="${sessionScope.member.email }" id="user_email" readonly><br>
+		         전화번호<input type="text" value="${sessionScope.member.mphone }" id="user_tel" readonly>  --%>
+		   <!-- 예약자 정보 끝 -->
+   			<h3>예약자 정보 </h3>
+		   <c:forEach var="mem" items="${mList}">
+		   		<input type="hidden" value= "${mem.m_id}" id="m_id">
+		         이름      <input type="text" value="${mem.mname }" id="user_id" readonly><br>
+		         이메일   <input type="text" value="${mem.email }" id="user_email" readonly><br>
+		         전화번호<input type="text" value="${mem.mphone }" id="user_tel" readonly>
+		    </div>
+		    <button id="direct">직접입력</button><br>  
+		   
+		   
       	<!-- 결제금액 -->
       	<div class="paycnt">
 	      	<p>총 결제금액</p>
@@ -284,11 +393,13 @@
         </div>
       </c:forEach></c:forEach>
 		
+		</div>
+		
 		<br>
 		<!-- 결제버튼 -->
 	   <div class="btn">
 		   <button id="payment">결제</button>
-		   <button id="goback" onclick="goback()">뒤로가기</button>
+		   <button id="goback" onclick="history.back()">뒤로가기</button>
 	   </div>
 	   <!-- 결제버튼 끝 -->
 	</form>

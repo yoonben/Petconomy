@@ -318,7 +318,7 @@ button.ui-button::-moz-focus-inner {
 .ui-datepicker .ui-datepicker-header {
 	position: relative;
 	padding: .2em 0;
-	background-color: #f7dada;
+	background-color: #FFC48C;
 }
 .ui-datepicker .ui-datepicker-prev,
 .ui-datepicker .ui-datepicker-next {
@@ -930,7 +930,7 @@ html .ui-button.ui-state-disabled:hover,
 html .ui-button.ui-state-disabled:active {
 	width: 30px;
 	height: 30px;
-	line-height: 21px;
+	line-height: 25px;
 	text-align: center;
 	font-weight: normal;
 	color: #454545;
@@ -978,15 +978,15 @@ a.ui-button:focus {
 a.ui-button:active,
 .ui-button:active,
 .ui-button.ui-state-active:hover {
-	border: 1px solid #ff7676;
+	border: 1px solid #FFC48C;
 	border-radius: 50%;
-	background-color: #f7dada;
+	background-color: #FFF1E0;
 	font-weight: normal;
 	color: #2b2b2b;
 }
 .ui-icon-background,
 .ui-state-active .ui-icon-background {
-	border: #f7dada;
+	border: #FFC48C;
 	background-color: #2b2b2b;
 }
 .ui-state-active a,
@@ -1001,7 +1001,7 @@ a.ui-button:active,
 .ui-state-highlight,
 .ui-widget-content .ui-state-highlight,
 .ui-widget-header .ui-state-highlight {
-	border: 1px solid #ff7676 !important;
+	border: 1px solid #FFC48C  !important;
 	background: #fff !important;
 	border-radius: 50% !important;
 	color: #000 !important;
