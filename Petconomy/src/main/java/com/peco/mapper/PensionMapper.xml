@@ -29,7 +29,7 @@
              (select p_id, min(price) min, max(price) max from p_room group by p_id) q
               ON p.p_id = q.p_id  
               left join              
-              (select p_id, uploadpath||filename savePath from p_img) s
+              (select p_id, uploadpath||p_id||filename savePath from p_img) s
               ON p.p_id = s.p_id where 1=1 and savePath is not null
 			<if test="megaregion!=null">
 				and addr like  '%'||#{megaregion}||'%'
