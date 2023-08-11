@@ -402,6 +402,7 @@ div >.page-content{
 			<div class="live-stream post_list">
                 <c:forEach var="board" items="${list}">
                   <div class="post_box">
+                  <a onclick="requestAction('/peco/board/view', ${board.bno })">
                      <div class="post">
                         <div class="post_main">
                           <div class="post_title">${board.title }</div>
@@ -421,6 +422,7 @@ div >.page-content{
                      <div class="postendline">
                       <hr>
                      </div>
+                  </a>
                   </div>
                 </c:forEach>
                 <!-- 페이지 불러오기 -->

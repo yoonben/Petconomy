@@ -68,7 +68,7 @@
 	LEFT JOIN
 	    b_img a ON b.bno = a.bno
 	    <![CDATA[
-	WHERE ROWNUM <= 8
+	WHERE ROWNUM <= 5
 					]]>
 	ORDER BY b.likecount DESC
 	</select>
