@@ -94,14 +94,14 @@
 					%>
 
 					<div class="login-api">
-						<a href="<%=apiURL%>"><img height="50px"
+						<a href="<%=apiURL%>"><img height="50px" class="apiimg"
 							src="/resources/img/naver_login.jpg" /></a>
 					</div>
 					<!-- 네이버 로그인 end-->
 
 					<!-- 카카오 로그인 -->
 					<div class="login-api">
-						<img alt="카카오로그인" height="50px"
+						<img alt="카카오로그인" height="50px" class="apiimg"
 							src="/resources/img/certi_kakao_login.png"
 							onclick="loginWithKakao()">
 					</div>
@@ -259,13 +259,11 @@
 					</c:if>
 
 					<c:if test="${not empty showSignupForm}">
-						<div class="form-login">
-							<label for="signUpPw">Password</label> <input type="hidden"
+						<div class="form-login"><input type="hidden"
 								class="form-control" id="signUpPw" value="null">
 						</div>
 
-						<div class="form-login">
-							<label for="signUpPwCheck">Password Check</label> <input
+						<div class="form-login"><input
 								type="hidden" class="form-control" id="pwCheck" value="null">
 						</div>
 					</c:if>
