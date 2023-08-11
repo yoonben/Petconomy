@@ -43,7 +43,7 @@
 		
 		<insert id="insert">
 		insert into b_img (UUID, UPLOADPATH, FILENAME, FILETYPE, BNO,FNO) 
-		values (#{uuid},#{uploadpath},#{filename},#{filetype},#{bno},('f_' || LPAD(seq_file.NEXTVAL, 5, '0')))
+		values (#{uuid},#{uploadpath},#{filename},#{filetype},#{bno},('f_' || LPAD(b_img_seq.NEXTVAL, 5, '0')))
 		</insert>
 
 		<!-- 쿼리문에서 #{}변수를 두개이상 받아야할 경우엔 무조건 @Param 이용해야함 -->
