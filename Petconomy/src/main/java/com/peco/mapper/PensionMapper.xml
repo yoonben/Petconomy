@@ -32,7 +32,9 @@
               (select p_id, uploadpath||p_id||filename savePath from p_img) s
               ON p.p_id = s.p_id where 1=1
 			<include refid="mega"/>
-			<include refid="small"/>
+			<if test="smallregion!=null">
+				and addr like '%'||#{smallregion}||'%'
+			</if>
 			<include refid="sort"/>
              ) t ) where rn between #{startNo} and #{endNo}
 		
@@ -141,16 +143,7 @@
 		</choose>
 	</sql>
 	
-	<sql id="small">
-		<choose>
-		<when test="megaregion == '춘천·인제·철원'"> and (ADDR like '%춘천%' or ADDR like '%인제%' or ADDR like '%철원%')</when>
-		<when test="megaregion == '평창·정선·영월'"> and (ADDR like '%평창%' or ADDR like '%정선%' or ADDR like '%영월%')</when>
-		<when test="megaregion == '속초·양양·고성'"> and (ADDR like '%속초%' or ADDR like '%양양%' or ADDR like '%고성%')</when>
-		<when test="megaregion == '강릉'"> and (ADDR like '%강릉%')</when>
-		<when test="megaregion == '동해·삼척·태백'"> and (ADDR like '%해%' or ADDR like '%삼척%' or ADDR like '%태백%')</when>
-		<when test="megaregion == '홍천·횡성·원주'"> and (ADDR like '%홍천%' or ADDR like '%횡성%' or ADDR like '%원주%')</when>
-		</choose>
-	</sql>
+
 	
   	<sql id="sort">
 		<choose>
