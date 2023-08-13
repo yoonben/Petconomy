@@ -4,22 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="com.peco.mapper.PensionMapper">
   	<select id="mapList" resultType="com.peco.vo.PensionVO">
-		select p_Id, pname, Addr, openHour, substr(parkyn,-2) ParkYN 
-		from pension where 1=1
-		<if test="megaregion=='전체' || smallregion=='전체'">
-		</if>
-		
-		<if test="megaregion!=null">
-			and addr like  '%'||#{megaregion}||'%'
-		</if>
-		
-		<if test="smallregion!=null">		 
-			and addr like  '%'||#{smallregion}||'%' 
-		</if>
-  	</select>
-
-  	<select id="pensionList" resultType="com.peco.vo.PensionVO">              
-                          select * from
+             select * from
              (select t.*, rownum rn from(select p.p_id, pname, addr, openhour, substr(parkyn,-2) ParkYN , star, cnt, min, max, savePath
              from pension p 
              LEFT JOIN
@@ -27,15 +12,41 @@
              ON p.p_id = r.p_id 
              LEFT JOIN
              (select p_id, min(price) min, max(price) max from p_room group by p_id) q
-              ON p.p_id = q.p_id  
-              left join              
-              (select p_id, uploadpath||p_id||filename savePath from p_img) s
-              ON p.p_id = s.p_id where 1=1 and savePath is not null
-			<include refid="mega"/>
-			<if test="smallregion!=null">
-				and addr like '%'||#{smallregion}||'%'
+             ON p.p_id = q.p_id  
+             left join              
+             (select p_id, uploadpath||p_id||filename savePath from p_img) s
+             ON p.p_id = s.p_id where 1=1 and savePath is not null
+			<if test="megaregion!=null">
+				and addr like  '%'||#{megaregion}||'%'
 			</if>
-			<include refid="sort"/>
+			<if test="smallregion!=null">		 
+				and addr like  '%'||#{smallregion}||'%' 
+			</if>
+             ) t )
+
+  	</select>
+
+  	<select id="pensionList" resultType="com.peco.vo.PensionVO">              
+              select * from
+             (select t.*, rownum rn from(select p.p_id, pname, addr, openhour, substr(parkyn,-2) ParkYN , star, cnt, min, max, savePath
+             from pension p 
+             LEFT JOIN
+			 (select p_id, round(avg(star)) star, count(review) cnt from p_review group by p_id) r
+             ON p.p_id = r.p_id 
+             LEFT JOIN
+             (select p_id, min(price) min, max(price) max from p_room group by p_id) q
+             ON p.p_id = q.p_id  
+             left join              
+             (select p_id, uploadpath||p_id||filename savePath from p_img) s
+             ON p.p_id = s.p_id where 1=1 and savePath is not null
+			<if test="megaregion!=null">
+				and addr like  '%'||#{megaregion}||'%'
+			</if>
+			
+			<if test="smallregion!=null">		 
+				and addr like  '%'||#{smallregion}||'%' 
+			</if>
+
              ) t ) where rn between #{startNo} and #{endNo}
 		
   	</select>
@@ -128,34 +139,13 @@
 			<if test="smallregion!=null">		 
 				and addr like  '%'||#{smallregion}||'%' 
 			</if>
-			<include refid="sort"/>
+			<if test="sort">		 
+				and #{sort} is not null order by #{sort} desc
+			</if>
+
 	</select>
-  	<sql id="mega">
-		<choose>
-		<when test="megaregion == 'gangwon'"> and ADDR like '강원%' </when>
-		<when test="megaregion == 'gyeonggi'"> and ADDR like '경기%' </when>
-		<when test="megaregion == 'gyeongsang'"> and ADDR like '경상%' </when>
-		<when test="megaregion == 'busan'"> and ADDR like '부산%' </when>
-		<when test="megaregion == 'incheon'"> and ADDR like '인천%' </when>
-		<when test="megaregion == 'jeolla'"> and ADDR like '전라%' </when>
-		<when test="megaregion == 'chungcheong'"> and ADDR like '충청%' </when>
-		<when test="megaregion == 'jeju'"> and ADDR like '제주%' </when>
-		</choose>
-	</sql>
 	
 
-	
-  	<sql id="sort">
-		<choose>
-		<when test="sort == ''"> order by p_id desc</when>		
-		<when test="sort == 'review'"> and cnt IS NOT NULL order by cnt desc</when>
-		<when test="sort == 'star'">and star IS NOT NULL order by star desc</when>
-	    <when test="sort == 'highprice'">and max IS NOT NULL order by max asc</when>
-	    <when test="sort == 'lowprice'">and min IS NOT NULL order by min asc</when>
-	    <otherwise>and 1=1</otherwise>
-		</choose>
-	</sql>
 		
-		<!-- 		<include refid="mega"/> -->
 
 </mapper>

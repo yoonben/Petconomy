@@ -201,15 +201,15 @@ jQuery(function ($) {
 		    <div class="gaming-library">
             <div class="col-lg-12">
               <div class="heading-section">
-                <h4 style="color:#fa8e29;"><em>Top10</em> 병원</h4>
+                <h4 style="color:#fa8e29;"><em style="color:black">Top10</em> 병원</h4>
               </div>
 	             <c:forEach items="${hlist }" var="hvo">
 	              <div class="item">
 	                <ul>
-	                  <li style="width: 3%;"><h3 style="color:white">${hvo.rn }</h3></li>
-	                  <li style="width: 27%;"><h3 style="color:white">${hvo.pname }</h3></li>
-	                  <li style="width: 53%;"><h3 style="color:white">${hvo.addr }</h3></li>
-	                  <li style="width: 15%; font-size:1.5em; color:white;"><div class="test-score1" data-max="5" data-rate="${hvo.star }"></div>
+	                  <li style="width: 3%;"><h3 style="color:black">${hvo.rn }</h3></li>
+	                  <li style="width: 27%;"><h3 style="color:black">${hvo.pname }</h3></li>
+	                  <li style="width: 53%;"><h3 style="color:black">${hvo.addr }</h3></li>
+	                  <li style="width: 15%; font-size:1.5em; color:black;"><div class="test-score1" data-max="5" data-rate="${hvo.star }"></div>
 	                  (${hvo.cnt })</li>
 	                </ul>
 	              </div>

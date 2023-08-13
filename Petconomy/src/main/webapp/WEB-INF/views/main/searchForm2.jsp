@@ -16,31 +16,52 @@
 		//sido option 추가
 		jQuery.each(hangjungdong.sido, function (idx, code) {
 			//append를 이용하여 option 하위에 붙여넣음
-			let megaregion = '${param.megaregion}';
-            megaregion='서울';
-			let selected = code.sido==megaregion?'selected':'';
+			let sel_province = '${param.sel_province}';
+			let selected = code.sido==sel_province?'selected':'';
 			jQuery('#sido').append(fn_option(code.sido, code.codeNm, selected));
-            if(megaregion){
-                fn_sido_change(); 
-                jQuery('#sigugun').val('강동').prop('selected',true);   
-                
-            }
 		});
 		
 
-		//시도 변경시 시군구 option 추가
+		//sido 변경시 시군구 option 추가
 		jQuery('#sido').change(function () {
-			fn_sido_change();
+			jQuery('#sigugun').show();
+			jQuery('#sigugun').empty();
+			jQuery('#sigugun').append(fn_option('', '선택')); //
+			jQuery.each(hangjungdong.sigugun, function (idx, code) {
+				if (jQuery('#sido > option:selected').val() == code.sido)
+					jQuery('#sigugun').append(fn_option(code.sigugun, code.codeNm));
+			});
+
+			//세종특별자치시 예외처리
+			//옵션값을 읽어 비교
+			if (jQuery('#sido option:selected').val() == '36') {
+				jQuery('#sigugun').hide();
+				//index를 이용해서 selected 속성(attr)추가
+				//기본 선택 옵션이 최상위로 index 0을 가짐
+				jQuery('#sigugun option:eq(1)').attr('selected', 'selected');
+				//trigger를 이용해 change 실행
+				jQuery('#sigugun').trigger('change');
+			}
 		});
 
 		//시군구 변경시 행정동 옵션추가
 		jQuery('#sigugun').change(function () {
-			fn_sigugun_change();
+			//option 제거
+			jQuery('#dong').empty();
+			jQuery.each(hangjungdong.dong, function (idx, code) {
+				if (jQuery('#sido > option:selected').val() == code.sido && jQuery('#sigugun > option:selected').val() == code.sigugun)
+					jQuery('#dong').append(fn_option(code.dong, code.codeNm));
+			});
+			//option의 맨앞에 추가
+			jQuery('#dong').prepend(fn_option('', '선택'));
+			//option중 선택을 기본으로 선택
+			jQuery('#dong option:eq("")').attr('selected', 'selected');
 		});
 
 
 			var sido = jQuery('#sido option:selected');
 			var sigugun = jQuery('#sigugun option:selected');
+			var dong = jQuery('#dong option:selected');
 
 				jQuery('#sido').change(function () {
 					
@@ -77,41 +98,7 @@
 				
 	});
 
-   function fn_sido_change(){
-	   // select박스 보여주기
-        jQuery('#sigugun').show();
-	   // select박스 비우기
-        jQuery('#sigugun').empty();
-	   // select박스 옵션 추가
-        jQuery('#sigugun').append(fn_option('', '선택')); //
-        jQuery.each(hangjungdong.sigugun, function (idx, code) {
-            if (jQuery('#sido > option:selected').val() == code.sido)
-                jQuery('#sigugun').append(fn_option(code.sigugun, code.codeNm));
-        });
-
-        //세종특별자치시 예외처리
-        //옵션값을 읽어 비교
-        if (jQuery('#sido option:selected').val() == '36') {
-            jQuery('#sigugun').hide();
-            //index를 이용해서 selected 속성(attr)추가
-            //기본 선택 옵션이 최상위로 index 0을 가짐
-            jQuery('#sigugun option:eq(1)').attr('selected', 'selected');
-            //trigger를 이용해 change 실행
-            jQuery('#sigugun').trigger('change');
-        }
-   }
-   function fn_sigugun_change(){
-        //option 제거
-        jQuery('#dong').empty();
-        jQuery.each(hangjungdong.dong, function (idx, code) {
-            if (jQuery('#sido > option:selected').val() == code.sido && jQuery('#sigugun > option:selected').val() == code.sigugun)
-                jQuery('#dong').append(fn_option(code.dong, code.codeNm));
-        });
-        //option의 맨앞에 추가
-        jQuery('#dong').prepend(fn_option('', '선택'));
-        //option중 선택을 기본으로 선택
-        jQuery('#dong option:eq("")').attr('selected', 'selected');
-   }
+   
  	function fn_option(code, name, selected) {
  		
 		return '<option value="' + code + '" '+selected+'>' + name + '</option>';
@@ -126,6 +113,7 @@
 	function filterByLocation(){
 		// 지역 초기화 함수
 	    document.querySelector('#city').value = "";
+	    document.querySelector('#district').value = "";
 	}
 	
 
@@ -133,17 +121,25 @@
   
 </head>
 <body>
-<form id="search" action="/peco/main/pension" method="get" name="selectForm">
+
 	<input type="hidden" name="class_no" value="">
 	<input type="hidden" name="pageNo" value="${pageDto.cri.pageNo }">
 	<input type="hidden" name="total" value="${pageDto.total }">
-
+	<form id="search" action="/peco/main/pension" method="get" name="selectForm">
 	<div>
-		<select name="megaregion" id="sido" onchange="filterByLocation()"><option value="" >시도 선택</option></select>
-		<select name="smallregion" id="sigugun"><option value="">시군구 선택</option></select>
-    <button type="submit" class="btn btn-primary mb-3 w-100" onclick="go(1)">검색</button>
+		<select name="sel_province" id="sido" onchange="filterByLocation()"><option value="" >시도 선택</option></select>
+		<select name="sel_city" id="sigugun"><option value="">시군구 선택</option></select>
+		<select name="district" id="dong"><option value="">읍면동 선택</option></select>
+		<select class="form-select form-select-inline" id="sort" name="sort" id="smallregion" onchange="this.form.submit(this.value)" style=" width:150px; display:inline-block; ">
+		<option value='' ${pageDto.regioncri.sort eq "" ? "selected" : " " }>정렬기준</option>
+		<option value='review' ${pageDto.regioncri.sort eq "review" ? "selected" : " " }>리뷰많은순</option>
+		<option value='new' ${pageDto.regioncri.sort eq "new" ? "selected" : " " }>최신순</option>
+		<option value='high' ${pageDto.regioncri.sort eq "high" ? "selected" : " " }>고가순</option>
+		<option value='low' ${pageDto.regioncri.sort eq "low" ? "selected" : " " }>저가순</option>
+		</select>
 	</div>
-</form>
+	</form>/
+
 
 
 

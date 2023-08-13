@@ -27,7 +27,7 @@ window.addEventListener('load', function(){
 			var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
 			    mapOption = { 
 			        center: new kakao.maps.LatLng(latitude, longitude), // 지도의 중심좌표
-			        level: 5 // 지도의 확대 레벨
+			        level: 10 // 지도의 확대 레벨
 			    };
 
 			var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
@@ -61,7 +61,7 @@ window.addEventListener('load', function(){
 	            //map.setCenter(locPosition);      
 	       		 //}	    
 			var positions = [
-				<c:forEach items="${list }" var="list">
+				<c:forEach items="${lists }" var="list">
 				    { 
 				        address : "${list.addr }"
 				    },

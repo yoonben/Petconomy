@@ -96,10 +96,10 @@ public class MainController {
 	public String main(Model model) {
 		List<PensionVO> plist = pensionService.pensiontop();
 		List<HospitalVO> hlist = hospitalService.hospitaltop();
-		//List<BoardVO> blist = boardService.getBest();
+		List<BoardVO> blist = boardService.getBest();
 		model.addAttribute("plist", plist);
 		model.addAttribute("hlist", hlist);
-		//model.addAttribute("blist", blist);
+		model.addAttribute("blist", blist);
 		return "/main/mainpage";
 	}
 	
