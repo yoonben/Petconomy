@@ -8,7 +8,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     
 <script>
-/*
+
 //$('#searchBtn').click(function(){
 $(document).ready(function () {
    
@@ -54,7 +54,7 @@ $(document).ready(function () {
    })
  }
 })
-*/
+
 
 $(document).ready(function () {
    
