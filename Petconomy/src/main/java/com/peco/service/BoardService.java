@@ -48,5 +48,7 @@ public interface BoardService {
 	public int visitCnt(int bno);
 	
 	public List<BoardVO> selectMyBoard(String m_id);
+	
+	public void deleteBno(String bno);   //마이페이지 > 게시글 목록 > 삭제 
 
 }

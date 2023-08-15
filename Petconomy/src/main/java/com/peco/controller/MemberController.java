@@ -6,6 +6,7 @@ import java.io.File;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,7 +84,7 @@ public class MemberController extends CommonRestController{
 			
 			FileuploadVO fileuploadVO = fileuploadService.getProfile(fileVo.getM_id());
 			
-			String profile = fileuploadVO.getS_savePath();
+			String profile = fileuploadVO.getSavePath();
 			
 			// 파일 경로를 슬래시(/)로 변경
 		    if (profile != null) { 	
@@ -93,7 +94,7 @@ public class MemberController extends CommonRestController{
 		        fileuploadVO.setS_savePath(convertedThumPath);
 		    }
 
-		    model.addAttribute("profile", fileuploadVO.getS_savePath());
+		    model.addAttribute("profile", fileuploadVO.getSavePath());
 			
 		    
 		    
@@ -120,7 +121,7 @@ public class MemberController extends CommonRestController{
 	    FileuploadVO fileuploadVO = fileuploadService.getProfile(vo.getM_id());
 	    
 	    if (fileuploadVO != null) {
-	        String profile = fileuploadVO.getS_savePath();
+	        String profile = fileuploadVO.getSavePath();
 	        
 	        // 파일 경로를 슬래시(/)로 변경
 	        if (profile != null) {     
@@ -130,7 +131,7 @@ public class MemberController extends CommonRestController{
 	            fileuploadVO.setS_savePath(convertedThumPath);
 	        }
 
-	        model.addAttribute("profile", fileuploadVO.getS_savePath());
+	        model.addAttribute("profile", fileuploadVO.getSavePath());
 	    } else {
 	        // 파일 정보가 없을 경우에 대한 처리 (예: 기본 이미지 사용 또는 알림)
 	        model.addAttribute("profile", "default_profile_image.jpg");
@@ -165,7 +166,7 @@ public class MemberController extends CommonRestController{
 		    
 		   Map<String, Object> map = responseMap(REST_SUCCESS, "파일업로드 성공");
 		    if (fileuploadVO != null) {
-		        String profile = fileuploadVO.getS_savePath();
+		        String profile = fileuploadVO.getSavePath();
 		        
 		        // 파일 경로를 슬래시(/)로 변경
 		        if (profile != null) {     
@@ -175,7 +176,7 @@ public class MemberController extends CommonRestController{
 		            fileuploadVO.setS_savePath(convertedThumPath);
 		        }
 
-		        map.put("profileImg",  fileuploadVO.getS_savePath());
+		        map.put("profileImg",  fileuploadVO.getSavePath());
 		    } else {
 		        // 파일 정보가 없을 경우에 대한 처리 (예: 기본 이미지 사용 또는 알림)
 		        map.put("profile", "default_profile_image.jpg");
@@ -203,7 +204,7 @@ public class MemberController extends CommonRestController{
 	    FileuploadVO fileuploadVO = fileuploadService.getProfile(vo.getM_id());
 	    
 	    if (fileuploadVO != null) {
-	        String profile = fileuploadVO.getS_savePath();
+	        String profile = fileuploadVO.getSavePath();
 	        
 	        // 파일 경로를 슬래시(/)로 변경
 	        if (profile != null) {     
@@ -213,7 +214,7 @@ public class MemberController extends CommonRestController{
 	            fileuploadVO.setS_savePath(convertedThumPath);
 	        }
 
-	        model.addAttribute("profile", fileuploadVO.getS_savePath());
+	        model.addAttribute("profile", fileuploadVO.getSavePath());
 	    } else {
 	        // 파일 정보가 없을 경우에 대한 처리 (예: 기본 이미지 사용 또는 알림)
 	        model.addAttribute("profile", "default_profile_image.jpg");
@@ -257,6 +258,27 @@ public class MemberController extends CommonRestController{
 		return "";
 	}
 
+	
+	// 게시글 삭제
+	@RequestMapping(value= "/myBoard")
+	public String boardDelete(HttpServletRequest request) {
+		
+		String[] ajaxMsg = request.getParameterValues("valueArr");
+		int size = ajaxMsg.length;
+		for(int i=0; i<size; i++) {
+			boardService.deleteBno(ajaxMsg[i]);
+		}
+		return "redirect:/member/myBoard";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 // 펜션 컨트롤러 부분==========================================================================	
 // 펜션 컨트롤러 부분==========================================================================	

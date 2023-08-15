@@ -13,7 +13,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/js/bootstrap.min.js"></script>
 	<script src="https://kit.fontawesome.com/410d7ec875.js" crossorigin="anonymous"></script>
+		
+<style>
+
+#img_profile {
+	width: 300px; 
+	height: 300px;
+	object-fit: cover;
+	margin-left:30px;
+	border-radius: 30px;
 	
+	image-rendering:-webkit-optimize-contrast;
+  	transform:translateZ(0);
+  	backface-visibility:hidden;
+
+}
+</style>
+
 <title>Insert title here</title>
 
   	<!-- Bootstrap core CSS -->
@@ -264,11 +280,13 @@ System.out.println("pw : " + pw);
                     <div class="main-info header-text">
                       <h1>나의 정보 수정</h1>
                     </div>
+                    
                 <!-- 프로필 사진 시작-->
                   <div class="col-lg-3">
-                    <img id='img_profile' src="/peco/display?fileName=${profile}" alt="" style="border-radius: 23px;">
+                    <img id='img_profile' src="/peco/display?fileName=${profile}" alt="프로필사진" >
                   </div>
                  <!-- 프로필 사진 끝--> 
+                 
                   <div class="col-lg-2 align-self-center">
                   </div>
                   <!-- 나의 세부정보 시작 -->

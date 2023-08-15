@@ -49,5 +49,7 @@ public interface BoardMapper {
 	public int updateReplyCnt(@Param("bno") int bno,@Param("amount") int amount);
 	
 	public List<BoardVO> selectMyBoard(String m_id);
+	
+	public void deleteBno(String bno);
 
 }

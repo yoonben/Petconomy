@@ -16,6 +16,58 @@
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 	
+	
+<style>
+
+#img_profile {
+	width: 300px; 
+	height: 300px;
+	object-fit: cover;
+	margin-left:30px;
+	border-radius: 30px;
+	
+	image-rendering:-webkit-optimize-contrast;
+  	transform:translateZ(0);
+  	backface-visibility:hidden;
+
+}
+#myprofileBtn-bottom-box{
+	margin-top:20px;
+	
+}
+
+#pension{
+	width: 150px; 
+	height: 50px;
+	border-radius: 20px;
+}
+#pension:hover {
+	color: #F99;
+	background-color: #ffffff;
+}
+
+#hospital{
+	width: 150px; 
+	height: 50px;
+	border-radius: 20px;
+}
+#hospital:hover {
+	color: #F99;
+	background-color: #ffffff;
+}
+
+#myBoard{
+	width: 150px; 
+	height: 50px;
+	border-radius: 20px;
+}
+#myBoard:hover {
+	color: #F99;
+	background-color: #ffffff;
+}
+
+</style>
+	
 <title>Insert title here</title>
 
   	<!-- Bootstrap core CSS -->
@@ -72,11 +124,13 @@
                     <div class="main-info header-text">
                       <h1>나의 정보</h1>
                     </div>
+                    
                 <!-- 프로필 사진 시작-->
                   <div class="col-lg-3">
-                    <img id='img_profile' src="/peco/display?fileName=${profile}" alt="" style="border-radius: 23px;">
+                    <img id='img_profile' src="/peco/display?fileName=${profile}" alt="프로필 사진" >
                   </div>
                  <!-- 프로필 사진 끝--> 
+                 
                   <div class="col-lg-2 align-self-center">
                   </div>
                   <!-- 나의 세부정보 시작 -->
@@ -123,9 +177,11 @@
 								  <a><input type="submit" value="수정하기" class="btn"></a><br><br>
 				              </div>
 					</form>
-									<button id="pension" name="pension" onclick="location.href='/peco/pensionProfile?m_id=${member.m_id}'">나의 펜션 관리</button>
-									<button id="hospital" name="hospital" onclick="location.href='/peco/hospitalProfile?m_id=${member.m_id}'">나의 병원 관리</button>
-									<button id="myBoard" name="myBoard" onclick="location.href='/peco/myBoard?m_id=${member.m_id}'">나의 글 목록</button>
+						<div id='myprofileBtn-bottom-box'>
+							<button id="pension" name="pension" onclick="location.href='/peco/pensionProfile?m_id=${member.m_id}'">나의 펜션 관리</button>
+							<button id="hospital" name="hospital" onclick="location.href='/peco/hospitalProfile?m_id=${member.m_id}'">나의 병원 관리</button>
+							<button id="myBoard" name="myBoard" onclick="location.href='/peco/myBoard?m_id=${member.m_id}'">나의 글 목록</button>
+                		 </div>
                   </div>
                   <!-- 나의 세부정보 끝 -->
                 </div>

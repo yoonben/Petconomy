@@ -495,4 +495,8 @@
 	 	</choose>
 	 </sql>
 
+
+	<delete id='deleteBno'>
+		delete from board where bno = #{bno}
+	</delete>
 </mapper>

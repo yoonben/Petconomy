@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.peco.vo.Criteria;
 import com.peco.vo.PageDto;
+import com.sun.mail.imap.protocol.Namespaces.Namespace;
 import com.peco.service.FileuploadService;
 import com.peco.vo.FileuploadVO;
 import com.peco.mapper.BoardMapper;
@@ -211,6 +212,12 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<BoardVO> selectMyBoard(String m_id) {
 		return mapper.selectMyBoard(m_id);
+	}
+
+	@Override
+	public void deleteBno(String bno) {
+		mapper.deleteBno(bno);
+		
 	}
 
 
