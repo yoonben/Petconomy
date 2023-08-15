@@ -92,7 +92,7 @@ a {
   text-decoration: none !important;
 }
 a:hover {
-	color: #F99;
+	color: #ff8000;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -413,7 +413,7 @@ Header Style
 }
 
 .header-area .main-nav .logo img {
-  width: 191px;
+  width: 250px;
 }
 
 .background-header .main-nav .logo {
@@ -480,12 +480,12 @@ Header Style
 
 .header-area .main-nav .nav li:hover a,
 .header-area .main-nav .nav li a.active {
-  color: #e75e8d !important;
+  color: #ff8000!important;
 }
 
 .header-area .main-nav .nav li:last-child:hover a,
 .header-area .main-nav .nav li:last-child a.active {
- color: #e75e8d !important;
+ color: #ff8000!important;
   background-color: #e5e5e5!important;
 }
 
@@ -663,7 +663,7 @@ Header Style
   }
   .header-area.header-sticky .nav li a:hover,
   .header-area.header-sticky .nav li a.active {
-    color: #e75e8d!important;
+    color: #ff8000!important;
     opacity: 1;
   }
   .header-area.header-sticky .nav li.search-icon a {
@@ -725,13 +725,13 @@ Header Style
   }
   .header-area .main-nav .nav li a:hover {
     background: #fff !important;
-    color: #e75e8d!important;
+    color: #ff8000!important;
   }
   .header-area .main-nav .nav li:last-child a img {
     display: none;
   }
   .header-area .main-nav .nav li:last-child a:hover {
-    color: #ec6090 !important;
+    color: #ff8000!important;
     background-color: transparent !important;
   }
   .header-area .main-nav .nav li.has-sub ul.sub-menu {
@@ -993,7 +993,7 @@ footer p a {
 }
 
 footer p a:hover {
-  color: #ec6090;
+  color: #ff8000;
 }
 
 /* 

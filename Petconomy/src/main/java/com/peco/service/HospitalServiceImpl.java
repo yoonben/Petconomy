@@ -28,9 +28,9 @@ public class HospitalServiceImpl implements HospitalService {
 	}
 
 	@Override
-	public List<HospitalVO> mapList() {
+	public List<HospitalVO> mapList(RegionCri cri) {
 		// TODO Auto-generated method stub
-		return hospitalMapper.mapList();
+		return hospitalMapper.mapList(cri);
 	}
 
 	@Override
@@ -69,6 +69,12 @@ public class HospitalServiceImpl implements HospitalService {
 	public HospitalVO getOne_H(String m_id) {
 		// TODO Auto-generated method stub
 		return hospitalMapper.getOne_H(m_id);
+	}
+
+	@Override
+	public int totalCount(RegionCri cri) {
+		// TODO Auto-generated method stub
+		return hospitalMapper.totalCount(cri);
 	}
 
 }

@@ -3,146 +3,58 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
- <script src="https://zelkun.tistory.com/attachment/cfile8.uf@99BB7A3D5D45C065343307.js"></script>
- <script src="https://code.jquery.com/jquery-latest.min.js" type="application/javascript"></script>
- <script type="application/javascript" src="https://zelkun.tistory.com/attachment/cfile8.uf@99BB7A3D5D45C065343307.js"></script>
- 
- 
-   <script>
-
-   jQuery(document).ready(function () {
-		//sido option 추가
-		jQuery.each(hangjungdong.sido, function (idx, code) {
-			//append를 이용하여 option 하위에 붙여넣음
-			let megaregion = '${param.megaregion}';
-            megaregion=11;
-			let selected = code.sido==megaregion?'selected':'';
-			jQuery('#sido').append(fn_option(code.sido, code.codeNm, selected));
-            if(megaregion){
-                fn_sido_change(); 
-                jQuery('#sigugun').val('470').prop('selected',true);   
-                
-            }
-		});
-		
-
-		//시도 변경시 시군구 option 추가
-		jQuery('#sido').change(function () {
-			fn_sido_change();
-		});
-
-		//시군구 변경시 행정동 옵션추가
-		jQuery('#sigugun').change(function () {
-			fn_sigugun_change();
-		});
-
-
-			var sido = jQuery('#sido option:selected');
-			var sigugun = jQuery('#sigugun option:selected');
-
-				jQuery('#sido').change(function () {
-					
-					var sido = jQuery('#sido option:selected');
-	
-					var locationName = sido.text(); // 시도 이름
-					jQuery('#province').val(locationName);
-					
-
-				});
-			
-				jQuery('#sigugun').change(function () {
-		
-					var sigugun = jQuery('#sigugun option:selected');
-					
-					var locationName = sigugun.text(); // 시도 시군구 이름
-					jQuery('#city').val(locationName);
-
-
-		
-				});
-				
-				jQuery('#dong').change(function () {
-		
-					var dong = jQuery('#dong option:selected');	
-					
-					var locationName = dong.text(); // 시도/시군구/읍면동 이름
-					jQuery('#district').val(locationName);
-
-
-					
-				});
-				
-				
-	});
-
-   function fn_sido_change(){
-        jQuery('#sigugun').show();
-        jQuery('#sigugun').empty();
-        jQuery('#sigugun').append(fn_option('', '선택')); //
-        jQuery.each(hangjungdong.sigugun, function (idx, code) {
-            if (jQuery('#sido > option:selected').val() == code.sido)
-                jQuery('#sigugun').append(fn_option(code.sigugun, code.codeNm));
-        });
-
-        //세종특별자치시 예외처리
-        //옵션값을 읽어 비교
-        if (jQuery('#sido option:selected').val() == '36') {
-            jQuery('#sigugun').hide();
-            //index를 이용해서 selected 속성(attr)추가
-            //기본 선택 옵션이 최상위로 index 0을 가짐
-            jQuery('#sigugun option:eq(1)').attr('selected', 'selected');
-            //trigger를 이용해 change 실행
-            jQuery('#sigugun').trigger('change');
-        }
-   }
-   function fn_sigugun_change(){
-        //option 제거
-        jQuery('#dong').empty();
-        jQuery.each(hangjungdong.dong, function (idx, code) {
-            if (jQuery('#sido > option:selected').val() == code.sido && jQuery('#sigugun > option:selected').val() == code.sigugun)
-                jQuery('#dong').append(fn_option(code.dong, code.codeNm));
-        });
-        //option의 맨앞에 추가
-        jQuery('#dong').prepend(fn_option('', '선택'));
-        //option중 선택을 기본으로 선택
-        jQuery('#dong option:eq("")').attr('selected', 'selected');
-   }
- 	function fn_option(code, name, selected) {
- 		
-		return '<option value="' + code + '" '+selected+'>' + name + '</option>';
-	}
-
-
-	function fn_iframe(url) {
-		jQuery('#iframe').attr('src', url);
-	}	 
-	 
-
-	function filterByLocation(){
-		// 지역 초기화 함수
-	    document.querySelector('#city').value = "";
-	}
-	
-
-    </script>
-  
+    <meta charset="utf-8">
+    <title>주소로 장소 표시하기</title>
+    
 </head>
 <body>
-<form id="search" action="/peco/main/pension" method="get" name="selectForm">
-	<input type="hidden" name="class_no" value="">
-	<input type="hidden" name="pageNo" value="${pageDto.cri.pageNo }">
-	<input type="hidden" name="total" value="${pageDto.total }">
+<p style="margin-top:-12px">
+    <em class="link">
+        <a href="javascript:void(0);" onclick="window.open('http://fiy.daum.net/fiy/map/CsGeneral.daum', '_blank', 'width=981, height=650')">
+            혹시 주소 결과가 잘못 나오는 경우에는 여기에 제보해주세요.
+        </a>
+    </em>
+</p>
+<div id="map" style="width:100%;height:600px;"></div>
 
-	<div>
-		<select name="megaregion" id="sido" onchange="filterByLocation()"><option value="" >시도 선택</option></select>
-		<select name="smallregion" id="sigugun"><option value="">시군구 선택</option></select>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b4793f7e09cabda709895d2261a8c2af&libraries=services"></script>
+<script>
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };  
 
-	</div>
-</form>
+// 지도를 생성합니다    
+var map = new kakao.maps.Map(mapContainer, mapOption); 
 
+// 주소-좌표 변환 객체를 생성합니다
+var geocoder = new kakao.maps.services.Geocoder();
 
+// 주소로 좌표를 검색합니다
+geocoder.addressSearch('강원고성군', function(result, status) {
 
+    // 정상적으로 검색이 완료됐으면 
+     if (status === kakao.maps.services.Status.OK) {
+
+        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+        // 결과값으로 받은 위치를 마커로 표시합니다
+        var marker = new kakao.maps.Marker({
+            map: map,
+            position: coords
+        });
+
+        // 인포윈도우로 장소에 대한 설명을 표시합니다
+        var infowindow = new kakao.maps.InfoWindow({
+            content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+        });
+        infowindow.open(map, marker);
+
+        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+        map.setCenter(coords);
+    } 
+});    
+</script>
 </body>
 </html>
