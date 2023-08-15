@@ -382,11 +382,11 @@
 		         전화번호<input type="text" value="${sessionScope.member.mphone }" id="user_tel" readonly>  --%>
 		   <!-- 예약자 정보 끝 -->
    			<h3>예약자 정보 </h3>
-		   <c:forEach var="mem" items="${mList}">
-		   		<input type="hidden" value= "${mem.m_id}" id="m_id">
-		         이름      <input type="text" value="${mem.mname }" id="user_id" readonly><br>
-		         이메일   <input type="text" value="${mem.email }" id="user_email" readonly><br>
-		         전화번호<input type="text" value="${mem.mphone }" id="user_tel" readonly>
+		   <c:forEach var="memberVO" items="${member}">
+		   		<input type="hidden" value= "${memberVO.m_id}" id="m_id">
+		         이름      <input type="text" value="${memberVO.mname }" id="user_id" readonly><br>
+		         이메일   <input type="text" value="${memberVO.email }" id="user_email" readonly><br>
+		         전화번호<input type="text" value="${memberVO.mphone }" id="user_tel" readonly>
 		    </div>
 		    <button id="direct">직접입력</button><br>  
 		   
@@ -654,7 +654,7 @@
 	                                    $('#resForm').submit(); 
 	                           			alert(msg);
 	                       				console.log(m_id);
-	                           			window.location.replace("./redirect?m_id="+m_id);
+	                           			window.location.replace("../profile?m_id=${member.m_id}");
 	                   	        	} else {
 	                   	        		var msg = '결제에 실패하였습니다.';
 	                                    msg += '에러내용 : ' + rsp.error_msg;

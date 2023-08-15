@@ -29,7 +29,9 @@ import com.peco.vo.BoardVO;
 import com.peco.vo.FileuploadVO;
 import com.peco.vo.HospitalVO;
 import com.peco.vo.MemberVO;
+import com.peco.vo.PensionFiileuploadVO;
 import com.peco.vo.PensionVO;
+import com.peco.vo.RegionCri;
 
 import lombok.extern.log4j.Log4j;
 
@@ -286,20 +288,30 @@ public class MemberController extends CommonRestController{
 	
 	//하나의 펜션 조회
 	@GetMapping("pensionProfile")
-	public String getOne_P(Model model, PensionVO vo, MemberVO memberVo) {
+	public String getOne_P(Model model, PensionVO vo, MemberVO memberVo, PensionFiileuploadVO p_id) {
 		try {
 			MemberVO member = service.getOne(memberVo.getM_id());
 			PensionVO pension = pensionService.getOne_P(vo.getM_id());
-			System.out.println("PensionVO================== (1) : " + vo.getM_id());	
+			PensionFiileuploadVO fileuploadVO = pensionService.getPesionImg(vo.getP_id());
 
+			System.out.println("PensionVO================== (1) : " + vo.getM_id());	
 			System.out.println("member================== (1) : " + member);	
 	
+			String pensionProfile = fileuploadVO.getSavePath();
+			
+			// 파일 경로를 슬래시(/)로 변경
+			if (pensionProfile != null) { 	
+				String convertedPath = pensionProfile.replace("\\", "/");
+				String convertedThumPath = pensionProfile.replace("\\", "/");
+				fileuploadVO.setSavePath(convertedPath);
+				fileuploadVO.setS_savePath(convertedThumPath);
+				
+				model.addAttribute("pensionProfile", fileuploadVO.getSavePath());
+			}
 			
 			if(pension != null && member.getM_id().equals(pension.getM_id())) {
-					//PensionVO mypension = pensionService.getOne_P(vo.getM_id()); 다시 안담고 바로 조회후 담아주면된다!!
-					
-					model.addAttribute("pension", pension);
-						
+
+				model.addAttribute("pension", pension);
 			
 				} else {
 					//메세지 처리

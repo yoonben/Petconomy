@@ -121,12 +121,13 @@ public class ResController {
    @RequestMapping(value="/peco/redirect",method = RequestMethod.GET)
    public String redirect(Model model, String m_id){
 
+	   
 	   System.out.println("m_id : "+m_id);
 	   
 	   model.addAttribute("getPrList",service.getResPensionList(m_id));
 	   model.addAttribute("getHrList",service.getResHospitalList(m_id));
 	   
-	   return "resvation/success";
+	   return "member/profile";
    }
    
    @ResponseBody
