@@ -20,16 +20,13 @@
             ON h.h_id = r.h_id                           
             left join                            
             (select h_id, uploadpath||h_id||filename savePath from h_img) s              
-            ON h.h_id = h.h_id where 1=1 and savePath is not null     
+            ON h.h_id = s.h_id where 1=1 and savePath is not null     
 			<if test="megaregion!=null">
 				and addr like  '%'||#{megaregion}||'%'
 			</if>
 			
 			<if test="smallregion!=null">		 
 				and addr like  '%'||#{smallregion}||'%' 
-			</if>
-			<if test="sort">		 
-				and #{sort} is not null order by #{sort} desc
 			</if>
              ) t ) 
 		</select>
@@ -42,14 +39,14 @@
 
 		<select id="hospitalList" resultType="com.peco.vo.HospitalVO">
             select * from              
-            (select t.*, rownum rn from(select h.h_id, pname, addr, openhour, substr(parkyn,-2) ParkYN , star, cnt, savePath              
+            (select t.*, rownum rn from(select h.h_id, pname, addr, substr(openhour,1, 30) openhour, substr(parkyn,-2) ParkYN , nvl(star,0) star, nvl(cnt,0) cnt, savePath              
             from hospital h               
             LEFT JOIN     
             (select h_id, round(avg(star)) star, count(review) cnt from h_review group by h_id) r              
             ON h.h_id = r.h_id                           
             left join                            
             (select h_id, uploadpath||h_id||filename savePath from h_img) s              
-            ON h.h_id = h.h_id where 1=1 and savePath is not null                             
+            ON h.h_id = s.h_id where 1=1 and savePath is not null                             
 			<if test="megaregion!=null">
 				and addr like  '%'||#{megaregion}||'%'
 			</if>
@@ -57,9 +54,7 @@
 			<if test="smallregion!=null">		 
 				and addr like  '%'||#{smallregion}||'%' 
 			</if>
-			<if test="sort">		 
-				and #{sort} is not null order by #{sort} desc
-			</if>
+			<include refid="sortsql"></include>
              ) t ) where rn between #{startNo} and #{endNo}
 		</select>
 		
@@ -91,5 +86,40 @@
 		where rn between 1 and 10 
 		</select>
 		
+		<select id="totalCount" resultType="int">
+            select count(*) from              
+            (select t.*, rownum rn from(select h.h_id, pname, addr, openhour, substr(parkyn,-2) ParkYN , star, cnt, savePath              
+            from hospital h               
+            LEFT JOIN     
+            (select h_id, round(avg(star)) star, count(review) cnt from h_review group by h_id) r              
+            ON h.h_id = r.h_id                           
+            left join                            
+            (select h_id, uploadpath||h_id||filename savePath from h_img) s              
+            ON h.h_id = s.h_id where 1=1 and savePath is not null                             
+			<if test="megaregion!=null">
+				and addr like  '%'||#{megaregion}||'%'
+			</if>
+			
+			<if test="smallregion!=null">		 
+				and addr like  '%'||#{smallregion}||'%' 
+			</if>
+             ) t ) 
+		</select>
+	<sql id="sortsql">
+		<choose>
+			<when test="sort == 'cnt'">
+				order by cnt desc, star desc
+			</when>
+			<when test="sort == 'star'">
+				order by star desc, cnt desc
+			</when>
+			<when test="sort == 'max'">
+				order by max desc
+			</when>
+			<when test="sort == 'min'">
+				order by min asc
+			</when>
 
+		</choose>
+	</sql>
 </mapper>

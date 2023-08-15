@@ -28,7 +28,7 @@
 
   	<select id="pensionList" resultType="com.peco.vo.PensionVO">              
               select * from
-             (select t.*, rownum rn from(select p.p_id, pname, addr, openhour, substr(parkyn,-2) ParkYN , star, cnt, min, max, savePath
+             (select t.*, rownum rn from(select p.p_id, pname, addr, substr(openhour,1, 30) openhour, substr(parkyn,-2) ParkYN , nvl(star,0) star , nvl(cnt,0) cnt, nvl(min,0) min, nvl(max,0) max, savePath
              from pension p 
              LEFT JOIN
 			 (select p_id, round(avg(star)) star, count(review) cnt from p_review group by p_id) r
@@ -46,9 +46,9 @@
 			<if test="smallregion!=null">		 
 				and addr like  '%'||#{smallregion}||'%' 
 			</if>
-
+			<include refid="sortsql"></include>
              ) t ) where rn between #{startNo} and #{endNo}
-		
+
   	</select>
   	
   	<select id="pensiontop" resultType="com.peco.vo.PensionVO">
@@ -123,15 +123,18 @@
 	
 	
 	<select id="totalCount" resultType="int">
-             select count(*) from
-             (select t.*, rownum rn from(select p.p_id, pname, addr, openhour, substr(parkyn,-2) ParkYN , star, cnt  
+              select count(*) from
+             (select t.*, rownum rn from(select p.p_id, pname, addr, openhour, substr(parkyn,-2) ParkYN , star, cnt, min, max, savePath
              from pension p 
              LEFT JOIN
 			 (select p_id, round(avg(star)) star, count(review) cnt from p_review group by p_id) r
              ON p.p_id = r.p_id 
              LEFT JOIN
              (select p_id, min(price) min, max(price) max from p_room group by p_id) q
-              ON p.p_id = q.p_id) t) where 1=1
+             ON p.p_id = q.p_id  
+             left join              
+             (select p_id, uploadpath||p_id||filename savePath from p_img) s
+             ON p.p_id = s.p_id where 1=1 and savePath is not null
 			<if test="megaregion!=null">
 				and addr like  '%'||#{megaregion}||'%'
 			</if>
@@ -139,13 +142,28 @@
 			<if test="smallregion!=null">		 
 				and addr like  '%'||#{smallregion}||'%' 
 			</if>
-			<if test="sort">		 
-				and #{sort} is not null order by #{sort} desc
-			</if>
+
+             ) t ) 
 
 	</select>
 	
+	<sql id="sortsql">
+		<choose>
+			<when test="sort == 'cnt'">
+				order by cnt desc, star desc
+			</when>
+			<when test="sort == 'star'">
+				order by star desc, cnt desc
+			</when>
+			<when test="sort == 'max'">
+				order by max desc
+			</when>
+			<when test="sort == 'min'">
+				order by min asc
+			</when>
 
+		</choose>
+	</sql>
 		
 
 </mapper>

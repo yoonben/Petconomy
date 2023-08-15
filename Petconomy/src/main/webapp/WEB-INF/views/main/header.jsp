@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://kit.fontawesome.com/1028c0334c.js" crossorigin="anonymous"></script>
 </head>
 <body>
   <header class="header-area header-sticky">
@@ -14,24 +15,19 @@
             <div class="col-12">
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
-					<a href="/peco/main/mainpage" class="logo"> <img src="/resources/img/petconomy.png" alt="">
+					<a href="/peco/main/mainpage" class="logo" style="border:0px; margin-bottom:20px"> <img src="/resources/img/petconomy.png" alt="" style="border:0px">
 					</a>
                     <!-- ***** Logo End ***** -->
-                    <!-- ***** Search End ***** -->
-                    <div class="search-input" >
-                      <form id="search" action="#">
-                        <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" style="background-color: #FFF1E0" />
-                        <i class="fa fa-search"></i>
-                      </form>
-                    </div>
-                    <!-- ***** Search End ***** -->
+
                     <!-- ***** Menu Start ***** -->
+                    
                     <ul class="nav">
-                        <li><a href="/peco/main/pension">펜션/병원</a></li>
-                        <li><a href="/peco/board/main">커뮤니티</a></li>
-                        <li><a href="/peco/business">업소등록</a></li>
+                        <li><a href="/peco/main/pension" style="font-size:1.2em">펜션 <i class="fa-solid fa-hotel"></i>/병원 <i class="fa-solid fa-stethoscope"></i></a></li>
+                        <li><a href="/peco/board/main" style="font-size:1.2em">커뮤니티 <i class="fa-regular fa-comments"></i></a></li>
+                        <li><a href="/peco/business" style="font-size:1.2em">업소등록 <i class="fa-regular fa-address-card"></i></a></li>
                         
                         <!-- 마이페이지 네비게이션, 탭 -->
+                		<c:if test="${not empty sessionScope.member}">
                          <li class="nav-item dropdown">
 						    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">마이페이지</a>
 						    <ul class="dropdown-menu">
@@ -42,13 +38,17 @@
 						      <li><a class="dropdown-item" href="#">회원탈퇴</a></li>
 						    </ul>
 						  </li>
-                        
+                        </c:if>
                         <c:choose>
 						    <c:when test="${empty sessionScope.member}">
-						        <li><a href="/peco/login">로그인 <img src="assets/images/profile-header.jpg" alt=""></a></li>
+						        <div class="main-button" style="display:inline-block;">
+						        <a href="/peco/login" style="margin-top:10px;">로그인 <img src="assets/images/profile-header.jpg" alt=""></a>
+              					</div>
 						    </c:when>
 						    <c:otherwise>
-						        <li><a href="/peco/logout">로그아웃</a></li>
+						    <div class="main-button" style="display:inline-block">
+						        <a href="/peco/logout">로그아웃</a>
+						    </div>
 						    </c:otherwise>
 						</c:choose>
                     </ul>   

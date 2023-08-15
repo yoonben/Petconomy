@@ -20,4 +20,11 @@ public class HospitalVO {
 	private int cnt;
 	private int min;
 	private int max;
+	
+	private String savePath;
+	
+	
+	private String megaregion;
+	private String smallregion;
+
 }

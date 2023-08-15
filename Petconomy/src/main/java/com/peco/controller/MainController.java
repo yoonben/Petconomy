@@ -5,9 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
-
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +21,6 @@ import com.peco.service.PensionService;
 import com.peco.vo.BoardVO;
 import com.peco.vo.HospitalVO;
 import com.peco.vo.PageDto;
-import com.peco.vo.PensionFiileuploadVO;
 import com.peco.vo.PensionVO;
 import com.peco.vo.RegionCri;
 
@@ -80,9 +76,16 @@ public class MainController {
 	@GetMapping("/main/hospital")
 	public String hlist(RegionCri cri, Model model) {
 		List<HospitalVO> list = hospitalService.hospitalList(cri);
-		List<HospitalVO> lists = hospitalService.mapList();
-		int totalCnt = hospitalService.totalCnt(cri);
+		List<HospitalVO> lists = hospitalService.mapList(cri);
+		
+		int totalCnt = hospitalService.totalCount(cri);
+		System.out.println(totalCnt);
 		PageDto pageDto = new PageDto(cri, totalCnt);
+		
+		for (HospitalVO hImg : list) {
+	        String convertedPath = hImg.getSavePath().replace("\\", "/");
+	        	hImg.setSavePath(convertedPath);
+	    }
 		
 		model.addAttribute("totalCnt", totalCnt);
 		model.addAttribute("pageDto", pageDto);
@@ -101,6 +104,12 @@ public class MainController {
 		model.addAttribute("hlist", hlist);
 		model.addAttribute("blist", blist);
 		return "/main/mainpage";
+	}
+	
+	//메인 페이지
+	@GetMapping("/main/ex")
+	public String ex() {
+		return "/main/ex";
 	}
 	
 	

@@ -16,6 +16,8 @@
 	<!-- 별점 cdn -->
 	<script src="https://cdn.jsdelivr.net/gh/hiphop5782/score@latest/score.js"></script>
 	
+	<!-- fontawesome -->
+	<script src="https://kit.fontawesome.com/1028c0334c.js" crossorigin="anonymous"></script>
 	<script>
 	  var jq = jQuery.noConflict();
 	</script>
@@ -127,25 +129,25 @@ jQuery(function ($) {
                   <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
 					  <div class="carousel-inner" style="border-radius: 23px">
 					  <!-- http://img.einet.kr/P201809005/home/slider/22.jpg -->
-					    <div class="carousel-item active" data-bs-interval="3000" style="background-image: url(http://img.einet.kr/P201809005/home/slider/22.jpg); height:500px; background-size : cover; border-radius: 23px">
+					    <div class="carousel-item active" data-bs-interval="2000" style="background-image: url(http://img.einet.kr/P201809005/home/slider/22.jpg); height:500px; background-size : cover; border-radius: 23px">
 					      <h1 style="color:white; padding-left: 40px; padding-top: 50px; font-size:5em;" ><em style="color:#FFC48C">WELCOME TO </em> PETCONOMY</h1>
 					      <h4 style="color:white; padding-left: 60px; font-size:2.5em;">사랑하는 이들, 애완동물과 행복한 추억을 담아가세요</h4>
 					      <div class="main-button" style="margin-left: 1000px; margin-top:100px; height:200px">
-			                <a href="../main/pension" style="font-size:1.5em; background-color: #fa8e29; font-weight: 900; color:black">펜션 예약 바로가기</a>
+			                <a href="../main/pension" style="font-size:1.5em; background-color: #FFC48C; font-weight: 900; color:black">펜션 예약 바로가기</a>
 			              </div>
 					    </div>
-					    <div class="carousel-item" data-bs-interval="3000" style="background-image: url(http://www.conslove.co.kr/news/photo/202211/76099_214784_1832.jpg); height:500px; background-size : cover; border-radius: 23px">
+					    <div class="carousel-item" data-bs-interval="2000" style="background-image: url(http://www.conslove.co.kr/news/photo/202211/76099_214784_1832.jpg); height:500px; background-size : cover; border-radius: 23px">
 					      <h1 style="color:white; padding-left: 40px; padding-top: 50px; font-size:5em;" ><em style="color:#FFC48C">WELCOME TO </em> PETCONOMY</h1>
 					      <h4 style="color:white; padding-left: 60px; font-size:2.5em;">제일 가까운 동물병원이 어디야? </h4>
 					      <div class="main-button" style="margin-left: 1000px; margin-top:100px; height:200px">
-			                <a href="../main/pension" style="font-size:1.5em; background-color: #fa8e29; font-weight: 900; color:black">병원 예약하기</a>
+			                <a href="../main/hospital" style="font-size:1.5em; background-color: #FFC48C; font-weight: 900; color:black">병원 예약하기</a>
 			              </div>
 					    </div>
-					    <div class="carousel-item" data-bs-interval="3000" style="background-image: url(/resources/img/puppy.jpg); height:500px; background-size : cover; border-radius: 23px">
+					    <div class="carousel-item" data-bs-interval="2000" style="background-image: url(/resources/img/puppy.jpg); height:500px; background-size : cover; border-radius: 23px">
 					      <h1 style="color:white; padding-left: 40px; padding-top: 50px; font-size:5em;" ><em style="color:#FFC48C">WELCOME TO </em> PETCONOMY</h1>
 					      <h4 style="color:white; padding-left: 60px; font-size:2.5em;">어서오시개, 반려생활은 처음이지?</h4>
 					      <div class="main-button" style="margin-left: 1000px; margin-top:100px; height:200px">
-			                <a href="../main/pension" style="font-size:1.5em; background-color: #fa8e29; font-weight: 900; color:black">커뮤니티 둘러보기</a>
+			                <a href="../board/main" style="font-size:1.5em; background-color: #FFC48C; font-weight: 900; color:black">커뮤니티 둘러보기</a>
 			              </div>
 					    </div>
 
@@ -161,14 +163,13 @@ jQuery(function ($) {
           </div>
           <!-- ***** Banner End ***** -->
 
-              <div class="main-button" style="display:inline-block">
-                <a id="btn1" style="font-size:1.5em; background-color: #FFF1E0 ; font-weight: 900;">펜션</a>
+
+             <div class="main-button" style="display:inline-block" >
+                  <a id="btn1">펜션</a>
               </div>
-              
               <div class="main-button" style="display:inline-block">
-                <a id="btn2" style="font-size:1.5em; background-color: #FFF1E0 ; font-weight: 900;">병원</a>
+                  <a  id="btn2">병원</a>
               </div>
-              
 
 
           <!-- ***** 펜션 리스트 시작  ***** -->
@@ -176,7 +177,7 @@ jQuery(function ($) {
 		   <div class="gaming-library">
             <div class="col-lg-12" >
               <div class="heading-section">
-                <h4 style="color:#fa8e29;"><em style="color:black">Top10</em> 펜션</h4>
+                <h4 style="color:#fa8e29;"><em style="color:black">Top10</em> 펜션 <i class="fa-solid fa-hotel"></i></h4>
                
               </div>
              <c:forEach items="${plist }" var="pvo">
@@ -184,7 +185,7 @@ jQuery(function ($) {
                 <ul>
                   <li style="width: 3%;"><h3 style="color:black;">${pvo.rn }</h3></li>
                   <li style="width: 27%;"><h3 style="color:black;"><a style="color:black" href="/peco/detail/detailPage?p_id=${pvo.p_id }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}">${pvo.pname }</a></h3></li>
-                  <li style="width: 53%;"><h3 style="color:black; font-size : 1.5em; font-bold:100">${pvo.addr }</h3></li>
+                  <li style="width: 50%;"><h3 style="color:black; font-size : 1.5em; font-bold:100">${pvo.addr }</h3></li>
                   <li style="width: 15%; font-size:1.5em; color:black;"><div class="test-score1" data-max="5" data-rate="${pvo.star }"></div>
                   (${pvo.cnt })</li>
                 </ul>
@@ -201,14 +202,14 @@ jQuery(function ($) {
 		    <div class="gaming-library">
             <div class="col-lg-12">
               <div class="heading-section">
-                <h4 style="color:#fa8e29;"><em style="color:black">Top10</em> 병원</h4>
+                <h4 style="color:#fa8e29;"><em style="color:black">Top10</em> 병원 <i class="fa-solid fa-stethoscope"></i></h4>
               </div>
 	             <c:forEach items="${hlist }" var="hvo">
 	              <div class="item">
 	                <ul>
-	                  <li style="width: 3%;"><h3 style="color:black">${hvo.rn }</h3></li>
-	                  <li style="width: 27%;"><h3 style="color:black">${hvo.pname }</h3></li>
-	                  <li style="width: 53%;"><h3 style="color:black">${hvo.addr }</h3></li>
+	                  <li style="width: 3%;"><h3 style="color:black;">${hvo.rn }</h3></li>
+	                  <li style="width: 32%;"><h3 style="color:black">${hvo.pname }</h3></li>
+	                  <li style="width: 45%;"><h3 style="color:black; font-size : 1.5em; font-bold:100">${hvo.addr }</h3></li>
 	                  <li style="width: 15%; font-size:1.5em; color:black;"><div class="test-score1" data-max="5" data-rate="${hvo.star }"></div>
 	                  (${hvo.cnt })</li>
 	                </ul>
@@ -223,7 +224,7 @@ jQuery(function ($) {
             <div class="row">
               <div class="col-lg-12">
                 <div class="heading-section">
-                  <h4 style="color:#fa8e29">인기 <em style="color:black">BEST</em> 펫 짤</h4>
+                  <h4 style="color:#fa8e29">인기 <em style="color:black">BEST</em> 펫 짤 <i class="fa-solid fa-dog"></i><i class="fa-solid fa-cat"></i></h4>
                 </div>
                 <div class="owl-features owl-carousel">
 		            <c:forEach items="${blist}" var="bvo" >

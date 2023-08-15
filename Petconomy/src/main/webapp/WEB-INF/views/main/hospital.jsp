@@ -17,6 +17,12 @@
     <!-- Bootstrap core CSS -->
     <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
 
+	<!-- 별점 cdn -->
+	<script src="https://cdn.jsdelivr.net/gh/hiphop5782/score@latest/score.js"></script>
+	
+	<script>
+	  var jq = jQuery.noConflict();
+	</script>
 
     <!-- Additional CSS Files -->
     <link rel="stylesheet" href="/resources/assets/css/templatemo-cyborg-gaming.css">
@@ -56,7 +62,11 @@
 
 
 </script>
-
+<script>
+jQuery(function ($) {
+	jq(".test-score1").score();
+})
+</script>
 </head>
 <body>
   <!-- ***** Preloader Start ***** -->
@@ -124,12 +134,12 @@
             <input type="hidden" name="pageNo" id="pageNo" value="${param.pageNo }">  
 			<input type="hidden" name="megaregion" value="${param.megaregion }">  
 			<input type="hidden" name="smallregion" value="${param.smallregion }">  
-              <div class="main-button" style="display:inline-block">
-                <a href="../main/pension" style="font-size:1.5em; background-color: #FFF1E0 ; font-weight: 900;">펜션</a>
+			<input type="hidden" name="total" value="${totalCnt }">  
+              <div class="main-button" style="display:inline-block" >
+                  <a href="/peco/main/pension">펜션</a>
               </div>
-              
               <div class="main-button" style="display:inline-block">
-                <a href="../main/hospital" style="font-size:1.5em; background-color: #FFF1E0 ; font-weight: 900;">병원</a>
+                  <a href="/peco/main/hospital">병원</a>
               </div>
             <div class="row">
               <div class="col-lg-12">
@@ -149,7 +159,7 @@
           <!-- ***** Details End ***** -->
 
           <!-- ***** Other Start ***** -->
-          <div class="other-games" style="height:1550px; background-color:white">
+          <div class="other-games" style="height:1600px; background-color:white">
             <div class="row">
               <div class="col-lg-12">
                 <div class="heading-section">
@@ -159,19 +169,22 @@
            <a href="#" onclick="regionSelect()">지역</a>
          </div>
          -->
-         <div><%@include file="searchForm.jsp"%></div>
+         <div><%@include file="searchForm2.jsp"%></div>
          <br>
+
+         	총 ${totalCnt } 건
              <div style="height: 200px; display: flex; flex-wrap: wrap;">
             <c:forEach items="${list }" var="list" varStatus="status"> 
             
             <div class="card" style="width:265px; max-width: 25%; display: block; border:solid 0px" >
             
-			  <img src="/resources/img/puppy.jpg" class="card-img-top" alt="..." style="height:300px; padding:10px">
+			  <img src="/peco/display?fileName=${list.savePath}" class="card-img-top" alt="..." style="height:300px; padding:10px">
          	   
 			  <div class="card-body" style="margin-bottom: 20px">
 			    <h5 class="card-title"> <a style="font-size:1.2em; color:black"href="/peco/detail/detailPage?p_id=${list.h_id }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}">${list.pname}</a></h5>
 			    <p class="card-text">${list.addr }</p>
-			    <p class="card-text">1박당 요금 시작가 <br> <a style="color:red; font-weight:900;">KRW : ${list.min }</a></p>
+			    <p class="card-text">${list.openhour }</p>
+			    <p class="card-text"><div class="test-score1" data-max="5" data-rate="${list.star }"></div>(${list.cnt })</p>
 			   
 			  </div>
 			</div>

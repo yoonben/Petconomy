@@ -14,7 +14,7 @@ public interface HospitalService {
 	
 	public int starAvg(String h_id);
 
-	public List<HospitalVO> mapList();
+	public List<HospitalVO> mapList(RegionCri cri);
 	
 	public List<HospitalVO> hospitalList(RegionCri cri);
 	
@@ -27,4 +27,6 @@ public interface HospitalService {
 	public int update_H(HospitalVO vo);
 	
 	public HospitalVO getOne_H(String m_id);
+	
+	public int totalCount(RegionCri cri);
 }

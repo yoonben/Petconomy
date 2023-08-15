@@ -13,7 +13,7 @@ public interface HospitalMapper {
 	
 	public int starAvg(@Param(value="h_id") String h_id);
 	
-	public List<HospitalVO> mapList();
+	public List<HospitalVO> mapList(RegionCri cri);
 	
 	public List<HospitalVO> hospitaltop();
 	
@@ -28,4 +28,5 @@ public interface HospitalMapper {
 	
 	public HospitalVO getOne_H(String m_id);
 	
+	public int totalCount(RegionCri cri);
 }
