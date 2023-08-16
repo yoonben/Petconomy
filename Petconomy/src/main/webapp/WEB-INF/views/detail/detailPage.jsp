@@ -253,8 +253,9 @@ https://templatemo.com/tm-579-cyborg-gaming
 	<!-- 헤더 끝 -->
   <div class="container">
   <input type="hidden" name="p_id" id="p_id" value="${pension.p_id }">
+
   <input type="hidden" name="filename" id="filename" value="${filename}">
-  <input type="hidden" id="reviewer" value="${sessionScope.member.nickname }">
+  <input type="hidden" name="reviewer" id="reviewer" value="${sessionScope.member.nickname }">
     <div class="row">
       <div class="col-lg-12">
         <div class="page-content">
@@ -411,7 +412,7 @@ https://templatemo.com/tm-579-cyborg-gaming
 	                        <div class="col-lg-17" id="reviewPossible">
 	                          <div class="left-info" style='background-color: bisque;'>
 	                            <div class="left">
-	                              <h4 style='text-align: left; color: black;'><b><input type="hidden" id="reviewer" value="${sessionScope.member.nickname }" readonly></b></h4>
+	                              <h4 style='text-align: left; color: black;'><b><input type="hidden" value="${sessionScope.member.nickname }" readonly></b></h4>
 	                              <br>
 	                            </div>
 	                            <div class="col-lg-13"> <textarea name="review" id="review" rows="5" style='width: 100%; border-radius: 15px;'></textarea>

@@ -424,6 +424,9 @@ let disDays = []; //비활성화 할 날짜 배열
 let listDate = []; //시작날짜와 끝날짜 사이의 배열
             
 $(function() {
+	
+		
+	checkLogin(); //로그인여부체크
 	//예약된 날짜 가져오기
     inputDisDays();
 
@@ -479,7 +482,17 @@ $(function() {
             }
         } 
 	}); 
-
+//로그인 여부
+function checkLogin() {
+	
+	var m_id = $('#m_id').val();
+	
+	if(m_id === '') { //세션변수에 값이 없으면
+		alert('로그인 후 예약가능합니다');
+		window.location.replace("./login");
+	}
+	
+}
             
 Resbtn.addEventListener('click', function() { //선택 버튼 눌렀을 때 
 	listDate = []; //시작날짜와 끝날짜 넣을 배열
@@ -580,7 +593,7 @@ $('#payment').click(function () { //결제버튼
              	return false;
              }
 
-<<<<<<< HEAD
+
 	                           IMP.request_pay({
 	                                //카카오페이 결제시 사용할 정보 입력
 	                               pg: 'kakaopay',
@@ -655,7 +668,7 @@ $('#payment').click(function () { //결제버튼
 	                    	} 
                     	
                     	});
-=======
+
              IMP.request_pay({ //결제요청
                  //카카오페이 결제시 사용할 정보 입력
                  pg: 'kakaopay',
@@ -716,7 +729,7 @@ $('#payment').click(function () { //결제버튼
                               $('#resForm').submit(); 
                       			alert(msg);
                   				console.log(m_id);
-                      			window.location.replace("../profile?m_id=${member.m_id}"); //마이페이지 예약내역으로 이동
+                      			window.location.replace("./profile?m_id=${member.m_id}"); //마이페이지 예약내역으로 이동
            	        	} else { //결제검증에 실패한 경우
               	       		var msg = '결제에 실패하였습니다.';
                        		msg += '에러내용 : ' + rsp.error_msg;
@@ -725,11 +738,7 @@ $('#payment').click(function () { //결제버튼
               	      });
                 });  
          } 
-              	
-}); //결제버튼 끝
->>>>>>> refs/remotes/origin/master
-
-});
+//결제버튼 끝
         
 //시작 날짜와 끝 날짜 사이의 날짜 배열 생성
 let getDateRange = function(startDate, endDate, listDate) {

@@ -6,32 +6,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.peco.mapper.BoardMapper;
-import com.peco.mapper.ReplyMapper;
+import com.peco.mapper.R_ReplyMapper;
 import com.peco.vo.Criteria;
-import com.peco.vo.ReplyVO;
+import com.peco.vo.R_ReplyVO;
 
 @Service
-public class ReplyServiceImpl implements ReplyService {
+public class R_ReplyServiceImpl implements R_ReplyService {
 
 	@Autowired
-	ReplyMapper mapper;
+	R_ReplyMapper mapper;
 	
 	@Autowired
 	BoardMapper boardmapper;
 	
 	@Override
-	public List<ReplyVO> getList(int bno, Criteria cri) {
+	public List<R_ReplyVO> getList(int rno, Criteria cri) {
 		
-		return mapper.getList(bno, cri);
+		return mapper.getList(rno, cri);
 	}
 	
-	@Override
-	public List<ReplyVO> getListWithRReply(int bno, Criteria cri) {
-		return mapper.getListWithRReply(bno, cri);
-	}
+
 
 	@Override
-	public int insert(ReplyVO vo) {
+	public int insert(R_ReplyVO vo) {
 		return mapper.insert(vo);
 	}
 
@@ -47,7 +44,7 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
-	public int update(ReplyVO vo) {
+	public int update(R_ReplyVO vo) {
 		return mapper.update(vo);
 	}
 
@@ -55,8 +52,6 @@ public class ReplyServiceImpl implements ReplyService {
 	public int totalCnt(int bno) {
 		return mapper.totalCnt(bno);
 	}
-
-
 
 
 }
