@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -36,7 +39,7 @@ public class DetailPageController {
 	PensionService pensionService;
 
 	@GetMapping("/detail/detailPage")
-	public String getOne(Model model, PensionVO pensionVO, String p_id) {
+	public String getOne(Model model, PensionVO pensionVO, String p_id, String pname, HttpServletRequest request) {
 		PensionVO pension = pensionService.getOne(pensionVO.getP_id());
 		List<PensionRoomVO> room = pensionService.roomList(p_id);
 		List<PensionReviewVO> review = pensionService.reviewList(p_id);
@@ -50,6 +53,10 @@ public class DetailPageController {
 	        String convertedPath = roomI.getSavePath().replace("\\", "/");
 	        roomI.setSavePath(convertedPath);
 	    	}		
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("p_id", p_id);
+		session.setAttribute("pname", pname);
 		
 		int staravg = pensionService.starAvg(p_id);
 		model.addAttribute("pension", pension);
