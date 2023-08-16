@@ -163,6 +163,18 @@ div >.page-content{
   font-size: 26px; /* 원하는 글씨 크기로 조정 */
 }
 
+.main-button > a{
+    margin: 0;
+    height: 40px;
+    width: 110px;
+    padding: 0; /* 좌우 패딩을 없애기 위해 추가 */
+    display: flex; /* 텍스트 가운데 정렬을 위해 추가 */
+    align-items: center; /* 텍스트 세로 가운데 정렬을 위해 추가 */
+    justify-content: center; /* 텍스트 가로 가운데 정렬을 위해 추가 */
+    text-align: center; /* 텍스트 내용 가운데 정렬을 위해 추가 */
+}
+
+
 
 
 /* 게시판 카테고리 버튼 */
@@ -272,6 +284,11 @@ div >.page-content{
 .postreplywriter div {
   margin: 0;
 }
+
+
+
+
+
 </style>
 
 
