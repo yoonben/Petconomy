@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,7 +46,7 @@ public class MainController {
 	//펜션 페이지
 	//펜션 페이지
 	@GetMapping("/main/pension")
-	public String plist(RegionCri cri, Model model, HttpServletRequest request) {
+	public String plist(RegionCri cri, Model model, HttpServletRequest request, PensionVO pensionVO, HttpSession session) {
 		
 		List<PensionVO> list = pensionService.pensionList(cri);
 		List<PensionVO> lists = pensionService.mapList(cri);
@@ -58,11 +59,6 @@ public class MainController {
 	        	pImg.setSavePath(convertedPath);
 	    }
 		
-//		String megaregion = request.getParameter("megaregion");
-//		String smallregion = request.getParameter("smallregion");
-//		System.out.println("megaregion"+ megaregion);
-//		System.out.println("smallregion"+smallregion);
-		System.out.println("======"+cri);
 		
 		model.addAttribute("totalCnt", totalCnt);
 		model.addAttribute("pageDto", pageDto);

@@ -148,7 +148,7 @@ jQuery(function ($) {
 
                     
                     <div class="col-lg-12">
-                      <div><%@include file="kakaomap.jsp"%></div>
+                      <div><%@include file="h_kakaomap.jsp"%></div>
                     </div>
 
                   </div>
@@ -181,7 +181,7 @@ jQuery(function ($) {
 			  <img src="/peco/display?fileName=${list.savePath}" class="card-img-top" alt="..." style="height:300px; padding:10px">
          	   
 			  <div class="card-body" style="margin-bottom: 20px">
-			    <h5 class="card-title"> <a style="font-size:1.2em; color:black"href="/peco/detail/detailPage?p_id=${list.h_id }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}">${list.pname}</a></h5>
+			    <h5 class="card-title"> <a style="font-size:1.2em; color:black" href="/peco/detail/detailPage?p_id=${list.h_id }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}">${list.pname}</a></h5>
 			    <p class="card-text">${list.addr }</p>
 			    <p class="card-text">${list.openhour }</p>
 			    <p class="card-text"><div class="test-score1" data-max="5" data-rate="${list.star }"></div>(${list.cnt })</p>

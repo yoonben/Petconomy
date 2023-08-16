@@ -371,19 +371,11 @@
 					 <div class="memberInfo">
 			   		 <h3>예약자 정보 </h3>
    				
-			   			<%-- 세션에서 생성
 					   		<input type="hidden" value="${sessionScope.member.m_id }" id="m_id">
 					         이름      <input type="text" value="${sessionScope.member.mname }" id="user_id" readonly><br>
 					         이메일   <input type="text" value="${sessionScope.member.email }" id="user_email" readonly><br>
 					         전화번호<input type="text" value="${sessionScope.member.mphone }" id="user_tel" readonly>
-					    <button id="direct">직접입력</button><br>   --%>
-			    
-					    <c:forEach var="mem" items="${mList}">
-					   		<input type="hidden" value= "${mem.m_id}" id="m_id">
-					         이름      <input type="text" value="${mem.mname }" id="user_id" readonly><br>
-					         이메일   <input type="text" value="${mem.email }" id="user_email" readonly><br>
-					         전화번호<input type="text" value="${mem.mphone }" id="user_tel" readonly>
-					    <button id="direct">직접입력</button><br>  
+					    <button id="direct">직접입력</button><br>
 		    
 		  			 </div>
 		   			<!-- 예약자 정보 끝 -->
@@ -395,7 +387,7 @@
 				        <input type="text" id="pay" readonly>
 			      	</div>
 			        <!-- 결제금액 끝 -->
-     				</c:forEach></c:forEach>
+     				</c:forEach>
 		
 				</div>
 				<br>
