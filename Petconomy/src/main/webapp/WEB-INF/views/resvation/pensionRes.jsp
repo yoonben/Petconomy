@@ -27,17 +27,18 @@
 	<link rel="stylesheet" href="/resources/datepicker/css/jquery-ui.css">
 </head>
 <style>
-	body{
+
+	body {
 	   margin: 0 auto; /* 바디 마진을 0으로 하고 가로 가운데 정렬 */
 	   background-color: #fff;
-	  }
+	}
 	
 	div >.page-content{
-	  width: 800px;
-	  background-color: #fff;
-	  margin: 110px auto;
-	  align-items: center;
-	  }
+		width: 800px;
+		background-color: #fff;
+		margin: 110px auto;
+		align-items: center;
+	}
 	  
 	#profileTable.th, th {
 	    background-color: transparent;
@@ -52,238 +53,244 @@
 	    border-bottom: 2px solid #fff;
 	}
 	  
-	  .resPage {
-	  width: 80%;
-	  margin: 0 auto;
-	  margin-top: 20px;
-	  }
+	.resPage {
+		width: 80%;
+		margin: 0 auto;
+		margin-top: 20px;
+	}
 	  
 
-   /*달력속성 변경*/
-    .hasDatepicker {
-        display: inline-block;
-        padding: .2em .2em 0;
-    }
+	/*달력속성 변경*/
+	.hasDatepicker {
+		display: inline-block;
+		padding: .2em .2em 0;
+	}
     
-    /*readonly 백그라운드 색상 설정*/ 
-    .memberInfo > input:read-only {
-    background-color: #ededed;
-    }
+	/*readonly 백그라운드 색상 설정*/ 
+	.memberInfo > input:read-only {
+    	background-color: #ededed;
+	}
     
- 	.infoForm {
-  	background-color: #FFF1E0;
-  	border-radius: 23px;
-  	padding-bottom: 50px;
-  	position: relative;
-  	z-index: 1;
-  	width: 97%;
-  	margin: 0 auto;
-  	height: 270px;
-  }
+	.infoForm {
+		background-color: #FFF1E0;
+		border-radius: 23px;
+		padding-bottom: 50px;
+		position: relative;
+		z-index: 1;
+		width: 97%;
+		margin: 0 auto;
+		height: 270px;
+	}
   
-  .resInfo {
-       padding-bottom: 40px;
-  	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  	border-radius: 23px;
-  	width: 100%;
-  	height: 600px;
+	.resInfo {
+		padding-bottom: 40px;
+  		box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	  	border-radius: 23px;
+	  	width: 100%;
+	  	height: 600px;
      	margin: 0 auto;
      	position: relative;
-       z-index: 2;
-   	bottom: 50px;
-   	background-color: #fff;
-  }
+      	z-index: 2;
+	   	bottom: 50px;
+	   	background-color: #fff;
+	}
     
-   .memberInfo > h3, .fiex > h3{
-    margin-bottom: 10px;
-    margin-top: 10px;
-    }
+	.memberInfo > h3, .fiex > h3{
+	   margin-bottom: 10px;
+	   margin-top: 10px;
+	}
     
-    .pensionInfo input {
-    margin-left: 10px;
-    font-size: 20px;
-    border : none;
-    outline: none;
-    display: inline-block;
-    background-color: transparent;
-    position: relative;
-    top: 18px;
-    }
+	.pensionInfo input {
+	    margin-left: 10px;
+	    font-size: 20px;
+	    border : none;
+	    outline: none;
+	    display: inline-block;
+	    background-color: transparent;
+	    position: relative;
+	    top: 18px;
+	}
     
     #pname {
-    font-weight: bold;
-    }
+    	font-weight: bold;
+	}
     
-    .pImg {
-    border: 1px solid black;
-    width:200px;
-    height:200px;
-    display:inline-block;
-    float:left;
-    margin: 10px;
-    border-radius: 23px;
-    }
+	.pImg {
+	    border: 1px solid black;
+	    width:200px;
+	    height:200px;
+	    display:inline-block;
+	    float:left;
+	    margin: 10px;
+	    border-radius: 23px;
+	}
     
-    .memberInfo {
-    display: inline-block;
-    margin-left: 10px;
-    font-size: 16px;
-    padding-bottom: 10px;
-    position: relative;
-    right: 65px;
-    }
+	.memberInfo {
+	    display: inline-block;
+	    margin-left: 10px;
+	    font-size: 16px;
+	    padding-bottom: 10px;
+	    position: relative;
+	    right: 65px;
+	}
     
-    .memberInfo > input {
-    margin: 3px;
-    border: 1px solid #ffc48c;
-    border-radius: 15px;
-    padding: 6px;
-    font-size: 15px;
-    }
+	.memberInfo > input {
+	    margin: 3px;
+	    border: 1px solid #ffc48c;
+	    border-radius: 15px;
+	    padding: 6px;
+	    font-size: 15px;
+	}
     
-    #user_id {
-    position: relative;
-    left: 42px;
-    }
+	#user_id {
+		position: relative;
+		left: 42px;
+	}
     
     #user_email {
-    position: relative;
-    left: 26px;
+	    position: relative;
+	    left: 26px;
     }
     
     #user_tel {
-    position: relative;
-    left: 14px;
+	    position: relative;
+	    left: 14px;
     }
     
     #Resbtn {
-    position: relative;
-    top: 376px;
-    left: -15px;
+	    position: relative;
+	    top: 376px;
+	    left: -15px;
     }
     
     .resvation {
-    position: relative;
-    bottom: 60px;
-    left: 9px;
+	    position: relative;
+	    bottom: 60px;
+	    left: 9px;
     }
     
     .resvation > input {
-    border: none;
-    outline: none;
+	    border: none;
+	    outline: none;
     }
     
     .checkIn, .checkOut{
-    display: inline-block;
-    position: relative;
-    top: 340px;
+	    display: inline-block;
+	    position: relative;
+	    top: 340px;
     }
     
     .checkOut {
-    position: relative;
-    left: 50px;
+	    position: relative;
+	    left: 50px;
     }
     
 
     #date1, #date2 {
-    border: none;
-    outline: none;
-    padding-top: 20px;
-    border-bottom: 1px solid #FFC48C;;
-    width: 200px;
-    float: left;
-    margin-bottom: 20px;
+	    border: none;
+	    outline: none;
+	    padding-top: 20px;
+	    border-bottom: 1px solid #FFC48C;;
+	    width: 200px;
+	    float: left;
+	    margin-bottom: 20px;
     }
     
     .paycnt, #pay {
-    width: 250px;
-    display: inline-block;
-    position: relative;
-    padding: 10px;
-    bottom: 115px;
-    left: 335px;
+	    width: 250px;
+	    display: inline-block;
+	    position: relative;
+	    padding: 10px;
+	    bottom: 115px;
+	    left: 335px;
     }
     
     .payinfo {
-	display: inline-block;
-    bottom: 128px;
-    position: relative;
-    left: 260px;
+		display: inline-block;
+	    bottom: 128px;
+	    position: relative;
+	    left: 260px;
     }
     
     .paycnt > input,.payinfo > input{
-    border: none;
-    outline: none;
-     background-color: transparent;
+	    border: none;
+	    outline: none;
+		background-color: transparent;
     }
     
     .payinfo > input, .payinfo > small {
-    color: grey;
+    	color: grey;
     }
     
     .paycnt > p, #pay {
-    font-size: 20px;
-    font-weight: bold;
+    	font-size: 20px;
+    	font-weight: bold;
     }
     
     button {
-    display: inline-block;
-    background-color: #fff; 
-    padding: 5px;
-    border: 1px solid #FFC48C;
-    border-radius: 5px;
-    width: 70px;
-    font-weight: bold;
-    margin-left: 10px;
+	    display: inline-block;
+	    background-color: #fff; 
+	    padding: 5px;
+	    border: 1px solid #FFC48C;
+	    border-radius: 5px;
+	    width: 70px;
+	    font-weight: bold;
+	    margin-left: 10px;
     }
     
     .btn {
-    float: right;
-    display: inline-block;
-    position: relative;
-    bottom: 145px;
-    right: 27px;
-
-    z-index: 3;
+	    float: right;
+	    display: inline-block;
+	    position: relative;
+	    bottom: 145px;
+	    right: 27px;
+	    z-index: 3;
     }
     
     .btn > #payment {
-    background-color: #FFC48C;
-    color:#fff;
-    width: 100px;
-    height: 40px;
+	    background-color: #FFC48C;
+	    color:#fff;
+	    width: 100px;
+	    height: 40px;
     }
     
 	.btn > #goback {
-    width: 100px;
-    height: 40px;
-    border-color: #cbcbcb;
-    color: #cbcbcb;
+	    width: 100px;
+	    height: 40px;
+	    border-color: #cbcbcb;
+	    color: #cbcbcb;
     }
     
     #direct {
-    float: left;
-    position: relative;
-	top: 10px;
-    left: 120px;
-}
-    
-    }
+	    float: left;
+	    position: relative;
+		top: 10px;
+	    left: 120px;
+	}
     	
 	.payInfo > p {
-	font-size: 20px;
-    font-weight: bold;
+		font-size: 20px;
+	    font-weight: bold;
 	}
 	
 	#pay {
-	font-size: 35px;
-    font-weight: bold;
-    border: none;
-    outline: none;
-    position: relative;
-    top: -10px;
-    left: -5px;
-    background-color: transparent;
+		font-size: 35px;
+	    font-weight: bold;
+	    border: none;
+	    outline: none;
+	    position: relative;
+	    top: -10px;
+	    left: -5px;
+	    background-color: transparent;
+	}
+	
+	.card-img-top {
+		height: 200px;
+	    width: 300px;
+	    border-radius: 5px;
+	    margin: 10px;
+	    display: inline-block;
+	    float: left;
 	}
 	
 	
@@ -334,56 +341,56 @@
       <div class="col-lg-12">
       	<div class="page-content">
       	<!-- 예약하기 -->
-		   <div class="pension" style="display:inline-block; width:800px;">
+			<div class="pension" style="display:inline-block; width:800px;">
 			<div class="resPage">
 			<!-- 서브밋 폼 -->
 			<form class="resForm" onsubmit="return false" action="resAction">
 				<div class="infoForm">
 				<!-- 숙소 정보 -->
-				<div class='pensionInfo'>
-   					<div class="pImg" style="border: 1px solid black; width:200px; height:200px; display:inline-block; float:left;">펜션이미지</div>
-					   <c:forEach var="p" items="${pList}">
-						   <input type="text" value="${p.pname}" id="pname"><br>
-						   <input type="hidden" value="${p.p_id}" id="p_id">
-						   <input type="text" value= "${p.roomname}" id="roomname">
-				  </div>
-				  <!-- 숙소 정보 끝 -->
-	</div>
-      	<!-- 날짜정보 -->
+					<div class='pensionInfo'>
+	   					<img src="/peco/display?fileName=${pImg}" class="card-img-top" alt="펜션이미지">
+						   <c:forEach var="p" items="${pList}">
+							   <input type="text" value="${p.pname}" id="pname"><br>
+							   <input type="hidden" value="${p.p_id}" id="p_id">
+							   <input type="text" value= "${p.roomname}" id="roomname">
+					</div>
+		 			<!-- 숙소 정보 끝 -->
+				</div>
       	
-      	 <div class="resInfo">
+      			<!-- 날짜정보 -->
+      	 		<div class="resInfo">
       	
       	
-      	<div class="resvation" style="text-align: center;">
-      		<!-- 입퇴실날짜 -->
-         	<div class="checkIn" style="width: 250px;">
-         		<b style="float: left;">체크인</b><br>
-         		<input type="text" id="date1" readonly>
-         	</div>
-         	<div class="checkOut" style="width: 250px;">
-         		<b style="float: left;">체크아웃</b><br>
-         		<input type="text" id="date2" readonly>
-         	</div>
-         		<button id="Resbtn">선택</button><br>
-         	<!-- 달력 -->
-         	<div class="datepicker1" style="width: 300px; height: 280px;"></div>
-          	<div class="datepicker2" style="width: 300px; height: 280px;"></div>
-           	<br>
-         <!-- 날짜정보 끝 -->
-      	</div>
+      			<div class="resvation" style="text-align: center;">
+      			<!-- 입퇴실날짜 -->
+         			<div class="checkIn" style="width: 250px;">
+		         		<b style="float: left;">체크인</b><br>
+		         		<input type="text" id="date1" readonly>
+		         	</div>
+		         	<div class="checkOut" style="width: 250px;">
+		         		<b style="float: left;">체크아웃</b><br>
+		         		<input type="text" id="date2" readonly>
+		         	</div>
+         			<button id="Resbtn">선택</button><br>
+	         	<!-- 달력 -->
+	         	<div class="datepicker1" style="width: 300px; height: 280px;"></div>
+	          	<div class="datepicker2" style="width: 300px; height: 280px;"></div>
+	           	<br>
+        		<!-- 날짜정보 끝 -->
+      			</div>
       	
    		
-		   <div class="memberInfo">
-
-   		<!-- 예약자 정보 -->
-		   		<input type="hidden" value="${sessionScope.member.m_id }" id="m_id">
-		         이름      <input type="text" value="${sessionScope.member.mname }" id="user_id" readonly><br>
-		         이메일   <input type="text" value="${sessionScope.member.email }" id="user_email" readonly><br>
-		         전화번호<input type="text" value="${sessionScope.member.mphone }" id="user_tel" readonly>
+		   	<div class="memberInfo">
+   			<h3 style="position: relative;">예약자 정보 </h3>
+   			<!-- 예약자 정보 -->
+			   		<input type="hidden" value="${sessionScope.member.m_id }" id="m_id">
+			         이름      <input type="text" value="${sessionScope.member.mname }" id="user_id" readonly><br>
+			         이메일   <input type="text" value="${sessionScope.member.email }" id="user_email" readonly><br>
+			         전화번호<input type="text" value="${sessionScope.member.mphone }" id="user_tel" readonly>
+		   </div>
+		   
+		   <button id="direct">직접입력</button><br>  
 		   <!-- 예약자 정보 끝 -->
-   			<h3>예약자 정보 </h3>
-		    </div>
-		    <button id="direct">직접입력</button><br>  
 		   
 		   
       	<!-- 결제금액 -->
@@ -399,324 +406,317 @@
 	        <input type="text" id="period" readonly>
 	    <!-- 결제정보 끝 -->
         </div>
-      </c:forEach>
+      					</c:forEach> <%--pList forEach --%>
 		
-		</div>
+		</div><br>
 		
-		<br>
 		<!-- 결제버튼 -->
 	   <div class="btn">
 		   <button id="payment">결제</button>
 		   <button id="goback" onclick="history.back()">뒤로가기</button>
 	   </div>
 	   <!-- 결제버튼 끝 -->
-	</form>
-	<!-- 폼 끝 -->
-	</div>
-	<!-- 예약 끝 -->
+			</form>
+			<!-- 폼 끝 -->
+		</div>
+		<!-- 예약 끝 -->
 	
-	<!-- 비활성화 날짜 계산 -->
-   <c:forEach var="dis" items="${disabledate}">
-   <input type="hidden" value="${dis.startdate}" name="startDate">
-   <input type="hidden" value="${dis.enddate}" name="endDate">
-   </c:forEach>
+		<!-- 비활성화 날짜 계산 -->
+	   <c:forEach var="dis" items="${disabledate}">
+		   <input type="hidden" value="${dis.startdate}" name="startDate">
+		   <input type="hidden" value="${dis.enddate}" name="endDate">
+	   </c:forEach>
 			
 			</div>
+			</div>
         </div>
-      </div>
-    </div>
-  </div>
+	</div>
+</div>
 
   <!-- Scripts -->
   
   <script>
 
-            let disDays = [];
-            let listDate = [];
+let disDays = []; //비활성화 할 날짜 배열
+let listDate = []; //시작날짜와 끝날짜 사이의 배열
             
-        $(function() {
-            //선택불가 날짜 비활성화
-            inputDisDays();
+$(function() {
+	//예약된 날짜 가져오기
+    inputDisDays();
 
-            $(".datepicker1").datepicker({ //달력1
-                showOtherMonths: true
-                ,showMonthAfterYear:true
-                ,selectOtherMonths: true 
-                ,buttonText: "선택"        
-                ,yearSuffix: "년"
-                ,monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
-                ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
-                ,dayNamesMin: ['일','월','화','수','목','금','토']
-                ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일']
-                ,minDate: "0"
-                ,maxDate: "+1y"
-                ,dateFormat: 'yy-mm-dd',
-                onSelect: function(date1) {
-                $('#date1').val(date1);
-                }
-                ,beforeShowDay: function(date) {
-                    var dateString = $.datepicker.formatDate('yy-mm-dd', date);
-                    if(disDays.indexOf(dateString) != -1) {
-                        return [false];
-                    } else {
-                        return [true];
-                    }
-                }
-            });       
+    $(".datepicker1").datepicker({ //체크인 날짜 달력
+   		showOtherMonths: true
+		,showMonthAfterYear:true
+		,selectOtherMonths: true 
+        ,buttonText: "선택"        
+        ,yearSuffix: "년"
+        ,monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
+        ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
+        ,dayNamesMin: ['일','월','화','수','목','금','토']
+        ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일']
+        ,minDate: "0"
+        ,maxDate: "+1y"
+        ,dateFormat: 'yy-mm-dd',
+        onSelect: function(date1) { //달력이 선택된 경우 date1에 출력
+        	$('#date1').val(date1);
+        }
+        ,beforeShowDay: function(date) { //비활성화 설정
+			var dateString = $.datepicker.formatDate('yy-mm-dd', date);
+			if(disDays.indexOf(dateString) != -1) {
+				return [false];
+	        } else {
+				return [true];
+	        }
+        }
+    });       
             
 
-            $(".datepicker2").datepicker({ //달력2
-                showOtherMonths: true
-                ,showMonthAfterYear:true
-                ,selectOtherMonths: true
-                ,buttonText: "선택"
-                ,yearSuffix: "년"
-                ,monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
-                ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
-                ,dayNamesMin: ['일','월','화','수','목','금','토']
-                ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일']
-                ,minDate: "+1D"
-                ,maxDate: "+1y" 
-                ,dateFormat: 'yy-mm-dd',
-                onSelect: function(date2) { //박스2에 출력
-                $('#date2').val(date2);
-                 }
-                ,beforeShowDay: function(date) { //비활성화 날짜
-                    var dateString = $.datepicker.formatDate('yy-mm-dd', date);
-                    if(disDays.indexOf(dateString) != -1) {
-                        return [false];
-                    } else {
-                        return [true];
-                    }
-                } 
-            }); 
+	$(".datepicker2").datepicker({ //체크아웃 날짜 달력
+		showOtherMonths: true
+        ,showMonthAfterYear:true
+        ,selectOtherMonths: true
+        ,buttonText: "선택"
+        ,yearSuffix: "년"
+        ,monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
+        ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
+        ,dayNamesMin: ['일','월','화','수','목','금','토']
+        ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일']
+        ,minDate: "+1D"
+        ,maxDate: "+1y" 
+        ,dateFormat: 'yy-mm-dd',
+        onSelect: function(date2) { //달력이 선택된 경우 date1에 출력
+        	$('#date2').val(date2);
+        }
+        ,beforeShowDay: function(date) { //비활성화 설정
+			var dateString = $.datepicker.formatDate('yy-mm-dd', date);
+            if(disDays.indexOf(dateString) != -1) {
+                return [false];
+            } else {
+                return [true];
+            }
+        } 
+	}); 
 
             
-            Resbtn.addEventListener('click', function() { //선택 버튼 눌렀을 때 
-                listDate = [];
-                let sDay = document.querySelector('#date1').value;
-                let eDay = document.querySelector('#date2').value;
-                //console.log('s'+sDay,length);
-                //console.log('e'+eDay);
+Resbtn.addEventListener('click', function() { //선택 버튼 눌렀을 때 
+	listDate = []; //시작날짜와 끝날짜 넣을 배열
+	let sDay = document.querySelector('#date1').value; //체크인날짜
+	let eDay = document.querySelector('#date2').value; //체크아웃날짜
+	//console.log('s'+sDay,length);
+	//console.log('e'+eDay);
 
-            	if(!sDay.length || !eDay.length) { //만약에 input 값이 비었다면
-            		alert('날짜를 선택해주세요');
-             	} else {
-                //yy-mm-dd로 받은 값을 -를 구분자로 하여 Date 배열로 반환
-                var startday = sDay.split('-');
-                var endday = eDay.split('-');
-                var sArr = new Date(startday[0], startday[1]-1, startday[2]);
-                var eArr = new Date(endday[0], endday[1]-1, endday[2]);
-                // console.log(sArr);
-                // console.log(eArr);
+	if(!sDay.length || !eDay.length) { //만약 input 값이 비었다면
+		alert('날짜를 선택해주세요');
+	} else {
+		//yy-mm-dd로 받은 값을 -를 구분자로 하여 Date 배열로 반환
+		var startday = sDay.split('-');
+		var endday = eDay.split('-');
+		var sArr = new Date(startday[0], startday[1]-1, startday[2]);
+		var eArr = new Date(endday[0], endday[1]-1, endday[2]);
+		// console.log(sArr);
+		// console.log(eArr);
 
-                    getDateRange(sDay, eDay, listDate);
-                    console.log('l '+listDate);
-                    console.log('d '+disDays)
+		getDateRange(sDay, eDay, listDate); //체크인날짜와 체크아웃 사이의 날짜를 배열로 반환
+		console.log('l '+listDate);
+		console.log('d '+disDays)
 
-                    //예약날짜에 예약불가일자가 포함된 경우 알림처리
-                    for(var i=0; i<listDate.length; i++) {
-                        for(var j=0; j<disDays.length; j++) {
-                            if(listDate[i]===disDays[j]) {
-                                alert('예약불가 일자가 포함되었습니다\n'+listDate[i]+'일은 예약할 수 없습니다');
-                                // console.log('l '+ listDate[i]);
-                                // console.log('d '+ disDays[j]);
-                                return false;
-                            } 
-                        }
-                    }
+		//예약날짜에 예약불가일자가 포함된 경우 알림처리
+		for(var i=0; i<listDate.length; i++) {
+			for(var j=0; j<disDays.length; j++) {
+				if(listDate[i]===disDays[j]) {
+					alert('예약불가 일자가 포함되었습니다\n'+listDate[i]+'일은 예약할 수 없습니다');
+		            // console.log('l '+ listDate[i]);
+		            // console.log('d '+ disDays[j]);
+		            return false;
+		        } 
+		    }
+		}
                     
-                    if(eArr.getTime() <= sArr.getTime()) {
-                        alert('하루이상 선택해주세요');
-                    } else {
-                        const diffDate = eArr.getTime() - sArr.getTime();
-                        diffday = Math.abs(diffDate / (1000 * 60 * 60 * 24));
-                        //console.log(Math.abs(diffDate / (1000 * 60 * 60 * 24)));
-                    
-                        if(diffday > 0) {
-                            alert('선택되었습니다');
-                            $('#period').val(diffday+'박'+(diffday+1)+'일');
-                           
-                        //총 결제금액 구하기(기간+1)+1박당 가격
-                        console.log($('#price').val());
-                        let priceCnt = $('#price').val()*diffday;
-                        //console.log(priceCnt);
-                        $('#pay').val(priceCnt);
+	if(eArr.getTime() <= sArr.getTime()) { //만약 체크인날짜와 체크아웃 날짜가 같을 경우
+    	alert('하루이상 선택해주세요');
+	} else { //날짜 사이의 시간 계산
+    	const diffDate = eArr.getTime() - sArr.getTime();
+    	diffday = Math.abs(diffDate / (1000 * 60 * 60 * 24));
+    	//console.log(Math.abs(diffDate / (1000 * 60 * 60 * 24)));
+
+	if(diffday > 0) {
+        alert('선택되었습니다');
+        $('#period').val(diffday+'박'+(diffday+1)+'일');
+       
+    //총 결제금액 구하기(기간+1)+1박당 가격
+    console.log($('#price').val());
+    let priceCnt = $('#price').val()*diffday;
+    //console.log(priceCnt);
+    $('#pay').val(priceCnt);
                         
 
-                         }
-                         }
+    	}
+    }
 
-                }
-             })
+    }
+}) //선택버튼 끝
 
 
-                    //예약자정보 직접입력 전환 기본값:readonly(disable로 설정 시 서브밋할때 안넘어감)
-                    direct.addEventListener('click', function() {
-                       $('#user_id').attr('readonly',false);
-                       $('#user_email').attr('readonly',false);
-                       $('#user_tel').attr('readonly',false);
-                       //console.log('aaa');
-                    })
+//예약자정보 직접입력 전환 기본값:readonly(disable로 설정 시 서브밋할때 안넘어감)
+direct.addEventListener('click', function() {
+   $('#user_id').attr('readonly',false);
+   $('#user_email').attr('readonly',false);
+   $('#user_tel').attr('readonly',false);
+   //console.log('aaa');
+})
                     
          
-                    $('#payment').click(function () { //결제버튼
-                    	var date1 = document.querySelector('#date1').value;
-                        var date2 = document.querySelector('#date2').value;
-                        var pay = document.querySelector('#pay').value;
-                    	
-	                    	if(!date1.length || !date2.length) { //체크인 체크아웃 날짜가 비어있지 않은 경우
-	                    		alert('날짜를 선택해주세요');
-	                    	} else if(!pay) {
-	                    		alert('선택버튼을 눌러주세요');	
-	                    	} else {
-	                     	   var IMP = window.IMP;
-	                           IMP.init('imp07586387');
-	                          
-	                           //DOM객체들에서 사용할 데이터 뽑기
-	                           var p_id = $('#p_id').val();
-	                           var m_id = $('#m_id').val();
-	                           var pname = $('#pname').val();
-	                           var period = $('#period').val();
-	                           var pay = $('#pay').val();
-	                           var user_id = $('#user_id').val();
-	                           var user_email = $('#user_email').val();
-	                           var user_tel =  $('#user_tel').val();
-	                           var startdate = $('#date1').val();
-	                           var enddate = $('#date2').val();
-	                           var roomname = $('#roomname').val();
+$('#payment').click(function () { //결제버튼
+	var date1 = document.querySelector('#date1').value;
+    var date2 = document.querySelector('#date2').value;
+    var pay = document.querySelector('#pay').value;
+	
+		if(!date1.length || !date2.length) { //체크인 체크아웃 날짜가 비어있지 않은 경우
+			alert('날짜를 선택해주세요');
+		} else if(!pay) {
+			alert('선택버튼을 눌러주세요');	
+		} else {
+			var IMP = window.IMP;
+			IMP.init('imp07586387');
+                     
+             //DOM객체들에서 사용할 데이터 뽑기
+             var p_id = $('#p_id').val();
+             var m_id = $('#m_id').val();
+             var pname = $('#pname').val();
+             var period = $('#period').val();
+             var pay = $('#pay').val();
+             var user_id = $('#user_id').val();
+             var user_email = $('#user_email').val();
+             var user_tel =  $('#user_tel').val();
+             var startdate = $('#date1').val();
+             var enddate = $('#date2').val();
+             var roomname = $('#roomname').val();
 
-	                           IMP.request_pay({
-	                                //카카오페이 결제시 사용할 정보 입력
-	                               pg: 'kakaopay',
-	                               pay_method: "card",
-	                               name: pname,
-	                               amount: pay,
-	                               buyer_email: user_email,
-	                               buyer_name: user_id,
-	                               buyer_tel: user_tel,
-	                           }, function (rsp) {
-	                                
-	                        	   console.log(rsp);
-	                   			// 결제검증
-	                   			$.ajax({
-	                   	        	type : "POST",
-	                   	        	url : "/payment/verifyIamport/" + rsp.imp_uid 
-	                   	        }).done(function(data) {
-	                   	        	
-	                   	        	console.log(data);
-	                   	        	
-	                   	        	// 결제 유효성 검증
-	                   	        	// 위의 rsp.paid_amount 와 data.response.amount를 비교한후 로직 실행 (import 서버검증)
-	                   	        	if(rsp.paid_amount == data.response.amount){
-	                   	        		var msg = "결제 및 결제검증완료";
-	                   		        	msg += '\n고유ID : ' + rsp.imp_uid;
-	                                    msg += '\n상점 거래ID : ' + rsp.merchant_uid;
-	                                    msg += '\n결제 금액 : ' + rsp.paid_amount+'원';
-	                                    
-	                                    if(rsp.apply_num === null || rsp.apply_num === undefined || rsp.apply_num === '') {
-	                                    	rsp.apply_num = '카카오페이머니';
-	                                    }
-	                                    msg += '\n카드 승인번호 : ' + rsp.apply_num;                                    	
-	                   		        	
-	                                    $.ajax({
-	                                        url: "/peco/insert",
-	                                        type: 'post',
-	                                        data: {
-	                                           p_id: p_id,//펜션아이디   
-		                                       period: period,//기간
-		                                       pricecnt: pay,//결제할 가격
-		                                       startdate : startdate, //입실일
-		                                       enddate : enddate, //퇴실일
-		                                       pr_name: user_id,//예약자명
-		                                       pr_email: user_email,//예약자 이메일
-		                                       pr_tel: user_tel,//예약자 전화번호
-		                                       imp_uid: rsp.imp_uid, //거래고유번호
-		                                       pr_id: rsp.merchant_uid, //주문고유번호=펜션예약번호
-										 	   pr_pay: rsp.apply_num, //카드승인번호
-										 	   m_id : m_id,//회원번호 -예약자명 직접입력 경우 다를 경우
-										 	   pname : pname, //펜션명
-										 	   roomname : roomname,//객실명
-	                                        }                               
-	                                      });
-	                                    console.log('토큰생성');
-	                                    $.ajax({
-	                                    	type : "POST",
-	                           	        	url : "/payment/complete"
-	                                    })
-	                                    console.log('토큰생성완료');
-	                                    
-	                                    $('#resForm').submit(); 
-	                           			alert(msg);
-	                       				console.log(m_id);
-	                           			window.location.replace("../profile?m_id=${member.m_id}");
-	                   	        	} else {
-	                   	        		var msg = '결제에 실패하였습니다.';
-	                                    msg += '에러내용 : ' + rsp.error_msg;
-	                           			alert(msg);
-	                   	        	}     		
-	                   	        });
-	                           });  
-	                    	} 
-                    	
-                    	});
+             IMP.request_pay({ //결제요청
+                 //카카오페이 결제시 사용할 정보 입력
+                 pg: 'kakaopay',
+                 pay_method: "card",
+                 name: pname,
+                 amount: pay,
+                 buyer_email: user_email,
+                 buyer_name: user_id,
+                 buyer_tel: user_tel,
+             }, function (rsp) { //결제가 된 경우          
+				console.log(rsp);
+         		// 결제검증
+       			$.ajax({
+       	        	type : "POST",
+       	        	url : "/payment/verifyIamport/" + rsp.imp_uid 
+       	        }).done(function(data) {
+					console.log(data);
+      	        	// 위의 rsp.paid_amount 와 data.response.amount를 비교한후 로직 실행 (import 서버검증)
+						if(rsp.paid_amount == data.response.amount){
+							var msg = "결제 및 결제검증완료";
+							msg += '\n고유ID : ' + rsp.imp_uid;
+							msg += '\n상점 거래ID : ' + rsp.merchant_uid;
+							msg += '\n결제 금액 : ' + rsp.paid_amount+'원';
+							
+								if(rsp.apply_num === null || rsp.apply_num === undefined || rsp.apply_num === '') {
+                               	rsp.apply_num = '카카오페이머니';
+                               	}
+							msg += '\n카드 승인번호 : ' + rsp.apply_num;                                    	
+              		        	
+							$.ajax({ //db에 결제정보 삽입
+	                            url: "/peco/insert",
+	                            type: 'post',
+		                            data: {
+		                            p_id: p_id, //펜션아이디   
+		                            period: period, //기간
+		                            pricecnt: pay, //결제할 가격
+		                            startdate : startdate, //입실일
+		                            enddate : enddate, //퇴실일
+		                            pr_name: user_id, //예약자명
+		                            pr_email: user_email, //예약자 이메일
+		                            pr_tel: user_tel, //예약자 전화번호
+		                            imp_uid: rsp.imp_uid, //거래고유번호
+		                            pr_id: rsp.merchant_uid, //주문고유번호=펜션예약번호
+									pr_pay: rsp.apply_num, //카드승인번호
+									m_id : m_id, //회원번호 -예약자명 직접입력 경우 다를 경우
+									pname : pname, //펜션명
+									roomname : roomname,//객실명
+                                   }                               
+                                 });
+							 //정상적으로 결제 진행된 경우 토큰 생성(환불 시 사용)
+                             console.log('토큰생성'); 
+                             	$.ajax({
+                               		type : "POST",
+                      	        	url : "/payment/complete"
+                               	})
+                              console.log('토큰생성완료');
+                               
+                              $('#resForm').submit(); 
+                      			alert(msg);
+                  				console.log(m_id);
+                      			window.location.replace("../profile?m_id=${member.m_id}"); //마이페이지 예약내역으로 이동
+           	        	} else { //결제검증에 실패한 경우
+              	       		var msg = '결제에 실패하였습니다.';
+                       		msg += '에러내용 : ' + rsp.error_msg;
+                      		alert(msg);
+              	       	}     		
+              	      });
+                });  
+         } 
+              	
+}); //결제버튼 끝
 
- 				 });
+});
         
-      //시작 날짜와 끝 날짜 사이의 날짜 배열 생성
-        let getDateRange = function(startDate, endDate, listDate) {
-                var dateMove = new Date(startDate);
-                var strDate = startDate;
+//시작 날짜와 끝 날짜 사이의 날짜 배열 생성
+let getDateRange = function(startDate, endDate, listDate) {
+	var dateMove = new Date(startDate);
+	var strDate = startDate;
 
-                if (startDate == endDate) {
-                    var strDate = dateMove.toISOString().slice(0,10);
-                    listDate.push(strDate);
-                } else {
-
-                    while (strDate < endDate)  {
-                        var strDate = dateMove.toISOString().slice(0, 10);
-                        listDate.push(strDate);
-                        dateMove.setDate(dateMove.getDate() + 1);
-                    }
-                }
-                return listDate;
-            };
-        
-        
-        //테이블에서 선택불가날짜 가져오기
-        let inputDisDays = function() { 
-        	
-        	let startArr = [];
-        	let endArr = [];
-
-	        $("input[name=startDate]").each(function(index, item){
-	        	var startDate = $(item).val(); 	
-	        	startArr.push(startDate);
-	        });
-
-        	$("input[name=endDate]").each(function(index, item){
-        		var	endDate = $(item).val();  	
-        		endArr.push(endDate);
-	        });
-
-   			
-			//console.log('s'+startArr);
-			//console.log('e'+endArr);
-			
-			for(i=0; i<startArr.length; i++) {
-				getDateRange(startArr[i], endArr[i], listDate);
-			}
-			
-			for(i=0; i<listDate.length; i++) {
-				var dis = listDate[i];
-				disDays.push(dis);	
-				//console.log(dis);
-			}
-			//console.log(disDays);
+    if (startDate == endDate) {
+        var strDate = dateMove.toISOString().slice(0,10);
+        listDate.push(strDate);
+    } else {
+        while (strDate < endDate)  {
+            var strDate = dateMove.toISOString().slice(0, 10);
+            listDate.push(strDate);
+            dateMove.setDate(dateMove.getDate() + 1);
         }
+    }
+    return listDate;
+};
+        
+     
+//테이블에서 예약된 날짜 선택불가처리
+let inputDisDays = function() { 
+   	
+	let startArr = []; //시작날짜 배열
+   	let endArr = []; //끝날짜 배열
 
+    $("input[name=startDate]").each(function(index, item){ //시작날짜 배열 만들기
+    	var startDate = $(item).val(); 	
+    	startArr.push(startDate);
+    });
 
-     </script>
+   	$("input[name=endDate]").each(function(index, item){ //끝날짜 배열 만들기
+   		var	endDate = $(item).val();  	
+   		endArr.push(endDate);
+    });
+
+	
+	//console.log('s'+startArr);
+	//console.log('e'+endArr);
+	
+	for(i=0; i<startArr.length; i++) { //시작날짜와 끝날짜 배열을 받아서 사이의 날짜를 listDate에 반환
+		getDateRange(startArr[i], endArr[i], listDate);
+	}
+	
+	for(i=0; i<listDate.length; i++) { //listDate의 값을 선택불가날짜 배열에 삽입
+		var dis = listDate[i];
+		disDays.push(dis);	
+		//console.log(dis);
+	}
+	//console.log(disDays);
+}
+</script>
   
   
   <!-- Bootstrap core JavaScript -->

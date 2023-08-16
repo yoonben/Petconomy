@@ -31,69 +31,68 @@
 </head>
 <style>
 	html, body{
-	   margin: 0 auto; /* 바디 마진을 0으로 하고 가로 가운데 정렬 */
-	   background-color: #fff;
-	  }
+		margin: 0 auto; /* 바디 마진을 0으로 하고 가로 가운데 정렬 */
+		background-color: #fff;
+	}
 	
-	  div >.page-content{
-	  width: 800px;
-	  background-color: #fff;
-	  margin: 110px auto;
-	  align-items: center;
-	  }
+	div >.page-content{
+		width: 800px;
+		background-color: #fff;
+		margin: 110px auto;
+		align-items: center;
+	}
 	  
-		#profileTable.th, th {
-		    background-color: transparent;
-		    border-radius: 0;
-		}
+	#profileTable.th, th {
+		background-color: transparent;
+		border-radius: 0;
+	}
 		
-		#profileTable.th, td, th {
-		    background-color: #fff;
-		    text-align: center;
-		    padding: 15px;
-		    border-spacing: 10px;
-		    border-bottom: 2px solid #fff;
-		}
+	#profileTable.th, td, th {
+	    background-color: #fff;
+	    text-align: center;
+	    padding: 15px;
+	    border-spacing: 10px;
+	    border-bottom: 2px solid #fff;
+	}
 		  
-	  .infoForm {
-	  	background-color: #FFF1E0;
-	  	border-radius: 23px;
-	  	padding-bottom: 50px;
-	  	position: relative;
-	  	z-index: 1;
-	  	width: 97%;
-	  	margin: 0 auto;
-	  	height: 270px;
-	  }
-	  
-	  .resInfo {
-        padding-bottom: 40px;
-	  	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-	  	border-radius: 23px;
-	  	width: 100%;
-	  	height: 600px;
-      	margin: 0 auto;
-      	position: relative;
-        z-index: 2;
-    	bottom: 50px;
-    	background-color: #fff;
-	  }
-	  
+	.infoForm {
+		background-color: #FFF1E0;
+		border-radius: 23px;
+		padding-bottom: 50px;
+		position: relative;
+		z-index: 1;
+		width: 97%;
+		margin: 0 auto;
+		height: 270px;
+	}
 
-    /*달력속성 변경*/
-    .hasDatepicker {
-        display: inline-block;
-        padding: .2em .2em 0;
-    }
+	.resInfo {
+	    padding-bottom: 40px;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+		border-radius: 23px;
+		width: 100%;
+		height: 600px;
+	   	margin: 0 auto;
+	   	position: relative;
+	    z-index: 2;
+	 	bottom: 50px;
+	 	background-color: #fff;
+	}
+	  
+	/*달력속성 변경*/
+	.hasDatepicker {
+		display: inline-block;
+	    padding: .2em .2em 0;
+	}
     
-    /*readonly 백그라운드 색상 설정*/ 
+	/*readonly 백그라운드 색상 설정*/ 
     .memberInfo > input:read-only {
-    background-color: #ededed;
+    	background-color: #ededed;
     }
     
     .memberInfo > h3, .fiex > h3{
-    margin-bottom: 10px;
-    margin-top: 10px;
+	    margin-bottom: 10px;
+	    margin-top: 10px;
     }
     
     .pensionInfo input {
@@ -106,175 +105,173 @@
     }
     
     #pname {
-    font-weight: bold;
-    }
-    
-    .pImg {
-    border: 1px solid black;
-    width:200px;
-    height:200px;
-    display:inline-block;
-    float:left;
-    margin: 10px;
-    border-radius: 23px;
+    	font-weight: bold;
     }
     
     .memberInfo {
-    display: inline-block;
-    margin-left: 10px;
-    font-size: 16px;
-    padding-bottom: 10px;
-    position: relative;
-	top: 5px;
-	left: 165px;
-
+	    display: inline-block;
+	    margin-left: 10px;
+	    font-size: 16px;
+	    padding-bottom: 10px;
+	    position: relative;
+		top: 5px;
+		left: 165px;
     }
     
     .memberInfo > input {
-    margin: 3px;
-    border: 1px solid #ffc48c;
-    border-radius: 15px;
-    padding: 6px;
-    font-size: 15px;
+	    margin: 3px;
+	    border: 1px solid #ffc48c;
+	    border-radius: 15px;
+	    padding: 6px;
+	    font-size: 15px;
     }
     
     #user_id {
-    position: relative;
-    left: 42px;
+	    position: relative;
+	    left: 42px;
     }
     
     #user_email {
-    position: relative;
-    left: 26px;
+	    position: relative;
+	    left: 26px;
     }
     
     #user_tel {
-    position: relative;
-    left: 14px;
+	    position: relative;
+	    left: 14px;
     }
     
     #Resbtn {
-    position: relative;
-    bottom: 30px;
-    left: 156px;
+	    position: relative;
+	    bottom: 30px;
+	    left: 156px;
     }
     
     button {
-    display: inline-block;
-    background-color: #fff; 
-    padding: 5px;
-    border: 1px solid #FFC48C;
-    border-radius: 5px;
-    width: 70px;
-    font-weight: bold;
-    margin-left: 10px;
+	    display: inline-block;
+	    background-color: #fff; 
+	    padding: 5px;
+	    border: 1px solid #FFC48C;
+	    border-radius: 5px;
+	    width: 70px;
+	    font-weight: bold;
+	    margin-left: 10px;
     }
     
     .btn {
-    float: right;
-    display: inline-block;
-    position: relative;
-	bottom: 160px;
-    right: 157px;
-    z-index: 3;
+	    float: right;
+	    display: inline-block;
+	    position: relative;
+		bottom: 160px;
+	    right: 157px;
+	    z-index: 3;
     }
     
     .btn > #payment {
-    background-color: #FFC48C;
-    color:#fff;
-    width: 100px;
-    height: 40px;
+	    background-color: #FFC48C;
+	    color:#fff;
+	    width: 100px;
+	    height: 40px;
     }
     
     .btn > #goback {
-    width: 100px;
-    height: 40px;
-    border-color: #cbcbcb;
-    color: #cbcbcb;
+	    width: 100px;
+	    height: 40px;
+	    border-color: #cbcbcb;
+	    color: #cbcbcb;
     }
     
     .btn > #goback:hover {
-    background-color: #cbcbcb;
-    color: #fff;
+	    background-color: #cbcbcb;
+	    color: #fff;
     }
 	
 	.resvation {
-	height: 280px;
-	margin: 0;
-	padding: 0;
+		height: 280px;
+		margin: 0;
+		padding: 0;
 	}
 	
 	.datepicker {
-	width: 300px;
-	position: relative;
-	left: 30px;
-	top: 30px;
-	float: left;
+		width: 300px;
+		position: relative;
+		left: 30px;
+		top: 30px;
+		float: left;
 	}
 	
 	.timepicker {
-	width: 450px;
-	margin: 5px;
-	position: relative;
-	top: 70px;
-	left: 15px;
-	float: left;
+		width: 450px;
+		margin: 5px;
+		position: relative;
+		top: 70px;
+		left: 15px;
+		float: left;
 	
 	}
 	
 	.timepicker > input {
-    width: 80px;
-    padding: 10px;
-    background-color: #fff;
-    margin: 5px;
-    border: 1px solid #FFC48C;
-    border-radius: 5px;
+	    width: 80px;
+	    padding: 10px;
+	    background-color: #fff;
+	    margin: 5px;
+	    border: 1px solid #FFC48C;
+	    border-radius: 5px;
 	}
 	
 	.timepicker > input:disabled {
-	border-color: lightgray;
-    background-color: #ededed;
+		border-color: lightgray;
+	    background-color: #ededed;
 	}
 	
 	.timepicker > input:focus, timepicker > input:hover  {
-	background-color: #FFC48C;
-	color: #fff; 
+		background-color: #FFC48C;
+		color: #fff; 
 	}
 	
 	.fiex{
-	position: relative;
-    top: 28px;
-    left: 65px;
-    display: inline-block;
+		position: relative;
+	    top: 28px;
+	    left: 65px;
+	    display: inline-block;
 	}
 	
 	
 	#date, #time {
-	border: none;
-    outline: none;
-    border-bottom: 1px solid #FFC48C;
+		border: none;
+	    outline: none;
+	    border-bottom: 1px solid #FFC48C;
 	}
 	
 	.payInfo {
-	position: relative;
-    left: 40px;
-    top: 15px;
+		position: relative;
+	    left: 40px;
+	    top: 15px;
 	}
 	
 	.payInfo > p {
-	font-size: 20px;
-    font-weight: bold;
-    position: relative;
-    left: 30px;
+		font-size: 20px;
+	    font-weight: bold;
+	    position: relative;
+	    left: 30px;
 	}
 	
 	#pay {
-	font-size: 35px;
-    font-weight: bold;
-    border: none;
-    outline: none;
-    position: relative;
-    left: 30px;
+		font-size: 35px;
+	    font-weight: bold;
+	    border: none;
+	    outline: none;
+	    position: relative;
+	    left: 30px;
+	}
+	
+	.card-img-top {
+		height: 200px;
+	    width: 300px;
+	    border-radius: 5px;
+	    margin: 10px;
+	    display: inline-block;
+	    float: left;
 	}
 
 	
@@ -332,12 +329,12 @@
 				<div class="infoForm">
 					<!-- 숙소 정보 -->
 					<div class='pensionInfo'>
-   						<div class="pImg">펜션이미지</div>
+   						<img src="/peco/display?fileName=${hImg}" class="card-img-top" alt="병원이미지">
 							<c:forEach var="h" items="${hList}">
 							  <input type="hidden" value="${h.h_id}" id="h_id"><br>
-							  <input type="text" value="${h.pname}" id="pname"><br>
+							  <input type="text" value="${h.pname}" id="pname" style=""><br>
 							  <input type="text" value="${h.openhour}" id="openhour"><br>
-
+     						</c:forEach>
 				  	</div>
 				  	<!-- 숙소 정보 끝 -->
 				</div>
@@ -370,7 +367,6 @@
 			         <!-- 예약자 정보 -->
 					 <div class="memberInfo">
 			   		 <h3>예약자 정보 </h3>
-   				
 					   		<input type="hidden" value="${sessionScope.member.m_id }" id="m_id">
 					         이름      <input type="text" value="${sessionScope.member.mname }" id="user_id" readonly><br>
 					         이메일   <input type="text" value="${sessionScope.member.email }" id="user_email" readonly><br>
@@ -387,7 +383,7 @@
 				        <input type="text" id="pay" readonly>
 			      	</div>
 			        <!-- 결제금액 끝 -->
-     				</c:forEach>
+
 		
 				</div>
 				<br>
@@ -547,7 +543,7 @@
 		
 		//console.log(time);
 		
-		let openhour = document.querySelector('#openhour').value;
+		let openhour = nullhour();
 		
 		//console.log(openhour);
 		
@@ -596,6 +592,20 @@
 		return time;	
 	}
 	
+	//운영시간이 정보없음일 경우 처리
+	function nullhour() {
+		
+		let openhour = document.querySelector('#openhour').value;
+		
+		if(openhour === '정보없음') {
+			openhour = "09:00~20:00";
+		}
+		
+		$('#openhour').val(openhour);
+		
+		return openhour;
+	} 
+	
 	$(function() {
 		
 		checkDisable(); //시간버튼 출력
@@ -613,9 +623,10 @@
             ,minDate: "0"
             ,maxDate: "+1y"
             ,dateFormat: 'yy-mm-dd'
-            ,onSelect: function(date) {
-             $('#date').val(date);
-             checkDisable();  //예약불가시간 처리
+            ,onSelect: function(date) {	
+				$('#time').val('');
+				$('#date').val(date);
+				checkDisable();  //예약불가시간 처리
              }
         }); 
 		
@@ -743,7 +754,7 @@
                           
                           $('#resForm').submit(); 
                  			alert(msg);
-                 			window.location.replace("./redirect?m_id="+m_id);
+                 			window.location.replace("./profile?m_id="+m_id);
         	        	} else {
         	        		var msg = '결제에 실패하였습니다.';
                          msg += '에러내용 : ' + rsp.error_msg;
