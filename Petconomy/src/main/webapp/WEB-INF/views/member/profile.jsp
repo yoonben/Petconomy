@@ -290,8 +290,8 @@
 					<th><h5>펜션프로필</h5><span>Pension</span></th>
 					<th><h5>펜션명</h5><span>Pension Name</span></th>
 					<th><h5>예약번호</h5><span>Reservation Number</span></th>
-					<th><h5>이용날짜</h5><span>Date</span></th>
 					<th><h5>결제금액</h5><span>Payment Amount</span></th>
+					<th><h5>이용날짜</h5><span>Date</span></th>
 					<th><h5>예약자명</h5><span>Reservation Name</span></th>
 					<th><h5>예약취소</h5><span>Cancellation</span></th>
 				</tr>
@@ -304,18 +304,19 @@
 				
 				<c:forEach var="pr" items="${getPrList }" varStatus="status">
 					<tr>
-						<input type="text" value="${status.index}" id="index"> 
-						<td><img id='pensionImg' src="/peco/display?fileName=${profile}" alt="프로필 사진" ></td>
+						<input type="hidden" value="${status.index}" id="index"> 
+						<td><img id='pensionImg' src="/peco/display?fileName=${pensionImg}" alt="펜션 프로필" ></td>
 						<td>${pr.pname }</td> 
 							<c:choose>
 								<c:when test="${fn:length(pr.imp_uid) > 1}">
-									<td>${fn:substring(pr.imp_uid,4,16)}</td>
+								<td><input type="hidden" class="index" id="imp_uid" data-puid="${status.index}" value="${fn:substring(pr.imp_uid,4,16)}" readonly>${fn:substring(pr.imp_uid,4,16)}</td>
+									<td><input type="hidden" class="index" id="pcnt" data-pcnt="${status.index}" value="${pr.pricecnt }"readonly>${pr.pricecnt }</td>
 								</c:when>
 							</c:choose>
 						<td>${pr.startdate } ~<br> ${pr.enddate }</td> 
-						<td>${pr.pricecnt }</td>
 						<td>${pr.pr_name }</td>
 						<td><button id='cancellation' onclick="delPension(${status.index})">예약취소</button></td>
+						
 					</tr>
 					
         
@@ -422,10 +423,10 @@
 	    
 		        $.ajax({
 
-		            url: "delete", 
+		            url: "/peco/delete", 
 		            type: "Post",
 		            data: ({
-		                  imp_uid: imp_uid, //주문번호    
+		                  imp_uid: imp_uid //주문번호    
 		            })
 		        })
 	    
