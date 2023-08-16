@@ -7,9 +7,11 @@ import org.springframework.stereotype.Service;
 
 import com.peco.mapper.ResMapper;
 import com.peco.vo.H_RESVO;
+import com.peco.vo.HospitalFileuploadVO;
 import com.peco.vo.HospitalVO;
 import com.peco.vo.MemberVO;
 import com.peco.vo.P_RESVO;
+import com.peco.vo.PensionFiileuploadVO;
 import com.peco.vo.PensionVO;
 
 @Service
@@ -71,6 +73,16 @@ public class ResServiceimpl implements ResService{
 	@Override
 	public int deleteResHospital(String imp_uid) {
 		return mapper.deleteResHospital(imp_uid);
+	}
+
+	@Override
+	public PensionFiileuploadVO getPesionImg(String p_id) {
+		return mapper.getPesionImg(p_id);
+	}
+
+	@Override
+	public HospitalFileuploadVO getHospitalImg(String h_id) {
+		return mapper.getHospitalImg(h_id);
 	}
 
 }

@@ -131,10 +131,7 @@ https://templatemo.com/tm-579-cyborg-gaming
  
 		
 		// 댓글목록 조회및 출력
-		getReplyList();	
-		
-		
- 
+		getReplyList();	 
 });
  
  function kakaoLoad() {
@@ -237,6 +234,7 @@ https://templatemo.com/tm-579-cyborg-gaming
 </head>
 
 <body>
+
   <!-- ***** Preloader Start ***** -->
   <div id="js-preloader" class="js-preloader">
     <div class="preloader-inner">
@@ -255,7 +253,9 @@ https://templatemo.com/tm-579-cyborg-gaming
 	<!-- 헤더 끝 -->
   <div class="container">
   <input type="hidden" name="p_id" id="p_id" value="${pension.p_id }">
-  <input type="hidden" id="reviewer" value="${sessionScope.member.nickname }">
+
+  <input type="hidden" name="filename" id="filename" value="${filename}">
+  <input type="hidden" name="reviewer" id="reviewer" value="${sessionScope.member.nickname }">
     <div class="row">
       <div class="col-lg-12">
         <div class="page-content">
@@ -326,7 +326,12 @@ https://templatemo.com/tm-579-cyborg-gaming
                           </div>
                           <div class="col-lg-12">
                             <div class="main-border-button">
-                              <a href="#" onclick="reservation()" style="border: 1px solid #FFC48C; background-color: #FFF1E0; color: #FFC48C" >예약하기</a>
+	                            <c:if test="${empty sessionScope.member}">
+	                              <a href="#" onclick="location.href='/peco/login'" style="border: 1px solid #FFC48C; background-color: #FFF1E0; color: red;">예약하려면 로그인이 필요합니다</a>
+	                            </c:if>
+	                            <c:if test="${not empty sessionScope.member}">
+	                              <a href="#" onclick="location.href='/peco/PensionRes?p_id=${pension.p_id }&room_no=${roomList.room_no }'" style="border: 1px solid #FFC48C; background-color: #FFF1E0; color: #FFC48C" >예약하기</a>
+	                            </c:if>
                             </div>
                           </div>
                         </div>
@@ -407,7 +412,7 @@ https://templatemo.com/tm-579-cyborg-gaming
 	                        <div class="col-lg-17" id="reviewPossible">
 	                          <div class="left-info" style='background-color: bisque;'>
 	                            <div class="left">
-	                              <h4 style='text-align: left; color: black;'><b><input type="hidden" id="reviewer" value="${sessionScope.member.nickname }" readonly></b></h4>
+	                              <h4 style='text-align: left; color: black;'><b><input type="hidden" value="${sessionScope.member.nickname }" readonly></b></h4>
 	                              <br>
 	                            </div>
 	                            <div class="col-lg-13"> <textarea name="review" id="review" rows="5" style='width: 100%; border-radius: 15px;'></textarea>
@@ -425,9 +430,8 @@ https://templatemo.com/tm-579-cyborg-gaming
 	                          </div>
 	                        </div>
 	                        </div>
-	                        <!-- 리뷰 보내기 끝 -->   
-                        <!-- 리뷰 중복 시작 -->                                               
-                        <!-- 리뷰 중복 끝 -->    
+	                      <!-- 리뷰 보내기 끝 -->                        
+
                   
                         
 

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,7 +46,7 @@ public class MainController {
 	//펜션 페이지
 	//펜션 페이지
 	@GetMapping("/main/pension")
-	public String plist(RegionCri cri, Model model, HttpServletRequest request) {
+	public String plist(RegionCri cri, Model model, HttpServletRequest request, PensionVO pensionVO, HttpSession session) {
 		
 		List<PensionVO> list = pensionService.pensionList(cri);
 		List<PensionVO> lists = pensionService.mapList(cri);
@@ -58,11 +59,11 @@ public class MainController {
 	        	pImg.setSavePath(convertedPath);
 	    }
 		
-//		String megaregion = request.getParameter("megaregion");
-//		String smallregion = request.getParameter("smallregion");
-//		System.out.println("megaregion"+ megaregion);
-//		System.out.println("smallregion"+smallregion);
-		System.out.println("======"+cri);
+		for (PensionVO pImg : lists) {
+	        String convertedPath = pImg.getSavePath().replace("\\", "/");
+	        	pImg.setSavePath(convertedPath);
+	    }
+		
 		
 		model.addAttribute("totalCnt", totalCnt);
 		model.addAttribute("pageDto", pageDto);
@@ -87,6 +88,11 @@ public class MainController {
 	        	hImg.setSavePath(convertedPath);
 	    }
 		
+		for (HospitalVO hImg : lists) {
+	        String convertedPath = hImg.getSavePath().replace("\\", "/");
+	        	hImg.setSavePath(convertedPath);
+	    }
+		
 		model.addAttribute("totalCnt", totalCnt);
 		model.addAttribute("pageDto", pageDto);
 		model.addAttribute("list", list);
@@ -100,6 +106,17 @@ public class MainController {
 		List<PensionVO> plist = pensionService.pensiontop();
 		List<HospitalVO> hlist = hospitalService.hospitaltop();
 		List<BoardVO> blist = boardService.getBest();
+		
+		for (PensionVO pImg : plist) {
+	        String convertedPath = pImg.getSavePath().replace("\\", "/");
+	        	pImg.setSavePath(convertedPath);
+	    }
+		
+		for (HospitalVO hImg : hlist) {
+	        String convertedPath = hImg.getSavePath().replace("\\", "/");
+	        	hImg.setSavePath(convertedPath);
+	    }
+		
 		model.addAttribute("plist", plist);
 		model.addAttribute("hlist", hlist);
 		model.addAttribute("blist", blist);
@@ -117,6 +134,7 @@ public class MainController {
 	//카카오맵
 	@GetMapping("/main/kakaomap")
 	public String kakaomap() {
+		
 		return "/main/kakaomap";
 	}
 	

@@ -15,7 +15,7 @@
              ON p.p_id = q.p_id  
              left join              
              (select p_id, uploadpath||p_id||filename savePath from p_img) s
-             ON p.p_id = s.p_id where 1=1 and savePath is not null
+             ON p.p_id = s.p_id where checkyn='Y' and savePath is not null
 			<if test="megaregion!=null">
 				and addr like  '%'||#{megaregion}||'%'
 			</if>
@@ -38,7 +38,7 @@
              ON p.p_id = q.p_id  
              left join              
              (select p_id, uploadpath||p_id||filename savePath from p_img) s
-             ON p.p_id = s.p_id where 1=1 and savePath is not null
+             ON p.p_id = s.p_id where checkyn='Y' and savePath is not null
 			<if test="megaregion!=null">
 				and addr like  '%'||#{megaregion}||'%'
 			</if>
@@ -52,10 +52,15 @@
   	</select>
   	
   	<select id="pensiontop" resultType="com.peco.vo.PensionVO">
-			select * from( select t.*, rownum rn from
-			( select p.p_id, pname, addr, star, cnt from pension p LEFT JOIN
-			( select p_id, round(avg(star)) star, count(*) cnt from p_review group by p_id) r ON p.p_id = r.p_id WHERE r.star IS NOT NULL order by r.star desc, cnt desc)t ) 
-			where rn between 1 and 10 
+            select * from( select t.*, rownum rn from
+			( select p.p_id, pname, addr, star, cnt, savePath from pension p LEFT JOIN
+			( select p_id, round(avg(star)) star, count(*) cnt from p_review group by p_id) r 
+            ON p.p_id = r.p_id
+             left join              
+             (select p_id, uploadpath||p_id||filename savePath from p_img) s
+             ON p.p_id = s.p_id
+            WHERE checkyn='Y' and r.star IS NOT NULL order by r.star desc, cnt desc)t ) 
+			where rn between 1 and 10
   	</select>
 
   	<select id="getOne_P" resultType="com.peco.vo.PensionVO">
@@ -134,7 +139,7 @@
              ON p.p_id = q.p_id  
              left join              
              (select p_id, uploadpath||p_id||filename savePath from p_img) s
-             ON p.p_id = s.p_id where 1=1 and savePath is not null
+             ON p.p_id = s.p_id where checkyn='Y' and savePath is not null
 			<if test="megaregion!=null">
 				and addr like  '%'||#{megaregion}||'%'
 			</if>

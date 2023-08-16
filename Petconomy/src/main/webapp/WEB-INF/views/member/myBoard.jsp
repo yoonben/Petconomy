@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/js/bootstrap.min.js"></script>
 	<script src="https://kit.fontawesome.com/410d7ec875.js" crossorigin="anonymous"></script>
+	<script src="https://kit.fontawesome.com/9e7ba5ea4c.js" crossorigin="anonymous"></script>
 	
 <title>Insert title here</title>
 
@@ -84,6 +85,50 @@
 
   </script>
   
+  <style>
+	  #delete-btn{
+		width: 150px; 
+		height: 50px;
+		border-radius: 20px;
+		}
+		#delete-btn:hover {
+			color: #F99;
+			background-color: #ffffff;
+		}
+		
+		#myboard-link{
+			color: #212529;
+			text-decoration: underline;
+			text-decoration-color: red;
+		}
+		#myboard-link:hover{
+			color: #F99;
+		}
+		
+		<!-- i n p u t 박 스 -->
+input[type='checkbox']{
+    width: 2rem !important;
+    height: 2rem !important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    appearance:none;
+    outline: none;
+    box-shadow: none;
+    background: url()no-repeat;
+}
+
+#checkbox check 상태
+input[type='checkbox']:checked{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    appearance:none;
+    box-shadow: none;
+    background: url() no-repeat;
+}
+  </style>
+  
 </head>
 <body>
   <!-- 헤더영역 시작-->
@@ -116,22 +161,29 @@
 										<th>조회수</th>
 									</tr>
 		
-		
+
 						<c:forEach var="boardVO" items="${board}">
 								<tr>
 									<td><input type='checkbox' name='rowCheck' value='${boardVO.bno }'></td>
 									<td>${boardVO.bno }</td>
 									<td>${boardVO.category }</td>
 									<td>${boardVO.writer }</td>
-									<td  colspan=2 >${boardVO.title}</td>
+									<td  colspan=2 >
+										<a href="/peco/board/view?bno=${boardVO.bno}" id='myboard-link'>
+											${boardVO.title}  <i class="fa-solid fa-pen-to-square"></i>
+										</a>
+									</td>
 									<td>${boardVO.regdate}</td>
 									<td>${boardVO.visitcount}</td>
 								</tr>
-							</c:forEach>
+						</c:forEach>
+			
+				
+							
 								<tr>
 									<td colspan='8'>
 								        <i id="btnDeleteModal" class="fa-solid fa-trash" style="color: #ffa200;"></i>
-								        <input type='button' value='삭제' onclick='deleteValue();'>
+								        <input type='button' value='삭제' id='delete-btn' onclick='deleteValue();'>
 									</td>
 								</tr>	
 							</table>

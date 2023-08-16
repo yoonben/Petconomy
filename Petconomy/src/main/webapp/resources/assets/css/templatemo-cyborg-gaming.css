@@ -159,12 +159,14 @@ p {
 }
 
 .main-button a {
+  width: 150px; 
+  height: 50px;
   font-size: 14px;
   color: #FFC48C;
   background-color: #FFF1E0;
   padding: 12px 30px;
   display: inline-block;
-  border-radius: 25px;
+  border-radius: 20px;
   font-weight: 400;
   text-transform: capitalize;
   letter-spacing: 0.5px;
@@ -174,8 +176,9 @@ p {
 }
 
 .main-button a:hover {
-  background-color: #fff5ca;
-  color: #ffc48c;
+	color: #ff8000;
+	background-color: #ffffff;
+	font-weight:900;
 }
 
 .main-border-button a {

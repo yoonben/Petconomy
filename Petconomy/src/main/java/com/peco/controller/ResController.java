@@ -2,26 +2,22 @@ package com.peco.controller;
 
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.peco.service.HospitalService;
-import com.peco.service.MemberService;
 import com.peco.service.PensionService;
 import com.peco.service.ResService;
 import com.peco.vo.H_RESVO;
-import com.peco.vo.HospitalVO;
-import com.peco.vo.MemberVO;
+import com.peco.vo.HospitalFileuploadVO;
 import com.peco.vo.P_RESVO;
-import com.peco.vo.PensionVO;
+import com.peco.vo.PensionFiileuploadVO;
 
 @Controller
 @RequestMapping("/peco/*")
@@ -33,11 +29,11 @@ public class ResController {
    PensionService pensionService;
    HospitalService hospitalService;
    
-   @GetMapping("/restest") //연결 테스트
+   @GetMapping("/restest") //연결테스트
 	public String getOne(Model model) {
 		
-	    String h_id = "99";
-	    String p_id = "111";
+	    String h_id = "h_1";
+	    String p_id = "p_10";
 	    String room_no = "r_02";
 	    
 	    model.addAttribute("h_id",h_id);
@@ -50,25 +46,28 @@ public class ResController {
    @RequestMapping(value="/peco/PensionRes",method = RequestMethod.GET)
    public String getPension(Model model, String p_id, String room_no) {
 	   
-	   String m_id = "m_3";
 	   
 	   System.out.println(p_id);
 	   System.out.println(room_no);
 	   
-	   model.addAttribute("mList", service.getMemberList(m_id));
-	      model.addAttribute("pList", service.getPensionList(p_id, room_no));
-	      model.addAttribute("disabledate", service.getPensionDisableDate(p_id, room_no));
+	   PensionFiileuploadVO pensionImg = service.getPesionImg(p_id);
+	   String pensionConvertedPath = pensionImg.getSavePath().replace("\\", "/");
 	   
+	   model.addAttribute("pImg",pensionConvertedPath);
+       model.addAttribute("pList", service.getPensionList(p_id, room_no));
+       model.addAttribute("disabledate", service.getPensionDisableDate(p_id, room_no));
+   
 	   
 	   return "resvation/pensionRes";
    }
    
    @RequestMapping(value="/peco/hospitalRes",method = RequestMethod.GET)
    public String getHospital(Model model, String h_id) {
-
-	   String m_id = "m_3";
 	   
-	   model.addAttribute("mList", service.getMemberList(m_id));
+	   HospitalFileuploadVO HospitalImg = service.getHospitalImg(h_id);
+	   String HospitalConvertedPath = HospitalImg.getSavePath().replace("\\", "/");	   
+
+	   model.addAttribute("hImg", HospitalConvertedPath);
 	   model.addAttribute("hList", service.getHospitalList(h_id));
 	   model.addAttribute("disabledate", service.getHospitalDisableDate(h_id));
 	   
@@ -117,16 +116,16 @@ public class ResController {
 	   service.insertResvationHospital(h_resVO);
 	   System.out.println("성공");
    }
-   
-   @RequestMapping(value="/peco/redirect",method = RequestMethod.GET)
+
+   @RequestMapping(value="/profile?m_id=${m_id}",method = RequestMethod.POST)
    public String redirect(Model model, String m_id){
 
 	   System.out.println("m_id : "+m_id);
-	   
 	   model.addAttribute("getPrList",service.getResPensionList(m_id));
 	   model.addAttribute("getHrList",service.getResHospitalList(m_id));
 	   
-	   return "resvation/success";
+	   
+	   return "/member/profile";
    }
    
    @ResponseBody
@@ -139,9 +138,9 @@ public class ResController {
 	   int res = service.deleteResPension(imp_uid);
 	   
 	   if(res>0) {
-		   System.out.println("정상삭제");
+		   System.out.println("삭제완료");
 	   } else {
-		   System.out.println("삭제중 오류");
+		   System.out.println("삭제중오류");
 	   }
 	   
    }
@@ -157,9 +156,9 @@ public class ResController {
 	   System.out.println(res);
 	   
 	   if(res>0) {
-		   System.out.println("정상삭제");
+		   System.out.println("삭제완료");
 	   } else {
-		   System.out.println("삭제중 오류");
+		   System.out.println("삭제중오류");
 	   }
 	   
    }

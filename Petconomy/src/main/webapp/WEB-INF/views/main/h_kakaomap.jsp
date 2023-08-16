@@ -41,8 +41,7 @@ window.addEventListener('load', function(){
 			var positions = [
 				<c:forEach items="${lists }" var="list">
 				    { 
-				       
-				        content : '<div style="width:105%; background-color:#FFF1E0"><a href="/peco/detail/detailPage?p_id=${list.p_id }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}&filename=${list.savePath}&pname=${list.pname}" style="color:#ff8040; text-align:center; font-weight:900">${list.pname}</a></div>',
+				        content : '<div style="width:105%; background-color:#FFF1E0"><a href="/peco/detail/hospitalDetailPage?h_id=${list.h_id }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}&pname=${list.pname}&filename=${list.savePath}">${list.pname}</a></div>',
 				    	address : "${list.addr }"
 				    },
 				</c:forEach>

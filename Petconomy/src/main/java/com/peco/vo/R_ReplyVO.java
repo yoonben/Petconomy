@@ -3,8 +3,11 @@ package com.peco.vo;
 import lombok.Data;
 
 @Data
-public class ReplyVO {
-	private String rno;		   //댓글 번호
+public class R_ReplyVO {
+	
+	private String rno;	   	   //원댓글 번호
+	
+	private String rrno;	   //댓글 번호
 	private String reply;	   //댓글 내용
 	private String replyer;	   //댓글작성자
 	private String regdate;    //댓글 작성일
@@ -13,9 +16,6 @@ public class ReplyVO {
 	private String nickname;   //멤버 테이블 참조키 
 	private String m_id;  	   //멤버 테이블 참조키
 	private int bno;  	       //게시글 테이블 참조키
-	
-    private String rrno;         // 대댓글 번호
-    private String r_reply;      // 대댓글 내용
-    private String r_replyer;    // 대댓글 작성자
-    private String r_regdate;    // 대댓글 작성일
+
+
 }

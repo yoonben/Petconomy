@@ -20,14 +20,77 @@
 	width: 300px; 
 	height: 300px;
 	object-fit: cover;
-	margin-left:30px;
-	border-radius: 30px;
+	margin-left:100px;
+	border-radius: 70px;
+	box-shadow: 0px 3px 6px rgba(0, 0, 0.2, 0.2);
+	border: 5px solid;
+	border-color: #FF8C00;
+	
 	
 	image-rendering:-webkit-optimize-contrast;
   	transform:translateZ(0);
   	backface-visibility:hidden;
 
 }
+#myprofileBtn-bottom-box{
+	margin-top:20px;
+	
+}
+
+#main-button .btn{
+	width: 150px; 
+	height: 50px;
+	border-radius: 20px;
+	border: 2px solid;
+	border-color: #black;
+	
+}
+
+
+#main-button{
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+#profileTable{
+	width : 100%; 
+	height : 100%;
+	margin-left : 40px;
+}
+
+input#btnUdate.btn{
+	width: 150px; 
+	height: 50px;
+	border-radius: 20px;
+	margin: 0 24px;
+	border: 2px solid;
+	border-color: #black;
+	background-color: #FFFFFF;
+}
+input#btnUdate.btn:hover{
+	color: #FF8C00;
+	background-color: #ffffff;
+	margin: 0 24px;
+	border: 2px solid;
+}
+input#btnReset.btn{
+	width: 150px; 
+	height: 50px;
+	border-radius: 20px;
+	margin: 0 24px;
+	border: 2px solid;
+	border-color: #black;
+	background-color: #FFFFFF;
+}
+input#btnReset.btn:hover{
+	color: #FF8C00;
+	background-color: #ffffff;
+	margin: 0 24px;
+	border: 2px solid;
+}
+
+
 </style>
 
 <title>Insert title here</title>
@@ -338,9 +401,10 @@ System.out.println("pw : " + pw);
 								<td><input type='text' name='age' id="age" value='${member.age }'  style="height:100%; width:99%" ></td>
 							</tr>
 						</table>
-						
-						<input type="submit" id = "btnUdate" value="확인" class="btn">
-						<input type="reset" value="초기화">
+							<div id='main-button'>
+								<input type="submit" id = "btnUdate" value="확인" class="btn"> 
+								<input type="reset" id = "btnReset" value="초기화" class="btn">
+							</div>
 						</form>
 						</div>
 					</div>

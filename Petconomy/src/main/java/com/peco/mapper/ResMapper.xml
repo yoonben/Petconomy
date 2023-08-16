@@ -43,6 +43,16 @@
 		delete P_RES where IMP_UID=#{imp_uid}
    </delete>
    
+   <select id="getPesionImg" resultType="com.peco.vo.PensionFiileuploadVO">
+			select t.*
+		        , uploadpath||p_id||filename savePath
+        		, decode(filetype, 'I'
+                			,uploadpath||'s_'||p_id||'_'||filename
+                			,'') s_savePath 
+		  from p_img t
+          where p_id = #{p_id}
+	</select>
+   
    <select id="getHospitalList" resultType="com.peco.vo.HospitalVO">
    		select pname, h_id, addr, openhour, parkyn, homepage, phone from hospital
    		where h_id = #{h_id}
@@ -70,5 +80,15 @@
    <delete id="deleteResHospital">
 		delete H_RES where IMP_UID=#{imp_uid}
    </delete>
+   
+     <select id="getHospitalImg" resultType="com.peco.vo.HospitalFileuploadVO">
+		select t.*
+	        , uploadpath||h_id||filename savePath
+       		, decode(filetype, 'I'
+               			,uploadpath||'s_'||h_id||'_'||filename
+               			,'') s_savePath 
+	  from h_img t
+         where h_id = #{h_id}
+	</select>
    
 </mapper>

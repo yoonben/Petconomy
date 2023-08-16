@@ -5,9 +5,11 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.peco.vo.H_RESVO;
+import com.peco.vo.HospitalFileuploadVO;
 import com.peco.vo.HospitalVO;
 import com.peco.vo.MemberVO;
 import com.peco.vo.P_RESVO;
+import com.peco.vo.PensionFiileuploadVO;
 import com.peco.vo.PensionVO;
 
 public interface ResMapper {
@@ -24,6 +26,8 @@ public interface ResMapper {
 	
 	public int deleteResPension(String imp_uid); //펜션예약정보 삭제
 	
+	public PensionFiileuploadVO getPesionImg(String p_id); //펜션이미지
+	
 	public List<HospitalVO> getHospitalList(String h_id);//병원정보
 	
 	public List<H_RESVO> getHospitalDisableDate(String h_id);//병원예약불가날짜
@@ -34,5 +38,6 @@ public interface ResMapper {
 	
 	public int deleteResHospital(String imp_uid); //병원예약정보 삭제
 	
+	public HospitalFileuploadVO getHospitalImg(String h_id); //병원이미지
 	
 }

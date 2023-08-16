@@ -16,6 +16,9 @@
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 	
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	
 <style>
 
@@ -23,8 +26,12 @@
 	width: 300px; 
 	height: 300px;
 	object-fit: cover;
-	margin-left:30px;
-	border-radius: 30px;
+	margin-left:100px;
+	border-radius: 70px;
+	box-shadow: 0px 3px 6px rgba(0, 0, 0.2, 0.2);
+	border: 5px solid;
+	border-color: #FF8C00;
+	
 	
 	image-rendering:-webkit-optimize-contrast;
   	transform:translateZ(0);
@@ -40,30 +47,102 @@
 	width: 150px; 
 	height: 50px;
 	border-radius: 20px;
+	margin: 0 24px;
+	background-color: #FFFFFF;
 }
 #pension:hover {
-	color: #F99;
+	color: #FF8C00;
 	background-color: #ffffff;
+	margin: 0 24px;
 }
 
 #hospital{
 	width: 150px; 
 	height: 50px;
 	border-radius: 20px;
+	margin: 0 24px;
+	background-color: #FFFFFF;
 }
 #hospital:hover {
-	color: #F99;
+	color: #FF8C00;
 	background-color: #ffffff;
+	margin: 0 24px;
 }
 
 #myBoard{
 	width: 150px; 
 	height: 50px;
 	border-radius: 20px;
+	margin: 0 24px;
+	background-color: #FFFFFF;
 }
 #myBoard:hover {
-	color: #F99;
+	color: #FF8C00;
 	background-color: #ffffff;
+	margin: 0 24px;
+}
+#directRes{
+	width: 300px; 
+	height: 50px;
+	border-radius: 20px;
+	background-color: #FFFFFF;
+}
+#directRes:hover {
+	color: #FF8C00;
+	background-color: #ffffff;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.main-button .btn{
+	width: 150px; 
+	height: 50px;
+	border-radius: 20px;
+	border: 2px solid;
+	border-color: #black;
+	background-color: #FFFFFF;	
+	margin-top: 30px;
+	
+}
+.main-button .btn:hover{
+	color: #FF8C00;
+	background-color: #ffffff;
+	margin-top: 30px;
+}
+
+.main-button{
+  display: flex;
+  justify-content: center;
+}
+
+#profileTable{
+	width : 100%; 
+	height : 100%;
+	margin-left : 40px;
+}
+
+#pensionImg{
+	width: 100px; 
+	height: 100px;
+	border-radius: 70px;
+}
+#cancellation{
+	width: 100px; 
+	height: 40px;
+	border-radius: 20px;
+	border: 2px solid;
+	border-color: #black;
+	background-color: #FFFFFF;	
+	margin: 10px;
+}
+#cancellation:hover{
+	color: #FF8C00;
+	background-color: #ffffff;
+	margin: 10px;
 }
 
 </style>
@@ -108,9 +187,14 @@
 	window.addEventListener('load', function(){
 		displayEncryptedPassword();
 		
-		})
-		
+	})
+
+
 </script>
+
+
+<br><br><br>
+
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
@@ -128,7 +212,8 @@
                 <!-- 프로필 사진 시작-->
                   <div class="col-lg-3">
                     <img id='img_profile' src="/peco/display?fileName=${profile}" alt="프로필 사진" >
-                  </div>
+                    
+                     </div>
                  <!-- 프로필 사진 끝--> 
                  
                   <div class="col-lg-2 align-self-center">
@@ -138,7 +223,7 @@
                     <form id='profileForm' name='profile' action='/peco/profile_Update' method='post'>
 						<c:set var="memberVO" value="${member}"/>
 						<input type="hidden" name="m_id" value="${member.m_id}">
-							<table id="profileTable" width='100%' height='100%'>
+							<table id="profileTable">
 								<tr>
 									<th>회원번호</th>
 									<td>${member.m_id }</td>
@@ -174,7 +259,7 @@
 								</tr>
 							</table>			
 						      <div class="main-button">
-								  <a><input type="submit" value="수정하기" class="btn"></a><br><br>
+								  <input type="submit" value="수정하기" class="btn"><br><br>
 				              </div>
 					</form>
 						<div id='myprofileBtn-bottom-box'>
@@ -191,7 +276,7 @@
 
 		  <!-- 나의 정보 끝 -->
 		<br><br><br><br>
- 	
+
  		
 		<!-- 펜션예약 시작 -->
           <div class="gaming-library profile-library">
@@ -205,13 +290,13 @@
 					<th><h5>펜션프로필</h5><span>Pension</span></th>
 					<th><h5>펜션명</h5><span>Pension Name</span></th>
 					<th><h5>예약번호</h5><span>Reservation Number</span></th>
-					<th><h5>이용날짜</h5><span>Date</span></th>
 					<th><h5>결제금액</h5><span>Payment Amount</span></th>
+					<th><h5>이용날짜</h5><span>Date</span></th>
 					<th><h5>예약자명</h5><span>Reservation Name</span></th>
 					<th><h5>예약취소</h5><span>Cancellation</span></th>
 				</tr>
-				
 				<c:if test="${fn:length(getPrList )==0}">
+				<input type="text" name="m_id" value="${getPrList }">
 					<tr>
 						<td  colspan="9">예약내역이 없습니다</td>
 					</tr>
@@ -219,23 +304,27 @@
 				
 				<c:forEach var="pr" items="${getPrList }" varStatus="status">
 					<tr>
-						<input type="hidden" value="${status.index}" id="index">
-						<td><img src="/resources/assets/images/game-01.jpg" alt="" class="templatemo-item"></td>
+						<input type="hidden" value="${status.index}" id="index"> 
+						<td><img id='pensionImg' src="/peco/display?fileName=${pensionImg}" alt="펜션 프로필" ></td>
 						<td>${pr.pname }</td> 
 							<c:choose>
 								<c:when test="${fn:length(pr.imp_uid) > 1}">
-									<td><input type="text" class="index" id="imp_uid" data-puid="${status.index}" value="${fn:substring(pr.imp_uid,4,16)}" readonly></td>
+								<td><input type="hidden" class="index" id="imp_uid" data-puid="${status.index}" value="${fn:substring(pr.imp_uid,4,16)}" readonly>${fn:substring(pr.imp_uid,4,16)}</td>
+									<td><input type="hidden" class="index" id="pcnt" data-pcnt="${status.index}" value="${pr.pricecnt }"readonly>${pr.pricecnt }</td>
 								</c:when>
 							</c:choose>
-						<td>${pr.startdate }, ${pr.enddate }</td> 
-						<td><input type="text" class="index" id="pcnt" data-pcnt="${status.index}" value="${pr.pricecnt }"readonly></td>
+						<td>${pr.startdate } ~<br> ${pr.enddate }</td> 
 						<td>${pr.pr_name }</td>
-						<td style="border: none;"><button onclick="delPension(${status.index})">예약취소</button></td>
+						<td><button id='cancellation' onclick="delPension(${status.index})">예약취소</button></td>
+						
 					</tr>
+					
+        
 				</c:forEach>
 				</table>
 				</form>
          		<!-- 페이징처리-->
+         		
           <!-- 펜션예약 끝 -->
            </div>
          </div>
@@ -288,7 +377,6 @@
 				</c:forEach>
 			</table>
 		</form>		
-
          		<br><br>
               <div class="col-lg-12">
                 <div class="main-button">
@@ -299,14 +387,58 @@
           </div>
           <!-- 페이징처리-->
            <!-- 병원예약 끝-->
-          
         </div>
     </div>
   </div>
  </div>
+		      <div class="button-container">
+		          <button type="button" id='directRes' onclick="location.href='/peco/main/pension'">예약하러가기</button>
+		      </div>
 </div>
   
- 
+ <script>
+	//펜션 예약 취소
+	function delPension(index) {
+		var i = index;
+		console.log(i);
+
+		var imp_uid = 'imp_'+$('input[data-puid="'+index+'"]').val();
+		var pay = $('input[data-pcnt="'+index+'"]').val();
+
+		console.log(imp_uid);
+		console.log(pay);
+		console.log('삭제실행');
+		
+		$.ajax({
+
+		      url: "payment/cancel", 
+		      type: "Post",
+		      data: ({
+		        imp_uid: imp_uid, //주문번호
+		        amount: pay, //결제금액
+		        
+	      })
+	    }).done(function(result) { // 환불 성공시 로직 
+	        alert("환불 성공");
+	    
+		        $.ajax({
+
+		            url: "/peco/delete", 
+		            type: "Post",
+		            data: ({
+		                  imp_uid: imp_uid //주문번호    
+		            })
+		        })
+	    
+	        alert("삭제완료");
+		    location.reload();
+	    
+	    }).fail(function(error) { // 환불 실패시 로직
+	      	alert("환불 실패");
+	    });
+		
+	}
+ </script>
 
 
   <footer>
