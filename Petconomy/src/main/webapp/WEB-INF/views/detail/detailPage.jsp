@@ -131,10 +131,7 @@ https://templatemo.com/tm-579-cyborg-gaming
  
 		
 		// 댓글목록 조회및 출력
-		getReplyList();	
-		
-		
- 
+		getReplyList();	 
 });
  
  function kakaoLoad() {
@@ -425,9 +422,8 @@ https://templatemo.com/tm-579-cyborg-gaming
 	                          </div>
 	                        </div>
 	                        </div>
-	                        <!-- 리뷰 보내기 끝 -->   
-                        <!-- 리뷰 중복 시작 -->                                               
-                        <!-- 리뷰 중복 끝 -->    
+	                      <!-- 리뷰 보내기 끝 -->                        
+
                   
                         
 
