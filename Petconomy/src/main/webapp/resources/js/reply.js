@@ -47,18 +47,18 @@ function fetchPost(url,obj,callback){
 	
 }
 
-/*//덧글 조회 및 출력
+//덧글 조회 및 출력
 function getReplyList(page){
 	let bno = document.querySelector('#bno').value;
 	
-	*//**
+	/**
 	 * falsey : false, 0, "", NaN, undefined, null
 	 * falsey한 값 이외의 값이 들어 있으면 true를 반환
 	 * 
 	 *  page에 입력된 값이없으면 1로 세팅
 	 * 	 * @param map
 	 * @returns
-	 *//*
+	 */
 	if(!page){
 		page = 1;
 	}
@@ -163,8 +163,7 @@ if(nickname == reply.nickname){
 	};
 						
 	
-}*/
-
+}
 
 
 

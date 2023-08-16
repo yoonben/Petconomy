@@ -171,7 +171,7 @@ window.addEventListener('load', function() {
 
 
 	// 글수정 버튼 클릭 시  파일유효성검사
-	document.getElementById('btnWrite').addEventListener('click', FileCheck);
+	document.getElementById('btnWrite').addEventListener('click', SubmitCheck);
 	
 	
 });
@@ -179,34 +179,79 @@ window.addEventListener('load', function() {
 	
 //글수정 버튼 누를때 최종적으로 파일 유효성검사 함수 
 //*업로드할때 이미 거르기때문에 의미없을수도있음
-function FileCheck() {
+function SubmitCheck() {
 
-// 기본 이벤트 제거
-event.preventDefault(); 
+	// 기본 이벤트 제거
+	event.preventDefault(); 
+	
+	const filesInput = document.getElementById('files');
+	const files = filesInput.files;
+	try {
+		// 파일 유형 확인
+		const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/bmp', 'image/tiff', 'image/tif'];
+		for (let i = 0; i < files.length; i++) {
+		  if (!allowedTypes.includes(files[i].type)) {
+		  	alert("해당 종류의 파일은 업로드 할 수 없습니다.")
+		    return;
+		  }
+		}
+		
+		// 파일 크기 확인
+		const maxSize = 10 * 1024 * 1024; // 10MB
+		for (let i = 0; i < files.length; i++) {
+		  if (files[i].size > maxSize) {
+		    alert('파일 크기가 10MB 이하여야 합니다.');
+		    return;
+		  }
+		}
+		
+	    // 글 제목 길이 확인
+	    if (!checkTitleLength()) {
+	    	alert('제목은 최대 100자까지 입력할 수 있습니다.');
+	        return;
+	    }
+	    
+		// 글 내용 길이 확인
+	    if (!checkContentLength()) {
+	    	alert('글 내용은 최대 2000자까지 입력할 수 있습니다.');
+	        return;
+	    }
 
-const filesInput = document.getElementById('files');
-const files = filesInput.files;
-
-// 파일 유형 확인
-const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/bmp', 'image/tiff', 'image/tif'];
-for (let i = 0; i < files.length; i++) {
-  if (!allowedTypes.includes(files[i].type)) {
-  	alert("해당 종류의 파일은 업로드 할 수 없습니다.")
-    return;
-  }
+		
+		// 유효성 검사가  모두 유효한 경우, 폼 제출
+		writeForm.submit();
+	} catch (e) {
+		// 파일 업로드 예외 처리
+        alert('파일 업로드에 실패하였습니다. 다시 시도해주세요.');
+        console.error('파일 업로드 예외:', error);
+	}
+	
 }
 
-// 파일 크기 확인
-const maxSize = 10 * 1024 * 1024; // 10MB
-for (let i = 0; i < files.length; i++) {
-  if (files[i].size > maxSize) {
-    alert('파일 크기가 10MB 이하여야 합니다.');
-    return;
-  }
+//제목 길이 유효성 검사
+function checkTitleLength() {
+    const titleInput = document.getElementById('title');
+    const titleValue = titleInput.value;
+
+    // 제목 길이 확인
+    if (titleValue.length > 100) {
+        
+        return false; // 작성 취소
+    }
+    return true;
 }
 
-// 파일 유형과 크기가 모두 유효한 경우, 추가로 처리할 로직을 작성합니다.
-writeForm.submit();
+//내용 길이 유효성 검사
+function checkContentLength() {
+    const contentInput = document.getElementById('content');
+    const contentValue = contentInput.value;
+
+    // 글 내용 길이 확인
+    if (contentValue.length > 2000) {
+        
+        return false; // 작성 취소
+    }
+    return true;
 }
 
 

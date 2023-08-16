@@ -222,7 +222,10 @@ window.addEventListener('load', function() {
 		
 		fetch('/peco/file/fileUploadActionFetch',{method:'post',body: formData})
 		.then(response => response.json())
-		.then(map => getFileList());
+		.then(map => getFileList())
+		.catch(error =>{
+			alert("파일 업로드중 오류가 발생했습니다. 파일을 확인 해주세요.")
+		});
     });
     
     

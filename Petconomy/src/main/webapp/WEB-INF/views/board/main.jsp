@@ -80,7 +80,7 @@ https://templatemo.com/tm-579-cyborg-gaming
   .most-popular{
     background-color: bisque;
     margin-top:10px;
-    height: 880px;
+    height: 780px;
   }
   
   
@@ -174,6 +174,18 @@ https://templatemo.com/tm-579-cyborg-gaming
 		searchForm.submit();
 	}
 	
+	// JSP에서 에러메세지 등 msg 값을 전달받는 변수
+	var message = '${msg}';
+
+	// msg에 값이 존재할 경우에만 알림창 띄우는 함수
+	function showMessage() {
+	    if (message) {
+	        alert(message);
+	    }
+	}
+	// 페이지 로딩이 완료되면 showMessage 함수 호출
+	window.onload = showMessage;
+	
 </script>
 
 
@@ -230,14 +242,14 @@ https://templatemo.com/tm-579-cyborg-gaming
                 
                 <div class="row">
                 <c:forEach var="b" items="${Best}" varStatus="loop">
-                <c:if test="${loop.index < 8}">
+                
                   <div class="col-lg-3 col-sm-6 bestbox">
                     <div class="item">
 	                    <a onclick="requestAction('/peco/board/view', ${b.bno })">
 	                    <img src="/peco/display?fileName=${b.savePath}" alt="" class="thumbnail-image">
 	                    </a>
 	                    <br>
-	                      <h4>${fn:substring(b.title, 0, 10)}${fn:length(b.title) > 10 ? '...' : ''}
+	                      <h4>${fn:substring(b.title, 0, 5)}${fn:length(b.title) > 5 ? '...' : ''}
 	                      <span>${b.writer}</span></h4>
 	                      <ul>
 	                        <li><i id="animated-icon" class="fa-regular fa-thumbs-up fa-lg"></i> ${b.likecount}</li>
@@ -245,7 +257,7 @@ https://templatemo.com/tm-579-cyborg-gaming
 	                      </ul>
                     </div>
                   </div>
-                </c:if>
+                
                 </c:forEach>
              
                 </div>

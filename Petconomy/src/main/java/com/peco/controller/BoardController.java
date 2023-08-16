@@ -222,16 +222,20 @@ public class BoardController extends CommonRestController{
 				return "redirect:/peco/board/view?bno="+board.getBno();
 				
 			}else {
-				msg="등록중 오류가 발생하였습니다.";
-				model.addAttribute("msg",msg);
-				return "/board/free";
+				rttr.addFlashAttribute("msg","파일 업로드중 에러가 발생하였습니다. 파일을 확인해주세요.");
+				rttr.addAttribute("pageNo",cri.getPageNo());
+				rttr.addAttribute("searchField",cri.getSearchField());
+				rttr.addAttribute("searchWord",cri.getSearchWord());
+		        return "redirect:/peco/board/main"; // 리다이렉트를 통해 경로를 지정
 			}
 			
 		} catch (Exception e) {
-	        log.info(e.getMessage());
-	        model.addAttribute("msg", e.getMessage());
-	        e.printStackTrace();
-	        return "/board/free";
+	        log.info("에러메시지 = "+e.getMessage());
+	        rttr.addFlashAttribute("msg","파일 업로드중 에러가 발생하였습니다. 파일을 확인해주세요.");
+			rttr.addAttribute("pageNo",cri.getPageNo());
+			rttr.addAttribute("searchField",cri.getSearchField());
+			rttr.addAttribute("searchWord",cri.getSearchWord());
+	        return "redirect:/peco/board/main"; // 리다이렉트를 통해 경로를 지정
 	    }
 				
 	}
