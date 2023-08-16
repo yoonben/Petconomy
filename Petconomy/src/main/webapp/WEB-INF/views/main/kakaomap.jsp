@@ -7,6 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+div{
+border:0px solid;
+}
+</style>
 </head>
 <body>
 
@@ -27,7 +32,7 @@ window.addEventListener('load', function(){
 			var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
 			    mapOption = { 
 			        center: new kakao.maps.LatLng(latitude, longitude), // 지도의 중심좌표
-			        level: 6 // 지도의 확대 레벨
+			        level: 7 // 지도의 확대 레벨
 			    };
 
 			var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
@@ -36,7 +41,7 @@ window.addEventListener('load', function(){
 			var positions = [
 				<c:forEach items="${lists }" var="list">
 				    { 
-				        content : '<div class="main-button">${list.pname}</div>',
+				        content : '<div style="width:105%; background-color:#FFF1E0"><a href="/peco/detail/detailPage?p_id=${list.p_id }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}" style="color:#ff8040; text-align:center; font-weight:900" target="_blank">${list.pname}</a></div>',
 				    	address : "${list.addr }"
 				    },
 				</c:forEach>
@@ -75,7 +80,7 @@ window.addEventListener('load', function(){
 						       	    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
 						       	    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
 						       	    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
-						       	    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+						       	    kakao.maps.event.addListener(marker, 'click', makeOutListener(infowindow));
 			            	}
 			       		 })
 			    })
