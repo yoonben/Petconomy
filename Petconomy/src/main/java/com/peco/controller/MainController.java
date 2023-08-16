@@ -111,6 +111,12 @@ public class MainController {
 	        String convertedPath = pImg.getSavePath().replace("\\", "/");
 	        	pImg.setSavePath(convertedPath);
 	    }
+		
+		for (HospitalVO hImg : hlist) {
+	        String convertedPath = hImg.getSavePath().replace("\\", "/");
+	        	hImg.setSavePath(convertedPath);
+	    }
+		
 		model.addAttribute("plist", plist);
 		model.addAttribute("hlist", hlist);
 		model.addAttribute("blist", blist);
