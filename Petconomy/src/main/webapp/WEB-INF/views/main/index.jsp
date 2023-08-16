@@ -8,7 +8,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     
 <script>
-
+/*
 //$('#searchBtn').click(function(){
 $(document).ready(function () {
    
@@ -55,6 +55,7 @@ $(document).ready(function () {
  }
 })
 
+
 $(document).ready(function () {
    
    // 공공 api 주소 24000건 받아오기
@@ -99,6 +100,7 @@ $(document).ready(function () {
    })
  }
 })
+*/
 </script>
 </head>
 <body>
