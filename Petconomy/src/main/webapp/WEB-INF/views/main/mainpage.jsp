@@ -184,7 +184,7 @@ jQuery(function ($) {
               <div class="item" style="color:black">
                 <ul>
                   <li style="width: 3%;"><h3 style="color:black;">${pvo.rn }</h3></li>
-                  <li style="width: 27%;"><h3 style="color:black;"><a style="color:black" href="/peco/detail/detailPage?p_id=${pvo.p_id }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}">${pvo.pname }</a></h3></li>
+                  <li style="width: 27%;"><h3 style="color:black;"><a style="color:black" href="/peco/detail/detailPage?p_id=${pvo.p_id }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}&filename=${pvo.savePath}&pname=${pvo.pname}">${pvo.pname }</a></h3></li>
                   <li style="width: 50%;"><h3 style="color:black; font-size : 1.5em; font-bold:100">${pvo.addr }</h3></li>
                   <li style="width: 15%; font-size:1.5em; color:black;"><div class="test-score1" data-max="5" data-rate="${pvo.star }"></div>
                   (${pvo.cnt })</li>

@@ -59,6 +59,10 @@ public class MainController {
 	        	pImg.setSavePath(convertedPath);
 	    }
 		
+		for (PensionVO pImg : lists) {
+	        String convertedPath = pImg.getSavePath().replace("\\", "/");
+	        	pImg.setSavePath(convertedPath);
+	    }
 		
 		
 		model.addAttribute("totalCnt", totalCnt);
@@ -97,6 +101,11 @@ public class MainController {
 		List<PensionVO> plist = pensionService.pensiontop();
 		List<HospitalVO> hlist = hospitalService.hospitaltop();
 		List<BoardVO> blist = boardService.getBest();
+		
+		for (PensionVO pImg : plist) {
+	        String convertedPath = pImg.getSavePath().replace("\\", "/");
+	        	pImg.setSavePath(convertedPath);
+	    }
 		model.addAttribute("plist", plist);
 		model.addAttribute("hlist", hlist);
 		model.addAttribute("blist", blist);
@@ -114,6 +123,7 @@ public class MainController {
 	//카카오맵
 	@GetMapping("/main/kakaomap")
 	public String kakaomap() {
+		
 		return "/main/kakaomap";
 	}
 	

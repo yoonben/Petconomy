@@ -169,7 +169,7 @@ jQuery(function ($) {
 								                <li style="display: inline-block; width: 205px; text-align:center ">
 								                    <img src="/peco/display?fileName=${filename}" class="card-img-top" alt="..."
 								                         style="height: 150px; width: 200px; ">
-								                    <a href="/peco/detail/detailPage?p_id=${p_id}&pname=${pname}" style="font-size:1.1em ;font-weight: 900; color:black">${pname}</a><br>
+								                    <a href="/peco/detail/detailPage?p_id=${p_id}&pname=${pname}&filename=${filename}" style="font-size:1.1em ;font-weight: 900; color:black">${pname}</a><br>
 								                </li>
 								            </c:when>
 								            <c:otherwise>
