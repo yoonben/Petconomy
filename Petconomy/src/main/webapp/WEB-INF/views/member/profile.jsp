@@ -125,6 +125,26 @@
 	margin-left : 40px;
 }
 
+#pensionImg{
+	width: 100px; 
+	height: 100px;
+	border-radius: 70px;
+}
+#cancellation{
+	width: 100px; 
+	height: 40px;
+	border-radius: 20px;
+	border: 2px solid;
+	border-color: #black;
+	background-color: #FFFFFF;	
+	margin: 10px;
+}
+#cancellation:hover{
+	color: #FF8C00;
+	background-color: #ffffff;
+	margin: 10px;
+}
+
 </style>
 	
 <title>Insert title here</title>
@@ -167,51 +187,9 @@
 	window.addEventListener('load', function(){
 		displayEncryptedPassword();
 		
-		
-		//펜션 예약 취소
-		function delPension(index) {
-			var i = index;
-			console.log(i);
+	})
 
-			var imp_uid = 'imp_'+$('input[data-puid="'+index+'"]').val();
-			var pay = $('input[data-pcnt="'+index+'"]').val();
 
-			console.log(imp_uid);
-			console.log(pay);
-			console.log('삭제실행');
-			
-			$.ajax({
-
-			      url: "payment/cancel", 
-			      type: "Post",
-			      data: ({
-			        imp_uid: imp_uid, //주문번호
-			        amount: pay, //결제금액
-			        
-		      })
-		    }).done(function(result) { // 환불 성공시 로직 
-		        alert("환불 성공");
-		    
-			        $.ajax({
-
-			            url: "delete", 
-			            type: "Post",
-			            data: ({
-			                  imp_uid: imp_uid, //주문번호    
-			            })
-			        })
-		    
-		        alert("삭제완료");
-			    location.reload();
-		    
-		    }).fail(function(error) { // 환불 실패시 로직
-		      	alert("환불 실패");
-		    });
-			
-		}
-		
-		})
-		
 </script>
 
 
@@ -327,6 +305,7 @@
 				<c:forEach var="pr" items="${getPrList }" varStatus="status">
 					<tr>
 						<input type="hidden" value="${status.index}" id="index"> 
+						<td><img id='pensionImg' src="/peco/display?fileName=${profile}" alt="프로필 사진" ></td>
 						<td>${pr.pname }</td> 
 							<c:choose>
 								<c:when test="${fn:length(pr.imp_uid) > 1}">
@@ -336,7 +315,7 @@
 						<td>${pr.startdate } ~<br> ${pr.enddate }</td> 
 						<td>${pr.pricecnt }</td>
 						<td>${pr.pr_name }</td>
-						<td style="border: none;"><button onclick="delPension(${status.index})">예약취소</button></td>
+						<td><button id='cancellation' onclick="delPension(${status.index})">예약취소</button></td>
 					</tr>
 					
         
@@ -416,7 +395,49 @@
 		      </div>
 </div>
   
- 
+ <script>
+	//펜션 예약 취소
+	function delPension(index) {
+		var i = index;
+		console.log(i);
+
+		var imp_uid = 'imp_'+$('input[data-puid="'+index+'"]').val();
+		var pay = $('input[data-pcnt="'+index+'"]').val();
+
+		console.log(imp_uid);
+		console.log(pay);
+		console.log('삭제실행');
+		
+		$.ajax({
+
+		      url: "payment/cancel", 
+		      type: "Post",
+		      data: ({
+		        imp_uid: imp_uid, //주문번호
+		        amount: pay, //결제금액
+		        
+	      })
+	    }).done(function(result) { // 환불 성공시 로직 
+	        alert("환불 성공");
+	    
+		        $.ajax({
+
+		            url: "delete", 
+		            type: "Post",
+		            data: ({
+		                  imp_uid: imp_uid, //주문번호    
+		            })
+		        })
+	    
+	        alert("삭제완료");
+		    location.reload();
+	    
+	    }).fail(function(error) { // 환불 실패시 로직
+	      	alert("환불 실패");
+	    });
+		
+	}
+ </script>
 
 
   <footer>

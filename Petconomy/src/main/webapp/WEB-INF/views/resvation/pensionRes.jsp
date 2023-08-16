@@ -580,7 +580,7 @@ $('#payment').click(function () { //결제버튼
              	return false;
              }
 
-<<<<<<< HEAD
+
 	                           IMP.request_pay({
 	                                //카카오페이 결제시 사용할 정보 입력
 	                               pg: 'kakaopay',
@@ -655,7 +655,7 @@ $('#payment').click(function () { //결제버튼
 	                    	} 
                     	
                     	});
-=======
+
              IMP.request_pay({ //결제요청
                  //카카오페이 결제시 사용할 정보 입력
                  pg: 'kakaopay',
@@ -725,11 +725,7 @@ $('#payment').click(function () { //결제버튼
               	      });
                 });  
          } 
-              	
-}); //결제버튼 끝
->>>>>>> refs/remotes/origin/master
-
-});
+//결제버튼 끝
         
 //시작 날짜와 끝 날짜 사이의 날짜 배열 생성
 let getDateRange = function(startDate, endDate, listDate) {

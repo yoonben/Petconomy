@@ -67,16 +67,14 @@ public class MemberController extends CommonRestController{
 	public String getOne(HttpSession session, MemberVO vo, Model model, BoardVO boardVo, FileuploadVO fileVo, P_RESVO resVo) {
 		try {
 			log.info("======================= m_id" + vo);
-			if(vo.getM_id().equals("") || vo.getM_id() == null ) {
+			if(!(vo.getM_id().equals("")) || vo.getM_id() != null ) {
 				System.out.println("msg");
+				System.out.println("======================= Pension" + resService.getResPensionList(resVo.getM_id()));
+				System.out.println("======================= Hospital" + resService.getResHospitalList(resVo.getM_id()));
 				model.addAttribute("getPrList",resService.getResPensionList(resVo.getM_id()));
 				model.addAttribute("getHrList",resService.getResHospitalList(resVo.getM_id()));
-				return "msg";
 			}
 				   
-				   
-				
-		
 			//하나의 회원 조회
 			MemberVO member = service.getOne(vo.getM_id());
 
