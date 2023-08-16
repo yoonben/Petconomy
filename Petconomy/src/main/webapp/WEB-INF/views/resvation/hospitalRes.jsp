@@ -204,7 +204,7 @@
 		width: 450px;
 		margin: 5px;
 		position: relative;
-		top: 70px;
+		top: 35px;
 		left: 15px;
 		float: left;
 	
@@ -273,49 +273,20 @@
 	    display: inline-block;
 	    float: left;
 	}
-
 	
-    
+	.footer p {
+		color: black;
+	}
+	
+	.footer p a {
+		color : #ffc48c;
+	}
     
 </style>
 <body>
-  <!-- ***** Header Area Start ***** -->
-  <header class="header-area header-sticky">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <nav class="main-nav">
-                    <!-- ***** Logo Start ***** -->
-                    <a href="index.html" class="logo">
-                        <img src="/resources/img/petconomy.png" alt="">
-                    </a>
-                    <!-- ***** Logo End ***** -->
-                    <!-- ***** Search End ***** -->
-                    <div class="search-input">
-                      <form id="search" action="#">
-                        <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
-                        <i class="fa fa-search"></i>
-                      </form>
-                    </div>
-                    <!-- ***** Search End ***** -->
-                    <!-- ***** Menu Start ***** -->
-                    <ul class="nav">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="browse.html">Browse</a></li>
-                        <li><a href="details.html" class="active">Details</a></li>
-                        <li><a href="streams.html">Streams</a></li>
-                        <li><a href="profile.html">Profile <img src="/resources/images/profile-header.jpg" alt=""></a></li>
-                    </ul>   
-                    <a class='menu-trigger'>
-                        <span>Menu</span>
-                    </a>
-                    <!-- ***** Menu End ***** -->
-                </nav>
-            </div>
-        </div>
-    </div>
-  </header>
-  <!-- ***** Header Area End ***** -->
+<!-- 헤더 시작 -->
+	<%@include file="../main/header.jsp" %>
+<!-- 헤더 끝 -->
   
 <div class="container">
     <div class="row">
@@ -333,7 +304,8 @@
 							<c:forEach var="h" items="${hList}">
 							  <input type="hidden" value="${h.h_id}" id="h_id"><br>
 							  <input type="text" value="${h.pname}" id="pname" style=""><br>
-							  <input type="text" value="${h.openhour}" id="openhour"><br>
+							  <div class="openhour"></div>
+							  <input type="hidden" value="${h.openhour}" id="openhour"><br>
      						</c:forEach>
 				  	</div>
 				  	<!-- 숙소 정보 끝 -->
@@ -409,6 +381,17 @@
         </div>
 	</div>
 </div>
+
+<footer>
+	<div class="footer">
+		<div class="row">
+			<div class="col-lg-12">
+				<p>Copyright © 2036 <a href="#">Petconomy</a> Company. All rights reserved. 
+				<br>Design: <a href="https://templatemo.com" target="_blank" title="free CSS templates">TemplateMo</a>  Distributed By <a href="https://themewagon.com" target="_blank" >ThemeWagon</a></p>
+			</div>
+		</div>
+	</div>
+</footer>
 		  
 <script>
 
@@ -592,19 +575,28 @@
 		return time;	
 	}
 	
-	//운영시간이 정보없음일 경우 처리
+	//운영시간이 정보없음일 경우 처리 && 운영시간 화면출력
 	function nullhour() {
 		
 		let openhour = document.querySelector('#openhour').value;
 		
-		if(openhour === '정보없음') {
+		if(openhour === '정보없음') { //정보없음 처리
 			openhour = "09:00~20:00";
+            var div = $("<input type='text'value='" + openhour + "'></input>");
+            $(".openhour").append(div);
+		} else {
+			let timearr = openhour.split(", "); //운영시간 여러줄 출력
+			for(i=0; i<timearr.length; i++) {
+				console.log(timearr[i]);
+	            var div = $("<input type='text'value='" + timearr[i] + "'></input>");
+	            $(".openhour").append(div);
+			}
 		}
 		
-		$('#openhour').val(openhour);
 		
 		return openhour;
 	} 
+	
 	
 	$(function() {
 		
@@ -674,7 +666,7 @@
             var time = document.querySelector('#time').value;
             var pay = document.querySelector('#pay').value;
         	
-         	if(!date.length || !time.length) { //체크인 체크아웃 날짜가 비어있지 않은 경우
+         	if(!date.length || !time.length) { //날짜랑 시간이 비어있는 경우
          		alert('날짜를 선택해주세요');
          	} else if(!pay) {
          		alert('선택버튼을 눌러주세요');	
@@ -689,6 +681,11 @@
                 var user_id = $('#user_id').val();
                 var user_email = $('#user_email').val();
                 var user_tel =  $('#user_tel').val();
+                
+                if(!user_id.length || !user_email.length || !user_tel.length) {
+                	alert('예약자 정보를 입력해주세요');
+                	return false;
+                }
                	
                 IMP.request_pay({
                      //카카오페이 결제시 사용할 정보 입력

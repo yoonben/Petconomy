@@ -293,48 +293,21 @@
 	    float: left;
 	}
 	
+	.footer p {
+		color: black;
+	}
+	
+	.footer p a {
+		color : #ffc48c;
+	}
+	
 	
     
 </style>
 <body>
- <!-- ***** Header Area Start ***** -->
-  <header class="header-area header-sticky">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <nav class="main-nav">
-                    <!-- ***** Logo Start ***** -->
-                    <a href="index.html" class="logo">
-                        <img src="/resources/img/petconomy.png" alt="">
-                    </a>
-                    <!-- ***** Logo End ***** -->
-                    <!-- ***** Search End ***** -->
-                    <div class="search-input">
-                      <form id="search" action="#">
-                        <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
-                        <i class="fa fa-search"></i>
-                      </form>
-                    </div>
-                    <!-- ***** Search End ***** -->
-                    <!-- ***** Menu Start ***** -->
-                    <ul class="nav">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="browse.html">Browse</a></li>
-                        <li><a href="details.html" class="active">Details</a></li>
-                        <li><a href="streams.html">Streams</a></li>
-                        <li><a href="profile.html">Profile <img src="/resources/images/profile-header.jpg" alt=""></a></li>
-                    </ul>   
-                    <a class='menu-trigger'>
-                        <span>Menu</span>
-                    </a>
-                    <!-- ***** Menu End ***** -->
-                </nav>
-            </div>
-        </div>
-    </div>
-  </header>
-  <!-- ***** Header Area End ***** -->
-  
+ <!-- 헤더 시작 -->
+	<%@include file="../main/header.jsp" %>
+<!-- 헤더 끝 -->
 
   <div class="container">
     <div class="row">
@@ -433,10 +406,20 @@
 	</div>
 </div>
 
-  <!-- Scripts -->
-  
-  <script>
+<footer>
+	<div class="footer">
+		<div class="row">
+			<div class="col-lg-12">
+				<p>Copyright © 2036 <a href="#">Petconomy</a> Company. All rights reserved. 
+				<br>Design: <a href="https://templatemo.com" target="_blank" title="free CSS templates">TemplateMo</a>  Distributed By <a href="https://themewagon.com" target="_blank" >ThemeWagon</a></p>
+			</div>
+		</div>
+	</div>
+</footer>
 
+<!-- Scripts -->
+  
+<script>
 let disDays = []; //비활성화 할 날짜 배열
 let listDate = []; //시작날짜와 끝날짜 사이의 배열
             
@@ -591,6 +574,11 @@ $('#payment').click(function () { //결제버튼
              var startdate = $('#date1').val();
              var enddate = $('#date2').val();
              var roomname = $('#roomname').val();
+             
+             if(!user_id.length || !user_email.length || !user_tel.length) {
+             	alert('예약자 정보를 입력해주세요');
+             	return false;
+             }
 
              IMP.request_pay({ //결제요청
                  //카카오페이 결제시 사용할 정보 입력
