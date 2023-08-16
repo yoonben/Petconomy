@@ -276,7 +276,12 @@ https://templatemo.com/tm-579-cyborg-gaming
                       <p>${hospital.addr }</p>
                       <br>
                       <div class="main-border-button">
-                        <a href="#" onclick="location.href='/peco/hospitalRes?h_id=${hospital.h_id }'" style="border: 1px solid #FFC48C; background-color: #FFF1E0; color: #FFC48C" >예약하기</a>
+	                      <c:if test="${empty sessionScope.member}">
+		                        <a href="#" onclick="location.href='/peco/login'" style="border: 1px solid #FFC48C; background-color: #FFF1E0; color: red;">예약하려면 로그인이 필요합니다</a>
+		                  </c:if>
+		                   <c:if test="${not empty sessionScope.member}">
+	                       		<a href="#" onclick="location.href='/peco/hospitalRes?h_id=${hospital.h_id }'" style="border: 1px solid #FFC48C; background-color: #FFF1E0; color: #FFC48C" >예약하기</a>
+	                       </c:if>
                       </div>
                     </div>
                   </div>
