@@ -304,7 +304,7 @@
 				
 				<c:forEach var="pr" items="${getPrList }" varStatus="status">
 					<tr>
-						<input type="hidden" value="${status.index}" id="index"> 
+						<input type="text" value="${status.index}" id="index"> 
 						<td><img id='pensionImg' src="/peco/display?fileName=${profile}" alt="프로필 사진" ></td>
 						<td>${pr.pname }</td> 
 							<c:choose>
