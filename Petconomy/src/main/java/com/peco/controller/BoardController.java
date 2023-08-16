@@ -219,7 +219,9 @@ public class BoardController extends CommonRestController{
 				rttr.addAttribute("pageNo",cri.getPageNo());
 				rttr.addAttribute("searchField",cri.getSearchField());
 				rttr.addAttribute("searchWord",cri.getSearchWord());
-				return "redirect:/peco/board/view?bno="+board.getBno();
+				rttr.addAttribute("bno",board.getBno());
+				return "redirect:/peco/board/view";
+		
 				
 			}else {
 				rttr.addFlashAttribute("msg","파일 업로드중 에러가 발생하였습니다. 파일을 확인해주세요.");

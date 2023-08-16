@@ -370,10 +370,71 @@ function FileCheck() {
       return;
     }
   }
+  
+  //글 제목 길이 확인
+  if (!checkTitleLength()) {
+  	alert('제목은 최대 100자까지 입력할 수 있습니다.');
+      return;
+  }
+  
+	// 글 내용 길이 확인
+  if (!checkContentLength()) {
+  	alert('글 내용은 최대 2000자까지 입력할 수 있습니다.');
+      return;
+  }
+
+  //글 내용에 띄어쓰기 및 개행 처리
+  processContent()
 
   // 파일 유형과 크기가 모두 유효한 경우, 추가로 처리할 로직을 작성합니다.
   editForm.submit();
 }
+
+//제목 길이 유효성 검사
+function checkTitleLength() {
+    const titleInput = document.getElementById('title');
+    const titleValue = titleInput.value;
+
+    // 제목 길이 확인
+    if (titleValue.length > 100) {
+        
+        return false; // 작성 취소
+    }
+    return true;
+}
+
+//내용 길이 유효성 검사
+function checkContentLength() {
+    const contentInput = document.getElementById('content');
+    const contentValue = contentInput.value;
+
+    // 글 내용 길이 확인
+    if (contentValue.length > 2000) {
+        
+        return false; // 작성 취소
+    }
+    return true;
+}
+
+//글 내용 개행 띄어쓰기 처리
+function processContent() {
+    // <textarea>에서 내용 가져오기
+    const contentInput = document.getElementById('content');
+    const contentValue = contentInput.value;
+
+    // 개행 문자를 <br> 태그로 대체
+    const processedContent = contentValue.replace(/\n/g, '<br>');
+
+    // 공백 문자 처리 (연속된 공백은 &nbsp;로 변환)
+    const finalContent = processedContent.replace(/ {2,}/g, match => {
+        return match.replace(/ /g, '&nbsp;');
+    });
+
+    // <textarea>의 내용 업데이트
+    contentInput.value = finalContent;
+}
+
+
 
   function getFileList(){
   	///file/list/{bno}

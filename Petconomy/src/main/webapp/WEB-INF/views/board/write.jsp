@@ -217,9 +217,12 @@ function SubmitCheck() {
 	        return;
 	    }
 
-		
+	    //글 내용에 띄어쓰기 및 개행 처리
+		processContent()
+	    
 		// 유효성 검사가  모두 유효한 경우, 폼 제출
 		writeForm.submit();
+	    
 	} catch (e) {
 		// 파일 업로드 예외 처리
         alert('파일 업로드에 실패하였습니다. 다시 시도해주세요.');
@@ -254,7 +257,23 @@ function checkContentLength() {
     return true;
 }
 
+//글 내용 개행 띄어쓰기 처리
+function processContent() {
+    // <textarea>에서 내용 가져오기
+    const contentInput = document.getElementById('content');
+    const contentValue = contentInput.value;
 
+    // 개행 문자를 <br> 태그로 대체
+    const processedContent = contentValue.replace(/\n/g, '<br>');
+
+    // 공백 문자 처리 (연속된 공백은 &nbsp;로 변환)
+    const finalContent = processedContent.replace(/ {2,}/g, match => {
+        return match.replace(/ /g, '&nbsp;');
+    });
+
+    // <textarea>의 내용 업데이트
+    contentInput.value = finalContent;
+}
 
 	
 
