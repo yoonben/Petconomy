@@ -8,9 +8,9 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     
 <script>
-/*
+
 //$('#searchBtn').click(function(){
-$(document).ready(function () {
+/* $(document).ready(function () {
    
    // 공공 api 주소 24000건 받아오기
      var baseURL = "https://api.odcloud.kr/api/15111389/v1/uddi:41944402-8249-4e45-9e9d-a52d0a7db1cc?serviceKey=JWFQQ8%2Fl2mzSIciMFp6OsEWf0FY%2FjZtaVBpKpNb2ga1UmCMhSzskajf3HKN%2Beu3E959Qv6UYx6vq0jKX3tB0hA%3D%3D&perPage=1000&returnType=Json";
@@ -53,8 +53,8 @@ $(document).ready(function () {
        
    })
  }
-})
-*/
+}) */
+
 
 $(document).ready(function () {
    

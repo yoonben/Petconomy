@@ -131,10 +131,7 @@ https://templatemo.com/tm-579-cyborg-gaming
  
 		
 		// 댓글목록 조회및 출력
-		getReplyList();	
-		
-		
- 
+		getReplyList();	 
 });
  
  function kakaoLoad() {
@@ -327,7 +324,12 @@ https://templatemo.com/tm-579-cyborg-gaming
                           </div>
                           <div class="col-lg-12">
                             <div class="main-border-button">
-                              <a href="#" onclick="location.href='/peco/PensionRes?p_id=${pension.p_id }&room_no=${roomList.room_no }'" style="border: 1px solid #FFC48C; background-color: #FFF1E0; color: #FFC48C" >예약하기</a>
+	                            <c:if test="${empty sessionScope.member}">
+	                              <a href="#" onclick="location.href='/peco/login'" style="border: 1px solid #FFC48C; background-color: #FFF1E0; color: red;">예약하려면 로그인이 필요합니다</a>
+	                            </c:if>
+	                            <c:if test="${not empty sessionScope.member}">
+	                              <a href="#" onclick="location.href='/peco/PensionRes?p_id=${pension.p_id }&room_no=${roomList.room_no }'" style="border: 1px solid #FFC48C; background-color: #FFF1E0; color: #FFC48C" >예약하기</a>
+	                            </c:if>
                             </div>
                           </div>
                         </div>
@@ -426,9 +428,8 @@ https://templatemo.com/tm-579-cyborg-gaming
 	                          </div>
 	                        </div>
 	                        </div>
-	                        <!-- 리뷰 보내기 끝 -->   
-                        <!-- 리뷰 중복 시작 -->                                               
-                        <!-- 리뷰 중복 끝 -->    
+	                      <!-- 리뷰 보내기 끝 -->                        
+
                   
                         
 

@@ -14,4 +14,5 @@ public interface MemberMapper {
 	public int nameCheck(MemberVO member);
 	public MemberVO findId(MemberVO member);
 	public int updatePw(MemberVO member);
+	public MemberVO getOneNoImg(String m_id);
 }

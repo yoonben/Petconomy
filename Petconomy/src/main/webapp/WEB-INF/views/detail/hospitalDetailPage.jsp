@@ -39,7 +39,7 @@ https://templatemo.com/tm-579-cyborg-gaming
     }
 
     div>.page-content {
-      background-color: rgb(247, 218, 218);
+      background-color: bisque;
     }
 
     /* 탭 전체 스타일 */
@@ -98,8 +98,8 @@ https://templatemo.com/tm-579-cyborg-gaming
 
     /* 선택된 탭 스타일 */
     .tabs input:checked+.tab_item {
-      border-bottom: 3px solid #ec6090;
-      color: #ec6090;
+      border-bottom: 3px solid #FFC48C;
+      color: #FFC48C;
     }
     
     .edit-delete-buttons {
@@ -249,7 +249,7 @@ https://templatemo.com/tm-579-cyborg-gaming
   <!-- ***** Preloader End ***** -->
 
 	<!-- 헤더 시작 -->
-	<%@ include file="../common/header.jsp" %>
+	<%@ include file="../main/header.jsp" %>
 	<!-- 헤더 끝 -->
 	
   <div class="container">
@@ -270,12 +270,19 @@ https://templatemo.com/tm-579-cyborg-gaming
                     <img src="/peco/display?fileName=${hospitalImg}" alt="동물병원이미지" style="border-radius: 23px;">
                   </div>
                   <div class="col-lg-8">
+                  <br>
                     <div class="item">
                       <h4>${hospital.pname }</h4>
                       <p>${hospital.addr }</p>
                       <br>
-                      <p style='font-size: 20px;'>영업시간</</p>
-                      <p id="openhourOutput">${hospital.openhour }</p>
+                      <div class="main-border-button">
+	                      <c:if test="${empty sessionScope.member}">
+		                        <a href="#" onclick="location.href='/peco/login'" style="border: 1px solid #FFC48C; background-color: #FFF1E0; color: red;">예약하려면 로그인이 필요합니다</a>
+		                  </c:if>
+		                   <c:if test="${not empty sessionScope.member}">
+	                       		<a href="#" onclick="location.href='/peco/hospitalRes?h_id=${hospital.h_id }'" style="border: 1px solid #FFC48C; background-color: #FFF1E0; color: #FFC48C" >예약하기</a>
+	                       </c:if>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -363,7 +370,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                         <!-- 리뷰 보내기 시작 -->
                         <div id="reviewDiv">
                         <div class="col-lg-17" id="reviewPossible">
-                          <div class="left-info" style='background-color: rgb(247, 218, 218);'>
+                          <div class="left-info" style='background-color: bisque;'>
                             <div class="left">
                               <h4 style='text-align: left; color: black;'><b><input type="hidden" id="reviewer" value="${sessionScope.member.nickname }" readonly></b></h4>
                               <br>
@@ -376,7 +383,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                               </li>
                               <li>
                                 <div class="main-border-button">
-                                  <a href="#" id="btnReplyWrite">리뷰 작성</a>
+                                  <a href="#" id="btnReplyWrite" style="border: 1px solid #FFC48C; background-color: #FFF1E0; color: #FFC48C">리뷰 작성</a>
                                 </div>
                               </li>
                             </ul>
