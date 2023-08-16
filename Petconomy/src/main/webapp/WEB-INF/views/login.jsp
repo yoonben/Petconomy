@@ -146,7 +146,7 @@
 						<h1 class="h3 mb-3 fw-normal text-dark">비밀번호 찾기</h1>
 
 						<form>
-							<input type="text" id="m_idemail">
+							<input type="hidden" id="m_idemail">
 							<input type="hidden" id="emailpwCheckRes"> 
 							<input type="text" name="findid" id="findid" placeholder="아이디">
 							<input type="submit" value="아이디 인증" id="findPasswordbtn">
