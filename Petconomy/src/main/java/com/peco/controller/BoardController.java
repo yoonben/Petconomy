@@ -3,6 +3,8 @@ package com.peco.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -374,5 +376,17 @@ public class BoardController extends CommonRestController{
 
         
         return count;
+    }
+	 
+	 @GetMapping("/sessionCheck")
+    @ResponseBody
+    public String checkSession(HttpSession session) {
+		 
+        // 세션 유효성 확인
+        if (session != null && !session.isNew()) {
+            return "{\"sessionExpired\": false}";
+        } else {
+            return "{\"sessionExpired\": true}";
+        }
     }
 }

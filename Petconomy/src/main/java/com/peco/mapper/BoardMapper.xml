@@ -27,153 +27,161 @@
 	
 	
 	<select id="getBest" resultType="com.peco.vo.BoardVO">
- 	SELECT 
-	    b.bno,
-	    b.title,
-	    b.writer,
-	    b.content,
-	    b.m_id,
-	    b.visitcount,
-	    b.likecount,
-	    b.category,
-	    CASE
-	        WHEN TRUNC(SYSDATE) = TRUNC(b.regdate) THEN TO_CHAR(b.regdate, 'HH24:MI:SS')
-	        ELSE TO_CHAR(b.regdate, 'YYYY-MM-DD')
-	    END AS regdate,
-	    b.updatedate,
-	    m.nickname,
-	    DECODE(a.filetype, 'I', a.uploadpath || a.uuid || '_' || a.filename, '/default/NO_image.jpg') AS savePath,
-	    DECODE(a.filetype, 'I', a.uploadpath || 's_' || a.uuid || '_' || a.filename, '/default/NO_image.jpg') AS s_savePath
-	FROM (
-	    SELECT 
-	        b2.bno,
-	        b2.title,
-	        b2.writer,
-	        b2.content,
-	        b2.m_id,
-	        b2.visitcount,
-	        b2.likecount,
-	        b2.category,
-	        b2.regdate,
-	        b2.updatedate
-	    FROM 
-	        board b2
-	    WHERE 
-	        b2.regdate >= SYSDATE - 3
-	    ORDER BY 
-	        b2.likecount DESC
-	) b
-	LEFT JOIN
-	    member m ON b.m_id = m.m_id
-	LEFT JOIN
-	    b_img a ON b.bno = a.bno
-	    <![CDATA[
-	WHERE ROWNUM <= 8
-					]]>
-	ORDER BY b.likecount DESC
+ 		SELECT *
+		FROM (
+		    SELECT 
+		        b.bno,
+		        b.title,
+		        b.writer,
+		        b.content,
+		        b.m_id,
+		        b.visitcount,
+		        b.likecount,
+		        b.category,
+		        CASE
+		            WHEN TRUNC(SYSDATE) = TRUNC(b.regdate) THEN TO_CHAR(b.regdate, 'HH24:MI:SS')
+		            ELSE TO_CHAR(b.regdate, 'YYYY-MM-DD')
+		        END AS regdate,
+		        b.updatedate,
+		        m.nickname,
+		        DECODE(a.filetype, 'I', a.uploadpath || a.uuid || '_' || a.filename, '/default/NO_image.jpg') AS savePath,
+		        DECODE(a.filetype, 'I', a.uploadpath || 's_' || a.uuid || '_' || a.filename, '/default/NO_image.jpg') AS s_savePath,
+		        ROW_NUMBER() OVER (PARTITION BY b.bno ORDER BY b.likecount DESC) AS rn
+		    FROM (
+		        SELECT 
+		            b2.bno,
+		            b2.title,
+		            b2.writer,
+		            b2.content,
+		            b2.m_id,
+		            b2.visitcount,
+		            b2.likecount,
+		            b2.category,
+		            b2.regdate,
+		            b2.updatedate
+		        FROM 
+		            board b2
+		        WHERE 
+		            b2.regdate >= SYSDATE - 3
+		    ) b
+		    LEFT JOIN
+		        member m ON b.m_id = m.m_id
+		    LEFT JOIN
+		        b_img a ON b.bno = a.bno
+		)
+		WHERE rn = 1
+				<![CDATA[
+		  AND ROWNUM <= 8
+		  			]]>
+		ORDER BY likecount DESC
 	</select>
 	
 	
 	
 	<select id="getFreeBest" resultType="com.peco.vo.BoardVO">
- 	SELECT 
-	    b.bno,
-	    b.title,
-	    b.writer,
-	    b.content,
-	    b.m_id,
-	    b.visitcount,
-	    b.likecount,
-	    b.category,
-	    CASE
-	        WHEN TRUNC(SYSDATE) = TRUNC(b.regdate) THEN TO_CHAR(b.regdate, 'HH24:MI:SS')
-	        ELSE TO_CHAR(b.regdate, 'YYYY-MM-DD')
-	    END AS regdate,
-	    b.updatedate,
-	    m.nickname,
-	    DECODE(a.filetype, 'I', a.uploadpath || a.uuid || '_' || a.filename, '/default/NO_image.jpg') AS savePath,
-	    DECODE(a.filetype, 'I', a.uploadpath || 's_' || a.uuid || '_' || a.filename, '/default/NO_image.jpg') AS s_savePath
-	FROM (
-	    SELECT 
-	        b2.bno,
-	        b2.title,
-	        b2.writer,
-	        b2.content,
-	        b2.m_id,
-	        b2.visitcount,
-	        b2.likecount,
-	        b2.category,
-	        b2.regdate,
-	        b2.updatedate
-	    FROM 
-	        board b2
-	    WHERE 
-	        b2.regdate >= SYSDATE - 3
-	    AND 
-	        b2.category = 'free'
-	    ORDER BY 
-	        b2.likecount DESC
-	) b
-	LEFT JOIN
-	    member m ON b.m_id = m.m_id
-	LEFT JOIN
-	    b_img a ON b.bno = a.bno
-	    <![CDATA[
-	WHERE ROWNUM <= 5
-	
-					]]>
-	ORDER BY b.likecount DESC
+ 	 	SELECT *
+		FROM (
+		    SELECT 
+		        b.bno,
+		        b.title,
+		        b.writer,
+		        b.content,
+		        b.m_id,
+		        b.visitcount,
+		        b.likecount,
+		        b.category,
+		        CASE
+		            WHEN TRUNC(SYSDATE) = TRUNC(b.regdate) THEN TO_CHAR(b.regdate, 'HH24:MI:SS')
+		            ELSE TO_CHAR(b.regdate, 'YYYY-MM-DD')
+		        END AS regdate,
+		        b.updatedate,
+		        m.nickname,
+		        DECODE(a.filetype, 'I', a.uploadpath || a.uuid || '_' || a.filename, '/default/NO_image.jpg') AS savePath,
+		        DECODE(a.filetype, 'I', a.uploadpath || 's_' || a.uuid || '_' || a.filename, '/default/NO_image.jpg') AS s_savePath,
+		        ROW_NUMBER() OVER (PARTITION BY b.bno ORDER BY b.likecount DESC) AS rn
+		    FROM (
+		        SELECT 
+		            b2.bno,
+		            b2.title,
+		            b2.writer,
+		            b2.content,
+		            b2.m_id,
+		            b2.visitcount,
+		            b2.likecount,
+		            b2.category,
+		            b2.regdate,
+		            b2.updatedate
+		        FROM 
+		            board b2
+		        WHERE 
+		            b2.regdate >= SYSDATE - 3
+		        AND 
+		            b2.category = 'free'
+		    ) b
+		    LEFT JOIN
+		        member m ON b.m_id = m.m_id
+		    LEFT JOIN
+		        b_img a ON b.bno = a.bno
+		)
+		WHERE rn = 1
+				<![CDATA[
+		  AND ROWNUM <= 8
+		  			]]>
+		ORDER BY likecount DESC
 	</select>
 	
 	
 	
 	<select id="getHealingBest" resultType="com.peco.vo.BoardVO">
- 	SELECT 
-	    b.bno,
-	    b.title,
-	    b.writer,
-	    b.content,
-	    b.m_id,
-	    b.visitcount,
-	    b.likecount,
-	    b.category,
-	    CASE
-	        WHEN TRUNC(SYSDATE) = TRUNC(b.regdate) THEN TO_CHAR(b.regdate, 'HH24:MI:SS')
-	        ELSE TO_CHAR(b.regdate, 'YYYY-MM-DD')
-	    END AS regdate,
-	    b.updatedate,
-	    m.nickname,
-	    DECODE(a.filetype, 'I', a.uploadpath || a.uuid || '_' || a.filename, '/default/NO_image.jpg') AS savePath,
-	    DECODE(a.filetype, 'I', a.uploadpath || 's_' || a.uuid || '_' || a.filename, '/default/NO_image.jpg') AS s_savePath
+ 	SELECT *
 	FROM (
 	    SELECT 
-	        b2.bno,
-	        b2.title,
-	        b2.writer,
-	        b2.content,
-	        b2.m_id,
-	        b2.visitcount,
-	        b2.likecount,
-	        b2.category,
-	        b2.regdate,
-	        b2.updatedate
-	    FROM 
-	        board b2
-	    WHERE 
-	        b2.regdate >= SYSDATE - 3
-	    AND 
-	        b2.category = 'healing'
-	    ORDER BY 
-	        b2.likecount DESC
-	) b
-	LEFT JOIN
-	    member m ON b.m_id = m.m_id
-	LEFT JOIN
-	    b_img a ON b.bno = a.bno
-	    <![CDATA[
-	WHERE ROWNUM <= 5
-					]]>
-	ORDER BY b.likecount DESC
+	        b.bno,
+	        b.title,
+	        b.writer,
+	        b.content,
+	        b.m_id,
+	        b.visitcount,
+	        b.likecount,
+	        b.category,
+	        CASE
+	            WHEN TRUNC(SYSDATE) = TRUNC(b.regdate) THEN TO_CHAR(b.regdate, 'HH24:MI:SS')
+	            ELSE TO_CHAR(b.regdate, 'YYYY-MM-DD')
+	        END AS regdate,
+	        b.updatedate,
+	        m.nickname,
+	        DECODE(a.filetype, 'I', a.uploadpath || a.uuid || '_' || a.filename, '/default/NO_image.jpg') AS savePath,
+	        DECODE(a.filetype, 'I', a.uploadpath || 's_' || a.uuid || '_' || a.filename, '/default/NO_image.jpg') AS s_savePath,
+	        ROW_NUMBER() OVER (PARTITION BY b.bno ORDER BY b.likecount DESC) AS rn
+	    FROM (
+	        SELECT 
+	            b2.bno,
+	            b2.title,
+	            b2.writer,
+	            b2.content,
+	            b2.m_id,
+	            b2.visitcount,
+	            b2.likecount,
+	            b2.category,
+	            b2.regdate,
+	            b2.updatedate
+	        FROM 
+	            board b2
+	        WHERE 
+	            b2.regdate >= SYSDATE - 3
+	        AND 
+	            b2.category = 'healing'
+	    ) b
+	    LEFT JOIN
+	        member m ON b.m_id = m.m_id
+	    LEFT JOIN
+	        b_img a ON b.bno = a.bno
+	)
+	WHERE rn = 1
+			<![CDATA[
+	  AND ROWNUM <= 8
+	  			]]>
+	ORDER BY likecount DESC
 	</select>
 	
 	

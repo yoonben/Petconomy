@@ -1,6 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
         <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+        
+<%
+// 세션 체크: 로그인 상태인지 확인
+if (session.getAttribute("member") == null) {
+    // 로그인되지 않은 상태라면 로그인 페이지로 리다이렉트
+    response.sendRedirect("/peco/login");
+}
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -191,6 +200,14 @@
   <script>
 window.addEventListener('load', function() {
 	
+	// 일정 시간마다 세션 유효성 확인
+    const sessionCheckInterval = 60000; // 1분마다 확인 (밀리초 단위)
+
+    setInterval(checkSessionValidity, sessionCheckInterval);
+	
+	
+	
+	
     const filesInput = document.getElementById('files');
     filesInput.addEventListener('change', function(){
     	
@@ -293,6 +310,26 @@ window.addEventListener('load', function() {
 	
 });
 
+
+//로그인 세션 체크
+function checkSessionValidity() {
+    fetch('/peco/sessionCheck', { 
+        method: 'GET',
+        credentials: 'include' // 쿠키를 함께 전송하여 세션 유지
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.sessionExpired) {
+            // 세션이 만료된 경우 로그인 페이지로 리다이렉트
+            window.location.href = '/peco/login'; 
+        }
+    })
+    .catch(error => {
+        console.error('Error checking session validity:', error);
+    });
+}
+
+
 //파일첨부버튼으로 업로드 할시에 실행될 유효성 검사 함수
 function checkExtension(fileName, fileSize){
 	let maxSize = 10 * 1024 * 1024; // 10MB
@@ -372,14 +409,26 @@ function FileCheck() {
   }
   
   //글 제목 길이 확인
-  if (!checkTitleLength()) {
+  if (checkTitleLength() === 1) {
   	alert('제목은 최대 100자까지 입력할 수 있습니다.');
       return;
   }
   
+  // 글 제목 필수입력 확인
+  if (checkTitleLength() === 2) {
+  	alert('제목을 입력해야합니다.');
+      return;
+  }
+  
 	// 글 내용 길이 확인
-  if (!checkContentLength()) {
+  if (checkContentLength() === 1) {
   	alert('글 내용은 최대 2000자까지 입력할 수 있습니다.');
+      return;
+  }
+	
+	// 글 내용 필수입력 화인
+  if (checkContentLength() === 2) {
+  	alert('내용을 입력해야합니다.');
       return;
   }
 
@@ -397,8 +446,9 @@ function checkTitleLength() {
 
     // 제목 길이 확인
     if (titleValue.length > 100) {
-        
-        return false; // 작성 취소
+        return 1; // 작성 취소
+    } else if(titleValue.length === 0){
+    	return 2;
     }
     return true;
 }
@@ -410,9 +460,11 @@ function checkContentLength() {
 
     // 글 내용 길이 확인
     if (contentValue.length > 2000) {
-        
-        return false; // 작성 취소
+        return 1; // 작성 취소
+    } else if(contentValue.length === 0){
+    	return 2;
     }
+    
     return true;
 }
 
