@@ -579,84 +579,7 @@ $('#payment').click(function () { //결제버튼
              	alert('예약자 정보를 입력해주세요');
              	return false;
              }
-
-<<<<<<< HEAD
-	                           IMP.request_pay({
-	                                //카카오페이 결제시 사용할 정보 입력
-	                               pg: 'kakaopay',
-	                               pay_method: "card",
-	                               name: pname,
-	                               amount: pay,
-	                               buyer_email: user_email,
-	                               buyer_name: user_id,
-	                               buyer_tel: user_tel,
-	                           }, function (rsp) {
-	                                
-	                        	   console.log(rsp);
-	                   			// 결제검증
-	                   			$.ajax({
-	                   	        	type : "POST",
-	                   	        	url : "/payment/verifyIamport/" + rsp.imp_uid 
-	                   	        }).done(function(data) {
-	                   	        	
-	                   	        	console.log(data);
-	                   	        	
-	                   	        	// 결제 유효성 검증
-	                   	        	// 위의 rsp.paid_amount 와 data.response.amount를 비교한후 로직 실행 (import 서버검증)
-	                   	        	if(rsp.paid_amount == data.response.amount){
-	                   	        		var msg = "결제 및 결제검증완료";
-	                   		        	msg += '\n고유ID : ' + rsp.imp_uid;
-	                                    msg += '\n상점 거래ID : ' + rsp.merchant_uid;
-	                                    msg += '\n결제 금액 : ' + rsp.paid_amount+'원';
-	                                    
-	                                    if(rsp.apply_num === null || rsp.apply_num === undefined || rsp.apply_num === '') {
-	                                    	rsp.apply_num = '카카오페이머니';
-	                                    }
-	                                    msg += '\n카드 승인번호 : ' + rsp.apply_num;                                    	
-	                   		        	
-	                                    $.ajax({
-	                                        url: "/peco/insert",
-	                                        type: 'post',
-	                                        data: {
-	                                           p_id: p_id,//펜션아이디   
-		                                       period: period,//기간
-		                                       pricecnt: pay,//결제할 가격
-		                                       startdate : startdate, //입실일
-		                                       enddate : enddate, //퇴실일
-		                                       pr_name: user_id,//예약자명
-		                                       pr_email: user_email,//예약자 이메일
-		                                       pr_tel: user_tel,//예약자 전화번호
-		                                       imp_uid: rsp.imp_uid, //거래고유번호
-		                                       pr_id: rsp.merchant_uid, //주문고유번호=펜션예약번호
-										 	   pr_pay: rsp.apply_num, //카드승인번호
-										 	   m_id : m_id,//회원번호 -예약자명 직접입력 경우 다를 경우
-										 	   pname : pname, //펜션명
-										 	   roomname : roomname,//객실명
-	                                        }                               
-	                                      });
-	                                    console.log('토큰생성');
-	                                    $.ajax({
-	                                    	type : "POST",
-	                           	        	url : "/payment/complete"
-	                                    })
-	                                    console.log('토큰생성완료');
-	                                    
-	                                    $('#resForm').submit(); 
-	                           			alert(msg);
-	                       				console.log(m_id);
-	                           			window.location.replace("/peco/profile?m_id=${member.m_id}");
-	                   	        	} else {
-	                   	        		var msg = '결제에 실패하였습니다.';
-	                                    msg += '에러내용 : ' + rsp.error_msg;
-	                           			alert(msg);
-	                   	        	}     		
-	                   	        });
-	                           });  
-	                    	} 
-                    	
-                    	});
-=======
-             IMP.request_pay({ //결제요청
+				IMP.request_pay({ //결제요청
                  //카카오페이 결제시 사용할 정보 입력
                  pg: 'kakaopay',
                  pay_method: "card",
@@ -727,7 +650,6 @@ $('#payment').click(function () { //결제버튼
          } 
               	
 }); //결제버튼 끝
->>>>>>> refs/remotes/origin/master
 
 });
         
