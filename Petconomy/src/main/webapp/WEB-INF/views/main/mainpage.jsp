@@ -257,26 +257,28 @@ jQuery(function ($) {
           </div>
           <!-- ***** Most Popular End ***** -->
            <div class="owl-features owl-carousel">
-            <c:forEach items="${blist}" var="bvo" >
+            <c:forEach var="b" items="${blist}">
 				  <div class="item">
 				    <div class="thumb bestthumb">
-				    
-            		<a onclick="requestAction('/peco/board/view', ${bvo.bno })">
-				      <img src="/peco/display?fileName=${bvo.s_savePath}" alt="" class="thumbnail-image">
+            		<a onclick="requestAction('/peco/board/view', ${b.bno })">
+				      <img src="/peco/display?fileName=${b.savePath}" alt="" class="thumbnail-image">
 				    </a>
-				    
 				      <div class="hover-effect">
-				        <i id="animated-icon" class="fa-regular fa-thumbs-up fa-lg" style="color: #ffa200;"> <h4> ${bvo.likecount }</h4></i>
+				      <div class="content">
+				       <ul>
+				        <li><a><i class="fa fa-eye"></i>${b.visitcount} </a></li>
+				        <li><i id="animated-icon" class="fa-regular fa-thumbs-up fa-lg" style="color: #ffa200;">${b.likecount }</i></li>
+				       </ul>
 				      </div>
-				      
+				      </div>
 				    </div>
 					    <div class="down-content">
 		                    <div class="avatar">
 		                      <img src="/resources/images/default.png" alt="" style="max-width: 46px; border-radius: 50%; float: left;">
 		                    </div>
-		                    <span style="color:white;"><i class="fa fa-check"></i> ${bvo.nickname}
-		                    <h4 class="besttitle">${bvo.title } </h4></span>
-		                    <a onclick="requestAction('/peco/board/view', ${bvo.bno })">
+		                    <span><i class="fa fa-check"></i> ${b.writer}</span>
+		                    <a onclick="requestAction('/peco/board/view', ${b.bno })">
+		                    <h4 class="besttitle">${b.title } </h4>
 		                    </a>
 		                </div> 
 				  </div>

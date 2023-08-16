@@ -20,6 +20,7 @@
 
 	<!-- 별점 cdn -->
 	<script src="https://cdn.jsdelivr.net/gh/hiphop5782/score@latest/score.js"></script>
+	<script src="/resources/js/setcookie.js"></script>
 	
 	<script>
 	  var jq = jQuery.noConflict();
@@ -38,37 +39,34 @@ body{
 	height : 1800px;
 }
 </style>
-<script>
+<script>	
+function regionSelect(){
+	document.querySelector(".modal-body").innerHTML = ''
+	+ '<select class="main-button" id="megaregion" name="megaregion" aria-label=".form-select-lg example">'
+	+ '<option selected>시</option>'
+	+ '<option value="gangwon">강원</option>'
+	+ '<option value="gyeonggi">경기</option>'
+	+ '<option value="gyeongsang">경상</option>'
+	+ '<option value="busan">부산</option>'
+	+ '<option value="incheon">인천</option>'
+	+ '<option value="jeolla">전라</option>'
+	+ '<option value="chungcheong">충청</option>'
+	+ '<option value="jeju">제주</option>'
+	+ '</select>';
+	document.querySelector("$btnModalSave").style.display = 'none';
 	
-	function regionSelect(){
-		document.querySelector(".modal-body").innerHTML = ''
-		+ '<select class="main-button" id="megaregion" name="megaregion" aria-label=".form-select-lg example">'
-		+ '<option selected>시</option>'
-		+ '<option value="gangwon">강원</option>'
-		+ '<option value="gyeonggi">경기</option>'
-		+ '<option value="gyeongsang">경상</option>'
-		+ '<option value="busan">부산</option>'
-		+ '<option value="incheon">인천</option>'
-		+ '<option value="jeolla">전라</option>'
-		+ '<option value="chungcheong">충청</option>'
-		+ '<option value="jeju">제주</option>'
-		+ '</select>';
-		document.querySelector("$btnModalSave").style.display = 'none';
-		
-	const myModal = new bootstrap.Modal('#myModal', {
-		  keyboard: false
-		});
+const myModal = new bootstrap.Modal('#myModal', {
+	  keyboard: false
+	});
 
-	myModal.show();
-	}
+myModal.show();
+}
 
-	function go(page){
-		document.selectForm.pageNo.value=page;
-		document.selectForm.action = "/peco/main/pension";
-		document.selectForm.submit();
-	}
-
-
+function go(page){
+	document.selectForm.pageNo.value=page;
+	document.selectForm.action = "/peco/main/pension";
+	document.selectForm.submit();
+}
 </script>
 <script>
 jQuery(function ($) {
@@ -111,16 +109,12 @@ jQuery(function ($) {
   </div>
 </div>
 
-<c:if test="${not empty sessionScope.p_id}">
-	<div style="margin-top:500px; display:inline-block"><a style="font-weight:900">${p_id } ${pname }</a> <br>
-	<img src="/peco/display?fileName=${filename}" class="card-img-top" alt="..." style="height:200px; width:200px; padding:10px">
-	</div>
-</c:if>
-  <div class="container" style="height:2600px; display:inline-block">
+  <div class="container" style="height:2800px">
 
-    <div class="row" style="height:2600px;">
-      <div class="col-lg-12" style="height:2600px;">
-        <div class="page-content" style="height:2600px;">
+
+    <div class="row" style="height:2800px;">
+      <div class="col-lg-12" style="height:2800px;">
+        <div class="page-content" style="height:2500px;">
 
           <!-- ***** Featured Start ***** -->
           <div class="row">
@@ -147,11 +141,11 @@ jQuery(function ($) {
 			<input type="hidden" name="megaregion" value="${param.megaregion }">  
 			<input type="hidden" name="smallregion" value="${param.smallregion }">  
 
-              <div class="main-button" style="display:inline-block" >
-                  <a href="/peco/main/pension">펜션</a>
+              <div class="main-button" style="display:inline-block; " >
+                  <a href="/peco/main/pension" style="font-size:1.5em; text-align:center; font-weight:900">펜션</a>
               </div>
               <div class="main-button" style="display:inline-block">
-                  <a href="/peco/main/hospital">병원</a>
+                  <a href="/peco/main/hospital" style="font-size:1.5em; text-align:center; font-weight:900">병원</a>
               </div>
             <div class="row">
               <div class="col-lg-12">
@@ -161,6 +155,34 @@ jQuery(function ($) {
                     
                     <div class="col-lg-12">
                       <div><%@include file="kakaomap.jsp"%></div>
+                      <br><br>
+							<a style="font-weight:900; font-size:1.5em">최근 본 펜션 </a>
+							<div style="background-color:#fff1e0; padding-left:20px"><br>
+		                      	<c:forEach var="arrItem" items="${sessionScope.arr}">
+		                      	          <c:choose>
+								            <c:when test="${not empty arrItem}">
+								                <c:set var="parts" value="${arrItem.split(',')}" />
+								                <c:set var="p_id" value="${parts[0]}" />
+								                <c:set var="pname" value="${parts[1]}" />
+								                <c:set var="filename" value="${parts[2]}" />
+								
+								                <li style="display: inline-block; width: 205px; text-align:center ">
+								                    <img src="/peco/display?fileName=${filename}" class="card-img-top" alt="..."
+								                         style="height: 150px; width: 200px; ">
+								                    <a href="/peco/detail/detailPage?p_id=${p_id}&pname=${pname}" style="font-size:1.1em ;font-weight: 900; color:black">${pname}</a><br>
+								                </li>
+								            </c:when>
+								            <c:otherwise>
+								                <li style="display: inline-block; width: 200px">
+								                    <a href="#" style="font-weight: 900">최근에 본 펜션이 없습니다.</a><br>
+								                </li>
+								            </c:otherwise>
+								        </c:choose>
+
+								</c:forEach>
+							</div>
+					
+
                     </div>
 
                   </div>
@@ -171,7 +193,7 @@ jQuery(function ($) {
           <!-- ***** Details End ***** -->
 
           <!-- ***** Other Start ***** -->
-          <div class="other-games" style="height:1700px">
+          <div class="other-games" style="height:1700px; margin-top:0px">
             <div class="row">
               <div class="col-lg-12">
                 <div class="heading-section">
@@ -190,7 +212,7 @@ jQuery(function ($) {
 			  <img src="/peco/display?fileName=${list.savePath}" class="card-img-top" alt="..." style="height:300px; padding:10px">
          	   
 			  <div class="card-body" style="margin-bottom: 20px">
-			    <h5 class="card-title"> <a style="font-size:1.2em; color:black"href="/peco/detail/detailPage?p_id=${list.p_id }&pname=${list.pname }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}&filename=${list.savePath}">${list.pname}</a></h5>
+			    <h5 class="card-title"> <a style="font-size:1.2em; color:black" href="/peco/detail/detailPage?p_id=${list.p_id }&pname=${list.pname }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}&filename=${list.savePath}">${list.pname}</a></h5>
 			    <p class="card-text">${list.addr }</p>
 			    <p class="card-text"><div class="test-score1" data-max="5" data-rate="${list.star }"></div>(${list.cnt })</p>
 			    <p class="card-text">1박당 요금 시작가 <br> <a style="color:red; font-weight:900;">KRW : ${list.min }</a></p>

@@ -176,8 +176,9 @@ p {
 }
 
 .main-button a:hover {
-	color: #F99;
+	color: #ff8000;
 	background-color: #ffffff;
+	font-weight:900;
 }
 
 .main-border-button a {

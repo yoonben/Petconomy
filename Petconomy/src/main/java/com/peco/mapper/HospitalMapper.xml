@@ -31,7 +31,7 @@
             ON h.h_id = r.h_id                           
             left join                            
             (select h_id, uploadpath||h_id||filename savePath from h_img) s              
-            ON h.h_id = s.h_id where 1=1 and savePath is not null     
+            ON h.h_id = s.h_id where checkyn='Y' and savePath is not null     
 			<if test="megaregion!=null">
 				and addr like  '%'||#{megaregion}||'%'
 			</if>
@@ -57,7 +57,7 @@
             ON h.h_id = r.h_id                           
             left join                            
             (select h_id, uploadpath||h_id||filename savePath from h_img) s              
-            ON h.h_id = s.h_id where 1=1 and savePath is not null                             
+            ON h.h_id = s.h_id where checkyn='Y' and savePath is not null                             
 			<if test="megaregion!=null">
 				and addr like  '%'||#{megaregion}||'%'
 			</if>
@@ -93,7 +93,7 @@
 		<select id="hospitaltop" resultType="com.peco.vo.HospitalVO"> 
 		select * from( select t.*, rownum rn from
 		( select h.h_id, pname, addr, star, cnt from hospital h LEFT JOIN
-		( select h_id, round(avg(star)) star, count(*) cnt from h_review group by h_id) r ON h.h_id = r.h_id WHERE r.star IS NOT NULL order by r.star desc, cnt desc)t ) 
+		( select h_id, round(avg(star)) star, count(*) cnt from h_review group by h_id) r ON h.h_id = r.h_id WHERE checkyn='Y' and r.star IS NOT NULL order by r.star desc, cnt desc)t ) 
 		where rn between 1 and 10 
 		</select>
 		
@@ -106,7 +106,7 @@
             ON h.h_id = r.h_id                           
             left join                            
             (select h_id, uploadpath||h_id||filename savePath from h_img) s              
-            ON h.h_id = s.h_id where 1=1 and savePath is not null                             
+            ON h.h_id = s.h_id where checkyn='Y' and savePath is not null                             
 			<if test="megaregion!=null">
 				and addr like  '%'||#{megaregion}||'%'
 			</if>

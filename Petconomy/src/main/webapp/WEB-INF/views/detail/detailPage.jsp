@@ -237,6 +237,7 @@ https://templatemo.com/tm-579-cyborg-gaming
 </head>
 
 <body>
+
   <!-- ***** Preloader Start ***** -->
   <div id="js-preloader" class="js-preloader">
     <div class="preloader-inner">
