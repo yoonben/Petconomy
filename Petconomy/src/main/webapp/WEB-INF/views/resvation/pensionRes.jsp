@@ -399,7 +399,7 @@
 	        <input type="text" id="period" readonly>
 	    <!-- 결제정보 끝 -->
         </div>
-      </c:forEach></c:forEach>
+      </c:forEach>
 		
 		</div>
 		
