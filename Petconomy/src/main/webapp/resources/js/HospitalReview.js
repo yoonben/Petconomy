@@ -145,6 +145,17 @@ function replyView(map){
 			
 		})
 		
+		if(reviewer == ''){
+			reviewDiv.innerHTML = 
+				'	<div class="col-lg-17">'
+			    +'        <div class="left-info" style="background-color: bisque;">'
+			    +'                                      '
+			    +'            <span style="text-align: left; color: black;"><b>로그인이 필요합니다.</b></span>'
+			    +'                                                                 '
+			    +'        </div>'
+			    +'   </div>'
+		}
+		
 		
 
 		// 화면에 출력

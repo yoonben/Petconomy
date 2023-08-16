@@ -60,6 +60,7 @@ public class MainController {
 	    }
 		
 		
+		
 		model.addAttribute("totalCnt", totalCnt);
 		model.addAttribute("pageDto", pageDto);
 		model.addAttribute("list", list);
