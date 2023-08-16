@@ -82,9 +82,8 @@ jQuery(function ($) {
     <div class="preloader-inner">
       <span class="dot"></span>
       <div class="dots">
-        <span></span>
-        <span></span>
-        <span></span>
+
+
       </div>
     </div>
   </div>
@@ -112,8 +111,13 @@ jQuery(function ($) {
   </div>
 </div>
 
+<c:if test="${not empty sessionScope.p_id}">
+	<div style="margin-top:500px; display:inline-block"><a style="font-weight:900">${p_id } ${pname }</a> <br>
+	<img src="/peco/display?fileName=${filename}" class="card-img-top" alt="..." style="height:200px; width:200px; padding:10px">
+	</div>
+</c:if>
+  <div class="container" style="height:2600px; display:inline-block">
 
-  <div class="container" style="height:2600px;">
     <div class="row" style="height:2600px;">
       <div class="col-lg-12" style="height:2600px;">
         <div class="page-content" style="height:2600px;">
@@ -186,7 +190,7 @@ jQuery(function ($) {
 			  <img src="/peco/display?fileName=${list.savePath}" class="card-img-top" alt="..." style="height:300px; padding:10px">
          	   
 			  <div class="card-body" style="margin-bottom: 20px">
-			    <h5 class="card-title"> <a style="font-size:1.2em; color:black"href="/peco/detail/detailPage?p_id=${list.p_id }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}">${list.pname}</a></h5>
+			    <h5 class="card-title"> <a style="font-size:1.2em; color:black"href="/peco/detail/detailPage?p_id=${list.p_id }&pname=${list.pname }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}&filename=${list.savePath}">${list.pname}</a></h5>
 			    <p class="card-text">${list.addr }</p>
 			    <p class="card-text"><div class="test-score1" data-max="5" data-rate="${list.star }"></div>(${list.cnt })</p>
 			    <p class="card-text">1박당 요금 시작가 <br> <a style="color:red; font-weight:900;">KRW : ${list.min }</a></p>
@@ -203,6 +207,10 @@ jQuery(function ($) {
           </div>
 					<div style="text-align:center"><%@include file = "pageNavi.jsp" %></div>
           <!-- ***** Other End ***** -->
+          
+
+					
+
 		        </div>
 		      </div>
 		    </div>

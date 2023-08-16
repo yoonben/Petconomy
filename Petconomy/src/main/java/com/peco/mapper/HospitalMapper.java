@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.peco.vo.HospitalFileuploadVO;
 import com.peco.vo.HospitalVO;
+import com.peco.vo.PensionFiileuploadVO;
 import com.peco.vo.RegionCri;
 
 public interface HospitalMapper {
@@ -17,8 +19,9 @@ public interface HospitalMapper {
 	
 	public List<HospitalVO> hospitaltop();
 	
-	public List<HospitalVO> hospitalList(RegionCri cri);
+	public List<HospitalVO> hospitalList(RegionCri cri);	
 	
+	public HospitalFileuploadVO getHospitalImg(@Param(value="h_id") String h_id);
 	
 	public int hospitalInsert(HospitalVO vo);
 	
