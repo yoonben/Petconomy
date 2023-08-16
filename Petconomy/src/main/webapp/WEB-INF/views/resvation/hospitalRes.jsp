@@ -408,6 +408,18 @@
 		  
 <script>
 
+//로그인 여부
+function checkLogin() {
+	
+	var m_id = $('#m_id').val();
+	
+	if(m_id === '') { //세션변수에 값이 없으면
+		alert('로그인 후 예약가능합니다');
+		window.location.replace("./login");
+	}
+	
+}
+
   let create2dArr = function() { //선택불가날짜 배열 만들기
 	  
 	  let disdateArr = []; //선택불가날짜 받을 배열
@@ -612,7 +624,7 @@
 	
 	
 	$(function() {
-		
+		checkLogin(); //로그인여부
 		checkDisable(); //시간버튼 출력
 		
 		$(".datepicker").datepicker({ //달력 출력
