@@ -36,7 +36,7 @@ public class ResController {
    @GetMapping("/restest") //연결 테스트
 	public String getOne(Model model) {
 		
-	    String h_id = "99";
+	    String h_id = "h_2721";
 	    String p_id = "p_10";
 	    String room_no = "r_02";
 	    
@@ -50,12 +50,9 @@ public class ResController {
    @RequestMapping(value="/peco/PensionRes",method = RequestMethod.GET)
    public String getPension(Model model, String p_id, String room_no) {
 	   
-	   String m_id = "m_3";
 	   
 	   System.out.println(p_id);
 	   System.out.println(room_no);
-	   
-	   model.addAttribute("mList", service.getMemberList(m_id));
 	      model.addAttribute("pList", service.getPensionList(p_id, room_no));
 	      model.addAttribute("disabledate", service.getPensionDisableDate(p_id, room_no));
 	   
@@ -66,9 +63,6 @@ public class ResController {
    @RequestMapping(value="/peco/hospitalRes",method = RequestMethod.GET)
    public String getHospital(Model model, String h_id) {
 
-	   String m_id = "m_3";
-	   
-	   model.addAttribute("mList", service.getMemberList(m_id));
 	   model.addAttribute("hList", service.getHospitalList(h_id));
 	   model.addAttribute("disabledate", service.getHospitalDisableDate(h_id));
 	   

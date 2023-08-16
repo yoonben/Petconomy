@@ -54,7 +54,7 @@ $(document).ready(function () {
    })
  }
 })
-
+*/
 
 $(document).ready(function () {
    
@@ -100,7 +100,6 @@ $(document).ready(function () {
    })
  }
 })
-*/
 </script>
 </head>
 <body>
