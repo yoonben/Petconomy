@@ -167,11 +167,11 @@ jQuery(function ($) {
 								                <c:set var="filename" value="${parts[2]}" />
 								
 								                <li style="display: inline-block; width: 205px; text-align:center ">
-								                    <img src="/peco/display?fileName=${filename}" class="card-img-top" alt="..."
-								                         style="height: 150px; width: 200px; ">
+								                    <a href="/peco/detail/detailPage?p_id=${p_id}&pname=${pname}&filename=${filename}" ><img src="/peco/display?fileName=${filename}" class="card-img-top" alt="..." style="height: 150px; width: 200px;" ></a>
 								                    <a href="/peco/detail/detailPage?p_id=${p_id}&pname=${pname}&filename=${filename}" style="font-size:1.1em ;font-weight: 900; color:black">${pname}</a><br>
 								                </li>
 								            </c:when>
+								            
 								            <c:otherwise>
 								                <li style="display: inline-block; width: 200px">
 								                    <a href="#" style="font-weight: 900">최근에 본 펜션이 없습니다.</a><br>
@@ -209,7 +209,7 @@ jQuery(function ($) {
             
             <div class="card" style="width:265px; max-width: 25%; display: block; border:solid 0px" >
             
-			  <img src="/peco/display?fileName=${list.savePath}" class="card-img-top" alt="..." style="height:300px; padding:10px">
+			<a href="/peco/detail/detailPage?p_id=${list.p_id }&pname=${list.pname }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}&filename=${list.savePath}"><img src="/peco/display?fileName=${list.savePath}" class="card-img-top" alt="..." style="height:300px; padding:10px"></a>
          	   
 			  <div class="card-body" style="margin-bottom: 20px">
 			    <h5 class="card-title"> <a style="font-size:1.2em; color:black" href="/peco/detail/detailPage?p_id=${list.p_id }&pname=${list.pname }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}&filename=${list.savePath}">${list.pname}</a></h5>

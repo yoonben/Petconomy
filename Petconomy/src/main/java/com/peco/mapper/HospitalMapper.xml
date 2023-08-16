@@ -43,8 +43,8 @@
 		</select>
 		
 		<insert id="hospitalInsert"> 
-		insert into hospital(h_id, M_ID, PNAME, ADDR, OPENHOUR, PARKYN) 
-		values('h'||'_'||hospital_seq.nextval, 'm_2', #{pname}, #{addr}, #{openhour}, #{parkyn}) 
+		insert into hospital(h_id, M_ID, PNAME, ADDR, OPENHOUR, PARKYN, CHECKYN) 
+		values('h'||'_'||hospital_seq.nextval, 'm_2', #{pname}, #{addr}, #{openhour}, #{parkyn}, 'Y') 
 		</insert>
 		
 

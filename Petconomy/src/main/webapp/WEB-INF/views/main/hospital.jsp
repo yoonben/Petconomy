@@ -135,11 +135,11 @@ jQuery(function ($) {
 			<input type="hidden" name="megaregion" value="${param.megaregion }">  
 			<input type="hidden" name="smallregion" value="${param.smallregion }">  
 			<input type="hidden" name="total" value="${totalCnt }">  
-              <div class="main-button" style="display:inline-block" >
-                  <a href="/peco/main/pension">펜션</a>
+              <div class="main-button" style="display:inline-block; " >
+                  <a href="/peco/main/pension" style="font-size:1.5em; text-align:center; font-weight:900">펜션</a>
               </div>
               <div class="main-button" style="display:inline-block">
-                  <a href="/peco/main/hospital">병원</a>
+                  <a href="/peco/main/hospital" style="font-size:1.5em; text-align:center; font-weight:900">병원</a>
               </div>
             <div class="row">
               <div class="col-lg-12">
@@ -149,6 +149,34 @@ jQuery(function ($) {
                     
                     <div class="col-lg-12">
                       <div><%@include file="h_kakaomap.jsp"%></div>
+                      <br><br>
+							<a style="font-weight:900; font-size:1.5em">최근 본 병원 </a>
+							<div style="background-color:#fff1e0; padding-left:20px"><br>
+		                      	<c:forEach var="Item" items="${sessionScope.harr}">
+		                      	          <c:choose>
+								            <c:when test="${not empty Item}">
+								                <c:set var="parts" value="${Item.split(',')}" />
+								                <c:set var="h_id" value="${parts[0]}" />
+								                <c:set var="pname" value="${parts[1]}" />
+								                <c:set var="filename" value="${parts[2]}" />
+								
+								                <li style="display: inline-block; width: 205px; text-align:center ">
+								                    <a href="/peco/detail/hospitalDetailPage?h_ id=${h_id}&pname=${pname}&filename=${filename}" ><img src="/peco/display?fileName=${filename}" class="card-img-top" alt="..." style="height: 150px; width: 200px;" ></a>
+								                    <a href="/peco/detail/hospitalDetailPage?h_id=${h_id}&pname=${pname}&filename=${filename}" style="font-size:1.1em ;font-weight: 900; color:black">${pname}</a><br>
+								                </li>
+								            </c:when>
+								            
+								            <c:otherwise>
+								                <li style="display: inline-block; width: 200px">
+								                    <a href="#" style="font-weight: 900">최근에 본 병원이 없습니다.</a><br>
+								                </li>
+								            </c:otherwise>
+								        </c:choose>
+
+								</c:forEach>
+							</div>
+					
+
                     </div>
 
                   </div>
@@ -178,10 +206,10 @@ jQuery(function ($) {
             
             <div class="card" style="width:265px; max-width: 25%; display: block; border:solid 0px" >
             
-			  <img src="/peco/display?fileName=${list.savePath}" class="card-img-top" alt="..." style="height:300px; padding:10px">
-         	   
+			  
+         	   <a href="/peco/detail//peco/detail/hospitalDetailPage?h_id=${list.h_id}&pname=${list.pname }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}&filename=${list.savePath}"><img src="/peco/display?fileName=${list.savePath}" class="card-img-top" alt="..." style="height:300px; padding:10px"></a>
 			  <div class="card-body" style="margin-bottom: 20px">
-			    <h5 class="card-title"> <a style="font-size:1.2em; color:black" href="/peco/detail/hospitalDetailPage?h_id=${list.h_id }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}">${list.pname}</a></h5>
+			    <h5 class="card-title"> <a style="font-size:1.2em; color:black" href="/peco/detail/hospitalDetailPage?h_id=${list.h_id}&pname=${list.pname }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}&filename=${list.savePath}">${list.pname}</a></h5>
 			    <p class="card-text">${list.addr }</p>
 			    <p class="card-text">${list.openhour }</p>
 			    <p class="card-text"><div class="test-score1" data-max="5" data-rate="${list.star }"></div>(${list.cnt })</p>
