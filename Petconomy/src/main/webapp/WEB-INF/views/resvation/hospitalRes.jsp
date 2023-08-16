@@ -415,7 +415,7 @@ function checkLogin() {
 	
 	if(m_id === '') { //세션변수에 값이 없으면
 		alert('로그인 후 예약가능합니다');
-		window.location.replace("./login");
+		//window.location.replace("./login");
 	}
 	
 }
@@ -602,6 +602,8 @@ function checkLogin() {
 	
 	//운영시간이 정보없음일 경우 처리 && 운영시간 화면출력
 	function nullhour() {
+		
+		$(".openhour").empty();//동적으로 만들어진 button 초기화
 		
 		let openhour = document.querySelector('#openhour').value;
 		
