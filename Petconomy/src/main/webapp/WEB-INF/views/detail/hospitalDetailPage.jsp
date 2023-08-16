@@ -249,7 +249,7 @@ https://templatemo.com/tm-579-cyborg-gaming
   <!-- ***** Preloader End ***** -->
 
 	<!-- 헤더 시작 -->
-	<%@ include file="../common/header.jsp" %>
+	<%@ include file="../main/header.jsp" %>
 	<!-- 헤더 끝 -->
 	
   <div class="container">
