@@ -236,7 +236,7 @@ jQuery(function ($) {
 						    </a>
 						    
 						      <div class="hover-effect">
-						        <i id="animated-icon" class="fa-regular fa-thumbs-up fa-lg" style="color: #ffa200;"> <h4> ${bvo.likecount }</h4></i>
+						        <i id="animated-icon" class="fa-regular fa-thumbs-up fa-lg" style="color: #ffa200;"></i><h4> ${bvo.likecount }</h4>
 						      </div>
 						      
 						    </div>
