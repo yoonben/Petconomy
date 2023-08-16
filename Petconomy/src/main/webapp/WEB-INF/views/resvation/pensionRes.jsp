@@ -374,19 +374,14 @@
       	
    		
 		   <div class="memberInfo">
-	<%-- 세션에서 생성
+
    		<!-- 예약자 정보 -->
 		   		<input type="hidden" value="${sessionScope.member.m_id }" id="m_id">
 		         이름      <input type="text" value="${sessionScope.member.mname }" id="user_id" readonly><br>
 		         이메일   <input type="text" value="${sessionScope.member.email }" id="user_email" readonly><br>
-		         전화번호<input type="text" value="${sessionScope.member.mphone }" id="user_tel" readonly>  --%>
+		         전화번호<input type="text" value="${sessionScope.member.mphone }" id="user_tel" readonly>
 		   <!-- 예약자 정보 끝 -->
    			<h3>예약자 정보 </h3>
-		   <c:forEach var="memberVO" items="${member}">
-		   		<input type="hidden" value= "${memberVO.m_id}" id="m_id">
-		         이름      <input type="text" value="${memberVO.mname }" id="user_id" readonly><br>
-		         이메일   <input type="text" value="${memberVO.email }" id="user_email" readonly><br>
-		         전화번호<input type="text" value="${memberVO.mphone }" id="user_tel" readonly>
 		    </div>
 		    <button id="direct">직접입력</button><br>  
 		   
