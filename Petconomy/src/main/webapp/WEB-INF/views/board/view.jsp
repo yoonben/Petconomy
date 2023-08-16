@@ -44,51 +44,51 @@
     height: 80px;
 }
 
-    body {
-      margin: 0 auto; /* 바디 마진을 0으로 하고 가로 가운데 정렬 */
-      background-color: white;
-    }
+body {
+  margin: 0 auto; /* 바디 마진을 0으로 하고 가로 가운데 정렬 */
+  background-color: white;
+}
 
-    div > .page-content {
-      background-color: rgb(251, 235, 215);
-      padding: 30px
-    }
+div > .page-content {
+  background-color: rgb(251, 235, 215);
+  padding: 30px
+}
 
-    .top-streamers {
-      margin-top: 50px;
-      overflow: auto;
-      background-color: bisque;
-    }
+.top-streamers {
+  margin-top: 50px;
+  overflow: auto;
+  background-color: bisque;
+}
 
-    .featured-games {
-      background-color: bisque;
-    }
+.featured-games {
+  background-color: bisque;
+}
 
-    .live-stream {
-      background-color: bisque;
-    }
+.live-stream {
+  background-color: bisque;
+}
 
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
-      }
-      40% {
-        transform: translateY(-30px);
-      }
-      60% {
-        transform: translateY(-15px);
-      }
-    }
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
 
-    .fa-bounce {
-      animation: bounce 1s;
-    }
+.fa-bounce {
+  animation: bounce 1s;
+}
 
-    #likebox {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+#likebox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
     
     
     
@@ -166,6 +166,13 @@
 }
 .main-button > a{
     margin: 0;
+    height: 40px;
+    width: 110px;
+    padding: 0; /* 좌우 패딩을 없애기 위해 추가 */
+    display: flex; /* 텍스트 가운데 정렬을 위해 추가 */
+    align-items: center; /* 텍스트 세로 가운데 정렬을 위해 추가 */
+    justify-content: center; /* 텍스트 가로 가운데 정렬을 위해 추가 */
+    text-align: center; /* 텍스트 내용 가운데 정렬을 위해 추가 */
 }
 	
 	
@@ -298,7 +305,29 @@
     position: absolute;
     bottom: 0;
 }
-	
+
+.game-details .content .left-info {
+  background-color: white;
+
+}	
+.game-details .content .right-info {
+  background-color: white;
+
+}
+
+.game-details .content .left-info ul li {
+  color : black;
+
+}		
+
+.game-details .content .left-info ul li:first-child i {
+    color: black;
+}
+
+.game-details .content .right-info ul li {
+  color : black;
+
+}
     
   </style>
   <script>
@@ -319,30 +348,21 @@ window.addEventListener('load', () => {
       const animatedIcon = document.getElementById('animated-icon');
       const likebox = document.getElementById('likebox');
 
-   // 좋아요 버튼 클릭 이벤트 핸들러
-      likebox.addEventListener('click', onClickLike);
+      // 좋아요 버튼 클릭 시 애니메이션 추가
+      likebox.addEventListener('click', () => {
+          animatedIcon.classList.add('fa-bounce'); // 애니메이션 클래스 추가
+          console.log("바운스")
+          getLike()
+          // 애니메이션이 완료된 후에 클래스를 제거합니다.
+		  animatedIcon.addEventListener('animationend', () => {
+		      animatedIcon.classList.remove('fa-bounce');
+		  });
 
-      function onClickLike() {
-    	  if (!animatedIcon.classList.contains('fa-bounce')) { // 애니메이션이 실행 중이 아닐 때만 처리
-    	    animatedIcon.classList.add('fa-bounce');
+          // 좋아요 증가 함수 호출 등...
+      });
 
-    	    // 애니메이션이 끝난 후, "fa-bounce" 클래스 제거한 뒤 화면에서 좋아요 숫자를 업데이트합니다.
-    	    animatedIcon.addEventListener('animationend', () => {
-    	      animatedIcon.classList.remove('fa-bounce');
-    	      updateLikeCountOnScreen();
-    	    }, { once: true });
-    	  }
-    	}
 
-    	function updateLikeCountOnScreen() {
-    	  const likecntDiv = document.getElementById('likecntDiv');
-    	  const currentCount = parseInt(likecntDiv.textContent);
-    	  if (!isNaN(currentCount)) {
-			
-    		//좋아요 +1 함수 호출
-    	    getLike()
-    	  }
-    	}
+     
 
       /* --------------좋아요버튼 끝-------------- */
       
@@ -600,8 +620,8 @@ function autoExpand(textarea) {
                           <h4>${board.nickname }</h4>
                         </div>
                         <ul>
-                         <li><i class="fa fa-eye"></i> ${board.visitcount} </li>
-                          <li><h4>${board.nickname }</h4></li>
+                         <li><i class="fa fa-eye "></i> ${board.visitcount} </li>
+                          <li><h4>${board.regdate }</h4></li>
                         </ul>
                       </div>
                     </div>

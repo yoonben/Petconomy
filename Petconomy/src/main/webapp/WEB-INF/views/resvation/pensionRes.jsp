@@ -652,7 +652,7 @@ $('#payment').click(function () { //결제버튼
                               $('#resForm').submit(); 
                       			alert(msg);
                   				console.log(m_id);
-                      			window.location.replace("../profile?m_id=${member.m_id}"); //마이페이지 예약내역으로 이동
+                      			window.location.replace("./profile?m_id=${member.m_id}"); //마이페이지 예약내역으로 이동
            	        	} else { //결제검증에 실패한 경우
               	       		var msg = '결제에 실패하였습니다.';
                        		msg += '에러내용 : ' + rsp.error_msg;

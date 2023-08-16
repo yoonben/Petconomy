@@ -2,49 +2,23 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.peco.mapper.ReplyMapper">
-	<select id="getList" resultType="com.peco.vo.ReplyVO">
-<!-- 	select *
+<mapper namespace="com.peco.mapper.R_ReplyMapper">
+ 	<select id="getList" resultType="com.peco.vo.R_ReplyVO">
+		select *
 		from(
 				select t.*, rownum rn
 				from (
-						SELECT 
-						    r.rno,
-						    r.bno,
-						    r.reply,
-						    r.replyer,
-						    TO_CHAR(r.regdate, 'yyyy-MM-dd') AS regdate,
-						    r.updatedate,
-						FROM
-						    reply r
-						JOIN
-						    board b ON r.bno = b.bno
-						JOIN
-						    member m ON b.m_Id = m.m_Id
-						WHERE
-						    r.bno = #{bno}
+						SELECT RR.REPLY, RR.REGDATE, M.NICKNAME,RR.RNO
+						FROM R_REPLY RR
+						JOIN REPLY R ON RR.BNO = R.BNO
+						JOIN MEMBER M ON RR.M_ID = M.M_ID
+						WHERE RR.RNO = #{rno}
 						ORDER BY
-						    r.rno DESC
+						    rr.rno ASC
 
 					 ) t
 			)
-	where rn between #{cri.startNo} and #{cri.endNo} -->
-	
-	select *
-		from(
-				select t.*, rownum rn
-				from (
-						SELECT R.REPLY, R.REGDATE, M.NICKNAME,R.RNO
-						FROM REPLY R
-						JOIN BOARD B ON R.BNO = B.BNO
-						JOIN MEMBER M ON R.M_ID = M.M_ID
-						WHERE B.BNO = #{bno}
-						ORDER BY
-						    r.rno DESC
-
-					 ) t
-			)
-	where rn between #{cri.startNo} and #{cri.endNo}
+		where rn between #{cri.startNo} and #{cri.endNo}
 	</select>
 	
 	<!-- 대댓글 정보도 함께 조회하는 쿼리 -->
@@ -65,37 +39,34 @@
 	    WHERE T.rn BETWEEN #{cri.startNo} AND #{cri.endNo}
 	    ORDER BY T.rno DESC, T.rrno ASC
 	</select>
-
-	
-	
 	
 	
 	
 	<insert id="insert">
-		insert into reply (rno, bno,m_id, reply, replyer,regdate)
-    	values (reply_seq.NEXTVAL, #{bno},#{m_id}, #{reply}, #{replyer},sysdate)
+		insert into r_reply (rrno,rno, bno,m_id, reply, replyer,regdate)
+    	values (r_reply_seq.NEXTVAL,#{rno}, #{bno},#{m_id}, #{reply}, #{replyer},sysdate)
 	</insert>
  
  	<delete id ="delete">
- 		delete from reply where rno = #{rno} 
+ 		delete from r_reply where rno = #{rno} 
  	</delete>
  
  	<update id ="update">
- 		update reply 
- 		   set reply= #{reply}
+ 		update r_reply 
+ 		   set r_reply= #{r_reply}
  		     , updatedate = sysdate
- 		 where rno = #{rno}
+ 		 where rrno = #{rrno}
  	</update>
  	
  	<select id="totalCnt" resultType="int">
  		select count(*) 
- 		from reply
- 		where bno= #{bno}
+ 		from r_reply
+ 		where rno= #{rno}
  	</select>
  	
- 	<select id="getOne" resultType="com.peco.vo.ReplyVO">
+ 	<select id="getOne" resultType="com.peco.vo.R_ReplyVO">
  		select *
- 		from reply
+ 		from r_reply
  		where rno=#{rno}
  	</select>
  	
