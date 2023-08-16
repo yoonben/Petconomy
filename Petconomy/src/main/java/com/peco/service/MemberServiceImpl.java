@@ -204,4 +204,10 @@ public class MemberServiceImpl implements MemberService {
 
 	}
 
+	@Override
+	public MemberVO getOneNoImg(String m_id) {
+		
+		return memberMapper.getOneNoImg(m_id);
+	}
+
 }

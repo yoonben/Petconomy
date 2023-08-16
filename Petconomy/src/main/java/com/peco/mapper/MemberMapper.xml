@@ -49,6 +49,10 @@
 		and member.m_id = #{m_id}
 	</select>
 	
+	<select id='getOneNoImg' resultType="com.peco.vo.MemberVO">
+		select * from member
+		where m_id=#{m_id}
+	</select>
 
 	<update id="update">
 		update member set 

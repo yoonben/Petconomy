@@ -191,7 +191,8 @@
                 <!-- 프로필 사진 시작-->
                   <div class="col-lg-3">
                     <img id='img_profile' src="/peco/display?fileName=${profile}" alt="프로필 사진" >
-                  </div>
+                    ${profile }
+                     </div>
                  <!-- 프로필 사진 끝--> 
                  
                   <div class="col-lg-2 align-self-center">
