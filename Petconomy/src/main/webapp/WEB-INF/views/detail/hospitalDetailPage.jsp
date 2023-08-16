@@ -267,12 +267,12 @@ https://templatemo.com/tm-579-cyborg-gaming
               <div class="feature-banner header-text">
                 <div class="row">
                   <div class="col-lg-4">
-                    <img src="/resources/assets/images/동물병원산책.jpg" alt="동물병원이미지" style="border-radius: 23px;">
+                    <img src="/peco/display?fileName=${hospitalImg}" alt="동물병원이미지" style="border-radius: 23px;">
                   </div>
                   <div class="col-lg-8">
                     <div class="item">
-                      <h4>${hospital.pname }</h4><!-- 펜션이름 -->
-                      <p>${hospital.addr }</p><!-- 펜션주소 -->
+                      <h4>${hospital.pname }</h4>
+                      <p>${hospital.addr }</p>
                       <br>
                       <p style='font-size: 20px;'>영업시간</</p>
                       <p id="openhourOutput">${hospital.openhour }</p>
@@ -303,7 +303,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                         <p style='font-size: 2em; color: black;'>기본정보</p>
                         <hr style="height: 4px; background-color: black;">
                         <p style='font-size: 1em;'>                       
-                          <img src="/resources/assets/images/동물병원산책.jpg" alt="동물병원이미지" style="border-radius: 23px; width: 60%; height: 350px;">
+                          <img src="/peco/display?fileName=${hospitalImg}" alt="동물병원이미지" style="border-radius: 23px; width: 60%; height: 350px;">
                           <br>
                           	병원 주소
                           <li style='list-style-type: disc;'>${hospital.addr }</li>
@@ -365,7 +365,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                         <div class="col-lg-17" id="reviewPossible">
                           <div class="left-info" style='background-color: rgb(247, 218, 218);'>
                             <div class="left">
-                              <h4 style='text-align: left; color: black;'><b><input type="text" id="reviewer" value="${sessionScope.member.nickname }" readonly></b></h4>
+                              <h4 style='text-align: left; color: black;'><b><input type="hidden" id="reviewer" value="${sessionScope.member.nickname }" readonly></b></h4>
                               <br>
                             </div>
                             <div class="col-lg-13"> <textarea name="review" id="review" rows="5" style='width: 100%; border-radius: 15px;'></textarea>

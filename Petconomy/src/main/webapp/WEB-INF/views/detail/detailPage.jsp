@@ -326,7 +326,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                           </div>
                           <div class="col-lg-12">
                             <div class="main-border-button">
-                              <a href="#" onclick="reservation()" style="border: 1px solid #FFC48C; background-color: #FFF1E0; color: #FFC48C" >예약하기</a>
+                              <a href="#" onclick="location.href='/peco/PensionRes?p_id=${pension.p_id }&room_no=${roomList.room_no }'" style="border: 1px solid #FFC48C; background-color: #FFF1E0; color: #FFC48C" >예약하기</a>
                             </div>
                           </div>
                         </div>
