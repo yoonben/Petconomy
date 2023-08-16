@@ -81,7 +81,7 @@ function replyView(map){
 		if(reviewer == reply.reviewer){
 			reviewDiv.innerHTML = 
 			'	<div class="col-lg-17">'
-		    +'        <div class="left-info" style="background-color: rgb(247, 218, 218);">'
+		    +'        <div class="left-info" style="background-color: bisque;">'
 		    +'                                      '
 		    +'            <span style="text-align: left; color: black;"><b>이미 리뷰를 작성 하셨습니다.</b></span>'
 		    +'                                                                 '
@@ -93,7 +93,14 @@ function replyView(map){
 	
 	// 리스트 사이즈를 확인하여 메세지 처리
 	if(list.length == 0){
-		replyDiv.innerHTML = '등록된 댓글이 없어요~!'
+		replyDiv.innerHTML = 
+			'	<div class="col-lg-17">'
+		    +'        <div class="left-info" style="background-color: bisque;">'
+		    +'                                      '
+		    +'            <span style="text-align: left; color: black;"><b>등록된 리뷰가 없습니다.</b></span>'
+		    +'                                                                 '
+		    +'        </div>'
+		    +'   </div>'
 	} else {		
 		
 		let replyDivStr = '';
@@ -103,7 +110,7 @@ function replyView(map){
 		list.forEach(reply => {
 			replyDivStr +=
 			 '	  <div id="tr'+reply.hr_no+'" data-value="'+reply.review+'" class="col-lg-17">																			'
-			+'	    <div class="left-info" style="background-color: rgb(247, 218, 218);">											'
+			+'	    <div class="left-info" style="background-color: bisque;">											'
 			+'	      <div class="left">																						'
 			+'	        <h4 style="text-align: left; color: black;"><b>'+reply.reviewer +'</b></h4>                        '
 			+'	        <span style="text-align: left; color: black;"><b>'+reply.review +'</b></span>                      '
@@ -123,11 +130,11 @@ function replyView(map){
 				replyDivStr +=
 			 '	  <div style="width: 100%; text-align: right;">                       '
 		    +'        <div class="edit-delete-buttons">                               '
-		    +'          <div class="main-border-button" style="margin-top: 5px;">     '
+		    +'          <div class="main-border-button" style="margin-top: 5px;" style="border: 1px solid #FFC48C; background-color: #FFF1E0; color: #FFC48C">     '
 		    +'            <a href="#" onclick="replyDelete('+ reply.hr_no +')">삭제하기</a>  '
 		    +'          </div>                                                        '
 		    +'          <div class="main-border-button" style="margin-top: 5px;">     '
-		    +'            <a href="#" onclick="replyEdit('+ reply.hr_no +')">수정하기</a>'
+		    +'            <a href="#" onclick="replyEdit('+ reply.hr_no +')" style="border: 1px solid #FFC48C; background-color: #FFF1E0; color: #FFC48C">수정하기</a>'
 		    +'          </div>                                                        '
 		    +'        </div>                                                          '
 		    +'      </div>                                                            '
