@@ -424,6 +424,9 @@ let disDays = []; //비활성화 할 날짜 배열
 let listDate = []; //시작날짜와 끝날짜 사이의 배열
             
 $(function() {
+	
+		
+	checkLogin(); //로그인여부체크
 	//예약된 날짜 가져오기
     inputDisDays();
 
@@ -479,7 +482,17 @@ $(function() {
             }
         } 
 	}); 
-
+//로그인 여부
+function checkLogin() {
+	
+	var m_id = $('#m_id').val();
+	
+	if(m_id === '') { //세션변수에 값이 없으면
+		alert('로그인 후 예약가능합니다');
+		window.location.replace("./login");
+	}
+	
+}
             
 Resbtn.addEventListener('click', function() { //선택 버튼 눌렀을 때 
 	listDate = []; //시작날짜와 끝날짜 넣을 배열

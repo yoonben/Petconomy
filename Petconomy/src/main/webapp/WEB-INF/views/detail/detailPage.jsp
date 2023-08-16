@@ -253,8 +253,8 @@ https://templatemo.com/tm-579-cyborg-gaming
 	<!-- 헤더 끝 -->
   <div class="container">
   <input type="hidden" name="p_id" id="p_id" value="${pension.p_id }">
-  <input type="text" name="filename" id="filename" value="${filename}">
-  <input type="hidden" id="reviewer" value="${sessionScope.member.nickname }">
+  <input type="hidden" name="filename" id="filename" value="${filename}">
+  <input type="hidden" name="reviewer" id="reviewer" value="${sessionScope.member.nickname }">
     <div class="row">
       <div class="col-lg-12">
         <div class="page-content">
