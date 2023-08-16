@@ -35,7 +35,7 @@ public class DetailPageController {
 	PensionService pensionService;
 
 	@GetMapping("/detail/detailPage")
-	public String getOne(Model model, PensionVO pensionVO, String p_id, String pname, String filename, HttpServletRequest request, HttpServletResponse response) {
+	public String getOne(Model model, PensionVO pensionVO, String p_id, String pname, String filename, HttpServletRequest request) {
 		PensionVO pension = pensionService.getOne(pensionVO.getP_id());
 		List<PensionRoomVO> room = pensionService.roomList(p_id);
 		List<PensionReviewVO> review = pensionService.reviewList(p_id);
