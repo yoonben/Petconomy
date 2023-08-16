@@ -88,6 +88,11 @@ public class MainController {
 	        	hImg.setSavePath(convertedPath);
 	    }
 		
+		for (HospitalVO hImg : lists) {
+	        String convertedPath = hImg.getSavePath().replace("\\", "/");
+	        	hImg.setSavePath(convertedPath);
+	    }
+		
 		model.addAttribute("totalCnt", totalCnt);
 		model.addAttribute("pageDto", pageDto);
 		model.addAttribute("list", list);

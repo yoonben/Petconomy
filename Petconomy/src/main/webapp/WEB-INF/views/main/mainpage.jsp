@@ -208,7 +208,7 @@ jQuery(function ($) {
 	              <div class="item">
 	                <ul>
 	                  <li style="width: 3%;"><h3 style="color:black;">${hvo.rn }</h3></li>
-	                  <li style="width: 32%;"><h3 style="color:black">${hvo.pname }</h3></li>
+	                  <li style="width: 32%;"><h3 style="color:black" ><a href="/peco/detail/hospitalDetailPage?h_id=${list.h_id }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}&pname=${list.pname}&filename=${list.savePath}">${hvo.pname }</a></h3></li>
 	                  <li style="width: 45%;"><h3 style="color:black; font-size : 1.5em; font-bold:100">${hvo.addr }</h3></li>
 	                  <li style="width: 15%; font-size:1.5em; color:black;"><div class="test-score1" data-max="5" data-rate="${hvo.star }"></div>
 	                  (${hvo.cnt })</li>

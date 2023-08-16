@@ -162,7 +162,7 @@ jQuery(function ($) {
 								
 								                <li style="display: inline-block; width: 205px; text-align:center ">
 								                    <a href="/peco/detail/hospitalDetailPage?h_ id=${h_id}&pname=${pname}&filename=${filename}" ><img src="/peco/display?fileName=${filename}" class="card-img-top" alt="..." style="height: 150px; width: 200px;" ></a>
-								                    <a href="/peco/detail/hospitalDetailPage?h_id=${h_id}&pname=${pname}&filename=${filename}" style="font-size:1.1em ;font-weight: 900; color:black">${pname}</a><br>
+								                    <a href="/peco/detail/hospitalDetailPage?h_id=${h_id}&pname=${pname}&filename=${filename}" style="font-size:0.9em ;font-weight: 900; color:black">${pname}</a><br>
 								                </li>
 								            </c:when>
 								            
