@@ -29,14 +29,13 @@
                         <!-- 마이페이지 네비게이션, 탭 -->
                 		<c:if test="${not empty sessionScope.member}">
                          <li class="nav-item dropdown" >
-						    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" style="font-size:1.2em">마이페이지</a>
+						    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" style="font-size:1.2em">마이페이지 <i class="fa-solid fa-user"></i></a>
 						    <ul class="dropdown-menu">
 						    <c:if test="${sessionScope.member.adminyn eq 'Y'}">
 						    	<li><a class="dropdown-item" href="/peco/admin/adminPage">관리자 페이지</a></li>							    
 						    </c:if>
 						      <li><a class="dropdown-item" href="/peco/profile?m_id=${member.m_id}" style="font-size:1.2em">나의 정보</a></li>
 						      <li><a class="dropdown-item" href="/peco/pensionProfile?m_id=${member.m_id}" style="font-size:1.2em">나의 펜션 관리</a></li>
-						      <li><a class="dropdown-item" href="/peco/hospitalProfile?m_id=${member.m_id}" style="font-size:1.2em">나의 병원 관리</a></li>
 						      <li><a class="dropdown-item" href="/peco/myBoard?m_id=${member.m_id}" style="font-size:1.2em">나의 글 목록</a></li>
 						      <li><a class="dropdown-item" href="#" style="font-size:1.2em">회원탈퇴</a></li>
 						    </ul>
