@@ -411,7 +411,7 @@ https://templatemo.com/tm-579-cyborg-gaming
 	                        <div class="col-lg-17" id="reviewPossible">
 	                          <div class="left-info" style='background-color: bisque;'>
 	                            <div class="left">
-	                              <h4 style='text-align: left; color: black;'><b><input type="hidden" id="reviewer" value="${sessionScope.member.nickname }" readonly></b></h4>
+	                              <h4 style='text-align: left; color: black;'><b><input type="hidden" value="${sessionScope.member.nickname }" readonly></b></h4>
 	                              <br>
 	                            </div>
 	                            <div class="col-lg-13"> <textarea name="review" id="review" rows="5" style='width: 100%; border-radius: 15px;'></textarea>
