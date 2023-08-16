@@ -44,7 +44,7 @@ public class HospitalDetailPageController {
 		while (harr.size() > 5) {
 			harr.remove(0); // Remove the oldest element
 		}
-		session.setAttribute("arr", harr);
+		session.setAttribute("harr", harr);
 
 		
 		int staravg = hospitalService.starAvg(h_id);
