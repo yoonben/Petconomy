@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,10 +26,12 @@ import com.peco.service.FileuploadService;
 import com.peco.service.HospitalService;
 import com.peco.service.MemberService;
 import com.peco.service.PensionService;
+import com.peco.service.ResService;
 import com.peco.vo.BoardVO;
 import com.peco.vo.FileuploadVO;
 import com.peco.vo.HospitalVO;
 import com.peco.vo.MemberVO;
+import com.peco.vo.P_RESVO;
 import com.peco.vo.PensionFiileuploadVO;
 import com.peco.vo.PensionVO;
 import com.peco.vo.RegionCri;
@@ -55,23 +58,30 @@ public class MemberController extends CommonRestController{
 	
 	@Autowired
 	BoardService boardService;
-	
-	
+
+	@Autowired
+	ResService resService;
+
 	//회원 프로필 조회
 	@GetMapping("profile")
-	public String getOne(HttpSession session, MemberVO vo, Model model, BoardVO boardVo, FileuploadVO fileVo) {
+	public String getOne(HttpSession session, MemberVO vo, Model model, BoardVO boardVo, FileuploadVO fileVo, P_RESVO resVo) {
 		try {
 			log.info("======================= m_id" + vo);
 			if(vo.getM_id().equals("") || vo.getM_id() == null ) {
 				System.out.println("msg");
+				model.addAttribute("getPrList",resService.getResPensionList(resVo.getM_id()));
+				model.addAttribute("getHrList",resService.getResHospitalList(resVo.getM_id()));
 				return "msg";
 			}
+				   
+				   
+				
+		
 			//하나의 회원 조회
 			MemberVO member = service.getOne(vo.getM_id());
-			
 
 			// 프로필 사진 조회
-			System.out.println(fileuploadService.getProfile(fileVo.getM_id()));
+			//System.out.println(fileuploadService.getProfile(fileVo.getM_id()));
 			
 			FileuploadVO fileuploadVO = fileuploadService.getProfile(fileVo.getM_id());
 			
@@ -192,7 +202,6 @@ public class MemberController extends CommonRestController{
 		    
 			return map;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return responseMap(REST_FAIL, "파일업로드 중 오류발생");
 		}
@@ -257,7 +266,7 @@ public class MemberController extends CommonRestController{
 		  		//session.removeAttribute("member");
 		  		
 		  		//모델에 업데이트된 회원 정보 추가
-		  		model.addAttribute("profile", profile);
+		  		//model.addAttribute("profile", profile);
 	  		 
 	    return "/member/profile";
 	}
@@ -267,22 +276,21 @@ public class MemberController extends CommonRestController{
 
 	// 게시글 조회
 	@GetMapping("/myBoard")
-	public String myBoard(Model model, BoardVO vo, MemberVO membervo) {
-		MemberVO member = service.getOne(membervo.getM_id());
-		List<BoardVO> board = boardService.selectMyBoard(vo.getM_id());
+	public String myBoard(Model model, BoardVO vo, MemberVO membervo, HttpSession session) {
 		
+			MemberVO member = (MemberVO) session.getAttribute("member");
+			List<BoardVO> board = boardService.selectMyBoard(vo.getM_id());
+			
+			if(board!=null && vo.getM_id().equals(member.getM_id())) {
+				model.addAttribute("board", board);
+		} 
 		System.out.println("member ================== : " + member);
 		System.out.println("board ================== : " + board);
-		
-		if(board!=null && vo.getM_id().equals(member.getM_id())) {
-			//int bno = Integer.parseInt(vo.getBno()());
-			model.addAttribute("board", board);
-			return "/member/myBoard";
-		}
-		return "";
+
+		return "/member/myBoard";
 	}
 
-	
+	//TODO : 게시글 삭제 기능 구현
 	// 게시글 삭제
 	@RequestMapping(value= "/myBoard")
 	public String boardDelete(HttpServletRequest request) {
@@ -296,13 +304,9 @@ public class MemberController extends CommonRestController{
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
+
+
+
 
 // 펜션 컨트롤러 부분==========================================================================	
 // 펜션 컨트롤러 부분==========================================================================	
@@ -310,9 +314,9 @@ public class MemberController extends CommonRestController{
 	
 	//하나의 펜션 조회
 	@GetMapping("pensionProfile")
-	public String getOne_P(Model model, PensionVO vo, MemberVO memberVo, PensionFiileuploadVO p_id) {
+	public String getOne_P(Model model, PensionVO vo, MemberVO memberVo, PensionFiileuploadVO p_id, HttpSession session) {
 		try {
-			MemberVO member = service.getOne(memberVo.getM_id());
+			MemberVO member = (MemberVO) session.getAttribute("member");
 			PensionVO pension = pensionService.getOne_P(vo.getM_id());
 			PensionFiileuploadVO fileuploadVO = pensionService.getPesionImg(vo.getP_id());
 

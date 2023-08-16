@@ -161,7 +161,7 @@ input[type='checkbox']:checked{
 										<th>조회수</th>
 									</tr>
 		
-		
+
 						<c:forEach var="boardVO" items="${board}">
 								<tr>
 									<td><input type='checkbox' name='rowCheck' value='${boardVO.bno }'></td>
@@ -176,7 +176,10 @@ input[type='checkbox']:checked{
 									<td>${boardVO.regdate}</td>
 									<td>${boardVO.visitcount}</td>
 								</tr>
-							</c:forEach>
+						</c:forEach>
+			
+				
+							
 								<tr>
 									<td colspan='8'>
 								        <i id="btnDeleteModal" class="fa-solid fa-trash" style="color: #ffa200;"></i>

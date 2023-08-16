@@ -649,7 +649,7 @@
 	                                    $('#resForm').submit(); 
 	                           			alert(msg);
 	                       				console.log(m_id);
-	                           			window.location.replace("../profile?m_id=${member.m_id}");
+	                           			window.location.replace("/peco/profile?m_id=${member.m_id}");
 	                   	        	} else {
 	                   	        		var msg = '결제에 실패하였습니다.';
 	                                    msg += '에러내용 : ' + rsp.error_msg;

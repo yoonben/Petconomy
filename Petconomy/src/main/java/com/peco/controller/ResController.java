@@ -111,17 +111,16 @@ public class ResController {
 	   service.insertResvationHospital(h_resVO);
 	   System.out.println("성공");
    }
-   
-   @RequestMapping(value="/peco/redirect",method = RequestMethod.GET)
+
+   @RequestMapping(value="/profile?m_id=${m_id}",method = RequestMethod.POST)
    public String redirect(Model model, String m_id){
 
-	   
 	   System.out.println("m_id : "+m_id);
-	   
 	   model.addAttribute("getPrList",service.getResPensionList(m_id));
 	   model.addAttribute("getHrList",service.getResHospitalList(m_id));
 	   
-	   return "member/profile";
+	   
+	   return "/member/profile";
    }
    
    @ResponseBody
