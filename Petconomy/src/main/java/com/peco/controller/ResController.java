@@ -33,7 +33,7 @@ public class ResController {
    PensionService pensionService;
    HospitalService hospitalService;
    
-   @GetMapping("/restest") //ì—°ê²° í…ŒìŠ¤íŠ¸
+   @GetMapping("/restest") //¿¬°áÅ×½ºÆ®
 	public String getOne(Model model) {
 		
 	    String h_id = "h_2721";
@@ -89,7 +89,7 @@ public class ResController {
            String roomname = request.getParameter("roomname");
 
            service.insertResvationPension(p_resVO);
-           System.out.println("ì„±ê³µ");
+           System.out.println("¼º°ø");
 	}
    
    @RequestMapping(value="/peco/createHospital", method=RequestMethod.POST)
@@ -109,7 +109,7 @@ public class ResController {
 	   String hname = request.getParameter("hname");
    
 	   service.insertResvationHospital(h_resVO);
-	   System.out.println("ì„±ê³µ");
+	   System.out.println("¼º°ø");
    }
    
    @RequestMapping(value="/peco/redirect",method = RequestMethod.GET)
@@ -134,9 +134,9 @@ public class ResController {
 	   int res = service.deleteResPension(imp_uid);
 	   
 	   if(res>0) {
-		   System.out.println("ì •ìƒì‚­ì œ");
+		   System.out.println("»èÁ¦¿Ï·á");
 	   } else {
-		   System.out.println("ì‚­ì œì¤‘ ì˜¤ë¥˜");
+		   System.out.println("»èÁ¦Áß¿À·ù");
 	   }
 	   
    }
@@ -152,9 +152,9 @@ public class ResController {
 	   System.out.println(res);
 	   
 	   if(res>0) {
-		   System.out.println("ì •ìƒì‚­ì œ");
+		   System.out.println("»èÁ¦¿Ï·á");
 	   } else {
-		   System.out.println("ì‚­ì œì¤‘ ì˜¤ë¥˜");
+		   System.out.println("»èÁ¦Áß¿À·ù");
 	   }
 	   
    }
