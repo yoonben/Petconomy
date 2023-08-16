@@ -67,7 +67,10 @@ window.addEventListener('load',function(){
 </script>
 
 </head>
-<body>	
+<body>
+<div class="d-grid gap-2 col-6 mx-auto">
+  <button class="btn btn-outline-dark" type="button" onclick="location.href='/peco/main'">메인 페이지</button>
+</div>	
 	<!-- 탭 버튼 영역 -->
 	<ul class="tab">
 	  <li class="tab__item active">
