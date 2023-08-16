@@ -3,9 +3,20 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.peco.mapper.HospitalMapper">
+
 		<select id="getOne" resultType="com.peco.vo.HospitalVO"> 
 		select * from hospital where h_id = #{h_id} 
 		</select>
+		
+	<select id="getHospitalImg" resultType="com.peco.vo.HospitalFileuploadVO">
+			select t.*
+		        , uploadpath||h_id||filename savePath
+        		, decode(filetype, 'I'
+                			,uploadpath||'s_'||h_id||'_'||filename
+                			,'') s_savePath 
+		  from h_img t
+          where h_id = #{h_id}
+	</select>
 		
 	<select id="starAvg" resultType="int">
 		SELECT COALESCE(ROUND(AVG(star)), 0) FROM h_review where h_id = #{h_id}

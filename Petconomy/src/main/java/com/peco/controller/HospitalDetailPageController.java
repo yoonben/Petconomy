@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.peco.service.HospitalService;
+import com.peco.vo.HospitalFileuploadVO;
 import com.peco.vo.HospitalVO;
 
 import lombok.extern.log4j.Log4j;
@@ -23,10 +24,15 @@ public class HospitalDetailPageController {
 	public String getOne(Model model, HospitalVO hospitalVO, String h_id) {
 		
 		HospitalVO hospital = hospitalService.getOne(hospitalVO.getH_id());
+		HospitalFileuploadVO hospitalImg = hospitalService.getHospitaImg(h_id);
+		
+		String hospitalConvertedPath = hospitalImg.getSavePath().replace("\\", "/");
+		
 		int staravg = hospitalService.starAvg(h_id);
 		
 		model.addAttribute("hospital", hospital);
 		model.addAttribute("staravg", staravg);
+		model.addAttribute("hospitalImg", hospitalConvertedPath);
 		
 		return "/detail/hospitalDetailPage";
 	}

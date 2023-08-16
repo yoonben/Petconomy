@@ -267,12 +267,12 @@ https://templatemo.com/tm-579-cyborg-gaming
               <div class="feature-banner header-text">
                 <div class="row">
                   <div class="col-lg-4">
-                    <img src="/resources/assets/images/동물병원산책.jpg" alt="동물병원이미지" style="border-radius: 23px;">
+                    <img src="/peco/display?fileName=${hospitalImg}" alt="동물병원이미지" style="border-radius: 23px;">
                   </div>
                   <div class="col-lg-8">
                     <div class="item">
-                      <h4>${hospital.pname }</h4><!-- 펜션이름 -->
-                      <p>${hospital.addr }</p><!-- 펜션주소 -->
+                      <h4>${hospital.pname }</h4>
+                      <p>${hospital.addr }</p>
                       <br>
                       <p style='font-size: 20px;'>영업시간</</p>
                       <p id="openhourOutput">${hospital.openhour }</p>

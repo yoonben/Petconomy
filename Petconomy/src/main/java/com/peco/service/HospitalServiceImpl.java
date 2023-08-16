@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.peco.mapper.HospitalMapper;
+import com.peco.vo.HospitalFileuploadVO;
 import com.peco.vo.HospitalVO;
 import com.peco.vo.RegionCri;
 
@@ -75,6 +76,12 @@ public class HospitalServiceImpl implements HospitalService {
 	public int totalCount(RegionCri cri) {
 		// TODO Auto-generated method stub
 		return hospitalMapper.totalCount(cri);
+	}
+
+	@Override
+	public HospitalFileuploadVO getHospitaImg(String h_id) {
+		// TODO Auto-generated method stub
+		return hospitalMapper.getHospitalImg(h_id);
 	}
 
 }
