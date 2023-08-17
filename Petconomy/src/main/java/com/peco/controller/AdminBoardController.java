@@ -30,7 +30,7 @@ public class AdminBoardController extends CommonRestController {
 		
 		List<BoardVO> list = adminService.getList(cri);
 		
-		int totalCnt = adminService.getTotalCnt(cri);
+		int totalCnt = adminService.getTotalCnt();
 		
 		PageDto pageDto = new PageDto(cri, totalCnt);
 		

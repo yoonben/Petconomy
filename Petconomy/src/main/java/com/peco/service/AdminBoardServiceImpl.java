@@ -30,9 +30,9 @@ public class AdminBoardServiceImpl implements AdminBoardService {
 	}
 
 	@Override
-	public int getTotalCnt(Criteria cri) {
+	public int getTotalCnt() {
 		
-		return  mapper.getTotalCnt(cri);
+		return  mapper.getTotalCnt();
 	}
 
 }

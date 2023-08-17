@@ -16,6 +16,7 @@
 	where rn between #{cri.startNo} and #{cri.endNo}
 	</select>
 	
+	
 	<delete id="delete">
 	delete from board where bno = #{bno}
 	</delete>

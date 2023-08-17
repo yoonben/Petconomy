@@ -15,7 +15,6 @@ function fetchGet(url,callback){
 		
 	} catch (e) {
 		console.log(e);
-			
 	}
 	
 	
@@ -171,13 +170,6 @@ if(nickname == reply.nickname){
 
 
 
-
-
-
-
-
-
-
 function replyWrite(){
 	//bno 게시글번호
 	//m_id 회원번호
@@ -210,17 +202,19 @@ function replyRes(map){
 	//성공 : 리스트 조회 및 출력
 	//실패 : 메세지 출력
 	if(map.result =='success'){
+		
+		document.querySelector('#reply').value = '';
 		//등록성공
 		getReplyList();
 		
 	}else{
 		//등록실패
-		alert(map.message);
+		alert("댓글을 100자 내외로 작성해주세요");
 	}
 }
 
 
-function replyDelete(rno){
+function replyDeleteAction(rno){
 	console.log("매개변수 rno를 잘 받고 있니? :"+rno)
 	fetchGet(`/reply/delete/${rno}`, replyRes);
 }

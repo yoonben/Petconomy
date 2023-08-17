@@ -545,6 +545,31 @@ function autoExpand(textarea) {
     	  });
     }
 	
+	
+	/* 댓글 삭제 모달 */
+    function replyDeleteModal(rno) {
+    	  // 배경 blur 처리를 위해 modal-backdrop 클래스를 선택하고 스타일을 변경
+    	  const backdrop = document.getElementById('backdrop');
+    	  backdrop.style.display = 'block';
+
+    	  Swal.fire({
+    	    title: '게시글 삭제',
+    	    text: '정말 게시글을 삭제하시겠습니까?',
+    	    icon: 'warning',
+    	    showCancelButton: true,
+    	    confirmButtonText: '예',
+    	    cancelButtonText: '아니오',
+    	    allowOutsideClick: false,
+    	    allowEscapeKey: false,
+    	  }).then((result) => {
+    	    if (result.isConfirmed) {
+    	      postDelete();
+    	    }
+    	    // 모달 창이 닫힐 때 배경 blur 처리 스타일을 원래대로 변경
+    	    backdrop.style.display = 'none';
+    	  });
+    }
+	
 
 
 

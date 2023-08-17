@@ -15,6 +15,6 @@ public interface AdminBoardService {
 	
 	public int delete(int bno);
 	
-	public int getTotalCnt(Criteria cri);
+	public int getTotalCnt();
 
 }
