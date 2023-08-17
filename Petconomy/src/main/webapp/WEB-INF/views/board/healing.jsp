@@ -435,11 +435,12 @@ div >.page-content{
                           <img src="/peco/display?fileName=${board.savePath}" alt="">
                         </div>
                      </div>
-
+ 				  </a>
                      <div class="postreplywriter">
                         <div class="post_reply">댓글: ${board.replycount }</div>
-                        <div>${board.writer }</div>
-                        <div>${board.regdate }</div>
+                        
+                        <div class="post_writer">${board.nickname } </div>
+                        <div class="post_date">${board.regdate }</div>
                      </div>
 
                      <div class="postendline">

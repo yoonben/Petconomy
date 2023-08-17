@@ -305,7 +305,7 @@ a {
                   </div>
                   <div class="down-content">
                     <div class="avatar">
-                      <img src="/resources/images/default.png" alt="" style="max-width: 46px; border-radius: 50%; float: left;">
+                      <img src="/peco/display?fileName=${f.p_savePath}" alt="" style="max-width: 46px; border-radius: 50%; float: left;">
                     </div>
                     <span><i class="fa fa-check"></i> ${f.writer}</span>
                     <h4>${f.title} </h4>
@@ -351,7 +351,7 @@ a {
                   </div>
                   <div class="down-content">
                     <div class="avatar">
-                      <img src="/resources/images/default.png" alt="" style="max-width: 46px; border-radius: 50%; float: left;">
+                      <img src="/peco/display?fileName=${h.p_savePath}" alt="" style="max-width: 46px; border-radius: 50%; float: left;">
                     </div>
                     <span><i class="fa fa-check"></i> ${h.writer}</span>
                     <h4>${h.title}</h4>
