@@ -160,6 +160,10 @@ https://templatemo.com/tm-579-cyborg-gaming
     text-align: center; /* 텍스트 내용 가운데 정렬을 위해 추가 */
 }
 
+a {
+    text-decoration: none; /* 밑줄 제거 */
+    color: inherit; /* 부모 엘리먼트의 색상 상속 */
+}
 
 </style>
 
@@ -272,7 +276,7 @@ https://templatemo.com/tm-579-cyborg-gaming
           <div class="live-stream">
             <div class="col-lg-12">
               <div class="heading-section">
-                <h4><em>일상</em> 게시판</h4>
+                <h4><em>최근</em><a href="/peco/board/healing">일상 게시글</a></h4>
               </div>
             </div>
 
@@ -321,18 +325,18 @@ https://templatemo.com/tm-579-cyborg-gaming
           <div class="live-stream">
             <div class="col-lg-12">
               <div class="heading-section">
-                <h4><em>힐링짤</em> 게시판</h4>
+               <h4><em>최근</em><a href="/peco/board/healing">힐링 게시글</a></h4>
               </div>
             </div>
             <div class="row">
             
             <c:forEach var="h" items="${Healing}" varStatus="loop">
             <c:if test="${loop.index < 8}">
-              <div class="col-lg-3 col-sm-6">
+              <div class="col-lg-3 col-sm-6 boardbox" >
                 <div class="item">
                   <div class="thumb">
                   <a onclick="requestAction('/peco/board/view', ${h.bno })">
-                    <img src="/peco/display?fileName=${h.savePath}" alt="">
+                    <img src="/peco/display?fileName=${h.savePath}" alt="" class="thumbnail-image">
                     <div class="hover-effect">
                       <div class="content">
                         <div class="live">
