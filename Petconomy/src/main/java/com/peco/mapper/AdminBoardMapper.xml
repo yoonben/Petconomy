@@ -4,9 +4,16 @@
 <mapper namespace="com.peco.mapper.AdminBoardMapper">
 
 	<select id="getList" resultType="com.peco.vo.BoardVO">
-		SELECT BNO, M.ID,M.M_ID, NICKNAME, TITLE, CONTENT
-		FROM board B
-		JOIN Member M ON B.M_ID = M.M_ID
+	select *
+    from (
+            select t.*, rownum rn 
+            from (
+                    SELECT BNO, M.ID,M.M_ID, NICKNAME, TITLE, CONTENT
+                    FROM board B
+                    JOIN Member M ON B.M_ID = M.M_ID
+                ) t
+        )
+	where rn between #{cri.startNo} and #{cri.endNo}
 	</select>
 	
 	<delete id="delete">

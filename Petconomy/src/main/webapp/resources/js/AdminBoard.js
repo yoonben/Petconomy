@@ -112,7 +112,7 @@ function BoardView(map){
 		if(pageDto.prev){
 			// prev 버튼
 			pageBlock += `    <li class="page-item disabled"`
-				+ ` 					onclick="getReplyList(${pageDto.startNo-1})">     `
+				+ ` 					onclick="getBoardList(${pageDto.startNo-1})">     `
 				+ `      <a class="page-link">Previous</a>                                `
 				+ `    </li>                                                              `;
 		}
@@ -120,7 +120,7 @@ function BoardView(map){
 		for(let i=pageDto.startNo; i<=pageDto.endNo; i++){
 			let active = pageDto.cri.pageNo == i ? 'active' : '';
 			// 페이지 버튼 startNo ~ endNo
-			pageBlock += `    <li class="page-item ${active}" onclick="getReplyList(${i})">`
+			pageBlock += `    <li class="page-item ${active}" onclick="getBoardList(${i})">`
 						+ `		<a class="page-link" href="#">`
 						+ `		${i}`
 						+ `		</a></li>     `;
@@ -129,7 +129,7 @@ function BoardView(map){
 		if(pageDto.next){
 			// next 버튼
 			pageBlock += `    <li class="page-item" `
-				+ `						onclick="getReplyList(${pageDto.endNo+1})">       `
+				+ `						onclick="getBoardList(${pageDto.endNo+1})">       `
 				+ `      <a class="page-link" href="#">Next</a>                           `
 				+ `    </li>                                                              `;
 		}
@@ -138,7 +138,7 @@ function BoardView(map){
 		pageBlock += `  </ul>                                                               `
 				+ `</nav>                                                                 `;
 			                                                                      
-		paginationDiv.innerHTML = pageBlock;	
+		boardpaginationDiv.innerHTML = pageBlock;	
 	}
 		
                         

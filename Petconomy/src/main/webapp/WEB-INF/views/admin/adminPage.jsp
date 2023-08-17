@@ -71,7 +71,7 @@ window.addEventListener('load',function(){
 </head>
 <body>
 <div class="d-grid gap-2 col-6 mx-auto">
-  <button class="btn btn-outline-dark" type="button" onclick="location.href='/peco/main'">메인 페이지</button>
+  <button class="btn btn-outline-dark" type="button" onclick="location.href='/peco/main/mainpage'">메인 페이지</button>
 </div>	
 	<!-- 탭 버튼 영역 -->
 	<ul class="tab">
@@ -103,6 +103,7 @@ window.addEventListener('load',function(){
 		  		<h3>게시글 목록</h3>
 		  		
 		  		<div id="boardDiv"></div>
+		  		<div id="boardpaginationDiv"></div>
 		  </div>
 		  <div id="tab3" class="tab__content">
 		  	<div style="text-align: center;">
