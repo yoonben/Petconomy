@@ -216,7 +216,17 @@ jQuery(function ($) {
          	   
 			  <div class="card-body" style="margin-bottom: 20px">
 			    
-			    <h5 class="card-title"> <a style="font-size:1.2em; color:black" href="/peco/detail/detailPage?p_id=${list.p_id }&pname=${list.pname }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}&filename=${list.savePath}">${list.pname}</a></h5>
+			    <h5 class="card-title"> <a style="font-size:1.2em; color:black;" href="/peco/detail/detailPage?p_id=${list.p_id }&pname=${list.pname }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}&filename=${list.savePath}">${list.pname}</a>
+			    <c:if test="${not empty sessionScope.member}">
+			    <c:if test="${empty count}">
+			    <a href="/peco/main/heart.do?p_id=${list.p_id }&m_id=${sessionScope.member.getM_id()}"><i class="fa-solid fa-heart"></i></a>
+			    </c:if>
+			    <c:if test="${not empty count}">
+			    <i class="fa-regular fa-heart"></i>
+			    </c:if>
+			    </c:if>
+			    </h5>
+			    
 			    <p class="card-text">${list.addr }</p>
 			    <p class="card-text"><div class="test-score1" data-max="5" data-rate="${list.star }"></div>(${list.cnt })</p>
 			    <p class="card-text">1박당 요금 시작가 <br> <a style="color:red; font-weight:900;">KRW : ${list.min }</a></p>
