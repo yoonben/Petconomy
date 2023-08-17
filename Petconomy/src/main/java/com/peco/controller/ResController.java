@@ -32,7 +32,7 @@ public class ResController {
    @GetMapping("/restest") //연결테스트
 	public String getOne(Model model) {
 		
-	    String h_id = "h_1";
+	    String h_id = "h_4";
 	    String p_id = "p_3";
 	    String room_no = "0";
 	    
@@ -92,6 +92,7 @@ public class ResController {
            String m_id = request.getParameter("m_id");
            String pname = request.getParameter("pname");
            String roomname = request.getParameter("roomname");
+           String room_no = request.getParameter("room_no");
 
            service.insertResvationPension(p_resVO);
            System.out.println("성공");
