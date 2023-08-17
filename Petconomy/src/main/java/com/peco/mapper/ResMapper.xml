@@ -26,9 +26,12 @@
    </select>
    
    <select id="getResPensionList" resultType="com.peco.vo.P_RESVO">
-   	select imp_uid, startdate, enddate, pr_name, pr_email, pr_tel, roomname, pname, pricecnt, p_id 
-	from p_res
-	where m_id = #{m_id}
+    select p.imp_uid, p.startdate, p.enddate, p.pr_name, p.pr_email, p.pr_tel, p.roomname, p.pname, p.pricecnt, p.p_id
+            , pi.uploadpath || pi.p_id || pi.filename AS savePath
+	from p_res p
+    LEFT JOIN member m ON p.m_id = m.m_id
+    LEFT JOIN p_img pi ON pi.p_id = p.p_id
+	where m.m_id = #{m_id}
    </select>
    
    <insert id="insertResvationPension">

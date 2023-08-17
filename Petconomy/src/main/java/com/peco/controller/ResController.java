@@ -1,5 +1,7 @@
 package com.peco.controller;
 
+import java.util.List;
+
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 
@@ -18,6 +20,7 @@ import com.peco.vo.H_RESVO;
 import com.peco.vo.HospitalFileuploadVO;
 import com.peco.vo.P_RESVO;
 import com.peco.vo.PensionFiileuploadVO;
+import com.peco.vo.PensionVO;
 
 @Controller
 @RequestMapping("/peco/*")
@@ -118,9 +121,20 @@ public class ResController {
    }
 
    @RequestMapping(value="/profile?m_id=${m_id}",method = RequestMethod.POST)
-   public String redirect(Model model, String m_id){
-
-	   System.out.println("m_id : "+m_id);
+   public String redirect(Model model, String m_id, PensionVO vo){
+	   
+	   List<PensionVO> pensionlist = pensionService.mypensionlist(vo.getM_id());
+		
+		if (pensionlist != null) {
+	    	for (PensionVO pension : pensionlist) {
+	        String convertedPath = pension.getSavePath().replace("\\", "/");
+	        pension.setSavePath(convertedPath);
+	        
+	    	}
+	    	System.out.println("=============pensionlist================== (2) : " +  pensionlist);
+	    } 
+		
+		model.addAttribute("pension",pensionlist); 
 	   model.addAttribute("getPrList",service.getResPensionList(m_id));
 	   model.addAttribute("getHrList",service.getResHospitalList(m_id));
 	   

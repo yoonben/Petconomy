@@ -19,6 +19,7 @@ public class PensionVO {
 	private String pensionimg; 
 	
 	private String roomname;
+	private String imp_uid;
 	
 	private String rn; 
 	private int cnt; 

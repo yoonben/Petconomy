@@ -95,6 +95,15 @@
 			color: #F99;
 			background-color: #ffffff;
 		}
+		 #profile{
+		width: 150px; 
+		height: 50px;
+		border-radius: 20px;
+		}
+		#profile:hover {
+			color: #F99;
+			background-color: #ffffff;
+		}
 		
 		#myboard-link{
 			color: #212529;
@@ -184,6 +193,7 @@ input[type='checkbox']:checked{
 									<td colspan='8'>
 								        <i id="btnDeleteModal" class="fa-solid fa-trash" style="color: #ffa200;"></i>
 								        <input type='button' value='삭제' id='delete-btn' onclick='deleteValue();'>
+								        <input type='button' value='나의 정보' id='profile' onclick="location.href='/peco/profile?m_id=${member.m_id}'">
 									</td>
 								</tr>	
 							</table>
