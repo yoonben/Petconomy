@@ -351,7 +351,7 @@ a {
                   </div>
                   <div class="down-content">
                     <div class="avatar">
-                      <img src="/peco/display?fileName=${h.p_savePath}" alt="" style="max-width: 46px; border-radius: 50%; float: left;">
+                      <img src="/peco/display?fileName=${h.p_savePath}" alt="" style="width: 46px; height:46px; border-radius: 50%; float: left;">
                     </div>
                     <span><i class="fa fa-check"></i> ${h.writer}</span>
                     <h4>${h.title}</h4>

@@ -336,11 +336,29 @@ div > .page-content {
   color : black;
 
 }
+
+.rreply_box {
+    border-bottom: 1px solid #e0e0e0;
+    padding: 20px 0 20px 24px;
+}
     
+  
   </style>
   <script>
   
 window.addEventListener('load', () => {
+	
+	// JSP에서 에러메세지 등 msg 값을 전달받는 변수
+	var message = '${msg}';
+
+	// msg에 값이 존재할 경우에만 알림창 띄우는 함수
+	function showMessage() {
+	    if (message) {
+	        alert(message);
+	    }
+	}
+	// 페이지 로딩이 완료되면 showMessage 함수 호출
+	window.onload = showMessage;
 	
 	
 	// 텍스트 영역에 input 이벤트 리스너 추가
@@ -374,16 +392,18 @@ window.addEventListener('load', () => {
 
       /* --------------좋아요버튼 끝-------------- */
       
-    //답글 등록 버튼이 있을경우에만 이벤트 등록 = 답글 등록 버튼은 세션이 존재할 경우에만 표시  
-    let btnReplyWrite = document.getElementById('btnReplyWrite'); 
-	if(btnReplyWrite){
-      btnReplyWrite.addEventListener('click', function () {
-        replyWrite()
+      
+      //답글 등록 버튼이 있을경우에만 이벤트 등록 = 답글 등록 버튼은 세션이 존재할 경우에만 표시  
+      let btnReplyWrite = document.getElementById('btnReplyWrite'); 
+  	  if(btnReplyWrite){
+        btnReplyWrite.addEventListener('click', function () {
+          replyWrite()
       });
-	}
+  	  }
 
       //댓글목록 조회 및 출력
       getReplyList();
+      
 
       //파일목록 조회 및 출력
       getFileList();
@@ -577,6 +597,30 @@ function autoExpand(textarea) {
     	    backdrop.style.display = 'none';
     	  });
     }
+	
+	/* 대댓글 삭제 모달 */
+    function rreplyDeleteModal(rrno) {
+    	  // 배경 blur 처리를 위해 modal-backdrop 클래스를 선택하고 스타일을 변경
+    	  const backdrop = document.getElementById('backdrop');
+    	  backdrop.style.display = 'block';
+
+    	  Swal.fire({
+    	    title: '댓글 삭제',
+    	    text: '댓글을 삭제하시겠습니까?',
+    	    icon: 'warning',
+    	    showCancelButton: true,
+    	    confirmButtonText: '예',
+    	    cancelButtonText: '아니오',
+    	    allowOutsideClick: false,
+    	    allowEscapeKey: false,
+    	  }).then((result) => {
+    	    if (result.isConfirmed) {
+    	      rreplyDeleteAction(rrno);
+    	    }
+    	    // 모달 창이 닫힐 때 배경 blur 처리 스타일을 원래대로 변경
+    	    backdrop.style.display = 'none';
+    	  });
+    }
 
   </script>
 </head>
@@ -630,7 +674,7 @@ function autoExpand(textarea) {
           <input type="hidden" name="searchWord" value="${param.searchWord }">
           <input type="hidden" name="bno" id="bno" value="${board.bno }">
           <input type="hidden" name="m_id" id="m_id" value="${sessionScope.member.m_id }">
-          <input type="hidden" name="writer" id="writer" value="${board.nickname }">
+          <input type="hidden" name="writer" id="writer" value="${sessionScope.member.nickname }">
 
           <!-- 페이징 처리 하기 위해 있어야함 -->
           <input type="hidden" id="page" name="page" value=1>
@@ -736,7 +780,7 @@ function autoExpand(textarea) {
 	        <c:if test="${not empty sessionScope.member.m_id}">
 					<div>
 						<div class="reply-insert">
-							<textarea id="reply" placeholder="답변을 입력해주세요"></textarea>
+							<textarea id="reply" placeholder="댓글을 입력해주세요"></textarea>
 							<div class="reply-end">
 								<div class="reply-end2"></div>
 							    <div><button class="reply-button" id="btnReplyWrite">등록</button></div>

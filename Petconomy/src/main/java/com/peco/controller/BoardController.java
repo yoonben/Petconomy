@@ -382,7 +382,7 @@ public class BoardController extends CommonRestController{
         return count;
     }
 	 
-	 @GetMapping("/sessionCheck")
+	@GetMapping("/sessionCheck")
     @ResponseBody
     public String checkSession(HttpSession session) {
 		 

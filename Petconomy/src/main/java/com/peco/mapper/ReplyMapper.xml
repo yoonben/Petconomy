@@ -47,29 +47,7 @@
 	where rn between #{cri.startNo} and #{cri.endNo}
 	</select>
 	
-	<!-- 대댓글 정보도 함께 조회하는 쿼리 -->
-	<select id="getListWithRReply" resultType="com.peco.vo.ReplyVO">
-	    SELECT *
-	    FROM (
-	        SELECT T1.*, T2.RRNO AS rrno, T2.REPLY AS r_reply, T2.REPLYER AS r_replyer, T2.REGDATE AS r_regdate, rownum AS rn
-	        FROM (
-	            SELECT R.REPLY, R.REGDATE, M.NICKNAME, R.RNO, R.M_ID, R.BNO
-	            FROM REPLY R
-	            JOIN BOARD B ON R.BNO = B.BNO
-	            JOIN MEMBER M ON R.M_ID = M.M_ID
-	            WHERE B.BNO = #{bno}
-	            ORDER BY R.RNO DESC
-	        ) T1
-	        LEFT JOIN R_REPLY T2 ON T1.RNO = T2.RNO
-	    ) T
-	    WHERE T.rn BETWEEN #{cri.startNo} AND #{cri.endNo}
-	    ORDER BY T.rno DESC, T.rrno ASC
-	</select>
 
-	
-	
-	
-	
 	
 	<insert id="insert">
 		insert into reply (rno, bno,m_id, reply, replyer,regdate)

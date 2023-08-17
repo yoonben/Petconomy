@@ -4,41 +4,14 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.peco.mapper.R_ReplyMapper">
  	<select id="getList" resultType="com.peco.vo.R_ReplyVO">
-		select *
-		from(
-				select t.*, rownum rn
-				from (
-						SELECT RR.REPLY, RR.REGDATE, M.NICKNAME,RR.RNO
+						SELECT RR.REPLY, RR.REGDATE, M.NICKNAME,RR.RNO,RR.RRNO
 						FROM R_REPLY RR
-						JOIN REPLY R ON RR.BNO = R.BNO
-						JOIN MEMBER M ON RR.M_ID = M.M_ID
+                        JOIN MEMBER M ON RR.M_ID = M.M_ID
+						JOIN REPLY R ON RR.RNO = R.RNO
 						WHERE RR.RNO = #{rno}
-						ORDER BY
-						    rr.rno ASC
-
-					 ) t
-			)
-		where rn between #{cri.startNo} and #{cri.endNo}
+                        ORDER BY REGDATE ASC
 	</select>
 	
-	<!-- 대댓글 정보도 함께 조회하는 쿼리 -->
-	<select id="getListWithRReply" resultType="com.peco.vo.ReplyVO">
-	    SELECT *
-	    FROM (
-	        SELECT T1.*, T2.RRNO AS rrno, T2.REPLY AS r_reply, T2.REPLYER AS r_replyer, T2.REGDATE AS r_regdate, rownum AS rn
-	        FROM (
-	            SELECT R.REPLY, R.REGDATE, M.NICKNAME, R.RNO, R.M_ID, R.BNO
-	            FROM REPLY R
-	            JOIN BOARD B ON R.BNO = B.BNO
-	            JOIN MEMBER M ON R.M_ID = M.M_ID
-	            WHERE B.BNO = #{bno}
-	            ORDER BY R.RNO DESC
-	        ) T1
-	        LEFT JOIN R_REPLY T2 ON T1.RNO = T2.RNO
-	    ) T
-	    WHERE T.rn BETWEEN #{cri.startNo} AND #{cri.endNo}
-	    ORDER BY T.rno DESC, T.rrno ASC
-	</select>
 	
 	
 	
@@ -48,12 +21,12 @@
 	</insert>
  
  	<delete id ="delete">
- 		delete from r_reply where rno = #{rno} 
+ 		delete from r_reply where rrno = #{rrno} 
  	</delete>
  
  	<update id ="update">
  		update r_reply 
- 		   set r_reply= #{r_reply}
+ 		   set reply= #{reply}
  		     , updatedate = sysdate
  		 where rrno = #{rrno}
  	</update>
@@ -61,13 +34,13 @@
  	<select id="totalCnt" resultType="int">
  		select count(*) 
  		from r_reply
- 		where rno= #{rno}
+ 		where rrno= #{rrno}
  	</select>
  	
  	<select id="getOne" resultType="com.peco.vo.R_ReplyVO">
  		select *
  		from r_reply
- 		where rno=#{rno}
+ 		where rrno=#{rrno}
  	</select>
  	
  
