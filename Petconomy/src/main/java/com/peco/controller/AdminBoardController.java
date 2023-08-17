@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.peco.service.AdminBoardService;
 import com.peco.vo.BoardVO;
@@ -15,7 +16,7 @@ import com.peco.vo.Criteria;
 
 import com.peco.vo.PageDto;
 
-@Controller
+@RestController
 @RequestMapping("/peco/*")
 public class AdminBoardController extends CommonRestController {
 	

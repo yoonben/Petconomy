@@ -4,45 +4,9 @@
 <mapper namespace="com.peco.mapper.AdminBoardMapper">
 
 	<select id="getList" resultType="com.peco.vo.BoardVO">
-		  SELECT
-			    b.bno,
-			    b.title,
-			    b.writer,
-			    b.content,
-			    b.m_id,
-			    b.visitcount,
-			    b.likecount,
-			    decode(trunc(sysdate),
-			           trunc(b.regdate),
-			           to_char(b.regdate, 'HH24:MI:SS'),
-			           to_char(b.regdate, 'YYYY-MM-DD')) AS regdate,
-			    b.updatedate,
-			    b.category,
-			    m.nickname,
-			    DECODE(a.filetype, 'I', a.uploadpath 
-			    					|| a.uuid 
-			    					|| '_' 
-			    					|| a.filename, '/default/NO_image.jpg') AS savePath,
-			    decode(a.filetype, 'I', a.uploadpath
-			                        || 's_'
-			                        || a.uuid
-			                        || '_'
-			                        || a.filename, '/default/NO_image.jpg')  AS s_savepath,
-			    COUNT(r.rno) AS replycount
-			FROM
-			    board b
-			    LEFT JOIN member m ON b.m_id = m.m_id
-			    LEFT JOIN b_img a ON b.bno = a.bno
-			    LEFT JOIN reply r ON b.bno = r.bno
-			WHERE
-			    1=1
- 				<include refid="criteria"></include>
-			GROUP BY
-			    b.bno, b.title, b.writer, b.content, b.m_id, b.visitcount,
-			    b.likecount, b.regdate, b.updatedate, b.category, m.nickname,
-			    a.filetype, a.uploadpath, a.uuid, a.filename
-			ORDER BY
-			    b.bno DESC
+		SELECT BNO, M.ID,M.M_ID, NICKNAME, TITLE, CONTENT
+		FROM board B
+		JOIN Member M ON B.M_ID = M.M_ID
 	</select>
 	
 	<delete id="delete">
