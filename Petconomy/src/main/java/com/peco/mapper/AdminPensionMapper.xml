@@ -3,8 +3,16 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.peco.mapper.AdminPensionMapper">
 
-	<select id="getPensionList" resultType="com.peco.vo.PensionVO">		
-		select * from pension where checkyn = 'N'
+	<select id="getPensionList" resultType="com.peco.vo.PensionVO">
+		select *
+	  		from (
+	  				select t.*, rownum rn 
+	  		  		from (
+							select * from pension where checkyn = 'N'
+						) t
+		  		)
+	  	where rn between #{cri.startNo} and #{cri.endNo}		
+		
 	</select>
 	
 	<select id="getPensionBList" resultType="com.peco.vo.PensionFiileuploadVO">		

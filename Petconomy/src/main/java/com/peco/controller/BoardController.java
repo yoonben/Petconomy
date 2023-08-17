@@ -64,8 +64,10 @@ public class BoardController extends CommonRestController{
 	    	for (BoardVO Free : Freelist) {
 	    		String convertedPath = Free.getSavePath().replace("\\", "/");
 	    		String convertedThumPath = Free.getS_savePath().replace("\\", "/");
+	    		String convertedProfile = Free.getP_savePath().replace("\\", "/");
 	    		Free.setSavePath(convertedPath);
 	    		Free.setS_savePath(convertedThumPath);
+	    		Free.setP_savePath(convertedProfile);
 	    	}
 	    }
 	    // 파일 경로를 슬래시(/)로 변경
@@ -73,8 +75,10 @@ public class BoardController extends CommonRestController{
 	    	for (BoardVO Healing : Healinglist) {
 	    		String convertedPath = Healing.getSavePath().replace("\\", "/");
 	    		String convertedThumPath = Healing.getS_savePath().replace("\\", "/");
+	    		String convertedProfile = Healing.getP_savePath().replace("\\", "/");
 	    		Healing.setSavePath(convertedPath);
 	    		Healing.setS_savePath(convertedThumPath);
+	    		Healing.setP_savePath(convertedProfile);
 	    	}
 	    }
 		
@@ -219,19 +223,25 @@ public class BoardController extends CommonRestController{
 				rttr.addAttribute("pageNo",cri.getPageNo());
 				rttr.addAttribute("searchField",cri.getSearchField());
 				rttr.addAttribute("searchWord",cri.getSearchWord());
-				return "redirect:/peco/board/view?bno="+board.getBno();
+				rttr.addAttribute("bno",board.getBno());
+				return "redirect:/peco/board/view";
+		
 				
 			}else {
-				msg="등록중 오류가 발생하였습니다.";
-				model.addAttribute("msg",msg);
-				return "/board/free";
+				rttr.addFlashAttribute("msg","파일 업로드중 에러가 발생하였습니다. 파일을 확인해주세요.");
+				rttr.addAttribute("pageNo",cri.getPageNo());
+				rttr.addAttribute("searchField",cri.getSearchField());
+				rttr.addAttribute("searchWord",cri.getSearchWord());
+		        return "redirect:/peco/board/main"; // 리다이렉트를 통해 경로를 지정
 			}
 			
 		} catch (Exception e) {
-	        log.info(e.getMessage());
-	        model.addAttribute("msg", e.getMessage());
-	        e.printStackTrace();
-	        return "/board/free";
+	        log.info("에러메시지 = "+e.getMessage());
+	        rttr.addFlashAttribute("msg","파일 업로드중 에러가 발생하였습니다. 파일을 확인해주세요.");
+			rttr.addAttribute("pageNo",cri.getPageNo());
+			rttr.addAttribute("searchField",cri.getSearchField());
+			rttr.addAttribute("searchWord",cri.getSearchWord());
+	        return "redirect:/peco/board/main"; // 리다이렉트를 통해 경로를 지정
 	    }
 				
 	}

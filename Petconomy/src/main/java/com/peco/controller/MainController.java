@@ -12,15 +12,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.peco.service.BoardService;
 import com.peco.service.HospitalService;
+import com.peco.service.JjimService;
 import com.peco.service.PensionService;
 import com.peco.vo.BoardVO;
 import com.peco.vo.HospitalVO;
+import com.peco.vo.JjimVO;
+import com.peco.vo.MemberVO;
 import com.peco.vo.PageDto;
 import com.peco.vo.PensionVO;
 import com.peco.vo.RegionCri;
@@ -32,7 +40,7 @@ import net.sf.json.JSONArray;
 @Controller
 @RequestMapping("/peco/*")
 @Log4j
-public class MainController {
+public class MainController extends CommonRestController{
 	
 	@Autowired
 	PensionService pensionService;
@@ -43,13 +51,24 @@ public class MainController {
 	@Autowired
 	BoardService boardService;
 	
+	@Autowired
+	JjimService jjimService;
+	
 	//펜션 페이지
 	//펜션 페이지
 	@GetMapping("/main/pension")
 	public String plist(RegionCri cri, Model model, HttpServletRequest request, PensionVO pensionVO, HttpSession session) {
 		
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		
+		
 		List<PensionVO> list = pensionService.pensionList(cri);
 		List<PensionVO> lists = pensionService.mapList(cri);
+		
+	    //if (pensionVO != null && member.getId()!=null) { 
+		//int jjimCnt = jjimService.count(member.getId(), pensionVO.getP_id());
+		//model.addAttribute("jjimCnt", jjimCnt);
+	   // }
 
 		int totalCnt = pensionService.totalCount(cri);
 		PageDto pageDto = new PageDto(cri, totalCnt);
@@ -69,6 +88,8 @@ public class MainController {
 		model.addAttribute("pageDto", pageDto);
 		model.addAttribute("list", list);
 		model.addAttribute("lists", lists);
+		model.addAttribute("member", member);
+		model.addAttribute("pension", pensionVO);
 
 		return "/main/pension";
 	}
@@ -154,6 +175,38 @@ public class MainController {
 		return "/main/index";
 	}
 	
+	@Autowired
+	JjimService jimservice;
+	
+	@RequestMapping(value="/jinsert", method=RequestMethod.POST)
+	public String insert(HttpServletRequest request, Model model) {
+			JjimVO jjimvo = new JjimVO();
+			String p_id = request.getParameter("p_id");
+			String m_id = request.getParameter("m_id");
+			
+			jjimvo.setP_id(p_id);
+			jjimvo.setM_id(m_id);
+			
+			int count = jimservice.count(jjimvo);
+			
+			
+			if(count==0) {
+				jimservice.insert(jjimvo);
+	        } else {
+	        	jimservice.delete(jjimvo);
+	        }
+			
+
+			
+
+	        // 리다이렉트할 URL을 지정
+	        	return "redirect:/peco/main/pension";
+	    }
+			
+
+	
+	
+
 	// json 데이터 파싱 후 db 저장(펜션)
 	@RequestMapping(path = "/insertPension")
 	@ResponseBody

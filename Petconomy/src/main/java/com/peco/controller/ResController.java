@@ -1,5 +1,7 @@
 package com.peco.controller;
 
+import java.util.List;
+
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 
@@ -18,6 +20,7 @@ import com.peco.vo.H_RESVO;
 import com.peco.vo.HospitalFileuploadVO;
 import com.peco.vo.P_RESVO;
 import com.peco.vo.PensionFiileuploadVO;
+import com.peco.vo.PensionVO;
 
 @Controller
 @RequestMapping("/peco/*")
@@ -32,9 +35,9 @@ public class ResController {
    @GetMapping("/restest") //연결테스트
 	public String getOne(Model model) {
 		
-	    String h_id = "h_1";
-	    String p_id = "p_10";
-	    String room_no = "r_02";
+	    String h_id = "h_4";
+	    String p_id = "p_3";
+	    String room_no = "0";
 	    
 	    model.addAttribute("h_id",h_id);
 	    model.addAttribute("p_id",p_id);
@@ -92,6 +95,7 @@ public class ResController {
            String m_id = request.getParameter("m_id");
            String pname = request.getParameter("pname");
            String roomname = request.getParameter("roomname");
+           String room_no = request.getParameter("room_no");
 
            service.insertResvationPension(p_resVO);
            System.out.println("성공");
@@ -118,9 +122,20 @@ public class ResController {
    }
 
    @RequestMapping(value="/profile?m_id=${m_id}",method = RequestMethod.POST)
-   public String redirect(Model model, String m_id){
-
-	   System.out.println("m_id : "+m_id);
+   public String redirect(Model model, String m_id, PensionVO vo){
+	   
+	   List<PensionVO> pensionlist = pensionService.mypensionlist(vo.getM_id());
+		
+		if (pensionlist != null) {
+	    	for (PensionVO pension : pensionlist) {
+	        String convertedPath = pension.getSavePath().replace("\\", "/");
+	        pension.setSavePath(convertedPath);
+	        
+	    	}
+	    	System.out.println("=============pensionlist================== (2) : " +  pensionlist);
+	    } 
+		
+		model.addAttribute("pension",pensionlist); 
 	   model.addAttribute("getPrList",service.getResPensionList(m_id));
 	   model.addAttribute("getHrList",service.getResHospitalList(m_id));
 	   

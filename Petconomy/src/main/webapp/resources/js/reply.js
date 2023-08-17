@@ -15,7 +15,6 @@ function fetchGet(url,callback){
 		
 	} catch (e) {
 		console.log(e);
-			
 	}
 	
 	
@@ -47,18 +46,18 @@ function fetchPost(url,obj,callback){
 	
 }
 
-/*//덧글 조회 및 출력
+//덧글 조회 및 출력
 function getReplyList(page){
 	let bno = document.querySelector('#bno').value;
 	
-	*//**
+	/**
 	 * falsey : false, 0, "", NaN, undefined, null
 	 * falsey한 값 이외의 값이 들어 있으면 true를 반환
 	 * 
 	 *  page에 입력된 값이없으면 1로 세팅
 	 * 	 * @param map
 	 * @returns
-	 *//*
+	 */
 	if(!page){
 		page = 1;
 	}
@@ -108,7 +107,7 @@ function replyView(map){
 if(nickname == reply.nickname){
 		replyDivStr		+='			<div>                                                                             '
 						+ '			<button name="r_reply" value="수정" class="r-reply-button" onclick="replyEdit('+reply.rno+')">수정</button>          '
-						+ '			<button name="r_reply" value="삭제" class="r-reply-button" onclick="replyDelete('+reply.rno+')">삭제</button>          '
+						+ '			<button name="r_reply" value="삭제" class="r-reply-button" onclick="replyDeleteModal('+reply.rno+')">삭제</button>          '
 						+ '			</div>                                                                            ';
 };
 		replyDivStr		+=''
@@ -163,15 +162,7 @@ if(nickname == reply.nickname){
 	};
 						
 	
-}*/
-
-
-
-
-
-
-
-
+}
 
 
 
@@ -211,17 +202,21 @@ function replyRes(map){
 	//성공 : 리스트 조회 및 출력
 	//실패 : 메세지 출력
 	if(map.result =='success'){
+		
+		//댓글창 초기화
+		document.querySelector('#reply').value = '';
+		replyDiv.innerHTML = '';
 		//등록성공
 		getReplyList();
 		
 	}else{
 		//등록실패
-		alert(map.message);
+		alert("댓글을 100자 내외로 작성해주세요");
 	}
 }
 
 
-function replyDelete(rno){
+function replyDeleteAction(rno){
 	console.log("매개변수 rno를 잘 받고 있니? :"+rno)
 	fetchGet(`/reply/delete/${rno}`, replyRes);
 }

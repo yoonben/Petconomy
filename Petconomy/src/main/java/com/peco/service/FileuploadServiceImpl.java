@@ -551,41 +551,41 @@ public class FileuploadServiceImpl implements FileuploadService{
 	}
 	
 	//중복 방지를 위한 날자별 업로드 폴더 만들기
-		//업로드 날자를 폴더 이름으로 사용
-		public String getFolder() {
-			//현재 시간 가져오기
-			LocalDate currentDate = LocalDate.now() ;
-			//날자를 2023\07\18\ 형태로 변환해서 경로처럼 만들어주기
-			String uploadPath =currentDate.toString().replace("-", File.separator)+File.separator;
-			log.info("-----------------------------------------");
-			log.info("currentDate = "+currentDate);
-			log.info("경로  = "+uploadPath);
-			log.info("-----------------------------------------");
-			
-			//폴더 생성(없을때만)
-			File saveDir = new File(FileuploadController.ATTACHES_DIR + uploadPath);
-			if(!saveDir.exists()) {
-				//경로를 여러개 만들때는 mkdirs  s가 붙은거로
-				if(saveDir.mkdirs()) {
-					log.info("폴더 생성!");
-				}else {
-					log.info("폴더 생성 실패!");
-				}
+	//업로드 날자를 폴더 이름으로 사용
+	public String getFolder() {
+		//현재 시간 가져오기
+		LocalDate currentDate = LocalDate.now() ;
+		//날자를 2023\07\18\ 형태로 변환해서 경로처럼 만들어주기
+		String uploadPath =currentDate.toString().replace("-", File.separator)+File.separator;
+		log.info("-----------------------------------------");
+		log.info("currentDate = "+currentDate);
+		log.info("경로  = "+uploadPath);
+		log.info("-----------------------------------------");
+		
+		//폴더 생성(없을때만)
+		File saveDir = new File(FileuploadController.ATTACHES_DIR + uploadPath);
+		if(!saveDir.exists()) {
+			//경로를 여러개 만들때는 mkdirs  s가 붙은거로
+			if(saveDir.mkdirs()) {
+				log.info("폴더 생성!");
+			}else {
+				log.info("폴더 생성 실패!");
 			}
-
-			return uploadPath;
 		}
 
-		@Override
-		public List<FileuploadVO> getPath(int bno) {
-			
-			return mapper.getPath(bno);
-		}
+		return uploadPath;
+	}
 
-		@Override
-		public FileuploadVO getProfile(String m_id) {
-			
-			return mapper.getProfile(m_id);
-		}
+	@Override
+	public List<FileuploadVO> getPath(int bno) {
+		
+		return mapper.getPath(bno);
+	}
+
+	@Override
+	public FileuploadVO getProfile(String m_id) {
+		
+		return mapper.getProfile(m_id);
+	}
 
 }

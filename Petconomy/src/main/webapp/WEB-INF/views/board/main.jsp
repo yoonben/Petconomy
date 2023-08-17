@@ -80,7 +80,7 @@ https://templatemo.com/tm-579-cyborg-gaming
   .most-popular{
     background-color: bisque;
     margin-top:10px;
-    height: 880px;
+    height: 780px;
   }
   
   
@@ -160,6 +160,10 @@ https://templatemo.com/tm-579-cyborg-gaming
     text-align: center; /* 텍스트 내용 가운데 정렬을 위해 추가 */
 }
 
+a {
+    text-decoration: none; /* 밑줄 제거 */
+    color: inherit; /* 부모 엘리먼트의 색상 상속 */
+}
 
 </style>
 
@@ -173,6 +177,18 @@ https://templatemo.com/tm-579-cyborg-gaming
 		searchForm.bno.value = bno;
 		searchForm.submit();
 	}
+	
+	// JSP에서 에러메세지 등 msg 값을 전달받는 변수
+	var message = '${msg}';
+
+	// msg에 값이 존재할 경우에만 알림창 띄우는 함수
+	function showMessage() {
+	    if (message) {
+	        alert(message);
+	    }
+	}
+	// 페이지 로딩이 완료되면 showMessage 함수 호출
+	window.onload = showMessage;
 	
 </script>
 
@@ -230,14 +246,14 @@ https://templatemo.com/tm-579-cyborg-gaming
                 
                 <div class="row">
                 <c:forEach var="b" items="${Best}" varStatus="loop">
-                <c:if test="${loop.index < 8}">
+                
                   <div class="col-lg-3 col-sm-6 bestbox">
                     <div class="item">
 	                    <a onclick="requestAction('/peco/board/view', ${b.bno })">
 	                    <img src="/peco/display?fileName=${b.savePath}" alt="" class="thumbnail-image">
 	                    </a>
 	                    <br>
-	                      <h4>${fn:substring(b.title, 0, 10)}${fn:length(b.title) > 10 ? '...' : ''}
+	                      <h4>${fn:substring(b.title, 0, 10)}${fn:length(b.title) > 10 ? '..' : ''}
 	                      <span>${b.writer}</span></h4>
 	                      <ul>
 	                        <li><i id="animated-icon" class="fa-regular fa-thumbs-up fa-lg"></i> ${b.likecount}</li>
@@ -245,7 +261,7 @@ https://templatemo.com/tm-579-cyborg-gaming
 	                      </ul>
                     </div>
                   </div>
-                </c:if>
+                
                 </c:forEach>
              
                 </div>
@@ -260,7 +276,7 @@ https://templatemo.com/tm-579-cyborg-gaming
           <div class="live-stream">
             <div class="col-lg-12">
               <div class="heading-section">
-                <h4><em>일상</em> 게시판</h4>
+                <h4><em>최근</em><a href="/peco/board/healing">일상 게시글</a></h4>
               </div>
             </div>
 
@@ -289,7 +305,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                   </div>
                   <div class="down-content">
                     <div class="avatar">
-                      <img src="/resources/images/default.png" alt="" style="max-width: 46px; border-radius: 50%; float: left;">
+                      <img src="/peco/display?fileName=${f.p_savePath}" alt="" style="max-width: 46px; border-radius: 50%; float: left;">
                     </div>
                     <span><i class="fa fa-check"></i> ${f.writer}</span>
                     <h4>${f.title} </h4>
@@ -309,18 +325,18 @@ https://templatemo.com/tm-579-cyborg-gaming
           <div class="live-stream">
             <div class="col-lg-12">
               <div class="heading-section">
-                <h4><em>힐링짤</em> 게시판</h4>
+               <h4><em>최근</em><a href="/peco/board/healing">힐링 게시글</a></h4>
               </div>
             </div>
             <div class="row">
             
             <c:forEach var="h" items="${Healing}" varStatus="loop">
             <c:if test="${loop.index < 8}">
-              <div class="col-lg-3 col-sm-6">
+              <div class="col-lg-3 col-sm-6 boardbox" >
                 <div class="item">
                   <div class="thumb">
                   <a onclick="requestAction('/peco/board/view', ${h.bno })">
-                    <img src="/peco/display?fileName=${h.savePath}" alt="">
+                    <img src="/peco/display?fileName=${h.savePath}" alt="" class="thumbnail-image">
                     <div class="hover-effect">
                       <div class="content">
                         <div class="live">
@@ -335,7 +351,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                   </div>
                   <div class="down-content">
                     <div class="avatar">
-                      <img src="/resources/images/default.png" alt="" style="max-width: 46px; border-radius: 50%; float: left;">
+                      <img src="/peco/display?fileName=${h.p_savePath}" alt="" style="max-width: 46px; border-radius: 50%; float: left;">
                     </div>
                     <span><i class="fa fa-check"></i> ${h.writer}</span>
                     <h4>${h.title}</h4>

@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
  	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 
 
@@ -52,13 +53,6 @@
 	    border-spacing: 10px;
 	    border-bottom: 2px solid #fff;
 	}
-	  
-	.resPage {
-		width: 80%;
-		margin: 0 auto;
-		margin-top: 20px;
-	}
-	  
 
 	/*달력속성 변경*/
 	.hasDatepicker {
@@ -95,7 +89,7 @@
 	   	background-color: #fff;
 	}
     
-	.memberInfo > h3, .fiex > h3{
+	.memberInfo > h5{
 	   margin-bottom: 10px;
 	   margin-top: 10px;
 	}
@@ -115,23 +109,13 @@
     	font-weight: bold;
 	}
     
-	.pImg {
-	    border: 1px solid black;
-	    width:200px;
-	    height:200px;
-	    display:inline-block;
-	    float:left;
-	    margin: 10px;
-	    border-radius: 23px;
-	}
-    
 	.memberInfo {
 	    display: inline-block;
 	    margin-left: 10px;
 	    font-size: 16px;
 	    padding-bottom: 10px;
 	    position: relative;
-	    right: 65px;
+	    right: 30px;
 	}
     
 	.memberInfo > input {
@@ -159,8 +143,8 @@
     
     #Resbtn {
 	    position: relative;
-	    top: 376px;
-	    left: -15px;
+	    top: 391px;
+    	left: -18px;
     }
     
     .resvation {
@@ -177,7 +161,7 @@
     .checkIn, .checkOut{
 	    display: inline-block;
 	    position: relative;
-	    top: 340px;
+	    top: 350px;
     }
     
     .checkOut {
@@ -201,15 +185,15 @@
 	    display: inline-block;
 	    position: relative;
 	    padding: 10px;
-	    bottom: 115px;
-	    left: 335px;
+	    bottom: 150px;
+	    left: 455px;
     }
     
     .payinfo {
 		display: inline-block;
-	    bottom: 128px;
+	    bottom: 160px;
 	    position: relative;
-	    left: 260px;
+	    left: 390px;
     }
     
     .paycnt > input,.payinfo > input{
@@ -236,6 +220,8 @@
 	    width: 70px;
 	    font-weight: bold;
 	    margin-left: 10px;
+	    font-size: 13px;
+	    
     }
     
     .btn {
@@ -262,10 +248,10 @@
     }
     
     #direct {
-	    float: left;
+		float: left;
 	    position: relative;
-		top: 10px;
-	    left: 120px;
+	    top: 5px;
+    	left: 160px;
 	}
     	
 	.payInfo > p {
@@ -325,6 +311,7 @@
 						   <c:forEach var="p" items="${pList}">
 							   <input type="text" value="${p.pname}" id="pname"><br>
 							   <input type="hidden" value="${p.p_id}" id="p_id">
+							   <input type="hidden" value="${p.room_no}" id="room_no">
 							   <input type="text" value= "${p.roomname}" id="roomname">
 					</div>
 		 			<!-- 숙소 정보 끝 -->
@@ -340,21 +327,21 @@
 		         		<b style="float: left;">체크인</b><br>
 		         		<input type="text" id="date1" readonly>
 		         	</div>
-		         	<div class="checkOut" style="width: 250px;">
+		         	<div class="checkOut" style="width: 250px; margin-left: 100px;">
 		         		<b style="float: left;">체크아웃</b><br>
 		         		<input type="text" id="date2" readonly>
 		         	</div>
          			<button id="Resbtn">선택</button><br>
 	         	<!-- 달력 -->
 	         	<div class="datepicker1" style="width: 300px; height: 280px;"></div>
-	          	<div class="datepicker2" style="width: 300px; height: 280px;"></div>
+	          	<div class="datepicker2" style="width: 300px; height: 280px; margin-left: 100px;"></div>
 	           	<br>
         		<!-- 날짜정보 끝 -->
       			</div>
       	
    		
 		   	<div class="memberInfo">
-   			<h3 style="position: relative;">예약자 정보 </h3>
+   			<h5 style="position: relative;">예약자 정보 </h5>
    			<!-- 예약자 정보 -->
 			   		<input type="hidden" value="${sessionScope.member.m_id }" id="m_id">
 			         이름      <input type="text" value="${sessionScope.member.mname }" id="user_id" readonly><br>
@@ -386,7 +373,7 @@
 		<!-- 결제버튼 -->
 	   <div class="btn">
 		   <button id="payment">결제</button>
-		   <button id="goback" onclick="history.back()">뒤로가기</button>
+		   <button id="goback" onclick="location.href='./main/pension'">뒤로가기</button>
 	   </div>
 	   <!-- 결제버튼 끝 -->
 			</form>
@@ -482,6 +469,9 @@ $(function() {
             }
         } 
 	}); 
+	
+})
+
 //로그인 여부
 function checkLogin() {
 	
@@ -489,7 +479,7 @@ function checkLogin() {
 	
 	if(m_id === '') { //세션변수에 값이 없으면
 		alert('로그인 후 예약가능합니다');
-		window.location.replace("./login");
+		//window.location.replace("./login");
 	}
 	
 }
@@ -546,10 +536,12 @@ Resbtn.addEventListener('click', function() { //선택 버튼 눌렀을 때
     $('#pay').val(priceCnt);
                         
 
-    	}
     }
+    }
+	
+	
+	}
 
-    }
 }) //선택버튼 끝
 
 
@@ -587,6 +579,7 @@ $('#payment').click(function () { //결제버튼
              var startdate = $('#date1').val();
              var enddate = $('#date2').val();
              var roomname = $('#roomname').val();
+             var room_no = $('#room_no').val();
              
              if(!user_id.length || !user_email.length || !user_tel.length) {
              	alert('예약자 정보를 입력해주세요');
@@ -645,6 +638,7 @@ $('#payment').click(function () { //결제버튼
 										 	   m_id : m_id,//회원번호 -예약자명 직접입력 경우 다를 경우
 										 	   pname : pname, //펜션명
 										 	   roomname : roomname,//객실명
+										 	   room_no : room_no, //객실번호
 	                                        }                               
 	                                      });
 	                                    console.log('토큰생성');
@@ -667,78 +661,7 @@ $('#payment').click(function () { //결제버튼
 	                           });  
 	                    	} 
                     	
-                    	});
-
-             IMP.request_pay({ //결제요청
-                 //카카오페이 결제시 사용할 정보 입력
-                 pg: 'kakaopay',
-                 pay_method: "card",
-                 name: pname,
-                 amount: pay,
-                 buyer_email: user_email,
-                 buyer_name: user_id,
-                 buyer_tel: user_tel,
-             }, function (rsp) { //결제가 된 경우          
-				console.log(rsp);
-         		// 결제검증
-       			$.ajax({
-       	        	type : "POST",
-       	        	url : "/payment/verifyIamport/" + rsp.imp_uid 
-       	        }).done(function(data) {
-					console.log(data);
-      	        	// 위의 rsp.paid_amount 와 data.response.amount를 비교한후 로직 실행 (import 서버검증)
-						if(rsp.paid_amount == data.response.amount){
-							var msg = "결제 및 결제검증완료";
-							msg += '\n고유ID : ' + rsp.imp_uid;
-							msg += '\n상점 거래ID : ' + rsp.merchant_uid;
-							msg += '\n결제 금액 : ' + rsp.paid_amount+'원';
-							
-								if(rsp.apply_num === null || rsp.apply_num === undefined || rsp.apply_num === '') {
-                               	rsp.apply_num = '카카오페이머니';
-                               	}
-							msg += '\n카드 승인번호 : ' + rsp.apply_num;                                    	
-              		        	
-							$.ajax({ //db에 결제정보 삽입
-	                            url: "/peco/insert",
-	                            type: 'post',
-		                            data: {
-		                            p_id: p_id, //펜션아이디   
-		                            period: period, //기간
-		                            pricecnt: pay, //결제할 가격
-		                            startdate : startdate, //입실일
-		                            enddate : enddate, //퇴실일
-		                            pr_name: user_id, //예약자명
-		                            pr_email: user_email, //예약자 이메일
-		                            pr_tel: user_tel, //예약자 전화번호
-		                            imp_uid: rsp.imp_uid, //거래고유번호
-		                            pr_id: rsp.merchant_uid, //주문고유번호=펜션예약번호
-									pr_pay: rsp.apply_num, //카드승인번호
-									m_id : m_id, //회원번호 -예약자명 직접입력 경우 다를 경우
-									pname : pname, //펜션명
-									roomname : roomname,//객실명
-                                   }                               
-                                 });
-							 //정상적으로 결제 진행된 경우 토큰 생성(환불 시 사용)
-                             console.log('토큰생성'); 
-                             	$.ajax({
-                               		type : "POST",
-                      	        	url : "/payment/complete"
-                               	})
-                              console.log('토큰생성완료');
-                               
-                              $('#resForm').submit(); 
-                      			alert(msg);
-                  				console.log(m_id);
-                      			window.location.replace("./profile?m_id=${member.m_id}"); //마이페이지 예약내역으로 이동
-           	        	} else { //결제검증에 실패한 경우
-              	       		var msg = '결제에 실패하였습니다.';
-                       		msg += '에러내용 : ' + rsp.error_msg;
-                      		alert(msg);
-              	       	}     		
-              	      });
-                });  
-         } 
-//결제버튼 끝
+});//결제버튼 끝
         
 //시작 날짜와 끝 날짜 사이의 날짜 배열 생성
 let getDateRange = function(startDate, endDate, listDate) {
@@ -789,7 +712,9 @@ let inputDisDays = function() {
 		//console.log(dis);
 	}
 	//console.log(disDays);
-}
+	
+};
+
 </script>
   
   

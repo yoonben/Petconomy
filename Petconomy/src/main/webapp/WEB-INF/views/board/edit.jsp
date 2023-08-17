@@ -48,112 +48,112 @@
 }
     
     
-      body{
-        margin: 0 auto; /* 바디 마진을 0으로 하고 가로 가운데 정렬 */
-    	background-color: white;
-      }
-    
-  	  div >.page-content{
-        background-color: rgb(251, 235, 215);
-        padding: 30px
-      }
-    
-      .top-streamers{
-          margin-top: 50px;
-      
-        overflow: auto;
-    
-        background-color: bisque;
-    
-      }
-    
-      .featured-games{
-        background-color: bisque;
-      }
-    
-      .live-stream{
-        background-color: bisque;
-      }
-      
-      footer p {
-            color: black;
-      }
-      footer p > a {
-            color: black;
-      }
-      
-      .category {
-          margin-bottom: 10px;
-      }
-    
-      /* 카테고리 스타일 */
-      .category {
-          position: relative;
-          /* 기본 색상 설정 */
-          color: #ffffff;
-      }
+ body{
+   margin: 0 auto; /* 바디 마진을 0으로 하고 가로 가운데 정렬 */
+background-color: white;
+ }
+
+div >.page-content{
+  background-color: rgb(251, 235, 215);
+  padding: 30px
+}
+
+.top-streamers{
+    margin-top: 50px;
+
+  overflow: auto;
+
+  background-color: bisque;
+
+}
+
+.featured-games{
+  background-color: bisque;
+}
+
+.live-stream{
+  background-color: bisque;
+}
+
+footer p {
+      color: black;
+}
+footer p > a {
+      color: black;
+}
+
+.category {
+    margin-bottom: 10px;
+}
+
+/* 카테고리 스타일 */
+.category {
+    position: relative;
+    /* 기본 색상 설정 */
+    color: #ffffff;
+}
+
+/* 카테고리 뒤에 * 추가 */
+.category::after {
+    content: '*';
+    color: red;
+    margin-left: 4px; /* *와 글자 사이의 간격 조절을 위해 왼쪽 여백 추가 */
+}
   
-      /* 카테고리 뒤에 * 추가 */
-      .category::after {
-          content: '*';
-          color: red;
-          margin-left: 4px; /* *와 글자 사이의 간격 조절을 위해 왼쪽 여백 추가 */
-      }
   
-  
-       /* 일상게시판 박스 스타일 */
-      .board-box {
-          width: 60px;
-          height: 30px;
-          font-weight: 500;
-          border-radius: 20px;
-          display: inline-flex;
-          justify-content: center;
-          align-items: center;
-          cursor: pointer;
-          margin-right: 10px; /* 가로 간격 조절을 위해 오른쪽 여백 추가 */
-      }
+ /* 일상게시판 박스 스타일 */
+.board-box {
+    width: 60px;
+    height: 30px;
+    font-weight: 500;
+    border-radius: 20px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 10px; /* 가로 간격 조절을 위해 오른쪽 여백 추가 */
+}
 
           
           
           
-    .title-bar{
-        margin: 0;
-        margin-bottom: 10px;
-        padding: 5px;
-        border: none;
-        outline: none;
-        border-radius: 15px;
-        width: 100%;
-        height: 40px;
-        font-size: 15px;
-    }
+.title-bar{
+    margin: 0;
+    margin-bottom: 10px;
+    padding: 5px;
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    width: 100%;
+    height: 40px;
+    font-size: 15px;
+}
 
-    /* 고정된 크기의 textarea 스타일 */
-    .content-bar {
-        resize: none; /* 사용자가 크기를 조정할 수 없도록 설정 */
-        margin: 0;
-        margin-bottom: 10px;
-        padding: 5px;
-        border: none;
-        outline: none;
-        border-radius: 15px;
-        width: 100%;
-        height: 150px;
-        
-    }
+/* 고정된 크기의 textarea 스타일 */
+.content-bar {
+    resize: none; /* 사용자가 크기를 조정할 수 없도록 설정 */
+    margin: 0;
+    margin-bottom: 10px;
+    padding: 5px;
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    width: 100%;
+    height: 150px;
+    
+}
 
-    /* 선택된 상태일 때의 테두리 스타일 */
-    .title-bar.selected, .content-bar.selected {
-        border: 2px solid;
-        border-color: #000; /* 검정색으로 변경 */
-    }
+/* 선택된 상태일 때의 테두리 스타일 */
+.title-bar.selected, .content-bar.selected {
+    border: 2px solid;
+    border-color: #000; /* 검정색으로 변경 */
+}
 
-    /* 체크된 라디오 버튼의 스타일 변경 */
-    input[type="radio"].btn-check:checked + label.btn-secondary {
-      background-color: rgb(255, 217, 0);
-      color: black; /* 선택된 상태에서 글자 색을 검정색으로 설정 */
-    }
+/* 체크된 라디오 버튼의 스타일 변경 */
+input[type="radio"].btn-check:checked + label.btn-secondary {
+  background-color: rgb(255, 217, 0);
+  color: black; /* 선택된 상태에서 글자 색을 검정색으로 설정 */
+}
   
 
 #dropZone {
@@ -172,7 +172,7 @@
     display: flex;
     align-items: center;
     height: 45px;
-    margin-bottom:0;
+    margin-bottom:30px;
 }
 .main-button{
     height: 100%;
@@ -222,7 +222,10 @@ window.addEventListener('load', function() {
 		
 		fetch('/peco/file/fileUploadActionFetch',{method:'post',body: formData})
 		.then(response => response.json())
-		.then(map => getFileList());
+		.then(map => getFileList())
+		.catch(error =>{
+			alert("파일 업로드중 오류가 발생했습니다. 파일을 확인 해주세요.")
+		});
     });
     
     
@@ -367,10 +370,87 @@ function FileCheck() {
       return;
     }
   }
+  
+//글 제목 길이 확인
+  if (checkTitleLength() === 1) {
+  	alert('제목은 최대 100자까지 입력할 수 있습니다.');
+      return;
+  }
+  
+  // 글 필수 입력 확인
+  if (checkTitleLength() === 2) {
+  	alert('제목을 입력해주세요.');
+      return;
+  }
+  
+	// 글 내용 길이 확인
+  if (checkContentLength() === 1) {
+  	alert('글 내용은 최대 2000자까지 입력할 수 있습니다.');
+      return;
+  }
+	
+	// 내용 필수 입력 확인
+  if (checkContentLength() === 2) {
+  	alert('글 내용을 입력해주세요.');
+      return;
+  }
+
+  //글 내용에 띄어쓰기 및 개행 처리
+  processContent()
 
   // 파일 유형과 크기가 모두 유효한 경우, 추가로 처리할 로직을 작성합니다.
   editForm.submit();
 }
+
+//제목 길이 유효성 검사
+function checkTitleLength() {
+    const titleInput = document.getElementById('title');
+    const titleValue = titleInput.value;
+
+    // 제목 길이 확인
+    if (titleValue.length > 100) {
+        
+        return 1; // 작성 취소
+    } else if (titleValue.length === 0){
+    	return 2;
+    }
+    return true;
+}
+
+//내용 길이 유효성 검사
+function checkContentLength() {
+    const contentInput = document.getElementById('content');
+    const contentValue = contentInput.value;
+
+    // 글 내용 길이 확인
+    if (contentValue.length > 2000) {
+        
+        return 1; // 작성 취소
+    } else if (contentValue.length === 0) {
+    	return 2;
+    }
+    return true;
+}
+
+//글 내용 개행 띄어쓰기 처리
+function processContent() {
+    // <textarea>에서 내용 가져오기
+    const contentInput = document.getElementById('content');
+    const contentValue = contentInput.value;
+
+    // 개행 문자를 <br> 태그로 대체
+    const processedContent = contentValue.replace(/\n/g, '<br>');
+
+    // 공백 문자 처리 (연속된 공백은 &nbsp;로 변환)
+    const finalContent = processedContent.replace(/ {2,}/g, match => {
+        return match.replace(/ /g, '&nbsp;');
+    });
+
+    // <textarea>의 내용 업데이트
+    contentInput.value = finalContent;
+}
+
+
 
   function getFileList(){
   	///file/list/{bno}
@@ -535,15 +615,15 @@ function FileCheck() {
     <form method="post" enctype="multipart/form-data" name="editForm" action="/peco/board/edit">
     
     	<!-- 검색조건 유지하기 위해 갖고가야하는 값들 -->
-        <input type="text" name="pageNo" value="${param.pageNo }">
-        <input type="text" name="searchField" value="${param.searchField }">
-        <input type="text" name="searchWord" value="${param.searchWord }">
-        <input type="text" name="writer" value="${board.nickname }">
+        <input type="hidden" name="pageNo" value="${param.pageNo }">
+        <input type="hidden" name="searchField" value="${param.searchField }">
+        <input type="hidden" name="searchWord" value="${param.searchWord }">
+        <input type="hidden" name="writer" value="${board.nickname }">
         
         <!-- 페이징 처리 하기 위해 있어야함 -->
-        <input type="text" name="m_id" value="${sessionScope.m_id }">
+        <input type="hidden" name="m_id" value="${sessionScope.m_id }">
         <input type="hidden" id="page" name="page" value="1">
-        <input type="text" name="bno" value="${board.bno}">
+        <input type="hidden" name="bno" value="${board.bno}">
         
         <h4 class="category">카테고리</h4>
 

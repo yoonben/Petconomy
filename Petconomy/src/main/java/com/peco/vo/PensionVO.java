@@ -19,6 +19,8 @@ public class PensionVO {
 	private String pensionimg; 
 	
 	private String roomname;
+	private String room_no;
+	private String imp_uid;
 	
 	private String rn; 
 	private int cnt; 
@@ -28,8 +30,10 @@ public class PensionVO {
 	private String smallregion;
 	
 	private String savePath;
+	
 
 	private int min;
 	private int max;
+	private int cno;
 }
 
