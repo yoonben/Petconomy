@@ -105,10 +105,10 @@ jQuery(function ($) {
   </div>
 </div>
 
-  <div class="container" style="height:2400px;">
-    <div class="row" style="height:2400px;">
-      <div class="col-lg-12" style="height:2400px;">
-        <div class="page-content" style="height:2400px;">
+  <div class="container" style="height:2800px;">
+    <div class="row" style="height:2800px;">
+      <div class="col-lg-12" style="height:2800px;">
+        <div class="page-content" style="height:2800px;">
 
           <!-- ***** Featured Start ***** -->
           <div class="row">
