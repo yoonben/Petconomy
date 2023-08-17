@@ -39,7 +39,7 @@
 						      <li><a class="dropdown-item" href="/peco/myBoard?m_id=${member.m_id}" style="font-size:1.2em">나의 글 목록</a></li>
 						      <li><a class="dropdown-item" href="#" style="font-size:1.2em" data-bs-toggle="modal" data-bs-target="#exampleModal">회원탈퇴</a></li>
 						    </ul>
-						  </li>
+						  </li> 
                         </c:if>
                         <c:choose>
 						    <c:when test="${empty sessionScope.member}">
