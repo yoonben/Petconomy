@@ -50,6 +50,10 @@ public class CommonRestController {
 		return responseMap(res,REST_DELETE);
 	}
 	
+	public Map<String, Object> responsememberDeleteMap(int res){
+		return responseMap(res,REST_DELETE);
+	}
+	
 	public Map<String, Object> responseMap(String result, String msg){
 			Map<String, Object> map = new HashMap<String, Object>();
 		
