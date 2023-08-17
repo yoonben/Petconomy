@@ -21,6 +21,7 @@ public class P_RESVO {
 	private String pname;
 	private String roomname;
 	private String savePath;
+	private String room_no;
 	
 
 }

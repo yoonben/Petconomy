@@ -90,7 +90,7 @@
     	background-color: #ededed;
     }
     
-    .memberInfo > h3, .fiex > h3{
+    .memberInfo > h5, .fiex > h5{
 	    margin-bottom: 10px;
 	    margin-top: 10px;
     }
@@ -156,6 +156,7 @@
 	    width: 70px;
 	    font-weight: bold;
 	    margin-left: 10px;
+	    font-size: 13px;
     }
     
     .btn {
@@ -246,7 +247,6 @@
 	.payInfo {
 		position: relative;
 	    left: 40px;
-	    top: 15px;
 	}
 	
 	.payInfo > p {
@@ -284,19 +284,6 @@
     
 </style>
 <body>
-
-  <!-- ***** Preloader Start ***** -->
-  <div id="js-preloader" class="js-preloader">
-    <div class="preloader-inner">
-      <span class="dot"></span>
-      <div class="dots">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-  </div>
-  <!-- ***** Preloader End ***** -->
 <!-- 헤더 시작 -->
 	<%@include file="../main/header.jsp" %>
 <!-- 헤더 끝 -->
@@ -337,7 +324,7 @@
       	
 		         	<!-- 출력 -->
 		         	<div class="fiex">
-		         	<h3>예약정보</h3>
+		         	<h5>예약정보</h5>
 			         	<div id="datepick">
 			         		<b style="float: left; font-size: 15px">날짜</b><br>
 			         		<input type="text" id="date" readonly>
@@ -351,7 +338,7 @@
          	
 			         <!-- 예약자 정보 -->
 					 <div class="memberInfo">
-			   		 <h3>예약자 정보 </h3>
+			   		 <h5>예약자 정보 </h5>
 					   		<input type="hidden" value="${sessionScope.member.m_id }" id="m_id">
 					         이름      <input type="text" value="${sessionScope.member.mname }" id="user_id" readonly><br>
 					         이메일   <input type="text" value="${sessionScope.member.email }" id="user_email" readonly><br>
@@ -375,7 +362,7 @@
 				<!-- 결제버튼 -->
 			   <div class="btn">
 				   <button id="payment">결제</button>
-				   <button id="goback" onclick="history.back()">뒤로가기</button>
+				   <button id="goback" onclick="location.href='./main/hospital'">뒤로가기</button>
 			   </div>
 	   		   <!-- 결제버튼 끝 -->
 			</form>

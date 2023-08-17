@@ -22,7 +22,7 @@
 	select STARTDATE, ENDDATE
    	from p_res left join p_room
     on p_res.p_id = p_room.p_id
-	where p_res.p_id = #{p_id} and room_no = #{room_no}
+	where p_res.p_id = #{p_id} and p_res.room_no = #{room_no}
    </select>
    
    <select id="getResPensionList" resultType="com.peco.vo.P_RESVO">
@@ -36,10 +36,10 @@
    
    <insert id="insertResvationPension">
    insert into P_RES (PR_ID, STARTDATE, ENDDATE, PR_PAY, PERIOD
-                  , P_ID, PRICECNT, PR_NAME, PR_EMAIL, PR_TEL, IMP_UID, M_ID, PNAME, ROOMNAME)
+                  , P_ID, PRICECNT, PR_NAME, PR_EMAIL, PR_TEL, IMP_UID, M_ID, PNAME, ROOMNAME, ROOM_NO)
              values (#{pr_id}, #{startdate}, #{enddate}, #{pr_pay}, #{period}
              , #{p_id}, #{pricecnt}, #{pr_name}, #{pr_email}, #{pr_tel}, #{imp_uid}, #{m_id}
-             , #{pname}, #{roomname})
+             , #{pname}, #{roomname}, #{room_no})
    </insert>
    
    <delete id="deleteResPension">

@@ -306,6 +306,14 @@ div > .page-content {
     bottom: 0;
 }
 
+
+.game-details .content {
+    border-radius: 23px;
+    padding: 30px;
+    background-color: #fbebd7;
+    width: 100%;
+}
+
 .game-details .content .left-info {
   background-color: white;
 
@@ -443,7 +451,7 @@ function autoExpand(textarea) {
         content += ''
           + '<div class="mb-3">                                              '
           + '  <label for="content" class="form-label">첨부파일 목록</label> 	  '
-          + '  <div class="form-control" id="attachFile" style="width: 100%;  display: flex; flex-wrap: wrap;">                    '
+          + '  <div class="form-control" id="attachFile" style="width: 100%;  display: flex; flex-wrap: wrap; border-radius: 23px;">                    '
 
         map.list.forEach(function (item, index) {
           let savePath = encodeURIComponent(item.savePath);
@@ -453,7 +461,7 @@ function autoExpand(textarea) {
           content +=''                                                                                                                                         
 				  		+'        <div class="files"  style="width: 150px; height: 130px; margin-right:10px;">                                                                                                                      '                                     
 				  		+'            <a href="/file/download?filename=' + savePath + '">                                                                                                                        '
-				  		+'                <img src="/peco/display?fileName=' + savePath + '" alt="" class="thumbnail-image" style="border-radius: 23px; margin-right: 10px; width: 100px; height: 100px;">       ' 
+				  		+'                <img src="/peco/display?fileName=' + s_savePath + '" alt="" class="thumbnail-image" style="border-radius: 23px; margin-right: 10px; width: 100px; height: 100px;">       ' 
 				  		+'                <br>                                                                                                                                                                   '
 				  		+'                <div class="file-info">                                                                                                                                                '
 				  		+'                    <span class="file-name">' + (item.filename.length > 5 ? item.filename.substring(0, 5) + '' : item.filename) + '</span>                                        '
@@ -545,10 +553,31 @@ function autoExpand(textarea) {
     	  });
     }
 	
+	
+	/* 댓글 삭제 모달 */
+    function replyDeleteModal(rno) {
+    	  // 배경 blur 처리를 위해 modal-backdrop 클래스를 선택하고 스타일을 변경
+    	  const backdrop = document.getElementById('backdrop');
+    	  backdrop.style.display = 'block';
 
+    	  Swal.fire({
+    	    title: '댓글 삭제',
+    	    text: '댓글을 삭제하시겠습니까?',
+    	    icon: 'warning',
+    	    showCancelButton: true,
+    	    confirmButtonText: '예',
+    	    cancelButtonText: '아니오',
+    	    allowOutsideClick: false,
+    	    allowEscapeKey: false,
+    	  }).then((result) => {
+    	    if (result.isConfirmed) {
+    	      replyDeleteAction(rno);
+    	    }
+    	    // 모달 창이 닫힐 때 배경 blur 처리 스타일을 원래대로 변경
+    	    backdrop.style.display = 'none';
+    	  });
+    }
 
-
-    
   </script>
 </head>
 
@@ -596,16 +625,16 @@ function autoExpand(textarea) {
       
         <form method="get" name="viewForm">
           <!-- 검색조건 유지하기 위해 갖고가야하는 값들 -->
-          <input type="text" name="pageNo" value="${param.pageNo }">
-          <input type="text" name="searchField" value="${param.searchField }">
-          <input type="text" name="searchWord" value="${param.searchWord }">
-          <input type="text" name="bno" id="bno" value="${board.bno }">
-          <input type="text" name="m_id" id="m_id" value="${sessionScope.member.m_id }">
-          <input type="text" name="writer" id="writer" value="${board.nickname }">
+          <input type="hidden" name="pageNo" value="${param.pageNo }">
+          <input type="hidden" name="searchField" value="${param.searchField }">
+          <input type="hidden" name="searchWord" value="${param.searchWord }">
+          <input type="hidden" name="bno" id="bno" value="${board.bno }">
+          <input type="hidden" name="m_id" id="m_id" value="${sessionScope.member.m_id }">
+          <input type="hidden" name="writer" id="writer" value="${board.nickname }">
 
           <!-- 페이징 처리 하기 위해 있어야함 -->
           <input type="hidden" id="page" name="page" value=1>
-          <input type="text" id="category" name="category" value="${board.category }">
+          <input type="hidden" id="category" name="category" value="${board.category }">
           
           <!-- ***** Details Start ***** -->
           <div class="game-details">
@@ -692,7 +721,8 @@ function autoExpand(textarea) {
         
         
         <!-- 비동기로 js에서 작성한 파일 목록 태그 들어갈 자리 -->
-        <div id="divFileupload"></div>
+        	<div id="divFileupload"></div>
+        	
       </div>
       
       
