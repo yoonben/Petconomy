@@ -1,6 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
         <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+        
+<%
+// 세션 체크: 로그인 상태인지 확인
+if (session.getAttribute("member") == null) {
+    // 로그인되지 않은 상태라면 로그인 페이지로 리다이렉트
+    response.sendRedirect("/peco/login");
+}
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,112 +57,112 @@
 }
     
     
- body{
-   margin: 0 auto; /* 바디 마진을 0으로 하고 가로 가운데 정렬 */
-background-color: white;
- }
-
-div >.page-content{
-  background-color: rgb(251, 235, 215);
-  padding: 30px
-}
-
-.top-streamers{
-    margin-top: 50px;
-
-  overflow: auto;
-
-  background-color: bisque;
-
-}
-
-.featured-games{
-  background-color: bisque;
-}
-
-.live-stream{
-  background-color: bisque;
-}
-
-footer p {
-      color: black;
-}
-footer p > a {
-      color: black;
-}
-
-.category {
-    margin-bottom: 10px;
-}
-
-/* 카테고리 스타일 */
-.category {
-    position: relative;
-    /* 기본 색상 설정 */
-    color: #ffffff;
-}
-
-/* 카테고리 뒤에 * 추가 */
-.category::after {
-    content: '*';
-    color: red;
-    margin-left: 4px; /* *와 글자 사이의 간격 조절을 위해 왼쪽 여백 추가 */
-}
-  
-  
- /* 일상게시판 박스 스타일 */
-.board-box {
-    width: 60px;
-    height: 30px;
-    font-weight: 500;
-    border-radius: 20px;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    margin-right: 10px; /* 가로 간격 조절을 위해 오른쪽 여백 추가 */
-}
-
-          
-          
-          
-.title-bar{
-    margin: 0;
-    margin-bottom: 10px;
-    padding: 5px;
-    border: none;
-    outline: none;
-    border-radius: 15px;
-    width: 100%;
-    height: 40px;
-    font-size: 15px;
-}
-
-/* 고정된 크기의 textarea 스타일 */
-.content-bar {
-    resize: none; /* 사용자가 크기를 조정할 수 없도록 설정 */
-    margin: 0;
-    margin-bottom: 10px;
-    padding: 5px;
-    border: none;
-    outline: none;
-    border-radius: 15px;
-    width: 100%;
-    height: 150px;
+      body{
+        margin: 0 auto; /* 바디 마진을 0으로 하고 가로 가운데 정렬 */
+    	background-color: white;
+      }
     
-}
+  	  div >.page-content{
+        background-color: rgb(251, 235, 215);
+        padding: 30px
+      }
+    
+      .top-streamers{
+          margin-top: 50px;
+      
+        overflow: auto;
+    
+        background-color: bisque;
+    
+      }
+    
+      .featured-games{
+        background-color: bisque;
+      }
+    
+      .live-stream{
+        background-color: bisque;
+      }
+      
+      footer p {
+            color: black;
+      }
+      footer p > a {
+            color: black;
+      }
+      
+      .category {
+          margin-bottom: 10px;
+      }
+    
+      /* 카테고리 스타일 */
+      .category {
+          position: relative;
+          /* 기본 색상 설정 */
+          color: #ffffff;
+      }
+  
+      /* 카테고리 뒤에 * 추가 */
+      .category::after {
+          content: '*';
+          color: red;
+          margin-left: 4px; /* *와 글자 사이의 간격 조절을 위해 왼쪽 여백 추가 */
+      }
+  
+  
+       /* 일상게시판 박스 스타일 */
+      .board-box {
+          width: 60px;
+          height: 30px;
+          font-weight: 500;
+          border-radius: 20px;
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+          margin-right: 10px; /* 가로 간격 조절을 위해 오른쪽 여백 추가 */
+      }
 
-/* 선택된 상태일 때의 테두리 스타일 */
-.title-bar.selected, .content-bar.selected {
-    border: 2px solid;
-    border-color: #000; /* 검정색으로 변경 */
-}
+          
+          
+          
+    .title-bar{
+        margin: 0;
+        margin-bottom: 10px;
+        padding: 5px;
+        border: none;
+        outline: none;
+        border-radius: 15px;
+        width: 100%;
+        height: 40px;
+        font-size: 15px;
+    }
 
-/* 체크된 라디오 버튼의 스타일 변경 */
-input[type="radio"].btn-check:checked + label.btn-secondary {
-  background-color: rgb(255, 217, 0);
-  color: black; /* 선택된 상태에서 글자 색을 검정색으로 설정 */
-}
+    /* 고정된 크기의 textarea 스타일 */
+    .content-bar {
+        resize: none; /* 사용자가 크기를 조정할 수 없도록 설정 */
+        margin: 0;
+        margin-bottom: 10px;
+        padding: 5px;
+        border: none;
+        outline: none;
+        border-radius: 15px;
+        width: 100%;
+        height: 150px;
+        
+    }
+
+    /* 선택된 상태일 때의 테두리 스타일 */
+    .title-bar.selected, .content-bar.selected {
+        border: 2px solid;
+        border-color: #000; /* 검정색으로 변경 */
+    }
+
+    /* 체크된 라디오 버튼의 스타일 변경 */
+    input[type="radio"].btn-check:checked + label.btn-secondary {
+      background-color: rgb(255, 217, 0);
+      color: black; /* 선택된 상태에서 글자 색을 검정색으로 설정 */
+    }
   
 
 #dropZone {
@@ -172,7 +181,7 @@ input[type="radio"].btn-check:checked + label.btn-secondary {
     display: flex;
     align-items: center;
     height: 45px;
-    margin-bottom:30px;
+    margin-bottom:0;
 }
 .main-button{
     height: 100%;
@@ -190,6 +199,14 @@ input[type="radio"].btn-check:checked + label.btn-secondary {
   
   <script>
 window.addEventListener('load', function() {
+	
+	// 일정 시간마다 세션 유효성 확인
+    const sessionCheckInterval = 60000; // 1분마다 확인 (밀리초 단위)
+
+    setInterval(checkSessionValidity, sessionCheckInterval);
+	
+	
+	
 	
     const filesInput = document.getElementById('files');
     filesInput.addEventListener('change', function(){
@@ -293,6 +310,26 @@ window.addEventListener('load', function() {
 	
 });
 
+
+//로그인 세션 체크
+function checkSessionValidity() {
+    fetch('/peco/sessionCheck', { 
+        method: 'GET',
+        credentials: 'include' // 쿠키를 함께 전송하여 세션 유지
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.sessionExpired) {
+            // 세션이 만료된 경우 로그인 페이지로 리다이렉트
+            window.location.href = '/peco/login'; 
+        }
+    })
+    .catch(error => {
+        console.error('Error checking session validity:', error);
+    });
+}
+
+
 //파일첨부버튼으로 업로드 할시에 실행될 유효성 검사 함수
 function checkExtension(fileName, fileSize){
 	let maxSize = 10 * 1024 * 1024; // 10MB
@@ -371,15 +408,15 @@ function FileCheck() {
     }
   }
   
-//글 제목 길이 확인
+  //글 제목 길이 확인
   if (checkTitleLength() === 1) {
   	alert('제목은 최대 100자까지 입력할 수 있습니다.');
       return;
   }
   
-  // 글 필수 입력 확인
+  // 글 제목 필수입력 확인
   if (checkTitleLength() === 2) {
-  	alert('제목을 입력해주세요.');
+  	alert('제목을 입력해야합니다.');
       return;
   }
   
@@ -389,9 +426,9 @@ function FileCheck() {
       return;
   }
 	
-	// 내용 필수 입력 확인
+	// 글 내용 필수입력 화인
   if (checkContentLength() === 2) {
-  	alert('글 내용을 입력해주세요.');
+  	alert('내용을 입력해야합니다.');
       return;
   }
 
@@ -409,9 +446,8 @@ function checkTitleLength() {
 
     // 제목 길이 확인
     if (titleValue.length > 100) {
-        
         return 1; // 작성 취소
-    } else if (titleValue.length === 0){
+    } else if(titleValue.length === 0){
     	return 2;
     }
     return true;
@@ -424,11 +460,11 @@ function checkContentLength() {
 
     // 글 내용 길이 확인
     if (contentValue.length > 2000) {
-        
         return 1; // 작성 취소
-    } else if (contentValue.length === 0) {
+    } else if(contentValue.length === 0){
     	return 2;
     }
+    
     return true;
 }
 
@@ -605,7 +641,6 @@ function processContent() {
               </div>
 		    </div>
 		    <!-- ***** 게시판 메뉴 버튼 끝 ***** -->
-          
           
           
           
