@@ -96,7 +96,7 @@ window.addEventListener('load',function(){
 		  		<h3>회원 목록</h3>
 		  		
 			  	<div id="memberDiv"></div>
-			  	<!-- <div id="paginationDiv"></div> -->
+			  	<div id="paginationDiv"></div>
 		  	</div>
 		  </div>
 		  <div id="tab2" class="tab__content">
@@ -108,7 +108,7 @@ window.addEventListener('load',function(){
 		  	<div style="text-align: center;">
 		  		<h3>승인대기 펜션 목록</h3>
 			  	<div id="pensionDiv"></div>
-			  	<!-- <div id="pensionpaginationDiv"></div> -->
+			  	<div id="pensionpaginationDiv"></div>
 		  	</div>
 		  </div>
 		  <div id="tab4" class="tab__content">
@@ -116,13 +116,13 @@ window.addEventListener('load',function(){
 		  		<h3>펜션 리뷰 목록</h3>
 		  		
 			  	<div id="pReviewDiv"></div>
-			  	<!-- <div id="PReviewpaginationDiv"></div> -->
+			  	<div id="PReviewpaginationDiv"></div>
 		  	</div>
 		  	<div style="text-align: center;">
 		  		<h3>병원 리뷰 목록</h3>
 		  		
 			  	<div id="hReviewDiv"></div>
-			  	<!-- <div id="HReviewpaginationDiv"></div> -->
+			  	<div id="HReviewpaginationDiv"></div>
 		  	</div>
 		  </div>
 		</div>

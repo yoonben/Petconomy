@@ -4,15 +4,29 @@
 <mapper namespace="com.peco.mapper.AdminReviewMapper">
 
 	<select id="getPReviewList" resultType="com.peco.vo.PensionReviewVO">
-		select *  
-		from p_review pr, pension p
-		where pr.p_id = p.p_id
+		select *
+	  		from (
+	  				select t.*, rownum rn 
+	  		  		from (
+							select pname, review, star, reviewer, REGITDATE
+                    		from p_review pr, pension p
+                    		where pr.p_id = p.p_id
+						) t
+		  		)
+	  	where rn between #{cri.startNo} and #{cri.endNo}
 	</select>
 
 	<select id="getHReviewList" resultType="com.peco.vo.HospitalReviewVO">
-		select *  
-		from h_review hr, hospital h
-		where hr.h_id = h.h_id
+		select *
+		  		from (
+		  				select t.*, rownum rn 
+		  		  		from (
+								select pname, review, star, reviewer, REGITDATE
+	                    		from h_review hr, hospital h
+								where hr.h_id = h.h_id
+							) t
+			  		)
+		  	where rn between #{cri.startNo} and #{cri.endNo}
 	</select>
 	
 	<select id="ptotalCnt" resultType="int">

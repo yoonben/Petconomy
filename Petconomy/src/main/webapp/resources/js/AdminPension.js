@@ -122,7 +122,7 @@ function adminPensionView(map){
 		if(pageDto.prev){
 			// prev 버튼
 			pageBlock += `    <li class="page-item disabled"`
-				+ ` 					onclick="getReplyList(${pageDto.startNo-1})">     `
+				+ ` 					onclick="getPensionList(${pageDto.startNo-1})">     `
 				+ `      <a class="page-link">Previous</a>                                `
 				+ `    </li>                                                              `;
 		}
@@ -130,7 +130,7 @@ function adminPensionView(map){
 		for(let i=pageDto.startNo; i<=pageDto.endNo; i++){
 			let active = pageDto.cri.pageNo == i ? 'active' : '';
 			// 페이지 버튼 startNo ~ endNo
-			pageBlock += `    <li class="page-item ${active}" onclick="getReplyList(${i})">`
+			pageBlock += `    <li class="page-item ${active}" onclick="getPensionList(${i})">`
 						+ `		<a class="page-link" href="#">`
 						+ `		${i}`
 						+ `		</a></li>     `;
@@ -139,7 +139,7 @@ function adminPensionView(map){
 		if(pageDto.next){
 			// next 버튼
 			pageBlock += `    <li class="page-item" `
-				+ `						onclick="getReplyList(${pageDto.endNo+1})">       `
+				+ `						onclick="getPensionList(${pageDto.endNo+1})">       `
 				+ `      <a class="page-link" href="#">Next</a>                           `
 				+ `    </li>                                                              `;
 		}
