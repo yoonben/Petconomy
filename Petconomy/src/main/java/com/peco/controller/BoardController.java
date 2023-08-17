@@ -66,8 +66,10 @@ public class BoardController extends CommonRestController{
 	    	for (BoardVO Free : Freelist) {
 	    		String convertedPath = Free.getSavePath().replace("\\", "/");
 	    		String convertedThumPath = Free.getS_savePath().replace("\\", "/");
+	    		String convertedProfile = Free.getP_savePath().replace("\\", "/");
 	    		Free.setSavePath(convertedPath);
 	    		Free.setS_savePath(convertedThumPath);
+	    		Free.setP_savePath(convertedProfile);
 	    	}
 	    }
 	    // 파일 경로를 슬래시(/)로 변경
@@ -75,8 +77,10 @@ public class BoardController extends CommonRestController{
 	    	for (BoardVO Healing : Healinglist) {
 	    		String convertedPath = Healing.getSavePath().replace("\\", "/");
 	    		String convertedThumPath = Healing.getS_savePath().replace("\\", "/");
+	    		String convertedProfile = Healing.getP_savePath().replace("\\", "/");
 	    		Healing.setSavePath(convertedPath);
 	    		Healing.setS_savePath(convertedThumPath);
+	    		Healing.setP_savePath(convertedProfile);
 	    	}
 	    }
 		

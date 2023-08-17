@@ -4,7 +4,15 @@
 <mapper namespace="com.peco.mapper.AdminMemberMapper">
 
 	<select id="getMemberList" resultType="com.peco.vo.MemberVO">
-		select * from member where adminyn = 'N'
+		select *
+		  		from (
+		  				select t.*, rownum rn 
+		  		  		from (
+								select * from member where adminyn = 'N'
+							) t
+			  		)
+		  	where rn between #{cri.startNo} and #{cri.endNo}
+
 	</select>
 	
 	<select id="totalCnt" resultType="int">

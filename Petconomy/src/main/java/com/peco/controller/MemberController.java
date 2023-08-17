@@ -71,17 +71,31 @@ public class MemberController extends CommonRestController{
 				System.out.println("msg");
 				System.out.println("======================= Pension" + resService.getResPensionList(resVo.getM_id()));
 				System.out.println("======================= Hospital" + resService.getResHospitalList(resVo.getM_id()));
-				model.addAttribute("getPrList",resService.getResPensionList(resVo.getM_id()));
+				
+				//펜션 예약 정보를 profile.jsp에서 출력
+				 List<P_RESVO> reslist = resService.getResPensionList(resVo.getM_id());
+				
+				if (reslist != null) {
+			    	for (P_RESVO res : reslist) {
+			        String convertedPath = res.getSavePath().replace("\\", "/");
+			        res.setSavePath(convertedPath);
+			        
+			    	}
+			    	System.out.println("=============reslist================== (2) : " +  reslist);
+			    } 
+				model.addAttribute("getPrList",reslist);
 				model.addAttribute("getHrList",resService.getResHospitalList(resVo.getM_id()));
 			}
-				   
+			
+			System.out.println("=========================================="+resService.getResPensionList(resVo.getM_id()));
+			
 			//하나의 회원 조회
 			MemberVO member = service.getOne(vo.getM_id());
 
 			// 프로필 사진 조회
 			//System.out.println(fileuploadService.getProfile(fileVo.getM_id()));
 			
-			FileuploadVO fileuploadVO = fileuploadService.getProfile(fileVo.getM_id());
+			FileuploadVO fileuploadVO = fileuploadService.getProfile(member.getM_id());
 			
 			String profile = null;
 			
@@ -104,6 +118,19 @@ public class MemberController extends CommonRestController{
 		    	
 		    	profile = defaultProfileImage;
 		    }
+		    
+		    List<PensionVO> pensionlist = pensionService.mypensionlist(vo.getM_id());
+			
+			if (pensionlist != null) {
+		    	for (PensionVO pension : pensionlist) {
+		        String convertedPath = pension.getSavePath().replace("\\", "/");
+		        pension.setSavePath(convertedPath);
+		        
+		    	}
+		    	System.out.println("=============pensionlist================== (2) : " +  pensionlist);
+		    } 
+			
+			model.addAttribute("pension",pensionlist); 
 		    
 		    model.addAttribute("profile", profile);
 		    
@@ -179,7 +206,7 @@ public class MemberController extends CommonRestController{
 			
 			//프로필 이미지 조회
 		    fileuploadVO = fileuploadService.getProfile(vo.getM_id());
-		    
+		      
 		   Map<String, Object> map = responseMap(REST_SUCCESS, "파일업로드 성공");
 		    if (fileuploadVO != null) {
 		        String profile = fileuploadVO.getSavePath();
@@ -209,21 +236,24 @@ public class MemberController extends CommonRestController{
 	
 	//회원프로필 수정 후 마이페이지 이동
 	@PostMapping("/profile")
-	public  String profileSave(Model model, HttpSession session, MemberVO vo, FileuploadVO fileVo) {
+	public  String profileSave(Model model, HttpSession session, MemberVO vo) {
 		
 	    MemberVO member = (MemberVO) session.getAttribute("member");
 	  // session에 model까지 있어서  수정 후 바로 저장 안되고 새로고침해야 수정되는거 적용됬었는데 모델삭제하니 바로 해결됨 
 	  //  model.addAttribute("member", member);  
 
-	    // 프로필 이미지 처리========================================================
 	    
+	  // 프로필 이미지 처리=======================================================
 	  //프로필 이미지 조회
-	    // FileuploadVO fileuploadVO = fileuploadService.getProfile(vo.getM_id());
-	     FileuploadVO fileuploadVO = (FileuploadVO) session.getAttribute("profile");
+	    FileuploadVO fileuploadVO = fileuploadService.getProfile(member.getM_id());
 	    System.out.println("진입1 : " + fileuploadVO);
 	    
 	    String profile = null;
+	    
 	    if (fileuploadVO != null) {
+	    	
+	    	profile = fileuploadVO.getSavePath();
+	    	
 	        System.out.println("진입2");
 	        // 파일 경로를 슬래시(/)로 변경
 	        	System.out.println("진입3");
@@ -309,54 +339,54 @@ public class MemberController extends CommonRestController{
 // 펜션 컨트롤러 부분==========================================================================	
 // 펜션 컨트롤러 부분==========================================================================	
 //TODO : 펜션매퍼,서비스, 컨트롤러  > 펜션, 병원을 등록한 회원 m_id와  펜션등록 테이블에 있는 m_id가 일치하면 펜션정보 화면에 출력할 수 있는 컨트롤러 작성
+	//펜션등록을 여러개 했을 수 있으니 list로 뿌려준다
 	
 	//하나의 펜션 조회
-	@GetMapping("pensionProfile")
-	public String getOne_P(Model model, PensionVO vo, MemberVO memberVo, PensionFiileuploadVO p_id, HttpSession session) {
-		try {
+	@GetMapping("/pensionProfile")
+	public String pensionList(PensionVO vo, MemberVO memberVo, Model model, HttpSession session) {
+		
+		System.out.println("==========mypensionlist(vo.getM_id()================== (1) : " +  pensionService.mypensionlist(vo.getM_id()));	
 			MemberVO member = (MemberVO) session.getAttribute("member");
-			PensionVO pension = pensionService.getOne_P(vo.getM_id());
-			PensionFiileuploadVO fileuploadVO = pensionService.getPesionImg(vo.getP_id());
-
-			System.out.println("PensionVO================== (1) : " + vo.getM_id());	
-			System.out.println("member================== (1) : " + member);	
-	
-			String pensionProfile = fileuploadVO.getSavePath();
 			
-			// 파일 경로를 슬래시(/)로 변경
-			if (pensionProfile != null) { 	
-				String convertedPath = pensionProfile.replace("\\", "/");
-				String convertedThumPath = pensionProfile.replace("\\", "/");
-				fileuploadVO.setSavePath(convertedPath);
-				fileuploadVO.setS_savePath(convertedThumPath);
-				
-				model.addAttribute("pensionProfile", fileuploadVO.getSavePath());
-			}
+			List<PensionVO> pensionlist = pensionService.mypensionlist(vo.getM_id());
 			
-			if(pension != null && member.getM_id().equals(pension.getM_id())) {
-
-				model.addAttribute("pension", pension);
+			System.out.println("=============pensionlist================== (1) : " +  pensionlist);	
 			
-				} else {
+			 // 파일 경로를 슬래시(/)로 변경
+		    if (pensionlist != null) {
+		    	for (PensionVO pension : pensionlist) {
+		        String convertedPath = pension.getSavePath().replace("\\", "/");
+		        pension.setSavePath(convertedPath);
+		        
+		    	}
+		    	System.out.println("=============pensionlist================== (2) : " +  pensionlist);
+		    } else {
 					//메세지 처리
 					System.out.println("msg");
 					return "/member/nodata";  
 				}
+		    
+		   		model.addAttribute("pension",pensionlist); 
 				return "/member/pensionProfile";
-				
-			} catch (Exception e) {
-				e.printStackTrace(); 
-		        return "";
-			}
+			
 	}
-	
+
+
 	//펜션 수정페이지 이동
 	@PostMapping("pensionProfile_Update")
-	public String phProfileUpdatePage(HttpSession session) {
+	public String phProfileUpdatePage(PensionVO vo, Model model) {
+		List<PensionVO> pensionlist = pensionService.mypensionlist(vo.getM_id());
 		
-		PensionVO pension = (PensionVO) session.getAttribute("pension");
-		    //model.addAttribute("pension", pension);
-			session.setAttribute("pension", pension);
+		if (pensionlist != null) {
+	    	for (PensionVO pension : pensionlist) {
+	        String convertedPath = pension.getSavePath().replace("\\", "/");
+	        pension.setSavePath(convertedPath);
+	        
+	    	}
+	    	System.out.println("=============pensionlist================== (2) : " +  pensionlist);
+	    } 
+		
+		model.addAttribute("pension",pensionlist); 
 	    return "/member/pensionProfile_Update";
 	}
 	
@@ -365,13 +395,38 @@ public class MemberController extends CommonRestController{
 	@PostMapping("pensionProfile")
 	public String phProfilePage(Model model, HttpSession session, PensionVO vo) {
 		
-		//PensionVO pension1 = pensionService.getOne_P(vo.getM_id());
-		pensionService.update_P(vo);
-		PensionVO updatedPension = pensionService.getOne_P(vo.getM_id());
-		//model.addAttribute("pension2", pension2);
-		 session.setAttribute("pension", updatedPension);		
-		 
 		
+		
+		List<PensionVO> pensionlist = pensionService.mypensionlist(vo.getM_id());
+		
+		System.out.println("============vo.getM_id()================="+vo.getM_id());
+		
+		int res = pensionService.update_P(vo);
+		
+		if (res > 0 && pensionlist != null) {
+	    	for (PensionVO pension : pensionlist) {
+	        String convertedPath = pension.getSavePath().replace("\\", "/");
+	        pension.setSavePath(convertedPath);
+	        
+	    	}
+	    	System.out.println("=============pensionlist================== (2) : " +  pensionlist);
+	    } 
+		
+		model.addAttribute("pension",pensionlist); 
+		
+		/*
+  		
+  		 if (fileuploadVO != null) {
+	  		MemberVO updateMember = service.getOne(vo.getM_id());
+	  		
+	  		session.setAttribute("member", updateMember);
+	  		
+	  		 } else {
+	  		 
+	  			MemberVO updateMember = service.getOneNoImg(vo.getM_id());
+	  			session.setAttribute("member", updateMember);
+	  		 }
+		*/
 	    return "/member/pensionProfile";
 	}
 

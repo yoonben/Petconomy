@@ -6,9 +6,23 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+  <!-- Bootstrap core CSS -->
+  <link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/js/bootstrap.min.js"></script>
+  <!-- Additional CSS Files -->
+  <link rel="stylesheet" href="/resources/assets/css/fontawesome.css">
+  <link rel="stylesheet" href="/resources/assets/css/templatemo-cyborg-gaming.css">
+  <link rel="stylesheet" href="/resources/assets/css/owl.css">
+  <link rel="stylesheet" href="/resources/assets/css/animate.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
 <style type="text/css">
+	div>.page-content {
+      background-color: bisque;
+    }
 	a {
 	  text-decoration: none;
 	  color: inherit;
@@ -56,6 +70,8 @@ window.addEventListener('load',function(){
 	// 댓글목록 조회및 출력
 	getMemberList();
 	
+	getBoardList();
+	
 	getPensionList();
 	
 	getPReviewList();
@@ -68,9 +84,12 @@ window.addEventListener('load',function(){
 
 </head>
 <body>
-<div class="d-grid gap-2 col-6 mx-auto">
-  <button class="btn btn-outline-dark" type="button" onclick="location.href='/peco/main'">메인 페이지</button>
-</div>	
+
+<%@ include file="../main/header.jsp" %>
+<div class="container">
+<div class="row">
+<div class="col-lg-12">
+        <div class="page-content">
 	<!-- 탭 버튼 영역 -->
 	<ul class="tab">
 	  <li class="tab__item active">
@@ -94,17 +113,20 @@ window.addEventListener('load',function(){
 		  		<h3>회원 목록</h3>
 		  		
 			  	<div id="memberDiv"></div>
-			  	<!-- <div id="paginationDiv"></div> -->
+			  	<div id="paginationDiv"></div>
 		  	</div>
 		  </div>
 		  <div id="tab2" class="tab__content">
-		  	두번째 탭 내용
+		  		<h3>게시글 목록</h3>
+		  		
+		  		<div id="boardDiv"></div>
+		  		<div id="boardpaginationDiv"></div>
 		  </div>
 		  <div id="tab3" class="tab__content">
 		  	<div style="text-align: center;">
 		  		<h3>승인대기 펜션 목록</h3>
 			  	<div id="pensionDiv"></div>
-			  	<!-- <div id="pensionpaginationDiv"></div> -->
+			  	<div id="pensionpaginationDiv"></div>
 		  	</div>
 		  </div>
 		  <div id="tab4" class="tab__content">
@@ -112,16 +134,20 @@ window.addEventListener('load',function(){
 		  		<h3>펜션 리뷰 목록</h3>
 		  		
 			  	<div id="pReviewDiv"></div>
-			  	<!-- <div id="PReviewpaginationDiv"></div> -->
+			  	<div id="PReviewpaginationDiv"></div>
 		  	</div>
 		  	<div style="text-align: center;">
 		  		<h3>병원 리뷰 목록</h3>
 		  		
 			  	<div id="hReviewDiv"></div>
-			  	<!-- <div id="HReviewpaginationDiv"></div> -->
+			  	<div id="HReviewpaginationDiv"></div>
 		  	</div>
 		  </div>
 		</div>
+	</div>
+	</div>
+	</div>
+	</div>
 	</div>
 	
 	<!-- Modal -->
@@ -174,9 +200,16 @@ tabItem.forEach((item, index) => {
 });
 </script>
 <script src="/resources/js/AdminMember.js"></script>
+<script src="/resources/js/AdminBoard.js"></script>
 <script src="/resources/js/AdminPension.js"></script>
 <script src="/resources/js/AdminPReview.js"></script>
 <script src="/resources/js/AdminHReview.js"></script>
+<script src="/resources/assets/js/isotope.min.js"></script>
+      <script src="/resources/assets/js/owl-carousel.js"></script>
+      <script src="/resources/assets/js/tabs.js"></script>
+      <script src="/resources/assets/js/popup.js"></script>
+      <script src="/resources/assets/js/custom.js"></script>
+
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
 </html>

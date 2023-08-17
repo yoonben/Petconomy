@@ -187,56 +187,7 @@
 	
 	
 	<select id="getFree" resultType="com.peco.vo.BoardVO">
-	<!-- <![CDATA[
-		SELECT
-		    *
-		FROM
-		    (
-		        SELECT
-		            t.*,
-		            ROWNUM rn
-		        FROM
-		            (
-		                SELECT
-		                    b.bno,
-		                    b.title,
-		                    b.writer,
-		                    b.content,
-		                    b.m_id,
-		                    b.visitcount,
-		                    b.likecount,
-		                    decode(trunc(sysdate),
-		                           trunc(b.regdate),
-		                           to_char(b.regdate, 'HH24:MI:SS'),
-		                           to_char(b.regdate, 'YYYY-MM-DD')) AS regdate,
-		                    b.updatedate,
-		                    b.category,
-		                    m.nickname,
-		                    DECODE(a.filetype, 'I', a.uploadpath 
-		                    						|| a.uuid 
-		                    						|| '_' 
-		                    						|| a.filename, '/default/NO_image.jpg') AS savePath,
-		                    decode(a.filetype, 'I', a.uploadpath
-		                                            || 's_'
-		                                            || a.uuid
-		                                            || '_'
-		                                            || a.filename, '/default/NO_image.jpg')  AS s_savepath
-		                FROM
-		                    board  b
-		                    LEFT JOIN member m ON b.m_id = m.m_id
-		                    LEFT JOIN b_img  a ON b.bno = a.bno
-	
-		                WHERE
-		                    category = 'free'
-		                    ]]>
-		                    <include refid="criteria"></include>
-		                ORDER BY
-		                    b.bno DESC
-		            ) t
-		    )
-		WHERE
-		    rn BETWEEN #{startNo} AND #{endNo} -->
-		    SELECT
+		    <!-- SELECT
 			    b.bno,
 			    b.title,
 			    b.writer,
@@ -274,52 +225,85 @@
 			    b.likecount, b.regdate, b.updatedate, b.category, m.nickname,
 			    a.filetype, a.uploadpath, a.uuid, a.filename
 			ORDER BY
-			    b.bno DESC
-					    
+			    b.bno DESC -->
+			    SELECT
+				    b.bno,
+				    b.title,
+				    b.writer,
+				    b.content,
+				    b.m_id,
+				    b.visitcount,
+				    b.likecount,
+				    DECODE(TRUNC(SYSDATE),
+				           TRUNC(b.regdate),
+				           TO_CHAR(b.regdate, 'HH24:MI:SS'),
+				           TO_CHAR(b.regdate, 'YYYY-MM-DD')) AS regdate,
+				    b.updatedate,
+				    b.category,
+				    m.nickname,
+				    m.m_id,
+				    DECODE(a.filetype, 'I', a.uploadpath || a.uuid || '_' || a.filename, '/default/NO_image.jpg') AS savePath,
+				    DECODE(a.filetype, 'I', a.uploadpath || 's_' || a.uuid || '_' || a.filename, '/default/NO_image.jpg') AS s_savepath,
+				    COUNT(r.rno) AS replycount,
+				    DECODE(f.filetype, 'I', f.uploadpath || m.m_id || f.filename, '/default/NO_image.jpg') AS p_savePath
+				FROM
+				    board b
+				    LEFT JOIN member m ON b.m_id = m.m_id
+				    LEFT JOIN b_img a ON b.bno = a.bno
+				    LEFT JOIN reply r ON b.bno = r.bno
+				    LEFT JOIN f_img f ON m.m_id = f.m_id
+				WHERE
+				    b.category = 'free'
+				    <include refid="criteria"></include>
+				GROUP BY
+				    b.bno, b.title, b.writer, b.content, b.m_id, b.visitcount,
+				    b.likecount, b.regdate, b.updatedate, b.category, m.nickname,
+				    a.filetype, a.uploadpath, a.uuid, a.filename,
+				    f.filetype, f.uploadpath, f.uuid, f.filename,
+				    m.m_id
+				ORDER BY
+				    b.bno DESC
 
-		
 	</select>
 	
 	<select id="getHealing" resultType="com.peco.vo.BoardVO">
-				    SELECT
-			    b.bno,
-			    b.title,
-			    b.writer,
-			    b.content,
-			    b.m_id,
-			    b.visitcount,
-			    b.likecount,
-			    decode(trunc(sysdate),
-			           trunc(b.regdate),
-			           to_char(b.regdate, 'HH24:MI:SS'),
-			           to_char(b.regdate, 'YYYY-MM-DD')) AS regdate,
-			    b.updatedate,
-			    b.category,
-			    m.nickname,
-			    DECODE(a.filetype, 'I', a.uploadpath 
-			    					|| a.uuid 
-			    					|| '_' 
-			    					|| a.filename, '/default/NO_image.jpg') AS savePath,
-			    decode(a.filetype, 'I', a.uploadpath
-			                        || 's_'
-			                        || a.uuid
-			                        || '_'
-			                        || a.filename, '/default/NO_image.jpg')  AS s_savepath,
-			    COUNT(r.rno) AS replycount
-			FROM
-			    board b
-			    LEFT JOIN member m ON b.m_id = m.m_id
-			    LEFT JOIN b_img a ON b.bno = a.bno
-			    LEFT JOIN reply r ON b.bno = r.bno
-			WHERE
-			    b.category = 'healing'
- 				<include refid="criteria"></include>
-			GROUP BY
-			    b.bno, b.title, b.writer, b.content, b.m_id, b.visitcount,
-			    b.likecount, b.regdate, b.updatedate, b.category, m.nickname,
-			    a.filetype, a.uploadpath, a.uuid, a.filename
-			ORDER BY
-			    b.bno DESC
+				SELECT
+				    b.bno,
+				    b.title,
+				    b.writer,
+				    b.content,
+				    b.m_id,
+				    b.visitcount,
+				    b.likecount,
+				    DECODE(TRUNC(SYSDATE),
+				           TRUNC(b.regdate),
+				           TO_CHAR(b.regdate, 'HH24:MI:SS'),
+				           TO_CHAR(b.regdate, 'YYYY-MM-DD')) AS regdate,
+				    b.updatedate,
+				    b.category,
+				    m.nickname,
+				    m.m_id,
+				    DECODE(a.filetype, 'I', a.uploadpath || a.uuid || '_' || a.filename, '/default/NO_image.jpg') AS savePath,
+				    DECODE(a.filetype, 'I', a.uploadpath || 's_' || a.uuid || '_' || a.filename, '/default/NO_image.jpg') AS s_savepath,
+				    COUNT(r.rno) AS replycount,
+				    DECODE(f.filetype, 'I', f.uploadpath || m.m_id || f.filename, '/default/NO_image.jpg') AS p_savePath
+				FROM
+				    board b
+				    LEFT JOIN member m ON b.m_id = m.m_id
+				    LEFT JOIN b_img a ON b.bno = a.bno
+				    LEFT JOIN reply r ON b.bno = r.bno
+				    LEFT JOIN f_img f ON m.m_id = f.m_id
+				WHERE
+				    b.category = 'healing'
+				    <include refid="criteria"></include>
+				GROUP BY
+				    b.bno, b.title, b.writer, b.content, b.m_id, b.visitcount,
+				    b.likecount, b.regdate, b.updatedate, b.category, m.nickname,
+				    a.filetype, a.uploadpath, a.uuid, a.filename,
+				    f.filetype, f.uploadpath, f.uuid, f.filename,
+				    m.m_id
+				ORDER BY
+				    b.bno DESC
 	</select>
 	
 	<select id="getSearch" resultType="com.peco.vo.BoardVO">

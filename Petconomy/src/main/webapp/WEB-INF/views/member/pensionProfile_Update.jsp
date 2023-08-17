@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
    
 <!DOCTYPE html>
 <html>
@@ -24,7 +26,116 @@
     <link rel="stylesheet" href="/resources/assets/css/owl.css">
     <link rel="stylesheet" href="/resources/assets/css/animate.css">
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
-    
+  <style>
+
+#pension_profile {
+	width: 300px; 
+	height: 300px;
+	object-fit: cover;
+	margin-left:100px;
+	border-radius: 70px;
+	box-shadow: 0px 3px 6px rgba(0, 0, 0.2, 0.2);
+	border: 5px solid;
+	border-color: #FF8C00;
+	
+	
+	image-rendering:-webkit-optimize-contrast;
+  	transform:translateZ(0);
+  	backface-visibility:hidden;
+
+}
+#myprofileBtn-bottom-box{
+	margin-top:20px;
+	
+}
+
+#pension{
+	width: 150px; 
+	height: 50px;
+	border-radius: 20px;
+	margin: 0 24px;
+	background-color: #FFFFFF;
+}
+#pension:hover {
+	color: #FF8C00;
+	background-color: #ffffff;
+	margin: 0 24px;
+}
+
+#hospital{
+	width: 150px; 
+	height: 50px;
+	border-radius: 20px;
+	margin: 0 24px;
+	background-color: #FFFFFF;
+}
+#hospital:hover {
+	color: #FF8C00;
+	background-color: #ffffff;
+	margin: 0 24px;
+}
+
+#myBoard{
+	width: 150px; 
+	height: 50px;
+	border-radius: 20px;
+	margin: 0 24px;
+	background-color: #FFFFFF;
+}
+#myBoard:hover {
+	color: #FF8C00;
+	background-color: #ffffff;
+	margin: 0 24px;
+}
+#directRes{
+	width: 300px; 
+	height: 50px;
+	border-radius: 20px;
+	background-color: #FFFFFF;
+}
+#directRes:hover {
+	color: #FF8C00;
+	background-color: #ffffff;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.main-button .btn{
+	width: 150px; 
+	height: 50px;
+	border-radius: 20px;
+	border: 2px solid;
+	border-color: #black;
+	background-color: #FFFFFF;	
+	margin-top: 30px;
+	margin: 0 24px;
+	
+}
+.main-button .btn:hover{
+	color: #FF8C00;
+	background-color: #ffffff;
+	margin-top: 30px;
+	margin: 0 24px;
+}
+
+.main-button{
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+#profileTable{
+	width : 100%; 
+	height : 100%;
+	margin-left : 200px;
+}
+
+</style>
+   
 </head>
 <body>
 
@@ -35,26 +146,14 @@
   
 
 
-<%
-String p_id = request.getParameter("p_id");
-String m_id = request.getParameter("m_id");
-String pName = request.getParameter("pName");
-String Addr = request.getParameter("Addr");
-String openHour = request.getParameter("openHour");
-String ParkYN = request.getParameter("ParkYN");
-String checkYN = request.getParameter("checkYN");
-
-System.out.println("p_id : " + p_id);
-System.out.println("m_id : " + m_id);
-
-%>
-
  <div class="container">
     <div class="row">
       <div class="col-lg-12">
        <div class="page-content">
 		 <div class="row">
 		 
+ 		 <!-- 나의 펜션정보 박스 -->
+		 <div id='mypensionBox'> 
 			<!-- 나의 정보 시작  -->
             <div class="col-lg-12">
               <div class="main-profile ">
@@ -62,10 +161,19 @@ System.out.println("m_id : " + m_id);
                     <div class="main-info header-text">
                       <h1>나의 펜션정보 수정</h1>
                     </div>
-				<div class="col-lg-6 align-self-center">
-					<form id='P_ProfileUpdateForm' name='P_ProfileUpdate' action='/peco/pensionProfile' method='post'>
-						<c:set var="PensionVO" value="${pension }"/>
-						<table id="profileTable" width='100%' height='100%'>
+                    
+		 			<c:forEach var="PensionVO" items="${pension}" varStatus="status">
+				
+                  <!-- 펜션 프로필 사진 시작-->
+                  <div class="col-lg-3">
+					  <img src="/peco/display?fileName=${PensionVO.savePath}" id='pension_profile' class="card-img-top" alt="..." style="height:300px; padding:10px">
+                  </div>
+                 <!-- 펜션 프로필 사진 끝--> 
+                    
+					<div class="col-lg-6 align-self-center">
+					<form id='P_ProfileUpdateForm' name='P_ProfileUpdate' action='/peco/pensionProfile' method='post'>		
+							<table id="profileTable" width='100%' height='100%'>
+    								<c:if test="${member.m_id eq PensionVO.m_id}">   
 					
 							<tr>
 								<th>펜션번호</th>
@@ -95,22 +203,77 @@ System.out.println("m_id : " + m_id);
 								<th>승인여부</th>
 								<td><input type='text' name='checkyn' value='${PensionVO.checkyn}' style="height:100%; width:99%"></td>
 							</tr>
+							</c:if>
 						</table>
-												
-						<input type="submit" value="수정하기" class="btn" >
+						
+							<div class="main-button">					
+								<input type="submit" value="확인" class="btn" >
+								<input type="reset" value="초기화" class="btn"><br><br>
+							</div>				
 							
-						<!-- TODO : 삭제 버튼 클릭시 기존 등록된 업체글 모두 삭제될 수 있도록  처리 매퍼에서 쿼리문 조인으로 작성-->
-						<input type="button" value="삭제"><br><br>
-					</form>
-                </div>
+						</form>
+	                </div>
+			
+  					</c:forEach>
           	 </div>
           </div>
           </div>
-          </div>
-          </div>
-          </div>
-          </div>
-          </div>
+          	 </div>
+<br><br><br><br><br>                       
+<!-- ↓ ↓ ↓  예약정보 구현 ↓ ↓ ↓  -->
+
+		<!-- 펜션예약 시작 -->
+          <div class="gaming-library profile-library">
+            <div class="col-lg-12">
+              <div class="heading-section">
+                <h4>펜션 예약 고객정보</h4>
+              </div>
+             <form name='mypResForm' onsubmit="return false">
+              <table width='100%' >
+				<tr>
+					<th><h5>프로필</h5><span>Member</span></th>
+					<th><h5>예약자명</h5><span>Reservation Name</span></th>
+					<th><h5>예약번호</h5><span>Reservation Number</span></th>
+					<th><h5>이용날짜</h5><span>Date</span></th>
+					<th><h5>결제금액</h5><span>Payment Amount</span></th>
+					<th><h5>연락처</h5><span>telephone</span></th>
+					<th><h5>예약취소</h5><span>Cancellation</span></th>
+				</tr>
+				
+				<c:if test="${fn:length(getPrList )==0}">
+					<tr>
+						<td  colspan="9">예약내역이 없습니다</td>
+					</tr>
+				</c:if>
+				
+				<c:forEach var="pr" items="${getPrList }" varStatus="status">
+					<tr>
+						<input type="hidden" value="${status.index}" id="index">
+						<td><img src="/peco/display?fileName=${pension}" alt="" class="templatemo-item"></td>
+						<td>${pr.pr_name }</td>
+							<c:choose>
+								<c:when test="${fn:length(pr.imp_uid) > 1}">
+									<td><input type="text" class="index" id="imp_uid" data-puid="${status.index}" value="${fn:substring(pr.imp_uid,4,16)}" readonly></td>
+								</c:when>
+							</c:choose>
+						<td>${pr.startdate }, ${pr.enddate }</td> 
+						<td><input type="text" class="index" id="pcnt" data-pcnt="${status.index}" value="${pr.pricecnt }"readonly></td>
+						<td style="border: none;"><button onclick="delPension(${status.index})">예약취소</button></td>
+					</tr>
+				</c:forEach>
+				</table>
+				</form>
+         		<!-- 페이징처리-->
+          <!-- 펜션예약 끝 -->
+           </div>
+         </div>
+
+        </div>
+    </div>
+  </div>
+ </div>
+</div>
+                   
 
 
 

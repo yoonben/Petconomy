@@ -23,13 +23,9 @@
     <link rel="stylesheet" href="/resources/assets/css/owl.css">
     <link rel="stylesheet" href="/resources/assets/css/animate.css">
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
-<!--
-
-TemplateMo 579 Cyborg Gaming
-
-https://templatemo.com/tm-579-cyborg-gaming
-
--->
+	
+	<!-- jquery -->
+	<script src="/resources/js/jquery.js"></script>
 
 
 <style>
@@ -298,30 +294,60 @@ div >.page-content{
 .post_writer {
     color: black;
 }
+
+
+
+.imgSelect {
+	cursor: pointer;
+}
+
+.popupLayer {
+	position: absolute;
+	display: none;
+	background-color: #ffffff;
+	border: solid 2px #d0d0d0;
+	width: 350px;
+	height: 150px;
+	padding: 10px;
+}
+.popupLayer div {
+	position: absolute;
+	top: 5px;
+	right: 5px
+}
+
+
+
 </style>
 
 
 <script type="text/javascript">
 
-	//검색 페이징 Action
-	function go(page){
-		document.searchForm.pageNo.value=page;
-		document.searchForm.action = "/peco/board/free";
-		document.searchForm.submit();
-	}
+
+
+//검색 페이징 Action
+function go(page){
+	document.searchForm.pageNo.value=page;
+	document.searchForm.action = "/peco/board/free";
+	document.searchForm.submit();
+}
+
+
+//상세보기 Action
+function requestAction(url, bno){
+	// 폼이름을 확인!
+	searchForm.action = url;
+	searchForm.bno.value = bno;
+	searchForm.submit();
+}
 	
 	
-	//상세보기 Action
-	function requestAction(url, bno){
-		// 폼이름을 확인!
-		searchForm.action = url;
-		searchForm.bno.value = bno;
-		searchForm.submit();
-	}
+	
+	
 	
 </script>
 
-  </head>
+</head>
   
 <body>
 
@@ -411,7 +437,7 @@ div >.page-content{
 				    </div>
 					    <div class="down-content">
 		                    <div class="avatar">
-		                      <img src="/resources/images/default.png" alt="" style="max-width: 46px; border-radius: 50%; float: left;">
+		                      <img src="/peco/display?fileName=${b.p_savePath}" alt="" style="max-width: 46px; border-radius: 50%; float: left;">
 		                    </div>
 		                    <span><i class="fa fa-check"></i> ${b.writer}</span>
 		                    <a onclick="requestAction('/peco/board/view', ${b.bno })">
@@ -448,7 +474,8 @@ div >.page-content{
 
                      <div class="postreplywriter">
                         <div class="post_reply">댓글: ${board.replycount }</div>
-                        <div class="post_writer">${board.writer }</div>
+                        
+                        <div class="post_writer writer${board.nickname }">${board.nickname } </div>
                         <div class="post_date">${board.regdate }</div>
                      </div>
 
@@ -461,12 +488,15 @@ div >.page-content{
 				<%@include file = "../common/pageNavi.jsp" %>
               </div>
            
+       
+      
+	
+	
 
 	
-      
-      
-      
-      
+	
+	
+	
 	
 
        </div>

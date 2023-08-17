@@ -5,7 +5,7 @@
   <mapper namespace="com.peco.mapper.PensionMapper">
   	<select id="mapList" resultType="com.peco.vo.PensionVO">
              select * from
-             (select t.*, rownum rn from(select p.p_id, pname, addr, openhour, substr(parkyn,-2) ParkYN , star, cnt, min, max, savePath
+             (select t.*, rownum rn from(select p.p_id, pname, addr, openhour, substr(parkyn,-2) ParkYN , star, cnt, min, max, savePath, cno
              from pension p 
              LEFT JOIN
 			 (select p_id, round(avg(star)) star, count(review) cnt from p_review group by p_id) r
@@ -15,7 +15,10 @@
              ON p.p_id = q.p_id  
              left join              
              (select p_id, uploadpath||p_id||filename savePath from p_img) s
-             ON p.p_id = s.p_id where checkyn='Y' and savePath is not null
+             ON p.p_id = s.p_id
+             LEFT JOIN
+             (select p_id, cno from jjim) t
+             ON p.p_id = t.p_id  where checkyn='Y' and savePath is not null
 			<if test="megaregion!=null">
 				and addr like  '%'||#{megaregion}||'%'
 			</if>
@@ -27,8 +30,8 @@
   	</select>
 
   	<select id="pensionList" resultType="com.peco.vo.PensionVO">              
-              select * from
-             (select t.*, rownum rn from(select p.p_id, pname, addr, substr(openhour,1, 30) openhour, substr(parkyn,-2) ParkYN , nvl(star,0) star , nvl(cnt,0) cnt, nvl(min,0) min, nvl(max,0) max, savePath
+             select * from
+             (select t.*, rownum rn from(select p.p_id, pname, addr, openhour, substr(parkyn,-2) ParkYN , star, cnt, min, max, savePath, cno
              from pension p 
              LEFT JOIN
 			 (select p_id, round(avg(star)) star, count(review) cnt from p_review group by p_id) r
@@ -38,7 +41,10 @@
              ON p.p_id = q.p_id  
              left join              
              (select p_id, uploadpath||p_id||filename savePath from p_img) s
-             ON p.p_id = s.p_id where checkyn='Y' and savePath is not null
+             ON p.p_id = s.p_id
+             LEFT JOIN
+             (select p_id, cno from jjim) t
+             ON p.p_id = t.p_id  where checkyn='Y' and savePath is not null
 			<if test="megaregion!=null">
 				and addr like  '%'||#{megaregion}||'%'
 			</if>
@@ -170,5 +176,18 @@
 		</choose>
 	</sql>
 		
+		
+		<select id='mypensionlist' resultType='com.peco.vo.PensionVO'>
+			SELECT p.*, 
+       pi.uploadpath || pi.p_id || pi.filename AS savePath,
+       CASE pi.filetype
+           WHEN 'I' THEN uploadpath || 's_' || pi.p_id || '_' || pi.filename
+           ELSE ''
+       END AS s_savePath
+		FROM Pension p
+		LEFT JOIN member m ON p.m_id = m.m_id
+		LEFT JOIN p_img pi ON p.p_id = pi.p_id
+		WHERE p.m_id = #{m_id}
+		</select>
 
 </mapper>

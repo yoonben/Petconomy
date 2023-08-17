@@ -31,7 +31,7 @@
  
  <style>
 
-#img_profile {
+#pension_profile {
 	width: 300px; 
 	height: 300px;
 	object-fit: cover;
@@ -134,7 +134,9 @@
 #profileTable{
 	width : 100%; 
 	height : 100%;
+	margin-left : 200px;
 }
+
 
 </style>
 	   
@@ -151,6 +153,9 @@
        <div class="page-content">
 		 <div class="row">
 		 
+		 <!-- 나의 펜션정보 박스 -->
+		 <div id='mypensionBox'> 
+		 <c:forEach var="PensionVO" items="${pension}" varStatus="status">
 			<!-- 나의 정보 시작  -->
             <div class="col-lg-12">
               <div class="main-profile ">
@@ -162,46 +167,43 @@
                     
                   <!-- 펜션 프로필 사진 시작-->
                   <div class="col-lg-3">
-					  <img src="/peco/display?fileName=${pensionProfile}" class="card-img-top" alt="..." style="height:300px; padding:10px">
+					  <img src="/peco/display?fileName=${PensionVO.savePath}" id='pension_profile' class="card-img-top" alt="..." style="height:300px; padding:10px">
                   </div>
-                  
-                  
-			
                  <!-- 펜션 프로필 사진 끝--> 
                     
 					<div class="col-lg-6 align-self-center">
 						<form id='P_ProfileForm' name='P_Profile' action='/peco/pensionProfile_Update?m_id=${member.m_id}' method='post'>
-							<c:set var="PensionVO" value="${pension}"/>
 							<table id="profileTable" width='100%' height='100%'>
-						
-								<tr>
-									<th>펜션번호</th>
-									<td>${PensionVO.p_id }</td>
-								</tr>
-								<tr>
-									<th>회원번호</th>
-									<td>${PensionVO.m_id }</td>
-								</tr>
-								<tr>
-									<th>펜션명</th>
-									<td>${PensionVO.pname }</td>
-								</tr>
-								<tr>
-									<th>도로명주소</th>
-									<td>${PensionVO.addr }</td>
-								</tr>
-								<tr>
-									<th>운영시간</th>
-									<td>${PensionVO.openhour}</td>
-								</tr>
-								<tr>
-									<th>주차여부</th>
-									<td>${PensionVO.parkyn}</td>
-								</tr>
-								<tr>
-									<th>승인여부</th>
-									<td>${PensionVO.checkyn}</td>
-								</tr>
+    								<c:if test="${member.m_id eq PensionVO.m_id}">
+									<tr>
+										<th>펜션번호</th>
+										<td>${PensionVO.p_id }</td>
+									</tr>
+									<tr>
+										<th>회원번호</th>
+										<td>${PensionVO.m_id }</td>
+									</tr>
+									<tr>
+										<th>펜션명</th>
+										<td>${PensionVO.pname }</td>
+									</tr>
+									<tr>
+										<th>도로명주소</th>
+										<td>${PensionVO.addr }</td>
+									</tr>
+									<tr>
+										<th>운영시간</th>
+										<td>${PensionVO.openhour}</td>
+									</tr>
+									<tr>
+										<th>주차여부</th>
+										<td>${PensionVO.parkyn}</td>
+									</tr>
+									<tr>
+										<th>승인여부</th>
+										<td>${PensionVO.checkyn}</td>
+									</tr>
+								</c:if>
 							</table>
 							<div class="main-button">					
 								<input type="submit" value="수정하기" class="btn" >
@@ -209,10 +211,12 @@
 							</div>	
 						</form>
 	                </div>
+			
           	 </div>
           </div>
           </div>
-  
+  		</c:forEach>
+  		</div>
 <br><br><br><br><br>                       
 <!-- ↓ ↓ ↓  예약정보 구현 ↓ ↓ ↓  -->
 
@@ -243,7 +247,7 @@
 				<c:forEach var="pr" items="${getPrList }" varStatus="status">
 					<tr>
 						<input type="hidden" value="${status.index}" id="index">
-						<td><img src="/resources/assets/images/game-01.jpg" alt="" class="templatemo-item"></td>
+						<td><img src="/peco/display?fileName=${pension}" alt="" class="templatemo-item"></td>
 						<td>${pr.pr_name }</td>
 							<c:choose>
 								<c:when test="${fn:length(pr.imp_uid) > 1}">

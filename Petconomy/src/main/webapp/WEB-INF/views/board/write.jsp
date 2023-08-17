@@ -38,9 +38,9 @@ if (session.getAttribute("member") == null) {
 
 
 
-    <style>
+<style>
     
-    .header-area .main-nav {
+.header-area .main-nav {
 	height: 80px;
 
 }
@@ -56,99 +56,99 @@ if (session.getAttribute("member") == null) {
 }
 
 
-      body{
-        margin: 0 auto; /* 바디 마진을 0으로 하고 가로 가운데 정렬 */
-    	background-color: white;
-      }
-    
-      div >.page-content{
-        background-color: rgb(251, 235, 215);
-        padding: 30px
-      }
-    
-      .featured-games{
-        background-color: bisque;
-      }
-      
-      footer p {
-            color: black;
-      }
-      footer p > a {
-            color: black;
-      }
-      
-      .category {
-          margin-bottom: 10px;
-      }
-    
-      /* 카테고리 스타일 */
-      .category {
-          position: relative;
-          /* 기본 색상 설정 */
-          color: #ffffff;
-      }
-  
-      /* 카테고리 뒤에 * 추가 */
-      .category::after {
-          content: '*';
-          color: red;
-          margin-left: 4px; /* *와 글자 사이의 간격 조절을 위해 왼쪽 여백 추가 */
-      }
-  
-  
-       /* 일상게시판 박스 스타일 */
-      .board-box {
-          width: 60px;
-          height: 30px;
-          font-weight: 500;
-          border-radius: 20px;
-          display: inline-flex;
-          justify-content: center;
-          align-items: center;
-          cursor: pointer;
-          margin-right: 10px; /* 가로 간격 조절을 위해 오른쪽 여백 추가 */
-      }
+body{
+  margin: 0 auto; /* 바디 마진을 0으로 하고 가로 가운데 정렬 */
+  background-color: white;
+}
+
+div >.page-content{
+  background-color: rgb(251, 235, 215);
+  padding: 30px
+}
+
+.featured-games{
+  background-color: bisque;
+}
+
+footer p {
+      color: black;
+}
+footer p > a {
+      color: black;
+}
+
+.category {
+    margin-bottom: 10px;
+}
+
+/* 카테고리 스타일 */
+.category {
+    position: relative;
+    /* 기본 색상 설정 */
+    color: #ffffff;
+}
+
+/* 카테고리 뒤에 * 추가 */
+.category::after {
+    content: '*';
+    color: red;
+    margin-left: 4px; /* *와 글자 사이의 간격 조절을 위해 왼쪽 여백 추가 */
+}
+
+
+ /* 일상게시판 박스 스타일 */
+.board-box {
+    width: 60px;
+    height: 30px;
+    font-weight: 500;
+    border-radius: 20px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 10px; /* 가로 간격 조절을 위해 오른쪽 여백 추가 */
+}
 
           
           
           
-    .title-bar{
-        margin: 0;
-        margin-bottom: 10px;
-        padding: 5px;
-        border: none;
-        outline: none;
-        border-radius: 15px;
-        width: 100%;
-        height: 40px;
-        font-size: 15px;
-    }
+.title-bar{
+    margin: 0;
+    margin-bottom: 10px;
+    padding: 5px;
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    width: 100%;
+    height: 40px;
+    font-size: 15px;
+}
 
-    /* 고정된 크기의 textarea 스타일 */
-    .content-bar {
-        resize: none; /* 사용자가 크기를 조정할 수 없도록 설정 */
-        margin: 0;
-        margin-bottom: 10px;
-        padding: 5px;
-        border: none;
-        outline: none;
-        border-radius: 15px;
-        width: 100%;
-        height: 500px;
-        
-    }
+/* 고정된 크기의 textarea 스타일 */
+.content-bar {
+    resize: none; /* 사용자가 크기를 조정할 수 없도록 설정 */
+    margin: 0;
+    margin-bottom: 10px;
+    padding: 5px;
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    width: 100%;
+    height: 500px;
+    
+}
 
-    /* 선택된 상태일 때의 테두리 스타일 */
-    .title-bar.selected, .content-bar.selected {
-        border: 2px solid;
-        border-color: #000; /* 검정색으로 변경 */
-    }
+/* 선택된 상태일 때의 테두리 스타일 */
+.title-bar.selected, .content-bar.selected {
+    border: 2px solid;
+    border-color: #000; /* 검정색으로 변경 */
+}
 
-    /* 체크된 라디오 버튼의 스타일 변경 */
-    input[type="radio"].btn-check:checked + label.btn-secondary {
-      background-color: rgb(255, 217, 0);
-      color: black; /* 선택된 상태에서 글자 색을 검정색으로 설정 */
-    }
+/* 체크된 라디오 버튼의 스타일 변경 */
+input[type="radio"].btn-check:checked + label.btn-secondary {
+  background-color: rgb(255, 217, 0);
+  color: black; /* 선택된 상태에서 글자 색을 검정색으로 설정 */
+}
   
 .board-menu {
     display: flex;
@@ -171,8 +171,10 @@ if (session.getAttribute("member") == null) {
     text-align: center; /* 텍스트 내용 가운데 정렬을 위해 추가 */
 }
 
-
-  </style>
+.header-text{
+	margin-top:15px;
+}
+</style>
   
   <script>
 window.addEventListener('load', function() {
@@ -382,13 +384,13 @@ function processContent() {
     <form method="post" enctype="multipart/form-data" name="writeForm" action="/peco/board/write">
         
         <!-- 검색조건 유지하기 위해 갖고가야하는 값들 -->
-        <input type="text" name="pageNo" value="${param.pageNo }">
-        <input type="text" name="searchField" value="${param.searchField }">
-        <input type="text" name="searchWord" value="${param.searchWord }">
-        <input type="text" name="writer" value="${sessionScope.member.nickname}">
+        <input type="hidden" name="pageNo" value="${param.pageNo }">
+        <input type="hidden" name="searchField" value="${param.searchField }">
+        <input type="hidden" name="searchWord" value="${param.searchWord }">
+        <input type="hidden" name="writer" value="${sessionScope.member.nickname}">
         
         <!-- 페이징 처리 하기 위해 있어야함 -->
-        <input type="text" name="m_id" value="${sessionScope.member.m_id }">
+        <input type="hidden" name="m_id" value="${sessionScope.member.m_id }">
         <input type="hidden" id="page" name="page" value="1">
         
 

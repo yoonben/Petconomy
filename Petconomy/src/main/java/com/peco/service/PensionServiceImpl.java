@@ -104,6 +104,11 @@ public class PensionServiceImpl implements PensionService {
 		return pensionMapper.totalCount(cri);
 	}
 
+	@Override
+	public List<PensionVO> mypensionlist(String m_id) {
+		return pensionMapper.mypensionlist(m_id);
+	}
+
 
 
 }

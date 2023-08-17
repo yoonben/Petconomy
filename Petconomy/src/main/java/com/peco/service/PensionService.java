@@ -43,4 +43,6 @@ public interface PensionService {
 	public List<PensionFiileuploadVO> getRoomImg(@Param(value="p_id") String p_id);
 	
 	public int totalCount(RegionCri cri);
+	
+	public List<PensionVO> mypensionlist(String m_id);
 }

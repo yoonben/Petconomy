@@ -105,10 +105,10 @@ jQuery(function ($) {
   </div>
 </div>
 
-  <div class="container" style="height:2400px;">
-    <div class="row" style="height:2400px;">
-      <div class="col-lg-12" style="height:2400px;">
-        <div class="page-content" style="height:2400px;">
+  <div class="container" style="height:2800px;">
+    <div class="row" style="height:2800px;">
+      <div class="col-lg-12" style="height:2800px;">
+        <div class="page-content" style="height:2800px;">
 
           <!-- ***** Featured Start ***** -->
           <div class="row">
@@ -161,7 +161,7 @@ jQuery(function ($) {
 								                <c:set var="filename" value="${parts[2]}" />
 								
 								                <li style="display: inline-block; width: 205px; text-align:center ">
-								                    <a href="/peco/detail/hospitalDetailPage?h_ id=${h_id}&pname=${pname}&filename=${filename}" ><img src="/peco/display?fileName=${filename}" class="card-img-top" alt="..." style="height: 150px; width: 200px;" ></a>
+								                    <a href="/peco/detail/hospitalDetailPage?h_id=${h_id}&pname=${pname}&filename=${filename}" ><img src="/peco/display?fileName=${filename}" class="card-img-top" alt="..." style="height: 150px; width: 200px;" ></a>
 								                    <a href="/peco/detail/hospitalDetailPage?h_id=${h_id}&pname=${pname}&filename=${filename}" style="font-size:0.9em ;font-weight: 900; color:black">${pname}</a><br>
 								                </li>
 								            </c:when>
@@ -207,7 +207,7 @@ jQuery(function ($) {
             <div class="card" style="width:265px; max-width: 25%; display: block; border:solid 0px" >
             
 			  
-         	   <a href="/peco/detail//peco/detail/hospitalDetailPage?h_id=${list.h_id}&pname=${list.pname }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}&filename=${list.savePath}"><img src="/peco/display?fileName=${list.savePath}" class="card-img-top" alt="..." style="height:300px; padding:10px"></a>
+         	   <a href="/peco/detail/hospitalDetailPage?h_id=${list.h_id}&pname=${list.pname }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}&filename=${list.savePath}"><img src="/peco/display?fileName=${list.savePath}" class="card-img-top" alt="..." style="height:300px; padding:10px"></a>
 			  <div class="card-body" style="margin-bottom: 20px">
 			    <h5 class="card-title"> <a style="font-size:1.2em; color:black" href="/peco/detail/hospitalDetailPage?h_id=${list.h_id}&pname=${list.pname }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}&filename=${list.savePath}">${list.pname}</a></h5>
 			    <p class="card-text">${list.addr }</p>
