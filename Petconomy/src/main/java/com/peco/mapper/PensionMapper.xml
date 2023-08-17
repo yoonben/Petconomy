@@ -176,5 +176,18 @@
 		</choose>
 	</sql>
 		
+		
+		<select id='mypensionlist' resultType='com.peco.vo.PensionVO'>
+			SELECT p.*, 
+       pi.uploadpath || pi.p_id || pi.filename AS savePath,
+       CASE pi.filetype
+           WHEN 'I' THEN uploadpath || 's_' || pi.p_id || '_' || pi.filename
+           ELSE ''
+       END AS s_savePath
+		FROM Pension p
+		LEFT JOIN member m ON p.m_id = m.m_id
+		LEFT JOIN p_img pi ON p.p_id = pi.p_id
+		WHERE p.m_id = #{m_id}
+		</select>
 
 </mapper>

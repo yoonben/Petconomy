@@ -24,7 +24,116 @@
     <link rel="stylesheet" href="/resources/assets/css/owl.css">
     <link rel="stylesheet" href="/resources/assets/css/animate.css">
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
-    
+  <style>
+
+#pension_profile {
+	width: 300px; 
+	height: 300px;
+	object-fit: cover;
+	margin-left:100px;
+	border-radius: 70px;
+	box-shadow: 0px 3px 6px rgba(0, 0, 0.2, 0.2);
+	border: 5px solid;
+	border-color: #FF8C00;
+	
+	
+	image-rendering:-webkit-optimize-contrast;
+  	transform:translateZ(0);
+  	backface-visibility:hidden;
+
+}
+#myprofileBtn-bottom-box{
+	margin-top:20px;
+	
+}
+
+#pension{
+	width: 150px; 
+	height: 50px;
+	border-radius: 20px;
+	margin: 0 24px;
+	background-color: #FFFFFF;
+}
+#pension:hover {
+	color: #FF8C00;
+	background-color: #ffffff;
+	margin: 0 24px;
+}
+
+#hospital{
+	width: 150px; 
+	height: 50px;
+	border-radius: 20px;
+	margin: 0 24px;
+	background-color: #FFFFFF;
+}
+#hospital:hover {
+	color: #FF8C00;
+	background-color: #ffffff;
+	margin: 0 24px;
+}
+
+#myBoard{
+	width: 150px; 
+	height: 50px;
+	border-radius: 20px;
+	margin: 0 24px;
+	background-color: #FFFFFF;
+}
+#myBoard:hover {
+	color: #FF8C00;
+	background-color: #ffffff;
+	margin: 0 24px;
+}
+#directRes{
+	width: 300px; 
+	height: 50px;
+	border-radius: 20px;
+	background-color: #FFFFFF;
+}
+#directRes:hover {
+	color: #FF8C00;
+	background-color: #ffffff;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.main-button .btn{
+	width: 150px; 
+	height: 50px;
+	border-radius: 20px;
+	border: 2px solid;
+	border-color: #black;
+	background-color: #FFFFFF;	
+	margin-top: 30px;
+	margin: 0 24px;
+	
+}
+.main-button .btn:hover{
+	color: #FF8C00;
+	background-color: #ffffff;
+	margin-top: 30px;
+	margin: 0 24px;
+}
+
+.main-button{
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+#profileTable{
+	width : 100%; 
+	height : 100%;
+	margin-left : 200px;
+}
+
+</style>
+   
 </head>
 <body>
 
@@ -62,10 +171,19 @@ System.out.println("m_id : " + m_id);
                     <div class="main-info header-text">
                       <h1>나의 펜션정보 수정</h1>
                     </div>
-				<div class="col-lg-6 align-self-center">
-					<form id='P_ProfileUpdateForm' name='P_ProfileUpdate' action='/peco/pensionProfile' method='post'>
-						<c:set var="PensionVO" value="${pension }"/>
-						<table id="profileTable" width='100%' height='100%'>
+                    
+                 <c:forEach var="PensionVO" items="${pension}" varStatus="status">
+				
+                  <!-- 펜션 프로필 사진 시작-->
+                  <div class="col-lg-3">
+					  <img src="/peco/display?fileName=${PensionVO.savePath}" id='pension_profile' class="card-img-top" alt="..." style="height:300px; padding:10px">
+                  </div>
+                 <!-- 펜션 프로필 사진 끝--> 
+                    
+					<div class="col-lg-6 align-self-center">
+					<form id='P_ProfileUpdateForm' name='P_ProfileUpdate' action='/peco/pensionProfile?m_id=${member.m_id }' method='post'>		
+							<table id="profileTable" width='100%' height='100%'>
+    								<c:if test="${member.m_id eq PensionVO.m_id}">   
 					
 							<tr>
 								<th>펜션번호</th>
@@ -95,14 +213,18 @@ System.out.println("m_id : " + m_id);
 								<th>승인여부</th>
 								<td><input type='text' name='checkyn' value='${PensionVO.checkyn}' style="height:100%; width:99%"></td>
 							</tr>
+							</c:if>
 						</table>
-												
-						<input type="submit" value="수정하기" class="btn" >
+						
+							<div class="main-button">					
+								<input type="submit" value="확인" class="btn" >
+								<input type="reset" value="초기화" class="btn"><br><br>
+							</div>				
 							
 						<!-- TODO : 삭제 버튼 클릭시 기존 등록된 업체글 모두 삭제될 수 있도록  처리 매퍼에서 쿼리문 조인으로 작성-->
-						<input type="button" value="삭제"><br><br>
 					</form>
                 </div>
+                </c:forEach>
           	 </div>
           </div>
           </div>
@@ -111,6 +233,7 @@ System.out.println("m_id : " + m_id);
           </div>
           </div>
           </div>
+                   
 
 
 

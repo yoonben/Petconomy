@@ -90,7 +90,7 @@
     	background-color: #ededed;
     }
     
-    .memberInfo > h3, .fiex > h3{
+    .memberInfo > h5, .fiex > h5{
 	    margin-bottom: 10px;
 	    margin-top: 10px;
     }
@@ -156,6 +156,7 @@
 	    width: 70px;
 	    font-weight: bold;
 	    margin-left: 10px;
+	    font-size: 13px;
     }
     
     .btn {
@@ -246,7 +247,6 @@
 	.payInfo {
 		position: relative;
 	    left: 40px;
-	    top: -20px;
 	}
 	
 	.payInfo > p {
@@ -324,7 +324,7 @@
       	
 		         	<!-- 출력 -->
 		         	<div class="fiex">
-		         	<h3>예약정보</h3>
+		         	<h5>예약정보</h5>
 			         	<div id="datepick">
 			         		<b style="float: left; font-size: 15px">날짜</b><br>
 			         		<input type="text" id="date" readonly>
@@ -338,7 +338,7 @@
          	
 			         <!-- 예약자 정보 -->
 					 <div class="memberInfo">
-			   		 <h3>예약자 정보 </h3>
+			   		 <h5>예약자 정보 </h5>
 					   		<input type="hidden" value="${sessionScope.member.m_id }" id="m_id">
 					         이름      <input type="text" value="${sessionScope.member.mname }" id="user_id" readonly><br>
 					         이메일   <input type="text" value="${sessionScope.member.email }" id="user_email" readonly><br>
@@ -362,7 +362,7 @@
 				<!-- 결제버튼 -->
 			   <div class="btn">
 				   <button id="payment">결제</button>
-				   <button id="goback" onclick="history.back()">뒤로가기</button>
+				   <button id="goback" onclick="location.href='./main/hospital'">뒤로가기</button>
 			   </div>
 	   		   <!-- 결제버튼 끝 -->
 			</form>
@@ -373,8 +373,8 @@
 	
 			<!-- 비활성화 날짜 계산 -->
 			 <c:forEach var="dis" items="${disabledate}">
-			 	<input type="text" value="${dis.hr_date}" name="hrDate">
-			 	<input type="text" value="${dis.hr_time}" name="hrTime">
+			 	<input type="hidden" value="${dis.hr_date}" name="hrDate">
+			 	<input type="hidden" value="${dis.hr_time}" name="hrTime">
 			 </c:forEach>
 			
 			</div>

@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
  	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 
 
@@ -52,13 +53,6 @@
 	    border-spacing: 10px;
 	    border-bottom: 2px solid #fff;
 	}
-	  
-	.resPage {
-		width: 80%;
-		margin: 0 auto;
-		margin-top: 20px;
-	}
-	  
 
 	/*달력속성 변경*/
 	.hasDatepicker {
@@ -95,7 +89,7 @@
 	   	background-color: #fff;
 	}
     
-	.memberInfo > h3, .fiex > h3{
+	.memberInfo > h5{
 	   margin-bottom: 10px;
 	   margin-top: 10px;
 	}
@@ -115,23 +109,13 @@
     	font-weight: bold;
 	}
     
-	.pImg {
-	    border: 1px solid black;
-	    width:200px;
-	    height:200px;
-	    display:inline-block;
-	    float:left;
-	    margin: 10px;
-	    border-radius: 23px;
-	}
-    
 	.memberInfo {
 	    display: inline-block;
 	    margin-left: 10px;
 	    font-size: 16px;
 	    padding-bottom: 10px;
 	    position: relative;
-	    right: 65px;
+	    right: 30px;
 	}
     
 	.memberInfo > input {
@@ -159,8 +143,8 @@
     
     #Resbtn {
 	    position: relative;
-	    top: 376px;
-	    left: -15px;
+	    top: 391px;
+    	left: -18px;
     }
     
     .resvation {
@@ -177,7 +161,7 @@
     .checkIn, .checkOut{
 	    display: inline-block;
 	    position: relative;
-	    top: 340px;
+	    top: 350px;
     }
     
     .checkOut {
@@ -201,15 +185,15 @@
 	    display: inline-block;
 	    position: relative;
 	    padding: 10px;
-	    bottom: 115px;
-	    left: 335px;
+	    bottom: 150px;
+	    left: 455px;
     }
     
     .payinfo {
 		display: inline-block;
-	    bottom: 128px;
+	    bottom: 160px;
 	    position: relative;
-	    left: 260px;
+	    left: 390px;
     }
     
     .paycnt > input,.payinfo > input{
@@ -236,6 +220,8 @@
 	    width: 70px;
 	    font-weight: bold;
 	    margin-left: 10px;
+	    font-size: 13px;
+	    
     }
     
     .btn {
@@ -262,10 +248,10 @@
     }
     
     #direct {
-	    float: left;
+		float: left;
 	    position: relative;
-		top: 10px;
-	    left: 120px;
+	    top: 5px;
+    	left: 160px;
 	}
     	
 	.payInfo > p {
@@ -325,6 +311,7 @@
 						   <c:forEach var="p" items="${pList}">
 							   <input type="text" value="${p.pname}" id="pname"><br>
 							   <input type="hidden" value="${p.p_id}" id="p_id">
+							   <input type="hidden" value="${p.room_no}" id="room_no">
 							   <input type="text" value= "${p.roomname}" id="roomname">
 					</div>
 		 			<!-- 숙소 정보 끝 -->
@@ -340,21 +327,21 @@
 		         		<b style="float: left;">체크인</b><br>
 		         		<input type="text" id="date1" readonly>
 		         	</div>
-		         	<div class="checkOut" style="width: 250px;">
+		         	<div class="checkOut" style="width: 250px; margin-left: 100px;">
 		         		<b style="float: left;">체크아웃</b><br>
 		         		<input type="text" id="date2" readonly>
 		         	</div>
          			<button id="Resbtn">선택</button><br>
 	         	<!-- 달력 -->
 	         	<div class="datepicker1" style="width: 300px; height: 280px;"></div>
-	          	<div class="datepicker2" style="width: 300px; height: 280px;"></div>
+	          	<div class="datepicker2" style="width: 300px; height: 280px; margin-left: 100px;"></div>
 	           	<br>
         		<!-- 날짜정보 끝 -->
       			</div>
       	
    		
 		   	<div class="memberInfo">
-   			<h3 style="position: relative;">예약자 정보 </h3>
+   			<h5 style="position: relative;">예약자 정보 </h5>
    			<!-- 예약자 정보 -->
 			   		<input type="hidden" value="${sessionScope.member.m_id }" id="m_id">
 			         이름      <input type="text" value="${sessionScope.member.mname }" id="user_id" readonly><br>
@@ -386,7 +373,7 @@
 		<!-- 결제버튼 -->
 	   <div class="btn">
 		   <button id="payment">결제</button>
-		   <button id="goback" onclick="history.back()">뒤로가기</button>
+		   <button id="goback" onclick="location.href='./main/pension'">뒤로가기</button>
 	   </div>
 	   <!-- 결제버튼 끝 -->
 			</form>
@@ -492,7 +479,7 @@ function checkLogin() {
 	
 	if(m_id === '') { //세션변수에 값이 없으면
 		alert('로그인 후 예약가능합니다');
-		window.location.replace("./login");
+		//window.location.replace("./login");
 	}
 	
 }
@@ -592,6 +579,7 @@ $('#payment').click(function () { //결제버튼
              var startdate = $('#date1').val();
              var enddate = $('#date2').val();
              var roomname = $('#roomname').val();
+             var room_no = $('#room_no').val();
              
              if(!user_id.length || !user_email.length || !user_tel.length) {
              	alert('예약자 정보를 입력해주세요');
@@ -650,6 +638,7 @@ $('#payment').click(function () { //결제버튼
 										 	   m_id : m_id,//회원번호 -예약자명 직접입력 경우 다를 경우
 										 	   pname : pname, //펜션명
 										 	   roomname : roomname,//객실명
+										 	   room_no : room_no, //객실번호
 	                                        }                               
 	                                      });
 	                                    console.log('토큰생성');
