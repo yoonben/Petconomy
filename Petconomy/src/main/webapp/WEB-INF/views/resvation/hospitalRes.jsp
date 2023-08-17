@@ -246,7 +246,7 @@
 	.payInfo {
 		position: relative;
 	    left: 40px;
-	    top: 15px;
+	    top: -20px;
 	}
 	
 	.payInfo > p {
@@ -284,19 +284,6 @@
     
 </style>
 <body>
-
-  <!-- ***** Preloader Start ***** -->
-  <div id="js-preloader" class="js-preloader">
-    <div class="preloader-inner">
-      <span class="dot"></span>
-      <div class="dots">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-  </div>
-  <!-- ***** Preloader End ***** -->
 <!-- 헤더 시작 -->
 	<%@include file="../main/header.jsp" %>
 <!-- 헤더 끝 -->
@@ -386,8 +373,8 @@
 	
 			<!-- 비활성화 날짜 계산 -->
 			 <c:forEach var="dis" items="${disabledate}">
-			 	<input type="hidden" value="${dis.hr_date}" name="hrDate">
-			 	<input type="hidden" value="${dis.hr_time}" name="hrTime">
+			 	<input type="text" value="${dis.hr_date}" name="hrDate">
+			 	<input type="text" value="${dis.hr_time}" name="hrTime">
 			 </c:forEach>
 			
 			</div>

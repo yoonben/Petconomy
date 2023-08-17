@@ -33,8 +33,8 @@ public class ResController {
 	public String getOne(Model model) {
 		
 	    String h_id = "h_1";
-	    String p_id = "p_10";
-	    String room_no = "r_02";
+	    String p_id = "p_3";
+	    String room_no = "0";
 	    
 	    model.addAttribute("h_id",h_id);
 	    model.addAttribute("p_id",p_id);
