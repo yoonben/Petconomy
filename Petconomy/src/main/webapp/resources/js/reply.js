@@ -107,7 +107,7 @@ function replyView(map){
 if(nickname == reply.nickname){
 		replyDivStr		+='			<div>                                                                             '
 						+ '			<button name="r_reply" value="수정" class="r-reply-button" onclick="replyEdit('+reply.rno+')">수정</button>          '
-						+ '			<button name="r_reply" value="삭제" class="r-reply-button" onclick="replyDelete('+reply.rno+')">삭제</button>          '
+						+ '			<button name="r_reply" value="삭제" class="r-reply-button" onclick="replyDeleteModal('+reply.rno+')">삭제</button>          '
 						+ '			</div>                                                                            ';
 };
 		replyDivStr		+=''
@@ -203,7 +203,9 @@ function replyRes(map){
 	//실패 : 메세지 출력
 	if(map.result =='success'){
 		
+		//댓글창 초기화
 		document.querySelector('#reply').value = '';
+		replyDiv.innerHTML = '';
 		//등록성공
 		getReplyList();
 		

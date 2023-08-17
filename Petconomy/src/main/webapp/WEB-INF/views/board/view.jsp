@@ -553,8 +553,8 @@ function autoExpand(textarea) {
     	  backdrop.style.display = 'block';
 
     	  Swal.fire({
-    	    title: '게시글 삭제',
-    	    text: '정말 게시글을 삭제하시겠습니까?',
+    	    title: '댓글 삭제',
+    	    text: '댓글을 삭제하시겠습니까?',
     	    icon: 'warning',
     	    showCancelButton: true,
     	    confirmButtonText: '예',
@@ -563,17 +563,13 @@ function autoExpand(textarea) {
     	    allowEscapeKey: false,
     	  }).then((result) => {
     	    if (result.isConfirmed) {
-    	      postDelete();
+    	      replyDeleteAction(rno);
     	    }
     	    // 모달 창이 닫힐 때 배경 blur 처리 스타일을 원래대로 변경
     	    backdrop.style.display = 'none';
     	  });
     }
-	
 
-
-
-    
   </script>
 </head>
 
