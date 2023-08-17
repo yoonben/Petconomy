@@ -249,7 +249,7 @@ https://templatemo.com/tm-579-cyborg-gaming
 	                    <img src="/peco/display?fileName=${b.savePath}" alt="" class="thumbnail-image">
 	                    </a>
 	                    <br>
-	                      <h4>${fn:substring(b.title, 0, 5)}${fn:length(b.title) > 5 ? '...' : ''}
+	                      <h4>${fn:substring(b.title, 0, 10)}${fn:length(b.title) > 10 ? '..' : ''}
 	                      <span>${b.writer}</span></h4>
 	                      <ul>
 	                        <li><i id="animated-icon" class="fa-regular fa-thumbs-up fa-lg"></i> ${b.likecount}</li>

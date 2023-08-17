@@ -371,15 +371,27 @@ function FileCheck() {
     }
   }
   
-  //글 제목 길이 확인
-  if (!checkTitleLength()) {
+//글 제목 길이 확인
+  if (checkTitleLength() === 1) {
   	alert('제목은 최대 100자까지 입력할 수 있습니다.');
       return;
   }
   
+  // 글 필수 입력 확인
+  if (checkTitleLength() === 2) {
+  	alert('제목을 입력해주세요.');
+      return;
+  }
+  
 	// 글 내용 길이 확인
-  if (!checkContentLength()) {
+  if (checkContentLength() === 1) {
   	alert('글 내용은 최대 2000자까지 입력할 수 있습니다.');
+      return;
+  }
+	
+	// 내용 필수 입력 확인
+  if (checkContentLength() === 2) {
+  	alert('글 내용을 입력해주세요.');
       return;
   }
 
@@ -398,7 +410,9 @@ function checkTitleLength() {
     // 제목 길이 확인
     if (titleValue.length > 100) {
         
-        return false; // 작성 취소
+        return 1; // 작성 취소
+    } else if (titleValue.length === 0){
+    	return 2;
     }
     return true;
 }
@@ -411,7 +425,9 @@ function checkContentLength() {
     // 글 내용 길이 확인
     if (contentValue.length > 2000) {
         
-        return false; // 작성 취소
+        return 1; // 작성 취소
+    } else if (contentValue.length === 0) {
+    	return 2;
     }
     return true;
 }

@@ -56,6 +56,8 @@ window.addEventListener('load',function(){
 	// 댓글목록 조회및 출력
 	getMemberList();
 	
+	getBoardList();
+	
 	getPensionList();
 	
 	getPReviewList();
@@ -98,7 +100,9 @@ window.addEventListener('load',function(){
 		  	</div>
 		  </div>
 		  <div id="tab2" class="tab__content">
-		  	두번째 탭 내용
+		  		<h3>게시글 목록</h3>
+		  		
+		  		<div id="boardDiv"></div>
 		  </div>
 		  <div id="tab3" class="tab__content">
 		  	<div style="text-align: center;">
@@ -174,6 +178,7 @@ tabItem.forEach((item, index) => {
 });
 </script>
 <script src="/resources/js/AdminMember.js"></script>
+<script src="/resources/js/AdminBoard.js"></script>
 <script src="/resources/js/AdminPension.js"></script>
 <script src="/resources/js/AdminPReview.js"></script>
 <script src="/resources/js/AdminHReview.js"></script>
