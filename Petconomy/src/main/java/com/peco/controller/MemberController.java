@@ -395,8 +395,12 @@ public class MemberController extends CommonRestController{
 	@PostMapping("pensionProfile")
 	public String phProfilePage(Model model, HttpSession session, PensionVO vo) {
 		
+		
+		
 		List<PensionVO> pensionlist = pensionService.mypensionlist(vo.getM_id());
-
+		
+		System.out.println("============vo.getM_id()================="+vo.getM_id());
+		
 		int res = pensionService.update_P(vo);
 		
 		if (res > 0 && pensionlist != null) {
