@@ -8,7 +8,7 @@
     from (
             select t.*, rownum rn 
             from (
-                    SELECT BNO, M.ID,M.M_ID, NICKNAME, TITLE, CONTENT
+                    SELECT BNO, M.ID,M.M_ID, NICKNAME, TITLE, CONTENT, CATEGORY
                     FROM board B
                     JOIN Member M ON B.M_ID = M.M_ID
                 ) t

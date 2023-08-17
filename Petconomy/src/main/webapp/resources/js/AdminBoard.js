@@ -77,6 +77,7 @@ function BoardView(map){
             +'<td>회원번호</td>   '
             +'<td>아이디</td>     '
             +'<td>닉네임</td>     '
+            +'<td>카테고리</td>     '
             +'<td>글제목</td>     '
             +'<td>글내용</td>   '
             +'<td>게시글 삭제</td>   '
@@ -90,6 +91,7 @@ function BoardView(map){
 	            +'<td>'+ board.m_id +'</td>   '
 	            +'<td>'+ board.id +'</td>     '
 	            +'<td>'+ board.nickname +'</td>     '
+	            +'<td>'+ board.category +'</td>     '
 	            +'<td>'+ board.title +'</td>       '
 	            +'<td>'+ board.content +'</td>       '
 	            +'<td><button type="button" class="btn btn-danger" onclick=boardDelete("'+ board.bno +'")>게시글 삭제</button></td>   '	            
@@ -163,7 +165,7 @@ function boardDelete(bno){
 	
 	console.log('bno', bno );
 	fetchGet('/peco/adminBoard/delete/' + bno, boardRes);
-	location.reload();
+
 }
 
 

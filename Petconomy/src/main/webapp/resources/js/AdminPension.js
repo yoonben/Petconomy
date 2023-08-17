@@ -195,7 +195,7 @@ function pensionUpdate(p_id){
 	
 	console.log('p_id', p_id );
 	fetchGet('/peco/adminPension/update/' + p_id, pensionRes);
-	location.reload();
+
 }
 
 function pensionBImg(p_id) {

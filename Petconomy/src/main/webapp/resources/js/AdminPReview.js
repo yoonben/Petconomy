@@ -162,7 +162,7 @@ function pReviewDelete(pr_no){
 	
 	console.log('pr_no', pr_no );
 	fetchGet('/peco/adminPpReview/delete/' + pr_no, pReviewRes);
-	location.reload();
+
 }
 
 

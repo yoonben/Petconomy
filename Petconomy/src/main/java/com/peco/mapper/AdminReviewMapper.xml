@@ -8,7 +8,7 @@
 	  		from (
 	  				select t.*, rownum rn 
 	  		  		from (
-							select pname, review, star, reviewer, REGITDATE
+							select pname, review, star, reviewer, REGITDATE, pr_no
                     		from p_review pr, pension p
                     		where pr.p_id = p.p_id
 						) t
@@ -21,7 +21,7 @@
 		  		from (
 		  				select t.*, rownum rn 
 		  		  		from (
-								select pname, review, star, reviewer, REGITDATE
+								select pname, review, star, reviewer, REGITDATE, hr_no
 	                    		from h_review hr, hospital h
 								where hr.h_id = h.h_id
 							) t

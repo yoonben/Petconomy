@@ -173,14 +173,14 @@ function memberDelete(m_id){
 	
 	console.log('m_id', m_id );
 	fetchGet('/peco/adminMember/delete/' + m_id, memberRes);
-	location.reload();
+
 }
 
 function memberUpdate(m_id){
 	
 	console.log('m_id', m_id );
 	fetchGet('/peco/adminMember/update/' + m_id, memberRes);
-	location.reload();
+
 }
 
 

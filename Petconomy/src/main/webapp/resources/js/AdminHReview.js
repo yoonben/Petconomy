@@ -162,7 +162,7 @@ function hReviewDelete(hr_no){
 	
 	console.log('hr_no', hr_no );
 	fetchGet('/peco/adminHhReview/delete/' + hr_no, hReviewRes);
-	location.reload();
+
 }
 
 
