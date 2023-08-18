@@ -207,23 +207,11 @@ jQuery(function ($) {
          <br>
          	총 ${totalCnt } 건
              <div style="height: 200px; display: flex; flex-wrap: wrap;">
-            <c:forEach items="${list }" var="list" varStatus="status"> 
+            <c:forEach items="${sessionScope.list }" var="list" varStatus="status"> 
 
             
             <div class="card" style="width:265px; max-width: 25%; display: block; border:solid 0px" >
-            	<c:if test="${not empty sessionScope.member}">          
-         	    <form action="/peco/jinsert" method="post" name="jjimForm">
-				    <input type="hidden" name="m_id" value="${member.m_id }">
-				    <input type="hidden" name="p_id" value="${list.p_id }">
-				    <input type="hidden" name="cnt" value="${list.cno }">
-				   	<c:if test="${list.cno eq 0 }">   
-				    <button type="submit"><i class="fa-regular fa-heart"></i></button>
-				    </c:if>
-				    <c:if test="${list.cno eq 1 }">  
-				    <button type="submit"><i class="fa-solid fa-heart"></i></i></button>
-				    </c:if>
-				</form>
-			  </c:if>
+
 			<a href="/peco/detail/detailPage?p_id=${list.p_id }&pname=${list.pname }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}&filename=${list.savePath}"><img src="/peco/display?fileName=${list.savePath}" class="card-img-top" alt="..." style="height:300px; padding:10px"></a>
          	   
 			  <div class="card-body" style="margin-bottom: 20px">
@@ -231,7 +219,7 @@ jQuery(function ($) {
 			    <h5 class="card-title"> <a style="font-size:1.2em; color:black;" href="/peco/detail/detailPage?p_id=${list.p_id }&pname=${list.pname }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}&filename=${list.savePath}">${list.pname}</a>
 			    <c:if test="${not empty sessionScope.member}">
 			    <c:if test="${empty count}">
-			    <a href="/peco/main/heart.do?p_id=${list.p_id }&m_id=${sessionScope.member.getM_id()}"><i class="fa-solid fa-heart"></i></a>
+			    <a href="/peco/main/heart.do?p_id=${list.p_id }&m_id=${sessionScope.member.getM_id()}"></a>
 			    </c:if>
 			    <c:if test="${not empty count}">
 			    <i class="fa-regular fa-heart"></i>
