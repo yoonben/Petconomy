@@ -342,38 +342,37 @@
  			<table width='100%' >
 
                 <tr>
-                  <th><h5>병원프로필</h5><span>Hospital</span></th>
                   <th><h5>병원명</h5><span>Hospital Name</span></th>
-                  <th><h5>예약날짜</h5><span>Date</span></th>
+                  <th><h5>예약번호</h5><span>Reservation Number</span></th>
                   <th><h5>예약시간</h5><span>Time</span></th>
                   <th><h5>결제금액</h5><span>Payment amount</span></th>
                   <th><h5>예약자명</h5><span>Reservation Name</span></th>
                   <th><h5>예약취소</h5><span>Cancellation</span></th>
                 </tr>
 				
-				<c:if test="${fn:length(getHrList )==0}">
+				<c:if test="${fn:length(getHrList ) == 0}">
 					<tr>
 						<td  colspan="9">예약내역이 없습니다</td>
 					</tr>
 				</c:if>
 				
+				<c:if test="${fn:length(getHrList) != 0}">
 				<c:forEach var="hr" items="${getHrList }" varStatus="status">
-				<tr>
 				<input type="hidden" value="${status.index}" id="index">
-					<td><img src="/resources/assets/images/game-01.jpg" alt="" class="templatemo-item"></td>
-					<td>${hr.pname }</td> 
+				<tr>
+					<td>${hr.hname }</td> 
 					<c:choose>
 						<c:when test="${fn:length(hr.imp_uid) > 1}">
 							<td><input type="text" class="index" id="imp_uid" data-huid="${status.index}" value="${fn:substring(hr.imp_uid,4,16)}" readonly></td>
 						</c:when>
 					</c:choose>
-					<td>${hr.hr_date }</td> 
-					<td>${hr.hr_time }</td>
+					<td>${hr.hr_date } ${hr.hr_time }</td> 
 					<td><input type="text" class="index" id="pcnt" data-hcnt="${status.index}" value="${hr.pricecnt }"readonly></td>
 					<td>${hr.hr_name }</td>
 					<td style="border: none;"><button onclick="delHospital(${status.index})">예약취소</button></td>
 				</tr>
 				</c:forEach>
+				</c:if>
 			</table>
 		</form>		
          		<br><br>
@@ -423,6 +422,47 @@
 		        $.ajax({
 
 		            url: "/peco/delete", 
+		            type: "Post",
+		            data: ({
+		                  imp_uid: imp_uid //주문번호    
+		            })
+		        })
+	    
+	        alert("삭제완료");
+		    location.reload();
+	    
+	    }).fail(function(error) { // 환불 실패시 로직
+	      	alert("환불 실패");
+	    });
+		
+	}
+	
+	function delHospital(index) {
+		var i = index;
+		console.log(i);
+
+		var imp_uid = 'imp_'+$('input[data-huid="'+index+'"]').val();
+		var pay = $('input[data-hcnt="'+index+'"]').val();
+
+		console.log(imp_uid);
+		console.log(pay);
+		console.log('삭제실행');
+		
+		$.ajax({
+
+		      url: "payment/cancel", 
+		      type: "Post",
+		      data: ({
+		        imp_uid: imp_uid, //주문번호
+		        amount: pay, //결제금액
+		        
+	      })
+	    }).done(function(result) { // 환불 성공시 로직 
+	        alert("환불 성공");
+	    
+		        $.ajax({
+
+		            url: "/peco/hospitalDel", 
 		            type: "Post",
 		            data: ({
 		                  imp_uid: imp_uid //주문번호    

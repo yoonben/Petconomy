@@ -411,7 +411,7 @@ https://templatemo.com/tm-579-cyborg-gaming
       </div>
 
       <!-- 풋터 시작 -->
-		<%@ include file="../common/footer.jsp" %>
+		<%@include file="../main/footer.jsp"%>
 	  <!-- 풋터 끝 -->		
 
 		
