@@ -26,7 +26,7 @@ public interface PensionService {
 	
 	public int totalCnt(RegionCri cri);
 
-	public PensionVO getOne_P(String m_id);
+	public int getOne_P(String m_id);
 
 	public int update_P(PensionVO vo);
 	

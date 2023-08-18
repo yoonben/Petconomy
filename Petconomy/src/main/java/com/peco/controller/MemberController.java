@@ -359,12 +359,12 @@ public class MemberController extends CommonRestController{
 		
 		System.out.println("==========mypensionlist(vo.getM_id()================== (1) : " +  pensionService.mypensionlist(vo.getM_id()));	
 			MemberVO member = (MemberVO) session.getAttribute("member");
-			PensionVO pensionVo = pensionService.getOne_P(vo.getM_id());
+			int res = pensionService.getOne_P(vo.getM_id());
 			List<PensionVO> pensionlist = pensionService.mypensionlist(vo.getM_id());
 			
 			System.out.println("=============pensionlist================== (1) : " +  pensionlist);	
 			//펜션 업소 등록한 회원만 펜션프로필 페이지 이동
-			if(pensionVo != null && member.getM_id().equals(pensionVo.getM_id())) {
+			if(res > 0) {
 			 // 파일 경로를 슬래시(/)로 변경
 			    if (pensionlist != null) {
 			    	for (PensionVO pension : pensionlist) {

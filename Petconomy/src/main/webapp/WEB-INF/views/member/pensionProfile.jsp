@@ -178,7 +178,7 @@
 									<tr>
 										<th>펜션번호</th>
 										<td>${PensionVO.p_id }</td>
-										<input type="text" value="${PensionVO.p_id }" id="p_id">
+										<input type="hidden" value="${PensionVO.p_id }" id="p_id">
 									</tr>
 									<tr>
 										<th>회원번호</th>

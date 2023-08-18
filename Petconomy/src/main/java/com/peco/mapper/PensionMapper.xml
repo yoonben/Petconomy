@@ -66,8 +66,8 @@
 			where rn between 1 and 10
   	</select>
 
-  	<select id="getOne_P" resultType="com.peco.vo.PensionVO">
-		select * from Pension where m_id=#{m_id}
+  	<select id="getOne_P" resultType="int">
+		select Count(*) from Pension where m_id=#{m_id}
 	</select>
   	
   	<update id = "update_P">

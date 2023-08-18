@@ -19,7 +19,7 @@ public class PensionServiceImpl implements PensionService {
 	PensionMapper pensionMapper;
 	
 	@Override
-	public PensionVO getOne_P(String m_id) {
+	public int getOne_P(String m_id) {
 		return pensionMapper.getOne_P(m_id);
 	}
 
