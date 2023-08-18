@@ -29,8 +29,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
 <script type='text/javascript'>
 
-
-	
+		//게시글 전체선택 /부분선택
 		$(function(){
 			var chkObj = document.getElementsByName('rowCheck');
 			var rowCnt = chkObj.length;
@@ -51,10 +50,12 @@
 			});
 		});
 		
+		//삭제버튼 클릭시 
 		function deleteValue(){
-			var url = "/myBoard";    // 컨트롤러로 보내고자 하는 URL
+			var url = "/peco/myBoard";    // 컨트롤러로 보내고자 하는 URL
 			var valueArr = new Array();
 			var list = $("input[name='rowCheck']");
+			
 			for(var i=0; i<list.length; i++){
 				if(list[i].checked){   //선택되어 있으면 배열에 값을 저장함
 					valueArr.push(list[i].value);
@@ -65,17 +66,27 @@
 			} else{
 				var chk = confirm("정말 삭제하시겠습니까?");
 				$.ajax({
-					url : "/myBoard",   //전송 url
+					url : "/peco/myBoard",   //전송 url
 					type : 'POST',
 					traditional : true,
 					data : {
 						valueArr : valueArr     //보내려는 data변수 설정
 					},
 					success : function(jdata){
-						if(jdata = 1){
+					console.log()
+					console.log("=============진입 2");
+						if(jdata.result == "success"){
+					console.log("=============진입 3");
 							alert("삭제 성공하였습니다.");
-							location.replace("myBoard")  //myBoard로 페이지 새로고침
-						} else{
+							var form = document.createElement("form");
+						    form.setAttribute("method", "get");
+						    form.setAttribute("action", "/peco/myBoard");
+						    
+						    document.getElementById("formContainer").appendChild(form);
+						    
+						    form.submit();
+							//location.href="/peco/myBoard";
+	                    } else{
 							alert("삭제 실패하였습니다.");
 						}
 					}
@@ -143,7 +154,7 @@ input[type='checkbox']:checked{
   <!-- 헤더영역 시작-->
 	<%@include file="../main/header.jsp" %>
   <!-- 헤더영역  끝-->
-
+<div id="formContainer"></div>
  <div class="container">
     <div class="row">
       <div class="col-lg-12">

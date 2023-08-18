@@ -3,6 +3,7 @@ package com.peco.controller;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.peco.service.BoardService;
 import com.peco.service.FileuploadService;
@@ -37,6 +39,7 @@ import com.peco.vo.PensionVO;
 import com.peco.vo.RegionCri;
 
 import lombok.extern.log4j.Log4j;
+import oracle.jdbc.proxy.annotation.Post;
 
 @Controller
 @RequestMapping("/peco/*")
@@ -306,30 +309,39 @@ public class MemberController extends CommonRestController{
 	@GetMapping("/myBoard")
 	public String myBoard(Model model, BoardVO vo, MemberVO membervo, HttpSession session) {
 		
-			MemberVO member = (MemberVO) session.getAttribute("member");
-			List<BoardVO> board = boardService.selectMyBoard(vo.getM_id());
-			
-			if(board!=null && vo.getM_id().equals(member.getM_id())) {
-				model.addAttribute("board", board);
-		} 
-		System.out.println("member ================== : " + member);
-		System.out.println("board ================== : " + board);
+		MemberVO member = (MemberVO) session.getAttribute("member");
+	    if (member == null) {
+	        return "/login"; // 로그인 페이지로 리다이렉션 예시
+	    }
 
-		return "/member/myBoard";
+	    List<BoardVO> board = boardService.selectMyBoard(member.getM_id());
+	    
+	    if (board != null) {
+	        model.addAttribute("board", board);
+	    }
+	    
+	    return "/member/myBoard";
 	}
+	
 
 	//TODO : 게시글 삭제 기능 구현
 	// 게시글 삭제
-	@RequestMapping(value= "/myBoard")
-	public String boardDelete(HttpServletRequest request) {
+	@PostMapping("/peco/myBoard")
+	public @ResponseBody Map<String, Object> boardDelete(HttpServletRequest request) {
 		
+		Map<String, Object> map = new HashMap<String, Object>();
 		String[] ajaxMsg = request.getParameterValues("valueArr");
 		int size = ajaxMsg.length;
 		for(int i=0; i<size; i++) {
 			boardService.deleteBno(ajaxMsg[i]);
 		}
-		return "redirect:/member/myBoard";
+		
+		map.put("result", "success");
+		
+		return map;
 	}
+	
+	
 	
 	
 
