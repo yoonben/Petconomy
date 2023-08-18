@@ -34,6 +34,5 @@ public class PensionVO {
 	private int min;
 	private int max;
 
-	private int cno;
 }
 

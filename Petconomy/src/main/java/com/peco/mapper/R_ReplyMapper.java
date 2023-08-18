@@ -9,13 +9,17 @@ import com.peco.vo.R_ReplyVO;
 
 public interface R_ReplyMapper {
 	
-	public List<R_ReplyVO> getList(@Param(value="rno") int rno,@Param(value="cri")Criteria cri);
-	
-	public int insert(R_ReplyVO vo);
-	
-	public int delete(@Param(value="rrno") String rrno);
-	
-	public int update(R_ReplyVO vo);
+    // 대댓글 리스트 조회
+    public List<R_ReplyVO> getList(@Param("rno") int rno);
+
+    // 대댓글 등록
+    public int insert(R_ReplyVO r_reply);
+
+    // 대댓글 수정
+    public int update(R_ReplyVO r_reply);
+
+    // 대댓글 삭제
+    public int delete(int rrno);
 	
 	public int totalCnt(int bno);
 	

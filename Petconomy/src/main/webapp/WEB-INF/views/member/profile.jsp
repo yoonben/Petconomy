@@ -304,8 +304,8 @@
 					<tr>
 					
 						<td><input type="hidden" value="${status.index}" id="index"></td>
-						<td><img id='pensionImg' src="/peco/display?fileName=${pr.savePath}" alt="펜션 프로필" ></td>
-						<td>${pr.pname }</td> 
+						<td><a href="/peco/detail/detailPage?p_id=${pr.p_id}&pname=${pr.pname}&filename=${pr.savePath}" ><img id='pensionImg' src="/peco/display?fileName=${pr.savePath}" alt="펜션 프로필" ></a></td>
+						<td><a href="/peco/detail/detailPage?p_id=${pr.p_id}&pname=${pr.pname}&filename=${pr.savePath}" >${pr.pname }</a></td> 
 							<c:choose>
 								<c:when test="${fn:length(pr.imp_uid) > 1}">
 								<td><input type="hidden" class="index" id="imp_uid" data-puid="${status.index}" value="${fn:substring(pr.imp_uid,4,16)}" readonly>${fn:substring(pr.imp_uid,4,16)}</td>

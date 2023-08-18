@@ -18,40 +18,39 @@ public class R_ReplyServiceImpl implements R_ReplyService {
 	
 	@Autowired
 	BoardMapper boardmapper;
-	
+
 	@Override
-	public List<R_ReplyVO> getList(int rno, Criteria cri) {
+	public List<R_ReplyVO> getList(int rno) {
 		
-		return mapper.getList(rno, cri);
-	}
-	
-
-
-	@Override
-	public int insert(R_ReplyVO vo) {
-		return mapper.insert(vo);
+		return mapper.getList(rno);
 	}
 
 	@Override
-	public int delete(String rno) {
-
-		//댓글 삭제시 Board 테이블의 댓글수를 1감소 시킴
-		//*무슨 기능인지 기억 안남
-//		ReplyVO vo = mapper.getOne(rno);
-//		boardmapper.updateReplyCnt(vo.getBno(), -1);
-		
-		return mapper.delete(rno);
+	public int insert(R_ReplyVO r_reply) {
+		return mapper.insert(r_reply);
 	}
 
 	@Override
-	public int update(R_ReplyVO vo) {
-		return mapper.update(vo);
+	public int update(R_ReplyVO r_reply) {
+		return mapper.update(r_reply);
+	}
+
+	@Override
+	public int delete(int rrno) {
+		return mapper.delete(rrno);
 	}
 
 	@Override
 	public int totalCnt(int bno) {
 		return mapper.totalCnt(bno);
 	}
+
+	@Override
+	public R_ReplyVO getOne(String rrno) {
+		return mapper.getOne(rrno);
+	}
+	
+
 
 
 }

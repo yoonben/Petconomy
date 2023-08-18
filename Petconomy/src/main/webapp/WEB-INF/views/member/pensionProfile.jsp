@@ -243,7 +243,7 @@
 						<td  colspan="9">예약내역이 없습니다</td>
 					</tr>
 				</c:if>
-				${pension}
+				
 				<c:forEach var="pr" items="${getPrList }" varStatus="status">
 					<tr>
 						<input type="hidden" value="${status.index}" id="index">

@@ -69,11 +69,13 @@ function getReplyList(page){
 	fetchGet(`/reply/list/${bno}/${page}`, replyView);
 }
 
+
+
+
 let totalCnt;
 
 function replyView(map){
 	let list = map.list;
-	let rlist = map.rlist;
 	let pageDto = map.pageDto;
 	totalCnt = map.totalCnt;
 	
@@ -116,8 +118,8 @@ if(nickname == reply.nickname){
 						+ '</div>                                                                                     '
 						+ '<div id="r_replyDiv'+reply.rno+'">                                                                                     '
 						+ '</div>                                                                                     ';
-		
-
+		//대댓글 출력
+		getRReplyList(reply.rno)
 		});
 
 		replyDiv.innerHTML = replyDivStr;
@@ -150,6 +152,7 @@ if(nickname == reply.nickname){
 						}
 							replyDiv.innerHTML += pageBlock;
 							
+							
 	
 	}else{
 		replyDiv.innerHTML+=''
@@ -170,7 +173,8 @@ if(nickname == reply.nickname){
 
 
 
-function replyWrite(){
+function replyWrite() {
+    
 	//bno 게시글번호
 	//m_id 회원번호
 	//reply 댓글내용
@@ -210,34 +214,116 @@ function replyRes(map){
 		getReplyList();
 		
 	}else{
-		//등록실패
-		alert("댓글을 100자 내외로 작성해주세요");
+		if (map.message.includes('SQLException')) {
+            if (map.message.includes('ORA-12899')) {
+                alert('댓글 내용이 너무 깁니다. 100자 이하로 작성해주세요.');
+            } else {
+                // 기타 SQLException에 해당하는 처리
+                alert('댓글 추가 중에 오류가 발생했습니다.');
+            }
+        } else {
+            // 기타 예외 메시지에 해당하는 처리
+            alert(map.message);
+        }
 	}
 }
 
 
+/*댓글삭제*/
 function replyDeleteAction(rno){
 	console.log("매개변수 rno를 잘 받고 있니? :"+rno)
 	fetchGet(`/reply/delete/${rno}`, replyRes);
 }
 
-
-function r_replyWrite(rno){
-	let r_replyDiv = document.querySelector('#r_replyDiv'+rno);
-	let replyer = document.querySelector('#writer').value;
-	r_replyDiv.innerHTML   +=''
-							+'<div>                                                                                 '
-							+'	<div class="reply-insert">                                                          '
-							+'	<div class="reply-nickname">'+replyer+'</div>                                                  '
-							+'		<textarea placeholder="댓글을 입력하세요" id="r_reply" ></textarea>              		'
-							+'		<div class="reply-end">                                                         '
-							+'			<div class="reply-end2"></div>                                              '
-							+'		    <div><button class="reply-button" id="btnr_ReplyWrite" onclick="r_replyWriteAction('+rno+')">등록</button></div>     '
-							+'		</div>                                                                          '
-							+'	</div>                                                                              '
-							+'</div>                                                                                '
-							+'<hr>                                                                                '   
+/*대댓글삭제*/
+function rreplyDeleteAction(rrno){
+	console.log("매개변수 rrno를 잘 받고 있니? :"+rrno)
+	fetchGet(`/r_reply/delete/${rrno}`, replyRes);
 }
+
+/*대댓글 리스트 출력*/
+function getRReplyList(rno) {
+    fetchGet(`/r_reply/list/${rno}`, function(map) {
+        const rlist = map.rlist;
+        const totalCnt = map.totalCnt;
+
+        const rReplyDiv = document.querySelector(`#r_replyDiv${rno}`);
+        rReplyDiv.innerHTML = ''; // 기존 대댓글 내용 초기화
+
+        if (rlist.length > 0) {
+        	let rReplyDivStr = ''
+            rlist.forEach((rReply) => {
+            	rReplyDivStr 	+=''
+					+ '<div class="reply-box" id="reply-box'+rReply.rrno+'" data-value="'+rReply.reply+'" data-rrno="'+rReply.rrno+'" data-nickname="'+rReply.nickname+'">                                                                    '
+					+ '	<div class="reply-in rreply_box">                                                                    '
+					+ '		<div class="replyerdate">                                                             '
+					+ '			<div>'+rReply.nickname+'</div>                                                                 '
+					+ '			<div>'+rReply.regdate+'</div>                                                                 '
+					+ '		</div>                                                                                '
+					+ '		<div class="replynone"></div>                                                         '
+					+ '		<div class="reply-content">'+rReply.reply+'</div>                                            '
+					+ '		<div class="r-reply">                                                                 '
+					+ '			<div>                                                                             '
+					+ '			</div>                                                                            '
+					+ '			                                                                                  ';
+if(nickname == rReply.nickname){
+	rReplyDivStr		+='			<div>                                                                             '
+					+ '			<button name="r_reply" value="수정" class="r-reply-button" onclick="rreplyEdit('+rReply.rrno+')">수정</button>          '
+					+ '			<button name="r_reply" value="삭제" class="r-reply-button" onclick="rreplyDeleteModal('+rReply.rrno+')">삭제</button>          '
+					+ '			</div>                                                                            ';
+};
+rReplyDivStr		+=''
+					+ '		</div>                                                                                '
+					+ '	</div>                                                                                    '
+					+ '</div>                                                                                     '
+					+ '<div id="r_replyDiv'+rReply.rrno+'">                                                                                     '
+					+ '</div>                                                                                     ';
+
+
+	});
+
+            rReplyDiv.innerHTML = rReplyDivStr;
+        } else {
+/*            const noReplyDiv = document.createElement('div');
+            noReplyDiv.classList.add('no-reply');
+            noReplyDiv.innerHTML = `
+                <div class="no-reply-text">대댓글이 없습니다.</div>
+            `;
+            rReplyDiv.appendChild(noReplyDiv);*/
+        }
+    });
+}
+
+
+function r_replyWrite(rno) {
+    let r_replyDiv = document.querySelector('#r_replyDiv' + rno);
+
+
+    // 대댓글 작성 폼이 이미 생성되었는지 체크
+    if (!r_replyDiv.querySelector('.reply-insert')) {
+        let replyer = document.querySelector('#writer').value;
+
+        r_replyDiv.innerHTML +=
+            '<div>' +
+            '    <div class="reply-insert">' +
+            '        <div class="reply-nickname">' + replyer + '</div>' +
+            '        <textarea placeholder="댓글을 입력하세요" id="r_reply"></textarea>' +
+            '        <div class="reply-end">' +
+            '            <div class="reply-end2"></div>' +
+            '            <div><button class="reply-button" id="btnr_ReplyWrite" onclick="r_replyWriteAction(' + rno + ')">등록</button></div>' +
+            '        </div>' +
+            '    </div>' +
+            '</div>' +
+            '<hr>';
+    }
+    
+    // 대댓글 작성폼으로 스크롤 이동
+    r_replyDiv.scrollIntoView({ behavior: 'smooth', block: 'end' });
+}
+
+
+
+
 
 function r_replyWriteAction(rno){
 	//bno 게시글번호
@@ -262,7 +348,8 @@ function r_replyWriteAction(rno){
 	//callback : 처리할때 호출할 콜백함수
 	//			*메서드로 짜놓은 fetch 메서드에선 콜백함수를 넣을때 함수의 이름만 넣는다 
 	//			 	뒤에 ()를 포함하면 함수가 바로실행이 되어버림
-	fetchPost('/r_reply/insert/',obj,replyRes)
+	fetchPost('/r_reply/insert',obj,replyRes)
+		
 
 }
 
@@ -315,4 +402,49 @@ function replyEditAction(rno){
 	fetchPost('/reply/update/',obj,replyRes)
 	
 }
+
+
+function rreplyEdit(rrno){
+	//rno매개변수를 줄때는 function replyEdit(rno)의 rno를 그대로 줘야함. 
+	//reply.rno 아님
+let rrbox = document.querySelector('#reply-box'+rrno);
+let rreplyTxt = rrbox.dataset.value; //답글 수정 눌렀을때 기존 답글내용 유지 접근하기
+let rreplyNickname= rrbox.dataset.nickname; //답글 수정 눌렀을때 기존 답글내용 유지 접근하기
+	rrbox.innerHTML = ''
+	+'<div>                                                                                 '
+	+'	<div class="reply-insert">                                                          '
+	+'	<div class="reply-nickname">'+rreplyNickname+'</div>                                                  '
+	+'		<textarea placeholder="수정할 내용을 입력하세요" id="editRReply'+rrno+'" >'+rreplyTxt+'</textarea>              		'
+	+'		<div class="reply-end">                                                         '
+	+'			<div class="reply-end2"></div>                                              '
+	+'		    <div><button class="reply-button" id="btnReplyWrite" onclick="rreplyEditAction('+rrno+')">수정</button></div>     '
+	+'		</div>                                                                          '
+	+'	</div>                                                                              '
+	+'</div>                                                                                '
+	+'<hr>                                                                                '
+
+}
+
+function rreplyEditAction(rrno){
+
+let rreply = document.querySelector('#editRReply'+rrno).value;
+
+
+//전달할 객체로 생성
+let obj = {rrno : rrno
+		, reply : rreply}
+
+//url : /reply/insert/
+//ojb : JSON형식으로 전달할 데이터
+//callback : 처리할때 호출할 콜백함수
+//			*콜백함수를 넣을땐 함수의 이름만 넣는다 
+//			 	뒤에 ()를 포함하면 함수가 바로실행이 되어버림
+fetchPost('/r_reply/update',obj,replyRes)
+
+}
+
+
+
+
+
 

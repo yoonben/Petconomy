@@ -20,5 +20,7 @@ public class BoardVO {
 	
 	private String savePath;	//저장된 파일경로
 	private String s_savePath;	//저장된 썸네일파일경로
+	private String p_savePath;	//저장된 프로필일파일경로
+	
 	
 }
