@@ -130,7 +130,7 @@
 	height: 100px;
 	border-radius: 70px;
 }
-#cancellation{
+.cancellation{
 	width: 100px; 
 	height: 40px;
 	border-radius: 20px;
@@ -139,7 +139,7 @@
 	background-color: #FFFFFF;	
 	margin: 10px;
 }
-#cancellation:hover{
+.cancellation:hover{
 	color: #FF8C00;
 	background-color: #ffffff;
 	margin: 10px;
@@ -314,7 +314,7 @@
 							</c:choose>
 						<td>${pr.startdate } ~ ${pr.enddate }</td> 
 						<td>${pr.pr_name }</td>
-						<td><button id='cancellation' onclick="delPension(${status.index})">예약취소</button></td>
+						<td><button class='cancellation' onclick="delPension(${status.index})">예약취소</button></td>
 						
 					</tr>
 					
@@ -363,13 +363,13 @@
 					<td>${hr.hname }</td> 
 					<c:choose>
 						<c:when test="${fn:length(hr.imp_uid) > 1}">
-							<td><input type="text" class="index" id="imp_uid" data-huid="${status.index}" value="${fn:substring(hr.imp_uid,4,16)}" readonly></td>
+							<td><input type="hidden" class="index" id="imp_uid" data-huid="${status.index}" value="${fn:substring(hr.imp_uid,4,16)}" readonly>${fn:substring(hr.imp_uid,4,16)}</td>
 						</c:when>
 					</c:choose>
 					<td>${hr.hr_date } ${hr.hr_time }</td> 
-					<td><input type="text" class="index" id="pcnt" data-hcnt="${status.index}" value="${hr.pricecnt }"readonly></td>
+					<td><input type="hidden" class="index" id="pcnt" data-hcnt="${status.index}" value="${hr.pricecnt }"readonly>${hr.pricecnt }</td>
 					<td>${hr.hr_name }</td>
-					<td style="border: none;"><button onclick="delHospital(${status.index})">예약취소</button></td>
+					<td><button class='cancellation' onclick="delHospital(${status.index})">예약취소</button></td>
 				</tr>
 				</c:forEach>
 				</c:if>

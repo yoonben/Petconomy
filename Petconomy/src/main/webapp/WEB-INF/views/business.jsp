@@ -362,7 +362,7 @@ window.addEventListener('load', function(){
 	</div>
 
 
-	<footer> </footer>
+	<%@include file="main/footer.jsp"%>
 
 
 	<!-- Scripts -->

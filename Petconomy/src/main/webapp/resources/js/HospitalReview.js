@@ -49,6 +49,7 @@ function getReplyList(page){
 	}
 	
 	let h_id = document.querySelector('#h_id').value;
+	let reviewer = document.querySelector('#reviewer').value;
 	console.log('h_id : ', h_id);
 	
 	console.log('/peco/reviewHospital/list/' + h_id + '/' + page);
@@ -100,7 +101,17 @@ function replyView(map){
 		    +'            <span style="text-align: left; color: black;"><b>등록된 리뷰가 없습니다.</b></span>'
 		    +'                                                                 '
 		    +'        </div>'
-		    +'   </div>'
+		    +'   </div>';
+		if(reviewer == ''){
+			reviewDiv.innerHTML = 
+				'	<div class="col-lg-17">'
+			    +'        <div class="left-info" style="background-color: bisque;">'
+			    +'                                      '
+			    +'            <span style="text-align: left; color: black;"><b>로그인이 필요합니다.</b></span>'
+			    +'                                                                 '
+			    +'        </div>'
+			    +'   </div>';
+		}
 	} else {		
 		
 		let replyDivStr = '';

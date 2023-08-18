@@ -49,6 +49,7 @@ function getReplyList(page){
 	}
 	
 	let p_id = document.querySelector('#p_id').value;
+	let reviewer = document.querySelector('#reviewer').value;
 	console.log('p_id : ', p_id);
 	
 	console.log('/peco/review/list/' + p_id + '/' + page);
@@ -89,7 +90,7 @@ function replyView(map){
 		    +'            <span style="text-align: left; color: black;"><b>이미 리뷰를 작성 하셨습니다.</b></span>'
 		    +'                                                                 '
 		    +'        </div>'
-		    +'   </div>'
+		    +'   </div>';			
 		}		
 		
 	})
@@ -105,7 +106,17 @@ function replyView(map){
 		    +'            <span style="text-align: left; color: black;"><b>등록된 리뷰가 없습니다.</b></span>'
 		    +'                                                                 '
 		    +'        </div>'
-		    +'   </div>'
+		    +'   </div>';
+		if(reviewer == ''){
+			reviewDiv.innerHTML = 
+				'	<div class="col-lg-17">'
+			    +'        <div class="left-info" style="background-color: bisque;">'
+			    +'                                      '
+			    +'            <span style="text-align: left; color: black;"><b>로그인이 필요합니다.</b></span>'
+			    +'                                                                 '
+			    +'        </div>'
+			    +'   </div>';
+		}
 	} else {		
 		
 		let replyDivStr = '';
