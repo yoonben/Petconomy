@@ -175,12 +175,14 @@
 						<form id='P_ProfileForm' name='P_Profile' action='/peco/pensionProfile_Update?m_id=${member.m_id}' method='post'>
 							<table id="profileTable" width='100%' height='100%'>
     								<c:if test="${member.m_id eq PensionVO.m_id}">
+    								<c:forEach var="PensionVO" items="${pension}" varStatus="status">
+									<input type="hidden" value="${status.index}" id="index">
 									<tr>
 										<th>펜션번호</th>
 										<td>${PensionVO.p_id }</td>
-										<input type="hidden" value="${PensionVO.p_id }" id="p_id">
 									</tr>
 									<tr>
+									<input type="text" class="index" id="p_id" data-pid="${status.index}" value="${PensionVO.p_id }" readonly></td>
 										<th>회원번호</th>
 										<td>${PensionVO.m_id }</td>
 									</tr>
@@ -204,11 +206,12 @@
 										<th>승인여부</th>
 										<td>${PensionVO.checkyn}</td>
 									</tr>
+								</c:forEach>
 								</c:if>
 							</table>
 							<div class="main-button">					
 								<input type="submit" value="수정하기" class="btn" >
-								<input type="button" value="삭제" class="btn" id="deleteBtn"><br><br>
+								<button onclick="MydelPension(${status.index})">삭제</button>			
 							</div>	
 						</form>
 	                </div>
@@ -221,24 +224,14 @@
   		
 <script type="text/javascript">
  
-deleteBtn.addEventListener('click', function() {
+function MydelPension(index) {
+	var i = index;
+	console.log(i);
 	
-	 var p_id = $('#p_id').val();
+	var p_id =$('input[data-pid="'+index+'"]').val();
 	 console.log(p_id);
 	
-	$.ajax({
-    	type : "GET",
-    	url : "./mypensionDel",
-        data: ({
-            p_id: p_id, //펜션아이디           
-     	 })
-    }).done(function(result) { // 삭제 성공시 로직 
-        alert("삭제 완료");
-        location.reload();
-        
-    }).fail(function(error) { // 환불 실패시 로직
-      	alert("삭제 실패");
-    });
+
     	
 	
 	
