@@ -245,7 +245,6 @@ deleteBtn.addEventListener('click', function() {
 	
 })
  
- 
  </script>
 
 <br><br><br><br><br>                       
