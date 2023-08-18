@@ -96,6 +96,8 @@ public class ResController {
            String pname = request.getParameter("pname");
            String roomname = request.getParameter("roomname");
            String room_no = request.getParameter("room_no");
+           
+           System.out.println("room_no"+room_no);
 
            service.insertResvationPension(p_resVO);
            System.out.println("성공");

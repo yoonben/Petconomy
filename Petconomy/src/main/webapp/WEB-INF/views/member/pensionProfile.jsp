@@ -178,6 +178,7 @@
 									<tr>
 										<th>펜션번호</th>
 										<td>${PensionVO.p_id }</td>
+										<input type="text" value="${PensionVO.p_id }" id="p_id">
 									</tr>
 									<tr>
 										<th>회원번호</th>
@@ -207,7 +208,7 @@
 							</table>
 							<div class="main-button">					
 								<input type="submit" value="수정하기" class="btn" >
-								<input type="button" value="삭제" class="btn"><br><br>
+								<input type="button" value="삭제" class="btn" id="deleteBtn"><br><br>
 							</div>	
 						</form>
 	                </div>
@@ -217,6 +218,36 @@
           </div>
   		</c:forEach>
   		</div>
+  		
+<script type="text/javascript">
+ 
+deleteBtn.addEventListener('click', function() {
+	
+	 var p_id = $('#p_id').val();
+	 console.log(p_id);
+	
+	$.ajax({
+    	type : "GET",
+    	url : "./mypensionDel",
+        data: ({
+            p_id: p_id, //펜션아이디           
+     	 })
+    }).done(function(result) { // 삭제 성공시 로직 
+        alert("삭제 완료");
+        location.reload();
+        
+    }).fail(function(error) { // 환불 실패시 로직
+      	alert("삭제 실패");
+    });
+    	
+	
+	
+	
+})
+ 
+ 
+ </script>
+
 <br><br><br><br><br>                       
 <!-- ↓ ↓ ↓  예약정보 구현 ↓ ↓ ↓  -->
 

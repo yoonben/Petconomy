@@ -210,4 +210,14 @@ public class MemberServiceImpl implements MemberService {
 		return memberMapper.getOneNoImg(m_id);
 	}
 
+	@Override
+	public int MemDeleteRoom(String p_id) {
+		return memberMapper.MemDeleteRoom(p_id);
+	}
+
+	@Override
+	public int MemDeletePension(String p_id) {
+		return memberMapper.MemDeletePension(p_id);
+	}
+
 }

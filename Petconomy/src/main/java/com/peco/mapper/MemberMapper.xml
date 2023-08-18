@@ -63,4 +63,13 @@
 			age = #{age}
 			where m_id = #{m_id}
 	</update>
+	
+	<delete id="MemDeleteRoom">
+		delete P_ROOM where p_id = #{p_id}
+   	</delete>
+   		
+	<delete id="MemDeletePension">
+		delete PENSION where p_id = #{p_id}
+   	</delete>
+   	
   </mapper>

@@ -311,7 +311,7 @@
 						   <c:forEach var="p" items="${pList}">
 							   <input type="text" value="${p.pname}" id="pname"><br>
 							   <input type="hidden" value="${p.p_id}" id="p_id">
-							   <input type="hidden" value="${p.room_no}" id="room_no">
+							   <input type="text" value="${p.room_no}" id="room_no">
 							   <input type="text" value= "${p.roomname}" id="roomname">
 					</div>
 		 			<!-- 숙소 정보 끝 -->

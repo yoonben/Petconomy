@@ -484,13 +484,7 @@ public class MemberController extends CommonRestController{
 		 
 	    return "/member/hospitalProfile";
 	}	
-	
-	
-	
-	
-	
 
-	
 	@GetMapping("css")
 	public String css(){
 		return "member/css";
@@ -499,4 +493,34 @@ public class MemberController extends CommonRestController{
 	public String mainProfile(){
 		return "member/mainProfile";
 	}
+	
+	
+	   @ResponseBody
+	   @RequestMapping(value="/peco/mypensionDel", method=RequestMethod.GET)
+	   public void deleteHospitalRes(HttpServletRequest request) {
+		   
+		   String p_id = request.getParameter("p_id");
+		   
+		   System.out.println("del : "+p_id);
+		   int res1 = service.MemDeleteRoom(p_id);
+		   
+		   if(res1>0) {
+			   System.out.println("객실삭제완료");
+			   int res2 = service.MemDeletePension(p_id);
+
+			   if(res2>0) {
+				   System.out.println("펜션삭제완료");
+			   } else {
+				   System.out.println("펜션삭제중오류");
+			   }
+			   
+		   } else {
+			   System.out.println("객실삭제중오류");
+		   }
+		   
+		   
+
+	   }
+	
+	
 }

@@ -12,7 +12,7 @@
    </select>
    
    <select id="getPensionList" resultType="com.peco.vo.PensionVO">
-   select pname, roomname, price, pension.p_id
+   select pname, roomname, room_no, price, pension.p_id
 	from pension left outer join p_room
 	on pension.p_id = p_room.p_id
 	where pension.p_id = #{p_id} and room_no = #{room_no}

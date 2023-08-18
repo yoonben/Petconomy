@@ -35,4 +35,8 @@ public interface MemberService {
 	public int nameCheck(MemberVO member);
 	
 	public MemberVO findId(MemberVO member);
+	
+	public int MemDeleteRoom(String p_id);
+	
+	public int MemDeletePension(String p_id);
 }

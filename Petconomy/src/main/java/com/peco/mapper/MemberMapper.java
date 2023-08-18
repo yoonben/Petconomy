@@ -15,4 +15,6 @@ public interface MemberMapper {
 	public MemberVO findId(MemberVO member);
 	public int updatePw(MemberVO member);
 	public MemberVO getOneNoImg(String m_id);
+	public int MemDeleteRoom(String p_id);
+	public int MemDeletePension(String p_id);
 }

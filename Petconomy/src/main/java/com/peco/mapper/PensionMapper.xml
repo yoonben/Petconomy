@@ -189,5 +189,6 @@
 		LEFT JOIN p_img pi ON p.p_id = pi.p_id
 		WHERE p.m_id = #{m_id}
 		</select>
+		
 
 </mapper>
