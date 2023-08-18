@@ -17,5 +17,5 @@ public class H_RESVO {
 	private String imp_uid;
 	private String m_id;
 	private String pricecnt;
-
+	private String pname;
 }
