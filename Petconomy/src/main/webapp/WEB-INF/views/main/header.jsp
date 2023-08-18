@@ -37,7 +37,7 @@
 						      <li><a class="dropdown-item" href="/peco/profile?m_id=${member.m_id}" style="font-size:1.2em">나의 정보</a></li>
 						      <li><a class="dropdown-item" href="/peco/pensionProfile?m_id=${member.m_id}" style="font-size:1.2em">나의 펜션 관리</a></li>
 						      <li><a class="dropdown-item" href="/peco/myBoard?m_id=${member.m_id}" style="font-size:1.2em">나의 글 목록</a></li>
-						      <li><a class="dropdown-item" href="#" style="font-size:1.2em" data-bs-toggle="modal" data-bs-target="#exampleModal">회원탈퇴</a></li>
+						      <li><a class="dropdown-item" href="#" style="font-size:1.2em" data-bs-toggle="modal" data-bs-target="#exampleModal2">회원탈퇴</a></li>
 						    </ul>
 						  </li> 
                         </c:if>
@@ -65,7 +65,7 @@
   </header>
   
   <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">

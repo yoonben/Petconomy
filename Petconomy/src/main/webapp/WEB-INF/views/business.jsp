@@ -303,7 +303,7 @@ window.addEventListener('load', function(){
 				<div class="form-login">
 				    <div class="text-line">
 				        <label><input type="radio" name="pensionPark" value="주차 가능">주차 가능</label>
-				        <label><input type="radio" name="pensionPark" value="주차 불가능" checked="checked">주차 불가능</label>
+				        <label><input type="radio" name="pensionPark" value="주차 불가" checked="checked">주차 불가</label>
 				    </div>
 				</div>
 

@@ -216,61 +216,12 @@ input[type='checkbox']:checked{
 		          	</div>
 		          	
 		          	
-		          	                <div class="row">
-                
-                    <div class="main-info header-text">
-                      <h1>찜 목록</h1>
-                    </div>
-					<div>
-						<form id="myBoardList" name="myBoardList" >
-							 <table  width='90%' height='100px' >
-									<tr height='30px'>
-										<th><input type='checkbox' id='allCheck' name='allCheck'></th>
-										<th>번호</th>
-										<th>카테고리</th>
-										<th>작성자</th>
-										<th colspan=2 >제목</a></th>
-										<th>작성날짜</th>
-										<th>조회수</th>
-									</tr>
-		
 
-						<c:forEach var="boardVO" items="${board}">
-								<tr>
-									<td><input type='checkbox' name='rowCheck' value='${boardVO.bno }'></td>
-									<td>${boardVO.bno }</td>
-									<td>${boardVO.category }</td>
-									<td>${boardVO.writer }</td>
-									<td  colspan=2 >
-										<a href="/peco/board/view?bno=${boardVO.bno}" id='myboard-link'>
-											${boardVO.title}  <i class="fa-solid fa-pen-to-square"></i>
-										</a>
-									</td>
-									<td>${boardVO.regdate}</td>
-									<td>${boardVO.visitcount}</td>
-								</tr>
-						</c:forEach>
-			
-				
-							
-								<tr>
-									<td colspan='8'>
-								        <i id="btnDeleteModal" class="fa-solid fa-trash" style="color: #ffa200;"></i>
-								        <input type='button' value='삭제' id='delete-btn' onclick='deleteValue();'>
-									</td>
-								</tr>	
-							</table>
-					</form>
-					
-					
-		<!-- 페이징 처리 -->
-					  </div>
-		          	</div>
 		          	
 		          </div>
 		        </div>
 					 <!-- 네비영역 시작-->
-						<%@include file="../main/pageNavi.jsp" %>
+						<%--@include file="../main/pageNavi.jsp" --%>
 					  <!-- 네비영역  끝-->
 		      </div>
 		    </div>

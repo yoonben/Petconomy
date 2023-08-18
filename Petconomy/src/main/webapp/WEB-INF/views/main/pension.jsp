@@ -219,7 +219,7 @@ jQuery(function ($) {
 			    <h5 class="card-title"> <a style="font-size:1.2em; color:black;" href="/peco/detail/detailPage?p_id=${list.p_id }&pname=${list.pname }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}&filename=${list.savePath}">${list.pname}</a>
 			    <c:if test="${not empty sessionScope.member}">
 			    <c:if test="${empty count}">
-			    <a href="/peco/main/heart.do?p_id=${list.p_id }&m_id=${sessionScope.member.getM_id()}"><i class="fa-solid fa-heart"></i></a>
+			    <a href="/peco/main/heart.do?p_id=${list.p_id }&m_id=${sessionScope.member.getM_id()}"></a>
 			    </c:if>
 			    <c:if test="${not empty count}">
 			    <i class="fa-regular fa-heart"></i>
