@@ -137,6 +137,31 @@
 	margin-left : 200px;
 }
 
+#delBtn {
+	position: relative;
+    left: 405px;
+    width: 150px;
+    height: 50px;
+    border-radius: 20px;
+    border: 2px solid;
+    border-color: #black;
+    background-color: #FFFFFF;
+    margin-top: 30px;
+    margin: 0 24px;
+    top: 477px;
+}
+
+#updateBtn {
+    position: relative;
+    top: 477px;
+}
+
+#P_ProfileForm {
+	position: relative;
+    bottom: 100px;
+}
+}
+
 
 </style>
 	   
@@ -155,9 +180,9 @@
 		 
 		 <!-- 나의 펜션정보 박스 -->
 		 <div id='mypensionBox'> 
-		 <c:forEach var="PensionVO" items="${pension}" varStatus="status">
 			<!-- 나의 정보 시작  -->
             <div class="col-lg-12">
+				 <c:forEach var="PensionVO" items="${pension}" varStatus="status">
               <div class="main-profile ">
                 <div class="row">
                 
@@ -172,17 +197,16 @@
                  <!-- 펜션 프로필 사진 끝--> 
                     
 					<div class="col-lg-6 align-self-center">
-						<form id='P_ProfileForm' name='P_Profile' action='/peco/pensionProfile_Update?m_id=${member.m_id}' method='post'>
+						<form id="P_ProfileForm" name='P_Profile' action='/peco/pensionProfile_Update?m_id=${member.m_id}' method='post'>
 							<table id="profileTable" width='100%' height='100%'>
     								<c:if test="${member.m_id eq PensionVO.m_id}">
-    								<c:forEach var="PensionVO" items="${pension}" varStatus="status">
 									<input type="hidden" value="${status.index}" id="index">
 									<tr>
 										<th>펜션번호</th>
 										<td>${PensionVO.p_id }</td>
 									</tr>
 									<tr>
-									<input type="text" class="index" id="p_id" data-pid="${status.index}" value="${PensionVO.p_id }" readonly></td>
+									<input type="hidden" class="index" id="p_id" data-pid="${status.index}" value="${PensionVO.p_id }" readonly></td>
 										<th>회원번호</th>
 										<td>${PensionVO.m_id }</td>
 									</tr>
@@ -206,39 +230,20 @@
 										<th>승인여부</th>
 										<td>${PensionVO.checkyn}</td>
 									</tr>
-								</c:forEach>
-								</c:if>
-							</table>
-							<div class="main-button">					
-								<input type="submit" value="수정하기" class="btn" >
-								<button onclick="MydelPension(${status.index})">삭제</button>			
+								<div class="main-button">					
+								<button onclick="MydelPension(${status.index})" id="delBtn">삭제</button>			
+								<input type="submit" value="수정하기" id="updateBtn" class="btn">
 							</div>	
+							</c:if>
+							</table>
 						</form>
-	                </div>
-			
+	                	</div>
           	 </div>
           </div>
           </div>
-  		</c:forEach>
   		</div>
+</c:forEach>
   		
-<script type="text/javascript">
- 
-function MydelPension(index) {
-	var i = index;
-	console.log(i);
-	
-	var p_id =$('input[data-pid="'+index+'"]').val();
-	 console.log(p_id);
-	
-
-    	
-	
-	
-	
-})
- 
- </script>
 
 <br><br><br><br><br>                       
 <!-- ↓ ↓ ↓  예약정보 구현 ↓ ↓ ↓  -->
@@ -307,7 +312,35 @@ function MydelPension(index) {
         </div>
       </div>
     </div>
-  </footer>
+  </footer><script type="text/javascript">
+ 
+function MydelPension(index) {
+	var i = index;
+	console.log(i);
+	
+	var p_id =$('input[data-pid="'+index+'"]').val();
+	console.log(p_id);	
+	
+	$.ajax({
+    	type : "GET",
+    	url : "./mypensionDel",
+        data: ({
+            p_id: p_id, //펜션아이디           
+     	 })
+    }).done(function(result) { // 삭제 성공시 로직 
+        alert("삭제 완료");
+        window.location.reload();
+        
+        
+    }).fail(function(error) { // 환불 실패시 로직
+      	alert("삭제 실패");
+    });
+	
+	
+}
+ 
+ </script>
+  
 	
 	
 	
