@@ -154,6 +154,7 @@
 		 
  		 <!-- 나의 펜션정보 박스 -->
 		 <div id='mypensionBox'> 
+ 			<c:forEach var="PensionVO" items="${pension}" varStatus="status">
 			<!-- 나의 정보 시작  -->
             <div class="col-lg-12">
               <div class="main-profile ">
@@ -162,7 +163,6 @@
                       <h1>나의 펜션정보 수정</h1>
                     </div>
                     
-		 			<c:forEach var="PensionVO" items="${pension}" varStatus="status">
 				
                   <!-- 펜션 프로필 사진 시작-->
                   <div class="col-lg-3">
@@ -214,9 +214,9 @@
 						</form>
 	                </div>
 			
-  					</c:forEach>
           	 </div>
           </div>
+		</c:forEach>
           </div>
           	 </div>
 <br><br><br><br><br>                       
