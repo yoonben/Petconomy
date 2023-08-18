@@ -30,7 +30,6 @@ public class PensionVO {
 	private String smallregion;
 	
 	private String savePath;
-	
 
 	private int min;
 	private int max;
