@@ -12,9 +12,6 @@
                         ORDER BY REGDATE ASC
 	</select>
 	
-	
-	
-	
 	<insert id="insert">
 		insert into r_reply (rrno,rno, bno,m_id, reply, replyer,regdate)
     	values (r_reply_seq.NEXTVAL,#{rno}, #{bno},#{m_id}, #{reply}, #{replyer},sysdate)

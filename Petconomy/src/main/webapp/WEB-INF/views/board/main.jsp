@@ -276,20 +276,17 @@ a {
           <div class="live-stream">
             <div class="col-lg-12">
               <div class="heading-section">
-                <h4><em>최근</em><a href="/peco/board/healing">일상 게시글</a></h4>
+               <h4><em>최근</em><a href="/peco/board/healing">일상 게시글</a></h4>
               </div>
             </div>
-
-			
             <div class="row">
             
-            <!-- -------일상 게시글 시작---------- -->
             <c:forEach var="f" items="${Free}" varStatus="loop">
             <c:if test="${loop.index < 8}">
-              <div class="col-lg-3 col-sm-6 boardbox">
+              <div class="col-lg-3 col-sm-6 boardbox" >
                 <div class="item">
                   <div class="thumb">
-            		<a onclick="requestAction('/peco/board/view', ${f.bno })">
+                  <a onclick="requestAction('/peco/board/view', ${f.bno })">
                     <img src="/peco/display?fileName=${f.savePath}" alt="" class="thumbnail-image">
                     <div class="hover-effect">
                       <div class="content">
@@ -297,8 +294,8 @@ a {
                           <a href="#">일상</a>
                         </div>
                         <ul>
-                          <li><i class="fa fa-eye"></i>${f.visitcount} </a></li>
-                          <li><i id="animated-icon" class="fa-regular fa-thumbs-up fa-lg"></i>${f.likecount }</li>
+                          <li><a href="#"><i class="fa fa-eye"></i>${f.visitcount}</a></li>
+                          <li><i id="animated-icon" class="fa-regular fa-thumbs-up fa-lg" style="color: #ffa200;">${f.likecount }</i>
                         </ul>
                       </div>
                     </div>
@@ -308,15 +305,14 @@ a {
                       <img src="/peco/display?fileName=${f.p_savePath}" alt="" style="width: 46px; height:46px; border-radius: 50%; float: left;">
                     </div>
                     <span><i class="fa fa-check"></i> ${f.writer}</span>
-                    <h4>${f.title} </h4>
-              		</a>
+                    <h4>${f.title}</h4>
+                  </a>
                   </div> 
                 </div>
               </div>
-              </c:if>
-          	</c:forEach>
-          	<!-- -------게시글 끝---------- -->
-          	
+            </c:if>
+            </c:forEach>
+
             </div>
           </div>
           <!-- ***** Live Stream End ***** -->

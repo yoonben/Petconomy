@@ -528,7 +528,7 @@ function processContent() {
   					 +' </div>			'; */
   			content +=''                                                                                                                                         
 				  		+'        <div class="files"  style="width: 150px; height: 130px; margin-right:10px;">                                                                                                                      '                                     
-				  		+'            <a href="/file/download?filename=' + savePath + '">                                                                                                                        '
+				  		+'            <a href="/peco/file/download?filename=' + savePath + '">                                                                                                                        '
 				  		+'                <img src="/peco/display?fileName=' + savePath + '" alt="" class="thumbnail-image" style="border-radius: 23px; margin-right: 10px; width: 100px; height: 100px;">       ' 
 				  		+'                <br>                                                                                                                                                                   '
 				  		+'                <div class="file-info">                                                                                                                                                '

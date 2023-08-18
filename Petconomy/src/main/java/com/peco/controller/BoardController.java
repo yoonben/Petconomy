@@ -108,8 +108,10 @@ public class BoardController extends CommonRestController{
 		  for (BoardVO Best : Bestlist) {
 			  String convertedPath = Best.getSavePath().replace("\\", "/"); 
 			  String convertedThumPath = Best.getS_savePath().replace("\\", "/");
+			  String convertedProfile = Best.getP_savePath().replace("\\", "/");
 			  Best.setSavePath(convertedPath); 
 			  Best.setS_savePath(convertedThumPath); 
+			  Best.setP_savePath(convertedProfile);
 		  } 
 	  }
 	  
@@ -145,8 +147,10 @@ public class BoardController extends CommonRestController{
 		  for (BoardVO Best : Bestlist) {
 			  String convertedPath = Best.getSavePath().replace("\\", "/"); 
 			  String convertedThumPath = Best.getS_savePath().replace("\\", "/");
+			  String convertedProfile = Best.getP_savePath().replace("\\", "/");
 			  Best.setSavePath(convertedPath); 
 			  Best.setS_savePath(convertedThumPath); 
+			  Best.setP_savePath(convertedProfile);
 		  } 
 	  }
 	  
