@@ -276,7 +276,7 @@ a {
           <div class="live-stream">
             <div class="col-lg-12">
               <div class="heading-section">
-               <h4><em>최근</em><a href="/peco/board/healing">일상 게시글</a></h4>
+               <h4><em>최근</em><a href="/peco/board/free">일상 게시글</a></h4>
               </div>
             </div>
             <div class="row">

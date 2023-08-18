@@ -402,7 +402,7 @@ div >.page-content{
 				    </div>
 					    <div class="down-content">
 		                    <div class="avatar">
-		                      <img src="/resources/images/default.png" alt="" style="max-width: 46px; border-radius: 50%; float: left;">
+		                      <img src="/peco/display?fileName=${b.p_savePath}" alt="" style="max-width: 46px; border-radius: 50%; float: left;">
 		                    </div>
 		                    <span><i class="fa fa-check"></i> ${b.writer}</span>
 		                    <a onclick="requestAction('/peco/board/view', ${b.bno })">

@@ -44,7 +44,7 @@
                         <c:choose>
 						    <c:when test="${empty sessionScope.member}">
 						        <div class="main-button" style="display:inline-block;">
-						        <a href="/peco/login" style="margin-top:10px;">로그인 <img src="assets/images/profile-header.jpg" alt=""></a>
+						        <a href="/peco/login" style="margin-top:10px;">로그인<!-- <img src="assets/images/profile-header.jpg" alt=""> --></a>
               					</div>
 						    </c:when>
 						    <c:otherwise>
