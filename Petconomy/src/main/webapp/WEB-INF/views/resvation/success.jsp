@@ -88,7 +88,7 @@
 </c:if>
 <c:forEach var="hr" items="${getHrList }" varStatus="status">
 <tr>
-<input type="hidden" value="${status.index}" id="index">
+<input type="text" value="${status.index}" id="index">
 <c:choose>
 	<c:when test="${fn:length(hr.imp_uid) > 1}">
 		<td><input type="text" class="index" id="imp_uid" data-huid="${status.index}" value="${fn:substring(hr.imp_uid,4,16)}" readonly></td>

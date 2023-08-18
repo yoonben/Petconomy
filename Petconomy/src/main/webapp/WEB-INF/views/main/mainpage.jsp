@@ -125,11 +125,13 @@ jQuery(function ($) {
 	<!-- 헤더영역 시작-->
 	<%@include file="header.jsp"%>
 	<!-- 헤더영역  끝-->
+  <div class="container" style="height:2800px">
 
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="page-content">
+
+    <div class="row" style="height:2800px;">
+      <div class="col-lg-12" style="height:2800px;">
+        <div class="page-content" style="height:2500px;">
+
 
 					<!-- ***** Banner Start ***** -->
 					<div class="main-Banner">
@@ -155,8 +157,8 @@ jQuery(function ($) {
 												<div class="main-button"
 													style="margin-left: 1000px; margin-top: 100px; height: 200px">
 													<a href="../main/pension"
-														style="font-size: 1.5em; background-color: #FFC48C; font-weight: 900; color: black">펜션
-														예약 바로가기</a>
+														style="font-size: 1.5em; background-color: #FFC48C; font-weight: 900; color: black; width:220px;">펜션
+														예약하기</a>
 												</div>
 											</div>
 											<div class="carousel-item" data-bs-interval="2000"
@@ -169,9 +171,9 @@ jQuery(function ($) {
 													style="color: white; padding-left: 60px; font-size: 2.5em;">제일
 													가까운 동물병원이 어디야?</h4>
 												<div class="main-button"
-													style="margin-left: 1000px; margin-top: 100px; height: 200px">
+													style="margin-left: 1000px; margin-top: 100px; height: 200px;">
 													<a href="../main/hospital"
-														style="font-size: 1.5em; background-color: #FFC48C; font-weight: 900; color: black">병원
+														style="font-size: 1.5em; background-color: #FFC48C; font-weight: 900; color: black; width:220px;">병원
 														예약하기</a>
 												</div>
 											</div>
@@ -187,7 +189,7 @@ jQuery(function ($) {
 												<div class="main-button"
 													style="margin-left: 1000px; margin-top: 100px; height: 200px">
 													<a href="../board/main"
-														style="font-size: 1.5em; background-color: #FFC48C; font-weight: 900; color: black">커뮤니티
+														style="font-size: 1.5em; background-color: #FFC48C; font-weight: 900; color: black; width:270px;">커뮤니티
 														둘러보기</a>
 												</div>
 											</div>
@@ -358,20 +360,7 @@ jQuery(function ($) {
 		</div>
 	</div>
 
-	<footer>
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<p>
-						Copyright © 2036 <a href="#">Petconomy</a> Company. All rights
-						reserved. <br>Design: <a href="https://templatemo.com"
-							target="_blank" title="free CSS templates">TemplateMo</a>
-						Distributed By <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
-					</p>
-				</div>
-			</div>
-		</div>
-	</footer>
+	<%@include file="footer.jsp"%>
 
 
 	<!-- Scripts -->

@@ -28,8 +28,9 @@
 	<!-- header -->
 	<%@include file="./main/header.jsp"%>
 
+
 	<!-- 로그인 -->
-	<div class="container">
+	<div class="container" style="height:1000px;">
 		<div class="page-content" style="background-color: bisque;">
 			<!-- ***** login Start *****-->
 			<div class="page-login">
@@ -322,7 +323,7 @@
 	</div>
 
 
-	<footer> </footer>
+	<%@include file="main/footer.jsp"%>
 
 
 	<!-- Scripts -->

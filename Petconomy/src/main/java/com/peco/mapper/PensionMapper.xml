@@ -164,7 +164,7 @@
 				order by star desc, cnt desc
 			</when>
 			<when test="sort == 'max'">
-				order by max desc
+				order by min desc
 			</when>
 			<when test="sort == 'min'">
 				order by min asc
