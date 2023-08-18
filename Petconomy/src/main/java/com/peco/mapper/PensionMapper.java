@@ -16,7 +16,7 @@ public interface PensionMapper {
 	public List<PensionVO> mapList(RegionCri cri);
 	
 	public List<PensionVO> pensionList(RegionCri cri);
-
+	
 	public List<PensionVO> pensiontop();
 	
 	public int pensionInsert(PensionVO vo);

@@ -5,7 +5,7 @@
   <mapper namespace="com.peco.mapper.PensionMapper">
   	<select id="mapList" resultType="com.peco.vo.PensionVO">
              select * from
-             (select t.*, rownum rn from(select p.p_id, pname, addr, openhour, substr(parkyn,-2) ParkYN , star, cnt, min, max, savePath, cno
+             (select t.*, rownum rn from(select p.p_id, pname, addr, openhour, substr(parkyn,-2) ParkYN , star, cnt, min, max, savePath
              from pension p 
              LEFT JOIN
 			 (select p_id, round(avg(star)) star, count(review) cnt from p_review group by p_id) r
@@ -16,9 +16,7 @@
              left join              
              (select p_id, uploadpath||p_id||filename savePath from p_img) s
              ON p.p_id = s.p_id
-             LEFT JOIN
-             (select p_id, cno from jjim) t
-             ON p.p_id = t.p_id  where checkyn='Y' and savePath is not null
+ 			 where checkyn='Y' and savePath is not null 
 			<if test="megaregion!=null">
 				and addr like  '%'||#{megaregion}||'%'
 			</if>
@@ -31,7 +29,7 @@
 
   	<select id="pensionList" resultType="com.peco.vo.PensionVO">              
              select * from
-             (select t.*, rownum rn from(select p.p_id, pname, addr, openhour, substr(parkyn,-2) ParkYN , star, cnt, min, max, savePath, cno
+             (select t.*, rownum rn from(select p.p_id, pname, addr, openhour, substr(parkyn,-2) ParkYN , star, cnt, min, max, savePath
              from pension p 
              LEFT JOIN
 			 (select p_id, round(avg(star)) star, count(review) cnt from p_review group by p_id) r
@@ -42,9 +40,8 @@
              left join              
              (select p_id, uploadpath||p_id||filename savePath from p_img) s
              ON p.p_id = s.p_id
-             LEFT JOIN
-             (select p_id, cno from jjim) t
-             ON p.p_id = t.p_id  where checkyn='Y' and savePath is not null
+			 where checkyn='Y' and savePath is not null 
+
 			<if test="megaregion!=null">
 				and addr like  '%'||#{megaregion}||'%'
 			</if>

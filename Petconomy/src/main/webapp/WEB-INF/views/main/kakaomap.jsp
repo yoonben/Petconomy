@@ -42,7 +42,7 @@ window.addEventListener('load', function(){
 				<c:forEach items="${lists }" var="list">
 				    { 
 				       
-				        content : '<div style="width:105%; background-color:#FFF1E0"><a href="/peco/detail/detailPage?p_id=${list.p_id }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}&filename=${list.savePath}&pname=${list.pname}" style="color:#ff8040; text-align:center; font-weight:900">${list.pname}</a></div>',
+				        content : '<div style="width:250px;  border: 10px solid #FFF1E0; background-color:#FFF1E0; text-algin:center"><a href="/peco/detail/detailPage?p_id=${list.p_id }&pageNo=${pageDto.regioncri.pageNo }&megaregion=${pageDto.regioncri.megaregion}&smallregion=${pageDto.regioncri.smallregion}&filename=${list.savePath}&pname=${list.pname}" style="color:#ff8040; text-align:center; font-weight:900">${list.pname}</a></div>',
 				    	address : "${list.addr }"
 				    },
 				</c:forEach>

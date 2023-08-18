@@ -79,6 +79,7 @@ https://templatemo.com/tm-579-cyborg-gaming
 }
 
 .main-button a {
+    width: 165px;
 	margin-top: 20px;
 }
 
